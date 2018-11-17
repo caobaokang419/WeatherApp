@@ -18,7 +18,7 @@ import com.gary.weatherdemo.R;
  */
 public class CrashReportActivity extends AppCompatActivity {
 
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "AnalyticsActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

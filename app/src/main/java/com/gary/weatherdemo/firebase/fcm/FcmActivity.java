@@ -25,7 +25,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
  */
 public class FcmActivity extends AppCompatActivity {
 
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "AnalyticsActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +55,6 @@ public class FcmActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "Subscribing to weather topic");
-                // [START subscribe_topics]
                 FirebaseMessaging.getInstance().subscribeToTopic("weather")
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
@@ -68,7 +67,6 @@ public class FcmActivity extends AppCompatActivity {
                                 Toast.makeText(FcmActivity.this, msg, Toast.LENGTH_SHORT).show();
                             }
                         });
-                // [END subscribe_topics]
             }
         });
 
@@ -95,8 +93,6 @@ public class FcmActivity extends AppCompatActivity {
                                 Toast.makeText(FcmActivity.this, msg, Toast.LENGTH_SHORT).show();
                             }
                         });
-
-
             }
         });
     }

@@ -74,9 +74,6 @@
             android:name=".firebase.crashreport.CrashReportActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".firebase.analytics.AnalyticsActivity"
-            android:theme="@style/AppTheme" />
-        <activity
             android:name=".firebase.auth.AuthChooseActivity"
             android:theme="@style/AppThemeActionBar" />
         <activity
@@ -124,6 +121,9 @@
             android:theme="@style/AppTheme"
             android:label="@string/label_twitter_login" />-->
 
+        <activity
+            android:name=".firebase.analytics.AnalyticsActivity"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
