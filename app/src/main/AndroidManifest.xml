@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.gary.weatherdemo">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:name=".base.MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true">
+
+        <!-- Sample AdMob App ID: ca-app-pub-3940256099942544~3347511713 -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/admob_app_id" />
+
+        <activity
+            android:name=".view.activity.WeatherMainBannerAdActivity"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <receiver android:name=".view.widget.WeatherWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_weather_config" />
+        </receiver>
+
+        <!-- [START firebase_service] -->
+        <service android:name=".firebase.fcm.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <!--FCM:
+            APP处于前台时：可以在onMessageReceived（）全权处理消息如自定义notification : large_icon , small_icon , color .
+            APP处于后台时：由系统通知处理这部分显示，只可以在Manifest定义 : icon、color-->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_stat_ic_notification" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+
+        <activity
+            android:name=".firebase.FirebaseListActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".firebase.admob.InterstitialAdActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".firebase.admob.RewardedVideoAdActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".firebase.remoteconfig.RemoteConfigActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".firebase.fcm.FcmActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".firebase.crashreport.CrashReportActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".firebase.analytics.AnalyticsActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".firebase.auth.AuthChooseActivity"
+            android:theme="@style/AppThemeActionBar" />
+        <activity
+            android:name=".firebase.auth.CustomAuthActivity"
+            android:theme="@style/AppTheme"
+            android:label="@string/label_custom_auth" />
+        <activity
+            android:name=".firebase.auth.GoogleSignInActivity"
+            android:theme="@style/AppTheme"
+            android:label="@string/label_google_sign_in" />
+        <!--<activity
+            android:name=".firebase.auth.FacebookLoginActivity"
+            android:theme="@style/AppTheme"
+            android:label="@string/label_facebook_login" />-->
+        <activity
+            android:name=".firebase.auth.EmailPasswordActivity"
+            android:label="@string/label_emailpassword"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".firebase.auth.PasswordlessActivity"
+            android:theme="@style/AppTheme"
+            android:label="@string/label_passwordless"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <data
+                    android:host="your-project-id.firebaseapp.com"
+                    android:scheme="https" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".firebase.auth.PhoneAuthActivity"
+            android:theme="@style/AppTheme"
+            android:label="@string/label_phone_auth"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".firebase.auth.AnonymousAuthActivity"
+            android:theme="@style/AppTheme"
+            android:label="@string/label_anonymous_auth" />
+        <!--<activity
+            android:name=".firebase.auth.TwitterLoginActivity"
+            android:theme="@style/AppTheme"
+            android:label="@string/label_twitter_login" />-->
+
+    </application>
+
+</manifest>

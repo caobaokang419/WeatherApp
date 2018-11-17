@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ActionBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/actionbar_height</item>
+        <item name="android:background">@color/actionbar_background</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+    <style name="ActionBarItem">
+        <item name="android:layout_width">@dimen/actionbar_item_width</item>
+        <item name="android:layout_height">@dimen/actionbar_item_height</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+    <style name="ActionBarTitle">
+        <item name="android:layout_width">@dimen/actionbar_item_width</item>
+        <item name="android:layout_height">@dimen/actionbar_item_height</item>
+        <item name="android:textColor">@color/actionbar_title</item>
+    </style>
+</resources>
