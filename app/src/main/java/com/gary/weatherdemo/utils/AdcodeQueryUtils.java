@@ -1,7 +1,7 @@
 package com.gary.weatherdemo.utils;
 
 import com.gary.weatherdemo.base.MyApplication;
-import com.gary.weatherdemo.bean.AdcodeConfigInfo;
+import com.gary.weatherdemo.bean.CityAdcodeInfo;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class AdcodeQueryUtils {
     private static final String TAG = AdcodeQueryUtils.class.getSimpleName();
     private static AdcodeQueryUtils instance = new AdcodeQueryUtils();
-    private ArrayList<AdcodeConfigInfo> adcodeConfig = new ArrayList<>();
+    private ArrayList<CityAdcodeInfo> cityAdcodeInfos = new ArrayList<>();
     private volatile boolean isLoaded = false;
 
     /*avoid create() invoke by others users*/
@@ -33,7 +33,7 @@ public class AdcodeQueryUtils {
                     MyApplication.getInstance().getResources().getAssets().open(fileName));
             BufferedReader bufReader = new BufferedReader(inputReader);
             String line = "";
-            adcodeConfig.clear();
+            cityAdcodeInfos.clear();
             while ((line = bufReader.readLine()) != null) {
                 praseFileLineStr(line);
             }
@@ -53,7 +53,7 @@ public class AdcodeQueryUtils {
 
         String[] strings = lineStr.split(":");
         if (strings != null && strings.length == 2) {
-            adcodeConfig.add(new AdcodeConfigInfo(strings[0], strings[1]));
+            cityAdcodeInfos.add(new CityAdcodeInfo(strings[0], strings[1]));
             LogUtils.d("praseAdcodeConfigLineStr() " + strings[0] + ":" + strings[1]);
         }
     }
@@ -71,11 +71,11 @@ public class AdcodeQueryUtils {
             return null;
         }
 
-        if (null == addr || addr.isEmpty() || null == adcodeConfig || adcodeConfig.isEmpty()) {
+        if (null == addr || addr.isEmpty() || null == cityAdcodeInfos || cityAdcodeInfos.isEmpty()) {
             return null;
         }
 
-        for (AdcodeConfigInfo adinfo : adcodeConfig) {
+        for (CityAdcodeInfo adinfo : cityAdcodeInfos) {
             if (adinfo.isAddrSearched(addr)) {
                 LogUtils.d("getAdcodeByAddress() " + addr + ": " + adinfo);
                 return adinfo.adcCode;

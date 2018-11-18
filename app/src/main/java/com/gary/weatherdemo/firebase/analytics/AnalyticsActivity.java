@@ -50,10 +50,10 @@ public class AnalyticsActivity extends AppCompatActivity {
     private static final String KEY_FAVORITE_FOOD = "favorite_food";
 
     private static final ImageInfo[] IMAGE_INFOS = {
-            new ImageInfo(R.drawable.favorite, R.string.pattern1_title, R.string.pattern1_id),
-            new ImageInfo(R.drawable.flash, R.string.pattern2_title, R.string.pattern2_id),
-            new ImageInfo(R.drawable.face, R.string.pattern3_title, R.string.pattern3_id),
-            new ImageInfo(R.drawable.whitebalance, R.string.pattern4_title, R.string.pattern4_id),
+            new ImageInfo(R.drawable.ic_fb_analytics_favorite, R.string.pattern1_title, R.string.pattern1_id),
+            new ImageInfo(R.drawable.ic_fb_analytics_flash, R.string.pattern2_title, R.string.pattern2_id),
+            new ImageInfo(R.drawable.ic_fb_analytics_face, R.string.pattern3_title, R.string.pattern3_id),
+            new ImageInfo(R.drawable.ic_fb_analytics_whitebalance, R.string.pattern4_title, R.string.pattern4_id),
     };
 
     /**
@@ -73,7 +73,7 @@ public class AnalyticsActivity extends AppCompatActivity {
     private FirebaseAnalytics mFirebaseAnalytics;
 
     /**
-     * The user's favorite food, chosen from a dialog.
+     * The user's ic_fb_analytics_favorite food, chosen from a dialog.
      */
     private String mFavoriteFood;
 
@@ -85,7 +85,7 @@ public class AnalyticsActivity extends AppCompatActivity {
         // Obtain the FirebaseAnalytics instance.
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
-        // On first app open, ask the user his/her favorite food. Then set this as a user property
+        // On first app open, ask the user his/her ic_fb_analytics_favorite food. Then set this as a user property
         // on all subsequent opens.
         String userFavoriteFood = getUserFavoriteFood();
         if (userFavoriteFood == null) {
@@ -126,7 +126,7 @@ public class AnalyticsActivity extends AppCompatActivity {
     }
 
     /**
-     * Display a dialog prompting the user to pick a favorite food from a list, then record
+     * Display a dialog prompting the user to pick a ic_fb_analytics_favorite food from a list, then record
      * the answer.
      */
     private void askFavoriteFood() {
@@ -146,8 +146,8 @@ public class AnalyticsActivity extends AppCompatActivity {
     }
 
     /**
-     * Get the user's favorite food from shared preferences.
-     * @return favorite food, as a string.
+     * Get the user's ic_fb_analytics_favorite food from shared preferences.
+     * @return ic_fb_analytics_favorite food, as a string.
      */
     private String getUserFavoriteFood() {
         return PreferenceManager.getDefaultSharedPreferences(this)
@@ -155,8 +155,8 @@ public class AnalyticsActivity extends AppCompatActivity {
     }
 
     /**
-     * Set the user's favorite food as an app measurement user property and in shared preferences.
-     * @param food the user's favorite food.
+     * Set the user's ic_fb_analytics_favorite food as an app measurement user property and in shared preferences.
+     * @param food the user's ic_fb_analytics_favorite food.
      */
     private void setUserFavoriteFood(String food) {
         Log.d(TAG, "setFavoriteFood: " + food);
@@ -171,7 +171,7 @@ public class AnalyticsActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.menu_analytics_options, menu);
         return true;
     }
 

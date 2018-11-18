@@ -12,13 +12,16 @@ import android.widget.TextView;
 import com.example.commonui.ActionBar;
 import com.example.commonui.IActionBarOnClickListener;
 import com.gary.weatherdemo.R;
+import com.gary.weatherdemo.bean.CityAdcodeInfo;
 import com.gary.weatherdemo.databinding.WeatherMainActivityBinding;
+import com.gary.weatherdemo.firebase.FirebaseListActivity;
 import com.gary.weatherdemo.firebase.admob.BannerAdActivity;
 import com.gary.weatherdemo.model.LiveWeatherResult;
 import com.gary.weatherdemo.utils.LogUtils;
+import com.gary.weatherdemo.utils.WeatherUtils;
 import com.gary.weatherdemo.viewmodel.MainActivityViewModel;
 
-public class WeatherMainBannerAdActivity extends BannerAdActivity implements IActionBarOnClickListener {
+public class WeatherMainActivity extends BannerAdActivity implements IActionBarOnClickListener {
     private MainActivityViewModel viewModel;
     private ActionBar actionBar;
     private TextView curTempView;
@@ -43,7 +46,7 @@ public class WeatherMainBannerAdActivity extends BannerAdActivity implements IAc
     @Override
     protected void onResume() {
         if (viewModel != null) {
-            viewModel.requestWeatherByCityName();
+            viewModel.loadCurCityInfo();
         }
         super.onResume();
     }
@@ -69,6 +72,16 @@ public class WeatherMainBannerAdActivity extends BannerAdActivity implements IAc
                 curView.setVisibility(View.VISIBLE);
             }
         });
+
+        viewModel.getCurCityInfo().observe(this, new Observer<CityAdcodeInfo>() {
+            @Override
+            public void onChanged(@Nullable CityAdcodeInfo cityAdcodeInfo) {
+                if (null != actionBar) {
+                    actionBar.setTitle(cityAdcodeInfo.adrName);
+                }
+                viewModel.queryCityWeather(cityAdcodeInfo.adcCode);
+            }
+        });
     }
 
     @Override
@@ -79,12 +92,6 @@ public class WeatherMainBannerAdActivity extends BannerAdActivity implements IAc
     @Override
     public void rightActBarItemClicked() {
         LogUtils.d("rightActBarItemClicked()");
-        startActivity("com.gary.weatherdemo.firebase.FirebaseListActivity");
-    }
-
-    private void startActivity(String classname) {
-        Intent intent = new Intent();
-        intent.setClassName("com.gary.weatherdemo", classname);
-        startActivity(intent);
+        WeatherUtils.startActivity(this, FirebaseListActivity.class);
     }
 }

@@ -9,7 +9,7 @@ import com.firebase.jobdispatcher.JobService;
 /**
  * Created by GaryCao on 2018/11/16.
  *
- * Firebase jobdispatcher：后台任务
+ * 后台任务: Firebase jobdispatcher
  */
 public class MyJobService extends JobService {
 

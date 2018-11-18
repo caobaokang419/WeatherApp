@@ -5,6 +5,13 @@
     android:orientation="vertical"
     tools:context="com.gary.weatherdemo.firebase.fcm.FcmActivity">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/firebase_lockup_400" />
+
     <TextView
         android:id="@+id/informationTextView"
         android:layout_width="wrap_content"

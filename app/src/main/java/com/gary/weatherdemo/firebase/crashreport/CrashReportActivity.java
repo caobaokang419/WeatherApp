@@ -13,7 +13,7 @@ import com.gary.weatherdemo.R;
 
 /**
  * Created by GaryCao on 2018/11/16.
- * <p>
+
  * Firebase崩溃上报
  */
 public class CrashReportActivity extends AppCompatActivity {
@@ -54,7 +54,7 @@ public class CrashReportActivity extends AppCompatActivity {
                         Crashlytics.logException(ex);
                     }
                 } else {
-                    //TODO: 主动throw Exception，测试Firebase后台是否能收到上报？？？
+                    //TODO: 主动throw Exception，Firebase后台收到上报
                     throw new NullPointerException();
                 }
             }

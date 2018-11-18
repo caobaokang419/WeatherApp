@@ -66,7 +66,7 @@ public class PhoneAuthActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_phone_auth);
+        setContentView(R.layout.activity_fb_auth_phone_auth);
 
         // Restore instance state
         if (savedInstanceState != null) {

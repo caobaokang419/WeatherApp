@@ -42,7 +42,7 @@ public class FcmActivity extends AppCompatActivity {
                     channelName, NotificationManager.IMPORTANCE_LOW));
         }
 
-        // 当Notification的类型是message+data时，data在此处理
+        // 当Notification的类型是message+data时，data在此处理（点击系统通知触发启动Activity时）
         if (getIntent().getExtras() != null) {
             for (String key : getIntent().getExtras().keySet()) {
                 Object value = getIntent().getExtras().get(key);
@@ -50,6 +50,8 @@ public class FcmActivity extends AppCompatActivity {
             }
         }
 
+
+        //应用侧上报：订阅主题："Weather"
         Button subscribeButton = findViewById(R.id.subscribeButton);
         subscribeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +72,7 @@ public class FcmActivity extends AppCompatActivity {
             }
         });
 
+        //应用侧查询：注册的设备唯一的FCM令牌
         Button logTokenButton = findViewById(R.id.logTokenButton);
         logTokenButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +87,7 @@ public class FcmActivity extends AppCompatActivity {
                                     return;
                                 }
 
-                                // Get new Instance ID token
+                                // 获取设备Instance ID token，用于服务端推送单一设备.
                                 String token = task.getResult().getToken();
 
                                 // Log and toast
@@ -96,5 +99,4 @@ public class FcmActivity extends AppCompatActivity {
             }
         });
     }
-
 }

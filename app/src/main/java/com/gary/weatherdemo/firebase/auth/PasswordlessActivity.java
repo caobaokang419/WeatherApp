@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.gary.weatherdemo.R;
+import com.gary.weatherdemo.firebase.auth.base.BaseActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.ActionCodeSettings;
@@ -46,7 +47,7 @@ public class PasswordlessActivity extends BaseActivity implements View.OnClickLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_passwordless);
+        setContentView(R.layout.activity_fb_auth_passwordless);
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();

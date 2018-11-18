@@ -33,7 +33,7 @@ public class FirebaseUIActivity extends AppCompatActivity implements View.OnClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_firebase_ui);
+        setContentView(R.layout.activity_fb_auth_firebase_ui);
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();

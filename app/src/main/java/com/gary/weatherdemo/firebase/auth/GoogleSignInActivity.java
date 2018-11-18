@@ -25,6 +25,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.gary.weatherdemo.R;
+import com.gary.weatherdemo.firebase.auth.base.BaseActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -58,7 +59,7 @@ public class GoogleSignInActivity extends BaseActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_google);
+        setContentView(R.layout.activity_fb_auth_google);
 
         // Views
         mStatusTextView = findViewById(R.id.status);

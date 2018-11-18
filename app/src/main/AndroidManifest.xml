@@ -19,7 +19,7 @@
             android:value="@string/admob_app_id" />
 
         <activity
-            android:name=".view.activity.WeatherMainBannerAdActivity"
+            android:name=".view.activity.WeatherMainActivity"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,7 +38,6 @@
                 android:resource="@xml/widget_weather_config" />
         </receiver>
 
-        <!-- [START firebase_service] -->
         <service android:name=".firebase.fcm.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

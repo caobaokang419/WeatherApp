@@ -7,7 +7,14 @@ import android.view.View;
 import android.widget.Button;
 
 import com.gary.weatherdemo.R;
-
+import com.gary.weatherdemo.firebase.admob.InterstitialAdActivity;
+import com.gary.weatherdemo.firebase.admob.RewardedVideoAdActivity;
+import com.gary.weatherdemo.firebase.analytics.AnalyticsActivity;
+import com.gary.weatherdemo.firebase.auth.AuthChooseActivity;
+import com.gary.weatherdemo.firebase.crashreport.CrashReportActivity;
+import com.gary.weatherdemo.firebase.fcm.FcmActivity;
+import com.gary.weatherdemo.firebase.remoteconfig.RemoteConfigActivity;
+import com.gary.weatherdemo.utils.WeatherUtils;
 
 public class FirebaseListActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -52,34 +59,28 @@ public class FirebaseListActivity extends AppCompatActivity implements View.OnCl
         int id = view.getId();
         switch (id) {
             case R.id.interstitial_btn:
-                startActivity("com.gary.weatherdemo.firebase.admob.InterstitialAdActivity");
+                WeatherUtils.startActivity(this, InterstitialAdActivity.class);
                 break;
             case R.id.rewarded_video_btn:
-                startActivity("com.gary.weatherdemo.firebase.admob.RewardedVideoAdActivity");
+                WeatherUtils.startActivity(this, RewardedVideoAdActivity.class);
                 break;
             case R.id.remote_config_btn:
-                startActivity("com.gary.weatherdemo.firebase.remoteconfig.RemoteConfigActivity");
+                WeatherUtils.startActivity(this, RemoteConfigActivity.class);
                 break;
             case R.id.fcm_btn:
-                startActivity("com.gary.weatherdemo.firebase.fcm.FcmActivity");
+                WeatherUtils.startActivity(this, FcmActivity.class);
                 break;
             case R.id.analytics_btn:
-                startActivity("com.gary.weatherdemo.firebase.analytics.AnalyticsActivity");
+                WeatherUtils.startActivity(this, AnalyticsActivity.class);
                 break;
             case R.id.crash_report_btn:
-                startActivity("com.gary.weatherdemo.firebase.crashreport.CrashReportActivity");
+                WeatherUtils.startActivity(this, CrashReportActivity.class);
                 break;
             case R.id.auth_btn:
-                startActivity("com.gary.weatherdemo.firebase.auth.AuthChooseActivity");
+                WeatherUtils.startActivity(this, AuthChooseActivity.class);
                 break;
             default:
                 break;
         }
-    }
-
-    private void startActivity(String classname) {
-        Intent intent = new Intent();
-        intent.setClassName("com.gary.weatherdemo", classname);
-        startActivity(intent);
     }
 }

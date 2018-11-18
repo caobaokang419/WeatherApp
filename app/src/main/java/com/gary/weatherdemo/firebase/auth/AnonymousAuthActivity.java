@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gary.weatherdemo.R;
+import com.gary.weatherdemo.firebase.auth.base.BaseActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -52,7 +53,7 @@ public class AnonymousAuthActivity extends BaseActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_anonymous_auth);
+        setContentView(R.layout.activity_fb_auth_anonymous_auth);
 
         // [START initialize_auth]
         // Initialize Firebase Auth

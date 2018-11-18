@@ -1,4 +1,4 @@
-package com.gary.weatherdemo.firebase.auth;
+package com.gary.weatherdemo.firebase.auth.base;
 
 import android.app.ProgressDialog;
 import android.content.Context;

@@ -48,7 +48,7 @@ public class CustomAuthActivity extends AppCompatActivity implements View.OnClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_custom);
+        setContentView(R.layout.activity_fb_auth_custom);
 
         // Button click listeners
         findViewById(R.id.buttonSignIn).setOnClickListener(this);

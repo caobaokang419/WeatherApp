@@ -126,12 +126,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      * @param token The new token.
      */
     private void sendRegistrationToServer(String token) {
-        // 在此方法中将InstanceID发送给app的服务器，用于定向发送推送消息。
+        // 在此方法中将InstanceID token 发送给app的服务器，用于定向发送推送消息。
 
     }
 
     /**
-     * APP发出FCM云推送通知
+     * APP发出FCM云推送过来的通知
      *
      * @param title FCM message title received.
      * @param messageBody FCM message body received.
