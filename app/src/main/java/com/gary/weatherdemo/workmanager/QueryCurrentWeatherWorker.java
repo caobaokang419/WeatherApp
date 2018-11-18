@@ -16,7 +16,7 @@ public class QueryCurrentWeatherWorker extends Worker {
     @NonNull
     @Override
     public Result doWork() {
-        //TBD
+        //TODO
 
         LogUtils.d(TAG,"doWork()");
 

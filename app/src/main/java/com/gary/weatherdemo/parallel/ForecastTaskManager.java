@@ -36,7 +36,7 @@ public class ForecastTaskManager {
         threadHandler = new Handler(handlerThread.getLooper()) {
             @Override
             public void handleMessage(android.os.Message msg) {
-                //TBD... 处理耗时流程
+                //TODO... 用于处理耗时流程
             }
         };
     }

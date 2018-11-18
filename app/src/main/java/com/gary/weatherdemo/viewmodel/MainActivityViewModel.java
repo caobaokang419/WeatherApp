@@ -32,26 +32,17 @@ public class MainActivityViewModel {
                 .observeOn(AndroidSchedulers.mainThread()) //设置2：在UI主线程执行回调
                 .subscribe(new Observer<LiveWeatherResponseData>() {//设置3：UI主线程回調實現
                     @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
+                    public void onSubscribe(Disposable d) {}
                     @Override
                     public void onNext(LiveWeatherResponseData responseData) {
                         if (responseData != null && responseData.isSuccessful()) {
                             liveWeatherData.postValue(responseData.getWeatherLiveResult());
                         }
                     }
-
                     @Override
-                    public void onError(Throwable e) {
-
-                    }
-
+                    public void onError(Throwable e) {}
                     @Override
-                    public void onComplete() {
-
-                    }
+                    public void onComplete() {}
                 });
 
         WeatherRequestClient.getInstance().forecastWeatherPost(adcode)
@@ -60,9 +51,7 @@ public class MainActivityViewModel {
                 .subscribe(new Observer<AllForecastResponseData>() {//设置3：UI主线程回調實現
                     @Override
                     public void onSubscribe(Disposable d) {
-
                     }
-
                     @Override
                     public void onNext(AllForecastResponseData responseData) {
                         if (responseData != null && responseData.isSuccessful()) {
@@ -70,16 +59,10 @@ public class MainActivityViewModel {
                             weatherAdapter.set(adapter);
                         }
                     }
-
                     @Override
-                    public void onError(Throwable e) {
-
-                    }
-
+                    public void onError(Throwable e) {}
                     @Override
-                    public void onComplete() {
-
-                    }
+                    public void onComplete() {}
                 });
     }
 

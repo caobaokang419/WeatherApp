@@ -21,7 +21,7 @@ public abstract class CityForecastDatabase extends RoomDatabase {
 
     }
 
-    /*TBD: DB耗时操作如何处理:RXJava(推荐) -- HandleThread(UI订阅复杂)? AsyncTask(阻塞)?*/
+    /*TODO: DB耗时操作如何处理:RXJava2(推荐) -- HandleThread(UI订阅复杂) -- AsyncTask(线程阻塞)*/
     public static CityForecastDatabase getInstance(Context context) {
         synchronized (lock) {
             if (cityForecastDatabase == null) {

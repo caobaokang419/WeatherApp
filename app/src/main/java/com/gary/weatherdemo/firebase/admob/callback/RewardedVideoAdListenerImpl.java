@@ -13,7 +13,7 @@ public class RewardedVideoAdListenerImpl implements RewardedVideoAdListener{
 
     @Override
     public void onRewarded(RewardItem reward) {
-        // TBD: 激励广告触发：此时应实现应用奖励逻辑（奖励：积分？游戏金币？）
+        // TODO: 激励广告触发：此时应实现应用奖励逻辑（奖励：积分？游戏金币？）
 
         WeatherUtils.showToast("onRewarded! currency: " + reward.getType() + "  amount: " + reward.getAmount());
     }
@@ -25,7 +25,7 @@ public class RewardedVideoAdListenerImpl implements RewardedVideoAdListener{
 
     @Override
     public void onRewardedVideoAdClosed() {
-        // TBD: 激励广告结束，可触发下一个激励广告：
+        // TODO: 激励广告结束，可触发下一个激励广告：
         // loadRewardedVideoAd();
 
         WeatherUtils.showToast("onRewardedVideoAdClosed");

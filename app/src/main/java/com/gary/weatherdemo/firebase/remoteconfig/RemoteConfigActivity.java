@@ -18,7 +18,7 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 
 /**
  * Created by GaryCao on 2018/11/16.
- *
+ * <p>
  * Firebase RemoteConfig：云配置
  */
 public class RemoteConfigActivity extends AppCompatActivity {
@@ -28,9 +28,13 @@ public class RemoteConfigActivity extends AppCompatActivity {
     private static final String LOADING_PHRASE_CONFIG_KEY = "loading_phrase";
     private static final String WELCOME_MESSAGE_KEY = "welcome_message";
     private static final String WELCOME_MESSAGE_CAPS_KEY = "welcome_message_caps";
+    private static final String WEATHER_UI_BG_COLOR_KEY = "weather_ui_bg_color";
+    private static final String DEF_WEATHER_CITY_INFO_KEY = "def_weather_city_info";
 
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
     private TextView mWelcomeTextView;
+    private TextView mDefCityTextView;
+    private TextView mDefBgColorTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +42,14 @@ public class RemoteConfigActivity extends AppCompatActivity {
         setContentView(R.layout.activity_fb_remote_config);
 
         mWelcomeTextView = findViewById(R.id.welcomeTextView);
+        mDefCityTextView = findViewById(R.id.defCityTextView);
+        mDefBgColorTextView = findViewById(R.id.defBgColorTextView);
 
         Button fetchButton = findViewById(R.id.fetchButton);
         fetchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fetchWelcome();
+                fetchRemoteConfigs();
             }
         });
 
@@ -54,16 +60,16 @@ public class RemoteConfigActivity extends AppCompatActivity {
                 .setDeveloperModeEnabled(BuildConfig.DEBUG)
                 .build();
         mFirebaseRemoteConfig.setConfigSettings(configSettings);
+
+        //Step1: 加载应用xml中默认属性值
         mFirebaseRemoteConfig.setDefaults(R.xml.remote_config_defaults);
 
-        fetchWelcome();
+        //Step2: 请求Remote config数据
+        fetchRemoteConfigs();
     }
 
-    /**
-     * Fetch a welcome message from the Remote Config service, and then activate it.
-     */
-    private void fetchWelcome() {
-        mWelcomeTextView.setText(mFirebaseRemoteConfig.getString(LOADING_PHRASE_CONFIG_KEY));
+    private void fetchRemoteConfigs() {
+        displayLocalConfigInfos();
 
         long cacheExpiration = 3600; // 1 hour in seconds.
         // If your app is using developer mode, cacheExpiration is set to 0, so each fetch will
@@ -81,29 +87,48 @@ public class RemoteConfigActivity extends AppCompatActivity {
                             Toast.makeText(RemoteConfigActivity.this, "Fetch Succeeded",
                                     Toast.LENGTH_SHORT).show();
 
-                            // After config data is successfully fetched, it must be activated before newly fetched
-                            // values are returned.
+                            //Step4: 获取成功后，需APP主动Set
                             mFirebaseRemoteConfig.activateFetched();
                         } else {
                             Toast.makeText(RemoteConfigActivity.this, "Fetch Failed",
                                     Toast.LENGTH_SHORT).show();
                         }
-                        displayWelcomeMessage();
+                        displayRemoteConfigInfos();
                     }
                 });
     }
 
     /**
-     * Display a welcome message in all caps if welcome_message_caps is set to true. Otherwise,
-     * display a welcome message as fetched from welcome_message.
+     * 加载本地配置
      */
-    private void displayWelcomeMessage() {
-        String welcomeMessage = mFirebaseRemoteConfig.getString(WELCOME_MESSAGE_KEY);
+    private void displayLocalConfigInfos() {
+        //Step3: local configs
+        displayConfigInfos();
+    }
+
+    /**
+     * 加载云端配置
+     */
+    private void displayRemoteConfigInfos() {
+        //Step5: 刷新Remote configs
+        displayConfigInfos();
+    }
+
+    /**
+     * 本地+云端配置加载方法一致
+     */
+    private void displayConfigInfos() {
         if (mFirebaseRemoteConfig.getBoolean(WELCOME_MESSAGE_CAPS_KEY)) {
             mWelcomeTextView.setAllCaps(true);
         } else {
             mWelcomeTextView.setAllCaps(false);
         }
-        mWelcomeTextView.setText(welcomeMessage);
+        mWelcomeTextView.setText(mFirebaseRemoteConfig.getString(WELCOME_MESSAGE_KEY));
+
+        String defCityInfo = mFirebaseRemoteConfig.getString(DEF_WEATHER_CITY_INFO_KEY);
+        mDefCityTextView.setText(defCityInfo);
+
+        String defBgColor = mFirebaseRemoteConfig.getString(WEATHER_UI_BG_COLOR_KEY);
+        mDefBgColorTextView.setText(defBgColor);
     }
 }

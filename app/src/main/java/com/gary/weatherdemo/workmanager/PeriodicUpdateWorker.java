@@ -15,7 +15,7 @@ public class PeriodicUpdateWorker extends Worker {
     @NonNull
     @Override
     public Result doWork() {
-        //TBD
+        //TODO
 
         LogUtils.d(TAG,"doWork()");
 

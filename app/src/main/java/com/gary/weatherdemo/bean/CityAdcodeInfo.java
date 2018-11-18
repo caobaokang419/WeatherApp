@@ -7,8 +7,6 @@ public class CityAdcodeInfo {
     public String adrName;
     public String adcCode;
 
-    /*TBD : waiting for modified here*/
-
     public CityAdcodeInfo(String addr, String adcode) {
         adrName = addr;
         adcCode = adcode;
