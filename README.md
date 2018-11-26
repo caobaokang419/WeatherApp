@@ -33,8 +33,12 @@
 -------
 
 ### Android Firebase document：
-- [Firebase 集成指南](https://developers.google.com/firebase/docs/android/setup?hl=zh-CN):
-
+- [Firebase 集成指南](https://developers.google.com/firebase/docs/android/setup?hl=zh-CN)
+- [Analytics(分析)](https://firebase.google.com/docs/analytics/?hl=zh-CN)
+- [Crash Report(报错上报)](https://firebase.google.com/docs/crashlytics/?hl=zh-CN)
+- [Remote Config(远程配置)](https://firebase.google.com/docs/cloud-messaging/?hl=zh-CN)
+- [Cloud Message(云消息)](https://firebase.google.com/docs/remote-config/?hl=zh-CN)
+- [Auth(身份认证)](https://firebase.google.com/docs/auth/?hl=zh-CN)
 
 -------
 ### Android Architecture Components document：
