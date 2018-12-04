@@ -52,7 +52,7 @@
 
 -------
 ### Screenshots：
-![](https://github.com/wustcbk/WeatherDemo/blob/master/screenshots/admob_banner_screenshot.bmp)
+![](https://github.com/caobaokang419/WeatherApp/blob/master/screenshots/admob_banner_screenshot.bmp)
 
 -------
 ### License
