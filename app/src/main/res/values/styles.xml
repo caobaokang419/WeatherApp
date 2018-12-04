@@ -50,4 +50,15 @@
         <item name="android:gravity">center</item>
         <item name="android:textSize">36sp</item>
     </style>
+
+    <!-- Dialog Activity with no Title -->
+    <style name="ThemeOverlay.MyDialogActivity" parent="Theme.AppCompat.Light.Dialog">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!-- Blue Buttons -->
+    <style name="ThemeOverlay.MyBlueButton" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="colorButtonNormal">@color/colorAccent</item>
+    </style>
 </resources>

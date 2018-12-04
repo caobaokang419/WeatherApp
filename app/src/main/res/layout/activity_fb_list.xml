@@ -56,11 +56,46 @@
             android:text="崩溃报告(Crash report)" />
 
         <Button
+            android:id="@+id/inappmessage_btn"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="InAppMessage(应用内消息)" />
+
+        <Button
+            android:id="@+id/performance_btn"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Performance(性能优化)" />
+
+        <Button
             android:id="@+id/auth_btn"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="身份认证" />
+            android:text="身份认证(Auth)" />
+
+        <Button
+            android:id="@+id/invite_btn"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="InVite(邀请)" />
+
+        <Button
+            android:id="@+id/dynamiclink_btn"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="DynamicLink(动态链接)" />
+
+        <Button
+            android:id="@+id/indexing_btn"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Indexing(索引)" />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

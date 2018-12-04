@@ -10,9 +10,14 @@ import com.gary.weatherdemo.R;
 import com.gary.weatherdemo.firebase.admob.InterstitialAdActivity;
 import com.gary.weatherdemo.firebase.admob.RewardedVideoAdActivity;
 import com.gary.weatherdemo.firebase.analytics.AnalyticsActivity;
+import com.gary.weatherdemo.firebase.appindexing.AppIndexingMainActivity;
 import com.gary.weatherdemo.firebase.auth.AuthChooseActivity;
 import com.gary.weatherdemo.firebase.crashreport.CrashReportActivity;
+import com.gary.weatherdemo.firebase.dynamiclinks.DynamicLinkMainActivity;
 import com.gary.weatherdemo.firebase.fcm.FcmActivity;
+import com.gary.weatherdemo.firebase.inappmessaging.InAppMsgMainActivity;
+import com.gary.weatherdemo.firebase.invite.InviteMainActivity;
+import com.gary.weatherdemo.firebase.performance.PerformanceMainActivity;
 import com.gary.weatherdemo.firebase.remoteconfig.RemoteConfigActivity;
 import com.gary.weatherdemo.utils.WeatherUtils;
 
@@ -26,6 +31,12 @@ public class FirebaseListActivity extends AppCompatActivity implements View.OnCl
     private Button analyticsBtn;
     private Button crashLogBtn;
     private Button authBtn;
+
+    private Button inappmessageBtn;
+    private Button inviteBtn;
+    private Button dynamiclinkBtn;
+    private Button indexingBtn;
+    private Button performanceBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +63,21 @@ public class FirebaseListActivity extends AppCompatActivity implements View.OnCl
 
         authBtn = findViewById(R.id.auth_btn);
         authBtn.setOnClickListener(this);
+
+        inappmessageBtn = findViewById(R.id.inappmessage_btn);
+        inappmessageBtn.setOnClickListener(this);
+
+        inviteBtn = findViewById(R.id.invite_btn);
+        inviteBtn.setOnClickListener(this);
+
+        dynamiclinkBtn = findViewById(R.id.dynamiclink_btn);
+        dynamiclinkBtn.setOnClickListener(this);
+
+        indexingBtn = findViewById(R.id.indexing_btn);
+        indexingBtn.setOnClickListener(this);
+
+        performanceBtn = findViewById(R.id.performance_btn);
+        performanceBtn.setOnClickListener(this);
     }
 
     @Override
@@ -78,6 +104,21 @@ public class FirebaseListActivity extends AppCompatActivity implements View.OnCl
                 break;
             case R.id.auth_btn:
                 WeatherUtils.startActivity(this, AuthChooseActivity.class);
+                break;
+            case R.id.inappmessage_btn:
+                WeatherUtils.startActivity(this, InAppMsgMainActivity.class);
+                break;
+            case R.id.invite_btn:
+                WeatherUtils.startActivity(this, InviteMainActivity.class);
+                break;
+            case R.id.dynamiclink_btn:
+                WeatherUtils.startActivity(this, DynamicLinkMainActivity.class);
+                break;
+            case R.id.performance_btn:
+                WeatherUtils.startActivity(this, PerformanceMainActivity.class);
+                break;
+            case R.id.indexing_btn:
+                WeatherUtils.startActivity(this, AppIndexingMainActivity.class);
                 break;
             default:
                 break;
