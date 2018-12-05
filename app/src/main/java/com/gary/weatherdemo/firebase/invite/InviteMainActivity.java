@@ -52,16 +52,13 @@ public class InviteMainActivity extends AppCompatActivity implements
     private static final String TAG = InviteMainActivity.class.getSimpleName();
     private static final int REQUEST_INVITE = 0;
 
-    // [START on_create]
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // [START_EXCLUDE]
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fb_invite_main);
 
         // Invite button click listener
         findViewById(R.id.inviteButton).setOnClickListener(this);
-        // [END_EXCLUDE]
 
         // Check for App Invite invitations and launch deep-link activity if possible.
         // Requires that an Activity is registered in AndroidManifest.xml to handle
@@ -85,7 +82,6 @@ public class InviteMainActivity extends AppCompatActivity implements
                         }
 
                         // Handle the deep link
-                        // [START_EXCLUDE]
                         Log.d(TAG, "deepLink:" + deepLink);
                         if (deepLink != null) {
                             Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -94,7 +90,6 @@ public class InviteMainActivity extends AppCompatActivity implements
 
                             startActivity(intent);
                         }
-                        // [END_EXCLUDE]
                     }
                 })
                 .addOnFailureListener(this, new OnFailureListener() {
@@ -104,7 +99,6 @@ public class InviteMainActivity extends AppCompatActivity implements
                     }
                 });
     }
-    // [END on_create]
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
@@ -116,7 +110,6 @@ public class InviteMainActivity extends AppCompatActivity implements
      * User has clicked the 'Invite' button, launch the invitation UI with the proper
      * title, message, and deep link
      */
-    // [START on_invite_clicked]
     private void onInviteClicked() {
         Intent intent = new AppInviteInvitation.IntentBuilder(getString(R.string.invitation_title))
                 .setMessage(getString(R.string.invitation_message))
@@ -126,9 +119,7 @@ public class InviteMainActivity extends AppCompatActivity implements
                 .build();
         startActivityForResult(intent, REQUEST_INVITE);
     }
-    // [END on_invite_clicked]
 
-    // [START on_activity_result]
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -143,13 +134,10 @@ public class InviteMainActivity extends AppCompatActivity implements
                 }
             } else {
                 // Sending failed or it was canceled, show failure message to the user
-                // [START_EXCLUDE]
                 showMessage(getString(R.string.send_failed));
-                // [END_EXCLUDE]
             }
         }
     }
-    // [END on_activity_result]
 
     private void showMessage(String msg) {
         ViewGroup container = findViewById(R.id.snackbarLayout);

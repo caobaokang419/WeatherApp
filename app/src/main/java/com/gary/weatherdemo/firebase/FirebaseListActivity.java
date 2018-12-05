@@ -16,6 +16,7 @@ import com.gary.weatherdemo.firebase.crashreport.CrashReportActivity;
 import com.gary.weatherdemo.firebase.dynamiclinks.DynamicLinkMainActivity;
 import com.gary.weatherdemo.firebase.fcm.FcmActivity;
 import com.gary.weatherdemo.firebase.inappmessaging.InAppMsgMainActivity;
+import com.gary.weatherdemo.firebase.indexing.IndexingMainActivity;
 import com.gary.weatherdemo.firebase.invite.InviteMainActivity;
 import com.gary.weatherdemo.firebase.performance.PerformanceMainActivity;
 import com.gary.weatherdemo.firebase.remoteconfig.RemoteConfigActivity;
@@ -118,7 +119,7 @@ public class FirebaseListActivity extends AppCompatActivity implements View.OnCl
                 WeatherUtils.startActivity(this, PerformanceMainActivity.class);
                 break;
             case R.id.indexing_btn:
-                WeatherUtils.startActivity(this, AppIndexingMainActivity.class);
+                WeatherUtils.startActivity(this, /*App*/IndexingMainActivity.class);
                 break;
             default:
                 break;

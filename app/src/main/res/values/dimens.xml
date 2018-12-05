@@ -9,4 +9,6 @@
     <dimen name="field_width_standard">160dp</dimen>
 
     <dimen name="standard_field_width">160dp</dimen>
+
+    <dimen name="dp_16">16dp</dimen>
 </resources>

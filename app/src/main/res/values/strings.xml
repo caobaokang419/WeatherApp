@@ -168,4 +168,8 @@
     <string name="button_text">Trigger \'engagement_party\' event</string>
 
     <string name="instance_id_fmt">Device Instance ID: %s</string>
+
+    <string name="btn_add">添加索引</string>
+    <string name="btn_remove">移除索引</string>
+    <string name="btn_clear">清空索引</string>
 </resources>
