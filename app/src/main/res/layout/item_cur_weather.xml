@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data class="com.gary.weatherdemo.databinding.CurWeatherBinding">
+
+        <variable
+            name="viewModel"
+            type="com.gary.weatherdemo.viewmodel.CurWeatherViewModel" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/cur_weather_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/forecast_item_background"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/cur_temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="36dp"
+            android:text="@{viewModel.liveWeatherResult.temperature}"/>
+
+        <TextView
+            android:id="@+id/cur_weather"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="36dp"
+            android:text="@{viewModel.liveWeatherResult.weather}"/>
+
+    </LinearLayout>
+</layout>

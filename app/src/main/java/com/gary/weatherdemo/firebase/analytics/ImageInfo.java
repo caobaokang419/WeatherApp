@@ -37,5 +37,4 @@ public class ImageInfo {
         this.title = title;
         this.id = id;
     }
-
 }

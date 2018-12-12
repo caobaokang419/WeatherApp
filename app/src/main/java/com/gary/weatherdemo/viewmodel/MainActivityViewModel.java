@@ -8,7 +8,7 @@ import com.gary.weatherdemo.model.LiveWeatherResult;
 import com.gary.weatherdemo.network.WeatherRequestClient;
 import com.gary.weatherdemo.network.response.AllForecastResponseData;
 import com.gary.weatherdemo.network.response.LiveWeatherResponseData;
-import com.gary.weatherdemo.view.adapter.ForecastRecyclerAdapter;
+import com.gary.weatherdemo.ui.adapter.ForecastRecyclerAdapter;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;

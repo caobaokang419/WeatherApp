@@ -1,4 +1,4 @@
-package com.gary.weatherdemo.view.adapter;
+package com.gary.weatherdemo.ui.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;

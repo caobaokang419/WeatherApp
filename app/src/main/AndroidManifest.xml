@@ -15,7 +15,7 @@
         android:supportsRtl="true">
 
         <activity
-            android:name=".view.activity.WeatherMainActivity"
+            android:name=".ui.activity.WeatherMainActivity"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".view.widget.WeatherWidgetProvider">
+        <receiver android:name=".ui.widget.WeatherWidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -53,7 +53,7 @@
             android:theme="@style/AppTheme" />
 
         <!--FCM-->
-        <service android:name=".firebase.fcm.MyFirebaseMessagingService">
+        <service android:name=".firebase.fcm.FCMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

@@ -42,11 +42,7 @@ public class AnonymousAuthActivity extends BaseActivity implements
         View.OnClickListener {
 
     private static final String TAG = "AnonymousAuth";
-
-    // [START declare_auth]
     private FirebaseAuth mAuth;
-    // [END declare_auth]
-
     private EditText mEmailField;
     private EditText mPasswordField;
 
@@ -55,22 +51,15 @@ public class AnonymousAuthActivity extends BaseActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fb_auth_anonymous_auth);
 
-        // [START initialize_auth]
-        // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-        // [END initialize_auth]
 
-        // Fields
         mEmailField = findViewById(R.id.fieldEmail);
         mPasswordField = findViewById(R.id.fieldPassword);
-
-        // Click listeners
         findViewById(R.id.buttonAnonymousSignIn).setOnClickListener(this);
         findViewById(R.id.buttonAnonymousSignOut).setOnClickListener(this);
         findViewById(R.id.buttonLinkAccount).setOnClickListener(this);
     }
 
-    // [START on_start_check_user]
     @Override
     public void onStart() {
         super.onStart();
@@ -78,11 +67,9 @@ public class AnonymousAuthActivity extends BaseActivity implements
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
     }
-    // [END on_start_check_user]
 
     private void signInAnonymously() {
         showProgressDialog();
-        // [START signin_anonymously]
         mAuth.signInAnonymously()
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -100,12 +87,9 @@ public class AnonymousAuthActivity extends BaseActivity implements
                             updateUI(null);
                         }
 
-                        // [START_EXCLUDE]
                         hideProgressDialog();
-                        // [END_EXCLUDE]
                     }
                 });
-        // [END signin_anonymously]
     }
 
     private void signOut() {
@@ -129,7 +113,6 @@ public class AnonymousAuthActivity extends BaseActivity implements
         // Link the anonymous user to the email credential
         showProgressDialog();
 
-        // [START link_credential]
         mAuth.getCurrentUser().linkWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -144,13 +127,9 @@ public class AnonymousAuthActivity extends BaseActivity implements
                                     Toast.LENGTH_SHORT).show();
                             updateUI(null);
                         }
-
-                        // [START_EXCLUDE]
                         hideProgressDialog();
-                        // [END_EXCLUDE]
                     }
                 });
-        // [END link_credential]
     }
 
     private boolean validateLinkForm() {
@@ -191,7 +170,6 @@ public class AnonymousAuthActivity extends BaseActivity implements
             emailView.setText(null);
         }
 
-        // Button visibility
         findViewById(R.id.buttonAnonymousSignIn).setEnabled(!isSignedIn);
         findViewById(R.id.buttonAnonymousSignOut).setEnabled(isSignedIn);
         findViewById(R.id.buttonLinkAccount).setEnabled(isSignedIn);

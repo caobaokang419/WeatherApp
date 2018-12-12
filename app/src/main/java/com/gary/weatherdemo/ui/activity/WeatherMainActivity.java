@@ -1,7 +1,6 @@
-package com.gary.weatherdemo.view.activity;
+package com.gary.weatherdemo.ui.activity;
 
 import android.arch.lifecycle.Observer;
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;

@@ -35,12 +35,8 @@ import com.google.firebase.auth.FirebaseUser;
  * https://firebase.google.com/docs/auth/android/custom-auth
  */
 public class CustomAuthActivity extends AppCompatActivity implements View.OnClickListener {
-
     private static final String TAG = "CustomAuthActivity";
-
-    // [START declare_auth]
     private FirebaseAuth mAuth;
-    // [END declare_auth]
 
     private String mCustomToken;
     private TokenBroadcastReceiver mTokenReceiver;
@@ -49,8 +45,6 @@ public class CustomAuthActivity extends AppCompatActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fb_auth_custom);
-
-        // Button click listeners
         findViewById(R.id.buttonSignIn).setOnClickListener(this);
 
         // Create token receiver (for demo purposes only)
@@ -61,14 +55,9 @@ public class CustomAuthActivity extends AppCompatActivity implements View.OnClic
                 setCustomToken(token);
             }
         };
-
-        // [START initialize_auth]
-        // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-        // [END initialize_auth]
     }
 
-    // [START on_start_check_user]
     @Override
     public void onStart() {
         super.onStart();
@@ -76,14 +65,12 @@ public class CustomAuthActivity extends AppCompatActivity implements View.OnClic
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
     }
-    // [END on_start_check_user]
 
     @Override
     protected void onResume() {
         super.onResume();
         registerReceiver(mTokenReceiver, TokenBroadcastReceiver.getFilter());
     }
-
 
     @Override
     protected void onPause() {
@@ -93,7 +80,6 @@ public class CustomAuthActivity extends AppCompatActivity implements View.OnClic
 
     private void startSignIn() {
         // Initiate sign in with custom token
-        // [START sign_in_custom]
         mAuth.signInWithCustomToken(mCustomToken)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -112,7 +98,6 @@ public class CustomAuthActivity extends AppCompatActivity implements View.OnClic
                         }
                     }
                 });
-        // [END sign_in_custom]
     }
 
     private void updateUI(FirebaseUser user) {
@@ -145,7 +130,6 @@ public class CustomAuthActivity extends AppCompatActivity implements View.OnClic
         int i = v.getId();
         if (i == R.id.buttonSignIn) {
             startSignIn();
-
         }
     }
 }

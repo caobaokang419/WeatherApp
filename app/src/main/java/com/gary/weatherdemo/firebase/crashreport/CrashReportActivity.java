@@ -36,10 +36,7 @@ public class CrashReportActivity extends AppCompatActivity {
         // Report a non-fatal exception, for demonstration purposes
         Crashlytics.logException(new Exception("Non-fatal exception: something went wrong!"));
 
-        // Checkbox to indicate when to catch the thrown exception.
         final CheckBox catchCrashCheckBox = findViewById(R.id.catchCrashCheckBox);
-
-        // Button that causes NullPointerException to be thrown.
         Button crashButton = findViewById(R.id.crashButton);
         crashButton.setOnClickListener(new View.OnClickListener() {
             @Override

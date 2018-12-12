@@ -39,7 +39,7 @@ import com.google.firebase.messaging.RemoteMessage;
  *
  * FCM：Firebase云推送
  */
-public class MyFirebaseMessagingService extends FirebaseMessagingService {
+public class FCMessagingService extends FirebaseMessagingService {
 
     private static final String TAG = "MyFirebaseMsgService";
 

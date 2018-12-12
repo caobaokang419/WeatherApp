@@ -22,7 +22,7 @@ import com.gary.weatherdemo.R;
 public class AuthChooseActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     private static final Class[] CLASSES = new Class[]{
             GoogleSignInActivity.class,
-            //FacebookLoginActivity.class,
+            FacebookLoginActivity.class,
             //TwitterLoginActivity.class,
             EmailPasswordActivity.class,
             PasswordlessActivity.class,
@@ -34,7 +34,7 @@ public class AuthChooseActivity extends AppCompatActivity implements AdapterView
 
     private static final int[] DESCRIPTION_IDS = new int[]{
             R.string.desc_google_sign_in,
-            //R.string.desc_facebook_login,
+            R.string.desc_facebook_login,
             //R.string.desc_twitter_login,
             R.string.desc_emailpassword,
             R.string.desc_passwordless,
