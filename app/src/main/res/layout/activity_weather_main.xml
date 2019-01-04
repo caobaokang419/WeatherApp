@@ -25,7 +25,7 @@
             actionbar:iv_right_icon="@drawable/ic_action_bar_right"
             actionbar:tv_title_str="深圳" />
 
-        <LinearLayout
+        <!--<LinearLayout
             android:id="@+id/cur_weather_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -51,13 +51,13 @@
                 android:layout_height="wrap_content"
                 android:textSize="36dp" />
 
-        </LinearLayout>
+        </LinearLayout>-->
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/cur_weather_view"
+            android:layout_below="@+id/action_bar"
             app:adapter="@{viewModel.weatherAdapter}" />
 
         <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"

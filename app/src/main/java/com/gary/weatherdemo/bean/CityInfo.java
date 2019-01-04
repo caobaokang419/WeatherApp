@@ -3,11 +3,11 @@ package com.gary.weatherdemo.bean;
 /**
  * Created by GaryCao on 2018/10/28.
  */
-public class CityAdcodeInfo {
+public class CityInfo {
     public String adrName;
     public String adcCode;
 
-    public CityAdcodeInfo(String addr, String adcode) {
+    public CityInfo(String addr, String adcode) {
         adrName = addr;
         adcCode = adcode;
     }
@@ -17,6 +17,6 @@ public class CityAdcodeInfo {
 
     @Override
     public String toString() {
-        return "CityAdcodeInfo: adrName = " + adrName + ",adcCode =" + adcCode;
+        return "CityInfo: adrName = " + adrName + ",adcCode =" + adcCode;
     }
 }

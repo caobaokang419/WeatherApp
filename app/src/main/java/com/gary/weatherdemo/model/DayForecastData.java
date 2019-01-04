@@ -1,12 +1,14 @@
 package com.gary.weatherdemo.model;
 
+import com.gary.weatherdemo.model.base.BaseItemDataBean;
+import com.gary.weatherdemo.model.base.ItemViewType;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by GaryCao on 2018/10/25.
  */
-public class DayForecastData {
+public class DayForecastData extends BaseItemDataBean {
     @SerializedName("date")
     @Expose
     public final String date = null;
@@ -47,6 +49,9 @@ public class DayForecastData {
     @Expose
     public final String nightpower = null;
 
+    DayForecastData(){
+        super(ItemViewType.RV_FORECAST_DAY_WEATHER);
+    }
 
     @Override
     public String toString() {

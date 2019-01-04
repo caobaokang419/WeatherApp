@@ -19,8 +19,7 @@
         android:layout_marginBottom="10dp"
         android:background="@color/forecast_item_background"
         android:gravity="center"
-        android:orientation="vertical"
-        android:visibility="gone">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/cur_temp"

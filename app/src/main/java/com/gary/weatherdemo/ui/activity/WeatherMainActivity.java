@@ -11,11 +11,10 @@ import android.widget.TextView;
 import com.example.commonui.ActionBar;
 import com.example.commonui.IActionBarOnClickListener;
 import com.gary.weatherdemo.R;
-import com.gary.weatherdemo.bean.CityAdcodeInfo;
+import com.gary.weatherdemo.bean.CityInfo;
 import com.gary.weatherdemo.databinding.WeatherMainActivityBinding;
 import com.gary.weatherdemo.firebase.FirebaseListActivity;
 import com.gary.weatherdemo.firebase.admob.BannerAdActivity;
-import com.gary.weatherdemo.model.LiveWeatherResult;
 import com.gary.weatherdemo.utils.LogUtils;
 import com.gary.weatherdemo.utils.WeatherUtils;
 import com.gary.weatherdemo.viewmodel.MainActivityViewModel;
@@ -56,29 +55,30 @@ public class WeatherMainActivity extends BannerAdActivity implements IActionBarO
     }
 
     private void initCurWeather() {
-        curTempView = findViewById(R.id.cur_temp);
+        /*curTempView = findViewById(R.id.cur_temp);
         curWeatherView = findViewById(R.id.cur_weather);
-        curView = findViewById(R.id.cur_weather_view);
+        curView = findViewById(R.id.cur_weather_view);*/
         updateCurWeatherView();
     }
 
     private void updateCurWeatherView() {
-        viewModel.getLiveWeatherData().observe(this, new Observer<LiveWeatherResult>() {
+        //changed as RecyclerView
+        /*viewModel.getLiveWeatherData().observe(this, new Observer<LiveWeatherResult>() {
             @Override
             public void onChanged(@Nullable LiveWeatherResult liveWeatherResult) {
                 curTempView.setText(liveWeatherResult.temperature + getResources().getString(R.string.temperature_signal));
                 curWeatherView.setText(liveWeatherResult.weather);
                 curView.setVisibility(View.VISIBLE);
             }
-        });
+        });*/
 
-        viewModel.getCurCityInfo().observe(this, new Observer<CityAdcodeInfo>() {
+        viewModel.getCurCityInfo().observe(this, new Observer<CityInfo>() {
             @Override
-            public void onChanged(@Nullable CityAdcodeInfo cityAdcodeInfo) {
+            public void onChanged(@Nullable CityInfo cityInfo) {
                 if (null != actionBar) {
-                    actionBar.setTitle(cityAdcodeInfo.adrName);
+                    actionBar.setTitle(cityInfo.adrName);
                 }
-                viewModel.queryCityWeather(cityAdcodeInfo.adcCode);
+                viewModel.queryCityWeather(cityInfo.adcCode);
             }
         });
     }

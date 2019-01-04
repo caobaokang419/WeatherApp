@@ -3,12 +3,16 @@ package com.gary.weatherdemo.viewmodel;
 import android.arch.lifecycle.MutableLiveData;
 import android.databinding.ObservableField;
 
-import com.gary.weatherdemo.bean.CityAdcodeInfo;
+import com.gary.weatherdemo.bean.CityInfo;
+import com.gary.weatherdemo.model.DayForecastData;
 import com.gary.weatherdemo.model.LiveWeatherResult;
+import com.gary.weatherdemo.model.base.BaseItemDataBean;
 import com.gary.weatherdemo.network.WeatherRequestClient;
 import com.gary.weatherdemo.network.response.AllForecastResponseData;
 import com.gary.weatherdemo.network.response.LiveWeatherResponseData;
 import com.gary.weatherdemo.ui.adapter.ForecastRecyclerAdapter;
+
+import java.util.ArrayList;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -19,7 +23,9 @@ import io.reactivex.schedulers.Schedulers;
 public class MainActivityViewModel {
     public final ObservableField<ForecastRecyclerAdapter> weatherAdapter = new ObservableField<>();
     private final ForecastRecyclerAdapter adapter;
-    private MutableLiveData<CityAdcodeInfo> cityAdcodeInfo = new MutableLiveData<>();
+    private MutableLiveData<CityInfo> cityInfo = new MutableLiveData<>();
+
+    private ArrayList<BaseItemDataBean> ItemDataList = new ArrayList<>();
     private MutableLiveData<LiveWeatherResult> liveWeatherData = new MutableLiveData<>();
 
     public MainActivityViewModel() {
@@ -37,6 +43,14 @@ public class MainActivityViewModel {
                     public void onNext(LiveWeatherResponseData responseData) {
                         if (responseData != null && responseData.isSuccessful()) {
                             liveWeatherData.postValue(responseData.getWeatherLiveResult());
+
+                            if(ItemDataList.size()==0){
+                                ItemDataList.add(liveWeatherData.getValue());
+                            }else{
+                                ItemDataList.set(0,liveWeatherData.getValue());
+                            }
+                            adapter.setAdapterData(ItemDataList);
+                            weatherAdapter.set(adapter);
                         }
                     }
                     @Override
@@ -54,8 +68,19 @@ public class MainActivityViewModel {
                     }
                     @Override
                     public void onNext(AllForecastResponseData responseData) {
-                        if (responseData != null && responseData.isSuccessful()) {
-                            adapter.setAdapterData(responseData.getWeatherAllResult());
+                        if (responseData != null
+                                && responseData.isSuccessful()
+                                && responseData.getWeatherAllResult()!=null) {
+
+                            if(ItemDataList.size()==0){
+                                ItemDataList.add(liveWeatherData.getValue());
+                            }
+                            int index =0;
+                            for(DayForecastData fdata : responseData.getWeatherAllResult().dayForecastDataList){
+                                ItemDataList.set(index+1,fdata);
+                                index++;
+                            }
+                            adapter.setAdapterData(ItemDataList);
                             weatherAdapter.set(adapter);
                         }
                     }
@@ -71,10 +96,10 @@ public class MainActivityViewModel {
     }
 
     public void loadCurCityInfo() {
-        cityAdcodeInfo.setValue(new CityAdcodeInfo("深圳", "440300"));
+        cityInfo.setValue(new CityInfo("深圳", "440300"));
     }
 
-    public MutableLiveData<CityAdcodeInfo> getCurCityInfo() {
-        return cityAdcodeInfo;
+    public MutableLiveData<CityInfo> getCurCityInfo() {
+        return cityInfo;
     }
 }

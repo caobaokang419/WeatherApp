@@ -1,53 +1,48 @@
 package com.gary.weatherdemo.ui.adapter;
 
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
-import com.gary.weatherdemo.R;
-import com.gary.weatherdemo.databinding.WeatherForecastDayBinding;
-import com.gary.weatherdemo.model.AllForecastResult;
-import com.gary.weatherdemo.model.DayForecastData;
-import com.gary.weatherdemo.viewmodel.ForecastDayViewModel;
+import com.gary.weatherdemo.model.base.BaseItemDataBean;
+import com.gary.weatherdemo.ui.viewholder.BaseViewItemHolder;
+import com.gary.weatherdemo.ui.viewholder.ViewItemHolderFactory;
 
 import java.util.ArrayList;
 
-public class ForecastRecyclerAdapter extends RecyclerView.Adapter<ForecastRecyclerAdapter.ForecastDayViewHolder> {
-    private ArrayList<DayForecastData> forecastDataList = new ArrayList<>();
+public class ForecastRecyclerAdapter extends RecyclerView.Adapter<BaseViewItemHolder> {
+    private ArrayList<BaseItemDataBean> ItemDataList = new ArrayList<>();
 
     public ForecastRecyclerAdapter() {
     }
 
-    public void setAdapterData(AllForecastResult allForecastResult) {
-        if (null == allForecastResult) {
-            return;
-        }
-        forecastDataList.clear();
-        forecastDataList = (ArrayList<DayForecastData>) allForecastResult.dayForecastDataList;
+    public void setAdapterData(ArrayList<BaseItemDataBean> datas) {
+        ItemDataList.clear();
+        ItemDataList = datas;
         notifyDataSetChanged();
     }
 
     @Override
-    public ForecastDayViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_forecast_day, parent, false);
-        return new ForecastDayViewHolder(itemView);
+    public BaseViewItemHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return ViewItemHolderFactory.getViewHolderByType(parent,viewType);
     }
 
     @Override
-    public void onBindViewHolder(ForecastDayViewHolder holder, int position) {
-        holder.bind(forecastDataList.get(position));
+    public void onBindViewHolder(BaseViewItemHolder holder, int position) {
+        holder.getIViewItem().bindView(ItemDataList.get(position));
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        //return super.getItemViewType(position);
+        return ItemDataList.get(position).getViewItemType();
     }
 
     @Override
     public int getItemCount() {
-        return forecastDataList.size();
+        return ItemDataList.size();
     }
 
-
-    public class ForecastDayViewHolder extends RecyclerView.ViewHolder {
+    /*public class ForecastDayViewHolder extends RecyclerView.ViewHolder {
         private final WeatherForecastDayBinding binding;
 
         public ForecastDayViewHolder(View itemView) {
@@ -55,8 +50,8 @@ public class ForecastRecyclerAdapter extends RecyclerView.Adapter<ForecastRecycl
             binding = WeatherForecastDayBinding.bind(itemView);
         }
 
-        public void bind(@NonNull DayForecastData data) {
+        public void bind(@NonNull BaseItemDataBean data) {
             binding.setViewModel(new ForecastDayViewModel(data));
         }
-    }
+    }*/
 }
