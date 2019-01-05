@@ -12,12 +12,17 @@
 
 -------
 ### MVVM框架和组件实现：
-- DataBinding：实现xml文件直接绑定数据。
-- ViewModel：实现View和Model数据解耦。
-- Room：实现Database模块封装。
-- LiveData：实现View关联数据动态更新。
-- WorkManager：实现后台任务、定时任务、链表等不同类型任务管理。
+框架说明：借助[Android架构组件(Android Architecture Components)：](https://github.com/tangmin1010/appcomponent)可实现MVVM应用框架。 
+- [Lifecycle components](https://developer.android.google.cn/topic/libraries/architecture/lifecycle)： 生命周期管理，该组件是其它组件的基础，可由于跟踪UI的（Activity和Fragment）的生命周期
+- [ViewModels](https://developer.android.google.cn/topic/libraries/architecture/viewmodel)： 一种可以被观察的以及可以感知生命周期的数据容器。
+- [LiveData](https://developer.android.google.cn/topic/libraries/architecture/livedata) ：它是UI，例如Activity、Fragment,与数据之间的桥梁；可以在其内部处理数据业务逻辑,例如从网络层或者数据持久层获取数据、更新数据等。
+- [Room](https://developer.android.google.cn/topic/libraries/architecture/room)：一个简单好用的对象映射层；其对SqliteDatabase进行了封装，简化开发者对于数据持久层的开发工作量
+- [WorkManager](https://developer.android.google.cn/topic/libraries/architecture/workmanager/) ：可以轻松地指定可延迟的异步任务以及它们应该在何时运行。
+- [Data-binding](https://developer.android.google.cn/topic/libraries/data-binding//) ：使用xml声明格式(而不是编程方式)将布局中的UI组件绑定到应用程序中的数据源。
+- [Paging](https://developer.android.google.cn/topic/libraries/architecture/paging/)：分页库使您能够更容易地在应用程序的RecyclerView中逐步、优雅地加载数据。
+- [Navigation](https://developer.android.google.cn/topic/libraries/architecture/navigation/)：导航是应用程序设计的关键部分。通过导航，您可以设计交互，允许用户在应用程序的不同内容区域之间来回移动。
 
+![Android 应用程序的基础架构](https://developer.android.google.cn/topic/libraries/architecture/images/final-architecture.png)
 
 -------
 ### 网络应用框架和组件实现：
@@ -31,6 +36,7 @@
 
 -------
 ### 扩展功能实现：
+- 异步任务（不同场景）的解决方案选择：
 - 应用常驻&应用保活：
 - 应用热更新&插件式更新：
 
@@ -54,15 +60,6 @@
 - [Cloud Message(云消息)](https://firebase.google.com/docs/remote-config/?hl=zh-CN)
 - [Auth(身份认证)](https://firebase.google.com/docs/auth/?hl=zh-CN)
 
--------
-### Android Architecture Components document：
-- [Room](https://developer.android.google.cn/topic/libraries/architecture/room)
-- [Lifecycle components](https://developer.android.google.cn/topic/libraries/architecture/lifecycle)
-- [ViewModels](https://developer.android.google.cn/topic/libraries/architecture/viewmodel)
-- [LiveData](https://developer.android.google.cn/topic/libraries/architecture/livedata) :
-- [Paging](https://developer.android.google.cn/topic/libraries/architecture/paging/)
-- [Navigation](https://developer.android.google.cn/topic/libraries/architecture/navigation/)
-- [WorkManager](https://developer.android.google.cn/topic/libraries/architecture/workmanager/) 
 
 -------
 ### Screenshots：
