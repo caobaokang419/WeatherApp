@@ -4,8 +4,11 @@
 ### 功能点实现说明：
 - [高德天气API：](https://lbs.amap.com/api/webservice/guide/api/weatherinfo/)
 - Get&Post方式可以正常返回查询高德天气数据并UI显示；
-- 解析存储本地存储高德adcode和城市信息对照表，用于本地天气动态查询api调用。
-- 自定义实现公共控件CommonUI，用于控件复用。
+- 解析存储本地存储高德adcode和城市信息对照表，用于本地天气动态查询api调用；
+- [RecyclerView](https://www.jianshu.com/p/4f9591291365)：Android推荐控件，优于ListView，处理不同类型的ItemView封装使用；
+- [CardView](https://blog.csdn.net/u013651026/article/details/79000205)：Android推荐控件，优于List item，实现卡片式设计；
+- 自定义实现公共控件CommonUI，用于控件复用；
+
 
 -------
 ### MVVM框架和组件实现：
@@ -22,6 +25,7 @@
 - [OkHttp3 使用教程](https://blog.csdn.net/xx326664162/article/details/77714126)：Http第三方库，Retrofit底层通过OkHttp实现网络请求 
 - [RxJava Android使用教程](https://gank.io/post/560e15be2dca930e00da1083)：异步网络请求任务处理
 - [xutils3 使用教程](https://blog.csdn.net/carson_ho/article/details/73732076)：文件下载&断点续传管理
+- [Glide 使用教程](https://www.jianshu.com/p/7ce7b02988a4)：Android推荐的热门图片加载库 备注：三大主流库ImageLoader,Picasso,Glide
 - [AdMob](https://developers.google.com/admob/android/quick-start?hl=zh-CN#import_the_mobile_ads_sdk)：实现Google广告载入
 - [Firebase](https://developers.google.com/firebase/docs/android/setup?hl=zh-CN)：移动应用后台服务端管理
 
