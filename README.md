@@ -3,25 +3,29 @@
 
 ### 功能点实现说明：
 - [高德天气API：](https://lbs.amap.com/api/webservice/guide/api/weatherinfo/)
-实现情况：Get&Post方式可以正常返回查询数据并UI显示；
-
-- MVVM框架框架和组件实现：
-1. ViewModel：实现View和Model数据解耦。
-2. Room：实现Database模块封装。
-3. LiveData：实现View关联数据动态更新。
-4. DataBinding：实现xml文件直接绑定数据。
-5. WorkManager：实现后台任务、定时任务、链表等不同类型任务管理。
-
-- 网络请求：实现异步网络请求框架封装。
-
-- AdMob&Firebase：实现广告载入和统计分析。
-
+- Get&Post方式可以正常返回查询数据并UI显示；
 - 高德配置文件：解析存储本地存储高德adcode和城市信息对照表，用于本地天气动态查询api调用。
-
 - CommonUI公共控件：实现公共控件自定义、差异化配置、和控件复用。
 
 -------
+### MVVM框架和组件实现：
+- ViewModel：实现View和Model数据解耦。
+- Room：实现Database模块封装。
+- LiveData：实现View关联数据动态更新。
+- DataBinding：实现xml文件直接绑定数据。
+- WorkManager：实现后台任务、定时任务、链表等不同类型任务管理。
 
+
+-------
+### 移动网络请求框架：
+- [RxJava Android使用教程](https://gank.io/post/560e15be2dca930e00da1083):异步任务处理
+- [Retrofit 2.0 使用教程](https://blog.csdn.net/carson_ho/article/details/73732076)：网络请求框架
+- [xutils3 使用教程](https://blog.csdn.net/carson_ho/article/details/73732076)：文件下载&断点续传管理
+- [AdMob](https://developers.google.com/admob/android/quick-start?hl=zh-CN#import_the_mobile_ads_sdk)：实现Google广告载入
+- [Firebase](https://developers.google.com/firebase/docs/android/setup?hl=zh-CN)：移动应用后台服务端管理
+
+
+-------
 ### Android AdMob document：
 - [AdMob（Google移动广告）SDK指南](https://developers.google.com/admob/android/quick-start?hl=zh-CN#import_the_mobile_ads_sdk)
 - [Banner(横幅广告)](https://developers.google.com/admob/android/banner?hl=zh-CN)
