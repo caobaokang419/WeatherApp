@@ -17,7 +17,7 @@
 
 
 -------
-### 网络应用框架组件：
+### 网络应用框架和组件实现：
 - [Retrofit 2.0 使用教程](https://blog.csdn.net/carson_ho/article/details/73732076)：热门的Android网络请求库
 - [OkHttp3 使用教程](https://blog.csdn.net/xx326664162/article/details/77714126)：Http第三方库，Retrofit底层通过OkHttp实现网络请求 
 - [RxJava Android使用教程](https://gank.io/post/560e15be2dca930e00da1083)：异步网络请求任务处理
