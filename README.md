@@ -21,8 +21,6 @@
 - [Paging](https://developer.android.google.cn/topic/libraries/architecture/paging/)：分页库使您能够更容易地在应用程序的RecyclerView中逐步、优雅地加载数据。--TBD
 - [Navigation](https://developer.android.google.cn/topic/libraries/architecture/navigation/)：导航是应用程序设计的关键部分。通过导航，您可以设计交互，允许用户在应用程序的不同内容区域之间来回移动。--TBD
 
-![Android 应用程序的基础架构](https://developer.android.google.cn/topic/libraries/architecture/images/final-architecture.png)
-
 -------
 ### 网络应用框架和组件实现：
 - [Retrofit 2.0 使用教程](https://blog.csdn.net/carson_ho/article/details/73732076)：热门的Android网络请求库
@@ -51,6 +49,10 @@
 - 应用热更新：[腾讯tinker](https://github.com/Tencent/tinker)--TBD
 - 插件式更新：odex插件式加载实现--TBD
 
+-------
+### Android推荐的应用程序的基础架构：
+
+![Android 应用程序的基础架构](https://developer.android.google.cn/topic/libraries/architecture/images/final-architecture.png)
 
 -------
 ### Screenshots：
