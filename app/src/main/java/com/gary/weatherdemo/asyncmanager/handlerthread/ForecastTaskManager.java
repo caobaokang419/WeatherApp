@@ -1,4 +1,4 @@
-package com.gary.weatherdemo.parallel;
+package com.gary.weatherdemo.asyncmanager.handlerthread;
 
 import android.content.Context;
 import android.os.Handler;

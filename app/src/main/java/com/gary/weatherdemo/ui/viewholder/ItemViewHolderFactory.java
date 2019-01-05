@@ -9,12 +9,12 @@ import com.gary.weatherdemo.ui.ItemView.ForcastDayViewItem;
 /**
  * Created by GaryCao on 2018/12/12.
  */
-public class ViewItemHolderFactory {
-    public static BaseViewItemHolder getViewHolderByType(ViewGroup parent,int type) {
+public class ItemViewHolderFactory {
+    public static BaseItemViewHolder getViewHolderByType(ViewGroup parent, int type) {
         if (type == ItemViewType.RV_CURRENT_WEATHER) {
-            return new BaseViewItemHolder(CurWeatherViewItem.getViewItem(),parent);
+            return new BaseItemViewHolder(CurWeatherViewItem.getViewItem(),parent);
         } else if (type == ItemViewType.RV_FORECAST_DAY_WEATHER) {
-            return new BaseViewItemHolder(ForcastDayViewItem.getViewItem(),parent);
+            return new BaseItemViewHolder(ForcastDayViewItem.getViewItem(),parent);
         }
         return null;
     }

@@ -11,9 +11,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:theme="@style/AppTheme"
-        android:supportsRtl="true">
-
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
         <activity
             android:name=".ui.activity.WeatherMainActivity"
             android:theme="@style/AppTheme">
@@ -34,12 +33,12 @@
                 android:resource="@xml/widget_weather_config" />
         </receiver>
 
-        <!--Firebase-->
+        <!-- Firebase -->
         <activity
             android:name=".firebase.FirebaseListActivity"
             android:theme="@style/AppTheme" />
 
-        <!--AdMob-->
+        <!-- AdMob -->
         <!-- Sample AdMob App ID: ca-app-pub-3940256099942544~3347511713 -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
@@ -52,15 +51,17 @@
             android:name=".firebase.admob.RewardedVideoAdActivity"
             android:theme="@style/AppTheme" />
 
-        <!--FCM-->
+        <!-- FCM -->
         <service android:name=".firebase.fcm.FCMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
-        <!--APP处于前台时：可以在onMessageReceived（）全权处理消息如自定义notification : large_icon , small_icon , color .
-            APP处于后台时：由系统通知处理这部分显示，只可以在Manifest定义 : icon、color-->
+        <!--
+            APP处于前台时：可以在onMessageReceived（）全权处理消息如自定义notification : large_icon , small_icon , color .
+            APP处于后台时：由系统通知处理这部分显示，只可以在Manifest定义 : icon、color
+        -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_stat_ic_notification" />
@@ -72,36 +73,35 @@
             android:name=".firebase.fcm.FcmActivity"
             android:theme="@style/AppTheme" />
 
-        <!--Remote Config-->
+        <!-- Remote Config -->
         <activity
             android:name=".firebase.remoteconfig.RemoteConfigActivity"
             android:theme="@style/AppTheme" />
 
-        <!--Crash Report-->
+        <!-- Crash Report -->
         <activity
             android:name=".firebase.crashreport.CrashReportActivity"
             android:theme="@style/AppTheme" />
 
-        <!--Analytics-->
+        <!-- Analytics -->
         <activity
             android:name=".firebase.analytics.AnalyticsActivity"
             android:theme="@style/AppTheme" />
 
-        <!--performance-->
+        <!-- performance -->
         <activity
             android:name=".firebase.performance.PerformanceMainActivity"
             android:theme="@style/AppTheme" />
 
-        <!--In-app message-->
+        <!-- In-app message -->
         <activity
             android:name=".firebase.inappmessaging.InAppMsgMainActivity"
             android:theme="@style/AppTheme" />
 
-        <!--Auth-->
+        <!-- Auth -->
         <activity
             android:name=".firebase.auth.AuthChooseActivity"
             android:theme="@style/AppThemeActionBar" />
-
         <activity
             android:name=".firebase.auth.CustomAuthActivity"
             android:label="@string/label_custom_auth"
@@ -110,10 +110,12 @@
             android:name=".firebase.auth.GoogleSignInActivity"
             android:label="@string/label_google_sign_in"
             android:theme="@style/AppTheme" />
-        <!--<activity
+        <!--
+            <activity
             android:name=".firebase.auth.FacebookLoginActivity"
             android:theme="@style/AppTheme"
-            android:label="@string/label_facebook_login" />-->
+            android:label="@string/label_facebook_login" />
+        -->
         <activity
             android:name=".firebase.auth.EmailPasswordActivity"
             android:label="@string/label_emailpassword"
@@ -126,6 +128,7 @@
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <data
                     android:host="your-project-id.firebaseapp.com"
                     android:scheme="https" />
@@ -143,23 +146,27 @@
             android:name=".firebase.auth.AnonymousAuthActivity"
             android:label="@string/label_anonymous_auth"
             android:theme="@style/AppTheme" />
-        <!--<activity
+        <!--
+            <activity
             android:name=".firebase.auth.TwitterLoginActivity"
             android:theme="@style/AppTheme"
-            android:label="@string/label_twitter_login" />-->
+            android:label="@string/label_twitter_login" />
+        -->
 
-        <!--Invite-->
+
+        <!-- Invite -->
         <activity
             android:name=".firebase.invite.InviteMainActivity"
             android:theme="@style/AppTheme" />
 
-        <!--dynamic links-->
+        <!-- dynamic links -->
         <activity
             android:name=".firebase.dynamiclinks.DynamicLinkMainActivity"
             android:theme="@style/AppTheme" />
 
-        <!--app indexing-->
-        <!--<activity
+        <!-- app indexing -->
+        <!--
+        <activity
             android:name=".firebase.appindexing.AppIndexingMainActivity"
             android:exported="true"
             android:label="@string/app_name"
@@ -203,37 +210,41 @@
             <intent-filter>
                 <action android:name="com.google.firebase.appindexing.UPDATE_INDEX" />
             </intent-filter>
-        </service>-->
+        </service>
+        -->
 
         <activity
             android:name=".firebase.indexing.IndexingMainActivity"
             android:exported="true"
             android:launchMode="singleTop">
-            <intent-filter
-                android:autoVerify="true">
+            <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
-                    android:pathPrefix="/caobaokang419"
                     android:host="github.com"
+                    android:pathPrefix="/caobaokang419"
                     android:scheme="https" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".firebase.indexing.PersonalIndexingActivity"
             android:exported="true"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="cbkpersonal" />
             </intent-filter>
         </activity>
 
-        <receiver android:name=".firebase.indexing.AppIndexingUpdateReceiver"
+        <receiver
+            android:name=".firebase.indexing.AppIndexingUpdateReceiver"
             android:exported="true"
             android:permission="com.google.android.gms.permission.APPINDEXING">
             <intent-filter>
@@ -241,8 +252,18 @@
             </intent-filter>
         </receiver>
 
-        <service android:name=".firebase.indexing.AppIndexingService" android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service
+            android:name=".firebase.indexing.AppIndexingService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
 
+        <provider
+            android:name=".provider.WeatherContentProvider"
+            android:authorities="com.gary.weatherdemo.myprovider"
+            android:permission="com.gary.weatherdemo.PROVIDER"
+            android:enabled="true"
+            android:exported="true">
+
+        </provider>
     </application>
 
 </manifest>

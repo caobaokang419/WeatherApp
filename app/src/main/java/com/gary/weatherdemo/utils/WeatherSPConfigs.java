@@ -8,7 +8,7 @@ import com.gary.weatherdemo.base.MyApplication;
 /**
  * Created by GaryCao on 2018/10/25.
  */
-public class WeatherConfigs {
+public class WeatherSPConfigs {
     private static final String WEATHER_CONFIG = "weather_config";
     private static final String KEY_CURRENT_CITY_ADCODE = "current_adcode";
     private static final String KEY_UPDATE_PERIODIC_HOUR_COUNT = "update_hour_count";
@@ -21,16 +21,16 @@ public class WeatherConfigs {
     private Context context;
     private static SharedPreferences sharedPreferences;
 
-    private static WeatherConfigs weatherConfigs;
+    private static WeatherSPConfigs weatherSPConfigs;
 
-    public synchronized static WeatherConfigs getInstance() {
-        if (weatherConfigs == null) {
-            weatherConfigs = new WeatherConfigs();
+    public synchronized static WeatherSPConfigs getInstance() {
+        if (weatherSPConfigs == null) {
+            weatherSPConfigs = new WeatherSPConfigs();
         }
-        return weatherConfigs;
+        return weatherSPConfigs;
     }
 
-    private WeatherConfigs() {
+    private WeatherSPConfigs() {
         this.context = MyApplication.getInstance();
         sharedPreferences = context.getSharedPreferences(WEATHER_CONFIG, Context.MODE_PRIVATE);
     }
@@ -54,6 +54,6 @@ public class WeatherConfigs {
     /*默认天气：深圳*/
     private void setShenzhenForecastWeather() {
         //深圳:adcode:440300 citycode:0755
-        WeatherConfigs.getInstance().setCurrentCityAdcode("440300");
+        WeatherSPConfigs.getInstance().setCurrentCityAdcode("440300");
     }
 }

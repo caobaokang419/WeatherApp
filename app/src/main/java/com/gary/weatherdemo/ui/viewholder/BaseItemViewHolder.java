@@ -8,9 +8,9 @@ import com.gary.weatherdemo.ui.ItemView.IViewItem;
 /**
  * Created by GaryCao on 2018/12/12.
  */
-public class BaseViewItemHolder extends RecyclerView.ViewHolder {
+public class BaseItemViewHolder extends RecyclerView.ViewHolder {
     private IViewItem iViewItem;
-    public BaseViewItemHolder(IViewItem viewItem , ViewGroup parent) {
+    public BaseItemViewHolder(IViewItem viewItem , ViewGroup parent) {
         super(viewItem.createView(parent));
         iViewItem = viewItem;
     }
