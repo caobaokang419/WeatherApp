@@ -29,6 +29,11 @@
 - [AdMob](https://developers.google.com/admob/android/quick-start?hl=zh-CN#import_the_mobile_ads_sdk)：实现Google广告载入
 - [Firebase](https://developers.google.com/firebase/docs/android/setup?hl=zh-CN)：移动应用后台服务端管理
 
+-------
+### 扩展功能实现：
+- 应用常驻&应用保活：
+- 应用热更新&插件式更新：
+
 
 -------
 ### Android AdMob document：
