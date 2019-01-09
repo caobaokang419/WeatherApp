@@ -1,10 +1,16 @@
 package com.gary.weatherdemo.provider.db;
 
 import android.content.ContentProvider;
+import android.content.ContentProviderOperation;
+import android.content.ContentProviderResult;
 import android.content.ContentValues;
+import android.content.OperationApplicationException;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.net.Uri;
+import android.support.annotation.NonNull;
+
+import java.util.ArrayList;
 
 /**
  * Created by GaryCao on 2019/01/05.
@@ -89,5 +95,11 @@ public class WtContentProvider extends ContentProvider {
                 break;
         }
         throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    @NonNull
+    @Override
+    public ContentProviderResult[] applyBatch(@NonNull ArrayList<ContentProviderOperation> operations) throws OperationApplicationException {
+        return super.applyBatch(operations);
     }
 }

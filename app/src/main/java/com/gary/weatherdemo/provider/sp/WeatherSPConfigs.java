@@ -49,7 +49,7 @@ public class WeatherSPConfigs {
     }
 
     public int getInt(String keyname){
-        return sharedPreferences.getInt(KEY_UPDATE_PERIODIC_HOUR_COUNT, 0);
+        return sharedPreferences.getInt(keyname, 0);
     }
 
     public void setInt(String keyname, int value){
@@ -59,7 +59,7 @@ public class WeatherSPConfigs {
     }
 
     public boolean getBoolean(String keyname){
-        return sharedPreferences.getBoolean(KEY_UPDATE_PERIODIC_HOUR_COUNT, false);
+        return sharedPreferences.getBoolean(keyname, false);
     }
 
     public void setBoolean(String keyname, boolean value){
@@ -69,7 +69,7 @@ public class WeatherSPConfigs {
     }
 
     public String getString(String keyname){
-        return sharedPreferences.getString(KEY_UPDATE_PERIODIC_HOUR_COUNT, "");
+        return sharedPreferences.getString(keyname, "");
     }
 
     public void setString(String keyname, String value){
@@ -79,52 +79,44 @@ public class WeatherSPConfigs {
     }
 
 
-
     public int getIntInProvider(String keyname){
-        //return sharedPreferences.getInt(KEY_UPDATE_PERIODIC_HOUR_COUNT, 0);
         Bundle bundle = context.getContentResolver().call(
                 Uri.parse(SP_CONTENT_URI), keyname, null, null);
         return bundle.getInt(keyname);
     }
 
     public void setIntInProvider(String keyname, int value){
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt(keyname, value);
-        editor.commit();
+        Bundle bundle = new Bundle();
+        bundle.putInt(keyname, value);
+        context.getContentResolver().call(
+                Uri.parse(SP_CONTENT_URI), KEY_SET_INT_VALUE, keyname, bundle);
     }
 
     public boolean getBooleanInProvider(String keyname){
-        //return sharedPreferences.getBoolean(KEY_UPDATE_PERIODIC_HOUR_COUNT, false);
-
         Bundle bundle = context.getContentResolver().call(
                 Uri.parse(SP_CONTENT_URI), keyname, null, null);
         return bundle.getBoolean(keyname);
     }
 
     public void setBooleanInProvider(String keyname, boolean value){
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean(keyname, value);
-        editor.commit();
+        Bundle bundle = new Bundle();
+        bundle.putBoolean(keyname, value);
+        context.getContentResolver().call(
+                Uri.parse(SP_CONTENT_URI), KEY_SET_BOOLEAN_VALUE, keyname, bundle);
     }
 
     public String getStringInProvider(String keyname){
-        //return sharedPreferences.getString(KEY_UPDATE_PERIODIC_HOUR_COUNT, "");
-
         Bundle bundle = context.getContentResolver().call(
                 Uri.parse(SP_CONTENT_URI), keyname, null, null);
         return bundle.getString(keyname);
     }
 
     public void setStringInProvider(String keyname, String value){
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(keyname, value);
-        editor.commit();
+        Bundle bundle = new Bundle();
+        bundle.putString(keyname, value);
+        context.getContentResolver().call(
+                Uri.parse(SP_CONTENT_URI), KEY_SET_STRING_VALUE, keyname, bundle);
     }
-
-    public int getUpdatePeriodicHourCount() {
-        return sharedPreferences.getInt(KEY_UPDATE_PERIODIC_HOUR_COUNT, VALUE_DEFAULT_UPDATE_PERIODIC_HOUR_COUNT);
-    }
-
     //===================================================================================================
     //for test
 }

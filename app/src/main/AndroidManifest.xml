@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".base.MyApplication"
@@ -259,18 +260,16 @@
         <provider
             android:name=".provider.db.WtContentProvider"
             android:authorities="com.gary.weatherdemo.db.provider"
-            android:permission="com.gary.weatherdemo.DB_PROVIDER"
             android:enabled="true"
-            android:exported="true">
+            android:exported="true"
+            android:permission="com.gary.weatherdemo.DB_PROVIDER" />
 
         <provider
             android:name=".provider.sp.WtSharedPreferenceProvider"
             android:authorities="com.gary.weatherdemo.sp.provider"
-            android:permission="com.gary.weatherdemo.SP_PROVIDER"
             android:enabled="true"
-            android:exported="true">
-
-        </provider>
+            android:exported="true"
+            android:permission="com.gary.weatherdemo.SP_PROVIDER" />
     </application>
 
 </manifest>

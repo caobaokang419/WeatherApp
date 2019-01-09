@@ -30,26 +30,28 @@ public class WtSharedPreferenceProvider extends ContentProvider {
     @Nullable
     @Override
     public Bundle call(@NonNull String method, @Nullable String arg, @Nullable Bundle extras) {
-        if(method==null || method.isEmpty()){
+        if (method == null || method.isEmpty()) {
             return null;
         }
         Bundle bundle = new Bundle();
-
-        if(method.equalsIgnoreCase(WeatherSPConfigs.KEY_CURRENT_CITY_NAME)){
+        if (method.equalsIgnoreCase(WeatherSPConfigs.KEY_CURRENT_CITY_NAME)) {
             bundle.getString(
                     method,
                     WeatherSPConfigs.getInstance().getString(WeatherSPConfigs.KEY_CURRENT_CITY_NAME));
-        } else if(method.equalsIgnoreCase(WeatherSPConfigs.KEY_CURRENT_CITY_ADCODE)){
+        } else if (method.equalsIgnoreCase(WeatherSPConfigs.KEY_CURRENT_CITY_ADCODE)) {
             bundle.getString(
                     method,
                     WeatherSPConfigs.getInstance().getString(WeatherSPConfigs.KEY_CURRENT_CITY_ADCODE));
-        } else if(method.equalsIgnoreCase(WeatherSPConfigs.KEY_UPDATE_PERIODIC_HOUR_COUNT)){
+        } else if (method.equalsIgnoreCase(WeatherSPConfigs.KEY_UPDATE_PERIODIC_HOUR_COUNT)) {
             bundle.getInt(
                     method,
                     WeatherSPConfigs.getInstance().getInt(WeatherSPConfigs.KEY_UPDATE_PERIODIC_HOUR_COUNT));
-        } else if(method.equalsIgnoreCase(WeatherSPConfigs.KEY_SET_INT_VALUE)){
-        } else if(method.equalsIgnoreCase(WeatherSPConfigs.KEY_SET_STRING_VALUE)){
-        } else if(method.equalsIgnoreCase(WeatherSPConfigs.KEY_SET_BOOLEAN_VALUE)){
+        } else if (method.equalsIgnoreCase(WeatherSPConfigs.KEY_SET_INT_VALUE)) {
+            WeatherSPConfigs.getInstance().setInt(arg, extras.getInt(arg));
+        } else if (method.equalsIgnoreCase(WeatherSPConfigs.KEY_SET_STRING_VALUE)) {
+            WeatherSPConfigs.getInstance().setString(arg, extras.getString(arg));
+        } else if (method.equalsIgnoreCase(WeatherSPConfigs.KEY_SET_BOOLEAN_VALUE)) {
+            WeatherSPConfigs.getInstance().setBoolean(arg, extras.getBoolean(arg));
         }
 
         //return super.call(method, arg, extras);

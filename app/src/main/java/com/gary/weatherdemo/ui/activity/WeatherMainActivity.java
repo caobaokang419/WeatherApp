@@ -29,6 +29,8 @@ public class WeatherMainActivity extends BannerAdActivity implements IActionBarO
     @Override
     public void onCreateNew(Bundle savedInstanceState) {
         initViews();
+
+        /*EventBus.getDefault().register(this);*/
     }
 
     private void initViews() {
@@ -47,6 +49,15 @@ public class WeatherMainActivity extends BannerAdActivity implements IActionBarO
             viewModel.loadCurCityInfo();
         }
         super.onResume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        /*if(EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this);
+        }*/
     }
 
     private void initActionBar() {
@@ -93,4 +104,9 @@ public class WeatherMainActivity extends BannerAdActivity implements IActionBarO
         LogUtils.d("rightActBarItemClicked()");
         WeatherUtils.startActivity(this, FirebaseListActivity.class);
     }
+
+    /*@Subscribe(threadMode = ThreadMode.MAIN)
+    public void Event(MessageEvent messageEvent) {
+        mText.setText(messageEvent.getMessage());
+    }*/
 }
