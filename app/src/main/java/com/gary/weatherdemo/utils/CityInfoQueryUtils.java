@@ -1,6 +1,6 @@
 package com.gary.weatherdemo.utils;
 
-import com.gary.weatherdemo.base.MyApplication;
+import com.gary.weatherdemo.base.WeatherApplication;
 import com.gary.weatherdemo.bean.CityInfo;
 
 import java.io.BufferedReader;
@@ -30,7 +30,7 @@ public class CityInfoQueryUtils {
     private boolean praseFromAssets(String fileName) {
         try {
             InputStreamReader inputReader = new InputStreamReader(
-                    MyApplication.getInstance().getResources().getAssets().open(fileName));
+                    WeatherApplication.getInstance().getResources().getAssets().open(fileName));
             BufferedReader bufReader = new BufferedReader(inputReader);
             String line = "";
             cityInfos.clear();

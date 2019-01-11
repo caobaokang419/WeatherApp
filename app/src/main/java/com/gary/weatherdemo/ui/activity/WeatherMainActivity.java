@@ -14,7 +14,7 @@ import com.gary.weatherdemo.R;
 import com.gary.weatherdemo.bean.CityInfo;
 import com.gary.weatherdemo.databinding.WeatherMainActivityBinding;
 import com.gary.weatherdemo.firebase.FirebaseListActivity;
-import com.gary.weatherdemo.firebase.admob.BannerAdActivity;
+import com.gary.weatherdemo.admob.BannerAdActivity;
 import com.gary.weatherdemo.utils.LogUtils;
 import com.gary.weatherdemo.utils.WeatherUtils;
 import com.gary.weatherdemo.viewmodel.MainActivityViewModel;
@@ -97,12 +97,13 @@ public class WeatherMainActivity extends BannerAdActivity implements IActionBarO
     @Override
     public void leftActBarItemClicked() {
         LogUtils.d("leftActBarItemClicked()");
+        WeatherUtils.startActivity(this, WtCitySearchActivity.class);
     }
 
     @Override
     public void rightActBarItemClicked() {
         LogUtils.d("rightActBarItemClicked()");
-        WeatherUtils.startActivity(this, FirebaseListActivity.class);
+        WeatherUtils.startActivity(this, WtSettingActivity.class);
     }
 
     /*@Subscribe(threadMode = ThreadMode.MAIN)

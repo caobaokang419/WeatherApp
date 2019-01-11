@@ -1,13 +1,9 @@
 package com.gary.weatherdemo.utils;
 
 import android.content.Context;
-import android.content.Intent;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.gary.weatherdemo.R;
-import com.gary.weatherdemo.base.MyApplication;
 
 import retrofit2.http.Url;
 

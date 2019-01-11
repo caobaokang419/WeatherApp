@@ -7,34 +7,15 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".base.MyApplication"
+        android:name=".base.WeatherApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".ui.activity.WeatherMainActivity"
-            android:theme="@style/AppTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <receiver android:name=".ui.widget.WeatherWidgetProvider">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/widget_weather_config" />
-        </receiver>
-
-        <!-- Firebase -->
+        <!-- Firebase start-->
         <activity
             android:name=".firebase.FirebaseListActivity"
             android:theme="@style/AppTheme" />
@@ -46,10 +27,10 @@
             android:value="@string/admob_app_id" />
 
         <activity
-            android:name=".firebase.admob.InterstitialAdActivity"
+            android:name=".admob.InterstitialAdActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".firebase.admob.RewardedVideoAdActivity"
+            android:name=".admob.RewardedVideoAdActivity"
             android:theme="@style/AppTheme" />
 
         <!-- FCM -->
@@ -256,7 +237,38 @@
         <service
             android:name=".firebase.indexing.AppIndexingService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
+        <!-- Firebase end-->
 
+        <activity
+            android:name=".ui.activity.WeatherMainActivity"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.activity.WtSettingActivity"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".ui.activity.WtCitySearchActivity"
+            android:theme="@style/AppTheme" />
+
+        <!--widget provider -->
+        <receiver android:name=".ui.widget.WeatherWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_weather_config" />
+        </receiver>
+
+        <!--db content provider -->
         <provider
             android:name=".provider.db.WtContentProvider"
             android:authorities="com.gary.weatherdemo.db.provider"
@@ -264,6 +276,7 @@
             android:exported="true"
             android:permission="com.gary.weatherdemo.DB_PROVIDER" />
 
+        <!--sp content provider -->
         <provider
             android:name=".provider.sp.WtSharedPreferenceProvider"
             android:authorities="com.gary.weatherdemo.sp.provider"

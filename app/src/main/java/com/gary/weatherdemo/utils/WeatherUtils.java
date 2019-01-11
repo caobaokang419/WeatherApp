@@ -4,11 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
-import com.gary.weatherdemo.base.MyApplication;
+import com.gary.weatherdemo.base.WeatherApplication;
 
 public class WeatherUtils {
     public static void showToast(String msg) {
-        Toast.makeText(MyApplication.getInstance(), msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(WeatherApplication.getInstance(), msg, Toast.LENGTH_SHORT).show();
     }
 
     public static void startActivity(Context context, String classname) {

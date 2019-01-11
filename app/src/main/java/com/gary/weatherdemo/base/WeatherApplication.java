@@ -7,13 +7,13 @@ import com.gary.weatherdemo.workmanager.WorkerManagerUtils;
 /**
  * Created by GaryCao on 2018/10/25.
  */
-public class MyApplication extends /*MultiDex*/Application {
-    private static MyApplication myApplication;
+public class WeatherApplication extends /*MultiDex*/Application {
+    private static WeatherApplication weatherApplication;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        myApplication = this;
+        weatherApplication = this;
         initConfig();
     }
 
@@ -25,7 +25,7 @@ public class MyApplication extends /*MultiDex*/Application {
         WorkerManagerUtils.getInstance().startPeriodicWeatherUpdate();
     }
 
-    public static MyApplication getInstance() {
-        return myApplication;
+    public static WeatherApplication getInstance() {
+        return weatherApplication;
     }
 }

@@ -1,4 +1,4 @@
-package com.gary.weatherdemo.firebase.admob.callback;
+package com.gary.weatherdemo.admob.callback;
 
 import com.google.android.gms.ads.AdListener;
 

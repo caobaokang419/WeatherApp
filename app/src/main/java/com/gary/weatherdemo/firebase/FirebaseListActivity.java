@@ -1,16 +1,14 @@
 package com.gary.weatherdemo.firebase;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
 import com.gary.weatherdemo.R;
-import com.gary.weatherdemo.firebase.admob.InterstitialAdActivity;
-import com.gary.weatherdemo.firebase.admob.RewardedVideoAdActivity;
+import com.gary.weatherdemo.admob.InterstitialAdActivity;
+import com.gary.weatherdemo.admob.RewardedVideoAdActivity;
 import com.gary.weatherdemo.firebase.analytics.AnalyticsActivity;
-import com.gary.weatherdemo.firebase.appindexing.AppIndexingMainActivity;
 import com.gary.weatherdemo.firebase.auth.AuthChooseActivity;
 import com.gary.weatherdemo.firebase.crashreport.CrashReportActivity;
 import com.gary.weatherdemo.firebase.dynamiclinks.DynamicLinkMainActivity;

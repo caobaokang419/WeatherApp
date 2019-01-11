@@ -3,12 +3,39 @@ package com.gary.weatherdemo.ui.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.GridView;
+import android.widget.ImageButton;
 
-public class WtCitySearchActivity extends AppCompatActivity {
+import com.example.commonui.IActionBarOnClickListener;
+import com.gary.weatherdemo.R;
+import com.gary.weatherdemo.utils.LogUtils;
+
+/**
+ * Created by GaryCao on 2019/01/12.
+ */
+public class WtCitySearchActivity extends AppCompatActivity implements IActionBarOnClickListener {
+    private GridView commonCityGridView;
+    private EditText citySearchEditText;
+    private ImageButton citySearchBtn;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_weather_search);
+
+        citySearchEditText = findViewById(R.id.city_edit_text);
+
+        citySearchBtn = findViewById(R.id.city_search_btn);
+        citySearchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        commonCityGridView = findViewById(R.id.common_city_grid);
     }
 
     @Override
@@ -21,5 +48,15 @@ public class WtCitySearchActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    @Override
+    public void leftActBarItemClicked() {
+        LogUtils.d("leftActBarItemClicked()");
+    }
+
+    @Override
+    public void rightActBarItemClicked() {
+        LogUtils.d("rightActBarItemClicked()");
     }
 }

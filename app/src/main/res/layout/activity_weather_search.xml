@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.example.commonui.ActionBar
+        xmlns:actionbar="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionbar_height"
+        android:background="@color/actionbar_background"
+        android:gravity="center_vertical"
+        actionbar:iv_left_icon="@drawable/ic_action_bar_back"
+        actionbar:tv_title_str="城市搜索" />
+
+    <LinearLayout
+        android:id="@+id/search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_below="@+id/action_bar"
+        android:weightSum="1"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/city_edit_text"
+            android:layout_weight="0.8"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textSize="16dp"
+            android:textColor="@android:color/black"/>
+
+        <ImageButton
+            android:id="@+id/city_search_btn"
+            android:layout_width="0dp"
+            android:layout_weight="0.2"
+            android:layout_height="match_parent"
+            android:background="@drawable/ic_action_bar_left"/>
+    </LinearLayout>
+
+
+    <GridView
+        android:id="@+id/common_city_grid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@+id/search_bar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-2dp"
+        android:numColumns="3" />
+</RelativeLayout>

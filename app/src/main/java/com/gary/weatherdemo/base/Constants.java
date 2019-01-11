@@ -9,6 +9,4 @@ public class Constants {
 
     // amap adcode config file name
     public static final String AMAP_ADCODE_CONFIG_FILE_NAME = "amap_config.ini";
-
-
 }

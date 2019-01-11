@@ -1,4 +1,4 @@
-package com.gary.weatherdemo.firebase.admob;
+package com.gary.weatherdemo.admob;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.gary.weatherdemo.R;
-import com.gary.weatherdemo.firebase.admob.callback.AdListenerImpl;
+import com.gary.weatherdemo.admob.callback.AdListenerImpl;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
