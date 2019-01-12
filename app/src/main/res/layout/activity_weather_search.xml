@@ -17,34 +17,37 @@
     <LinearLayout
         android:id="@+id/search_bar"
         android:layout_width="match_parent"
-        android:layout_height="32dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/action_bar"
         android:weightSum="1"
+        android:background="@color/forecast_item_background"
         android:orientation="horizontal">
 
         <EditText
             android:id="@+id/city_edit_text"
-            android:layout_weight="0.8"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:textSize="16dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:textSize="32sp"
             android:textColor="@android:color/black"/>
 
         <ImageButton
             android:id="@+id/city_search_btn"
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_weight="0.2"
-            android:layout_height="match_parent"
-            android:background="@drawable/ic_action_bar_left"/>
+            android:background="@drawable/ic_action_bar_left" />
     </LinearLayout>
 
-
     <GridView
-        android:id="@+id/common_city_grid"
+        android:id="@+id/city_grid_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignBottom="@+id/search_bar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="-2dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_below="@+id/search_bar"
+        android:columnWidth="90dp"
+        android:horizontalSpacing="10dp"
+        android:verticalSpacing="10dp"
         android:numColumns="3" />
 </RelativeLayout>

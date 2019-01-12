@@ -6,7 +6,7 @@ import android.arch.lifecycle.MutableLiveData;
 import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
 
-import com.gary.weatherdemo.bean.CityInfo;
+import com.gary.weatherdemo.bean.CityBean;
 import com.gary.weatherdemo.model.DayForecastData;
 import com.gary.weatherdemo.model.LiveWeatherResult;
 import com.gary.weatherdemo.model.base.BaseItemDataBean;
@@ -26,7 +26,7 @@ import io.reactivex.schedulers.Schedulers;
 public class MainActivityViewModel extends AndroidViewModel {
     public final ObservableField<ForecastRecyclerAdapter> weatherAdapter = new ObservableField<>();
     private final ForecastRecyclerAdapter adapter;
-    private MutableLiveData<CityInfo> cityInfo = new MutableLiveData<>();
+    private MutableLiveData<CityBean> cityInfo = new MutableLiveData<>();
 
     private ArrayList<BaseItemDataBean> ItemDataList = new ArrayList<>();
     private MutableLiveData<LiveWeatherResult> liveWeatherData = new MutableLiveData<>();
@@ -100,10 +100,10 @@ public class MainActivityViewModel extends AndroidViewModel {
     }
 
     public void loadCurCityInfo() {
-        cityInfo.setValue(new CityInfo("深圳", "440300"));
+        cityInfo.setValue(new CityBean("深圳", "440300"));
     }
 
-    public MutableLiveData<CityInfo> getCurCityInfo() {
+    public MutableLiveData<CityBean> getCurCityInfo() {
         return cityInfo;
     }
 }

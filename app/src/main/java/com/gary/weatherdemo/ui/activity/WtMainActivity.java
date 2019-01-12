@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.example.commonui.ActionBar;
 import com.example.commonui.IActionBarOnClickListener;
 import com.gary.weatherdemo.R;
-import com.gary.weatherdemo.bean.CityInfo;
+import com.gary.weatherdemo.bean.CityBean;
 import com.gary.weatherdemo.databinding.WeatherMainActivityBinding;
 import com.gary.weatherdemo.admob.BannerAdActivity;
 import com.gary.weatherdemo.utils.LogUtils;
@@ -67,13 +67,13 @@ public class WtMainActivity extends BannerAdActivity implements IActionBarOnClic
     }
 
     private void updateCityTitleView() {
-        viewModel.getCurCityInfo().observe(this, new Observer<CityInfo>() {
+        viewModel.getCurCityInfo().observe(this, new Observer<CityBean>() {
             @Override
-            public void onChanged(@Nullable CityInfo cityInfo) {
+            public void onChanged(@Nullable CityBean cityBean) {
                 if (null != actionBar) {
-                    actionBar.setTitle(cityInfo.adrName);
+                    actionBar.setTitle(cityBean.adrName);
                 }
-                viewModel.queryCityWeather(cityInfo.adcCode);
+                viewModel.queryCityWeather(cityBean.adcCode);
             }
         });
     }

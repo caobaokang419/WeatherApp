@@ -7,6 +7,7 @@ import com.gary.weatherdemo.ui.fragment.WtSettingFragment;
 
 /**
  * Created by GaryCao on 2019/01/12.
+ * Android推荐使用PreferenceActivity+PreferenceFragment，替代单独使用PreferenceActivity.
  */
 public class WtSettingActivity extends PreferenceActivity {
 
