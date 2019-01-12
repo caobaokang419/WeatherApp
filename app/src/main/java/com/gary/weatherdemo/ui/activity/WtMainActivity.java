@@ -1,6 +1,7 @@
 package com.gary.weatherdemo.ui.activity;
 
 import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,13 +14,12 @@ import com.example.commonui.IActionBarOnClickListener;
 import com.gary.weatherdemo.R;
 import com.gary.weatherdemo.bean.CityInfo;
 import com.gary.weatherdemo.databinding.WeatherMainActivityBinding;
-import com.gary.weatherdemo.firebase.FirebaseListActivity;
 import com.gary.weatherdemo.admob.BannerAdActivity;
 import com.gary.weatherdemo.utils.LogUtils;
 import com.gary.weatherdemo.utils.WeatherUtils;
 import com.gary.weatherdemo.viewmodel.MainActivityViewModel;
 
-public class WeatherMainActivity extends BannerAdActivity implements IActionBarOnClickListener {
+public class WtMainActivity extends BannerAdActivity implements IActionBarOnClickListener {
     private MainActivityViewModel viewModel;
     private ActionBar actionBar;
     private TextView curTempView;
@@ -29,24 +29,25 @@ public class WeatherMainActivity extends BannerAdActivity implements IActionBarO
     @Override
     public void onCreateNew(Bundle savedInstanceState) {
         initViews();
-
         /*EventBus.getDefault().register(this);*/
     }
 
     private void initViews() {
         WeatherMainActivityBinding binding = DataBindingUtil.<WeatherMainActivityBinding>setContentView(this, R.layout.activity_weather_main);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        viewModel = new MainActivityViewModel();
+
+        /*viewModel = new MainActivityViewModel();*/
+        viewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
         binding.setViewModel(viewModel);
 
         initActionBar();
-        initCurWeather();
+        updateCityTitleView();
     }
 
     @Override
     protected void onResume() {
         if (viewModel != null) {
-            viewModel.loadCurCityInfo();
+            //viewModel.loadCurCityInfo();
         }
         super.onResume();
     }
@@ -65,24 +66,7 @@ public class WeatherMainActivity extends BannerAdActivity implements IActionBarO
         actionBar.setOnClickListener(this);
     }
 
-    private void initCurWeather() {
-        /*curTempView = findViewById(R.id.cur_temp);
-        curWeatherView = findViewById(R.id.cur_weather);
-        curView = findViewById(R.id.cur_weather_view);*/
-        updateCurWeatherView();
-    }
-
-    private void updateCurWeatherView() {
-        //changed as RecyclerView
-        /*viewModel.getLiveWeatherData().observe(this, new Observer<LiveWeatherResult>() {
-            @Override
-            public void onChanged(@Nullable LiveWeatherResult liveWeatherResult) {
-                curTempView.setText(liveWeatherResult.temperature + getResources().getString(R.string.temperature_signal));
-                curWeatherView.setText(liveWeatherResult.weather);
-                curView.setVisibility(View.VISIBLE);
-            }
-        });*/
-
+    private void updateCityTitleView() {
         viewModel.getCurCityInfo().observe(this, new Observer<CityInfo>() {
             @Override
             public void onChanged(@Nullable CityInfo cityInfo) {
@@ -95,14 +79,14 @@ public class WeatherMainActivity extends BannerAdActivity implements IActionBarO
     }
 
     @Override
-    public void leftActBarItemClicked() {
-        LogUtils.d("leftActBarItemClicked()");
-        WeatherUtils.startActivity(this, WtCitySearchActivity.class);
+    public void onClickedActBarLeftBtn() {
+        LogUtils.d("onClickedActBarLeftBtn()");
+        WeatherUtils.startActivity(this, WtSearchActivity.class);
     }
 
     @Override
-    public void rightActBarItemClicked() {
-        LogUtils.d("rightActBarItemClicked()");
+    public void onClickedActBarRightBtn() {
+        LogUtils.d("onClickedActBarRightBtn()");
         WeatherUtils.startActivity(this, WtSettingActivity.class);
     }
 

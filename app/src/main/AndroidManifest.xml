@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!-- Firebase start-->
+        <!-- Firebase start -->
         <activity
             android:name=".firebase.FirebaseListActivity"
             android:theme="@style/AppTheme" />
@@ -237,10 +237,11 @@
         <service
             android:name=".firebase.indexing.AppIndexingService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
-        <!-- Firebase end-->
+        <!-- Firebase end -->
 
+        <!--main activity-->
         <activity
-            android:name=".ui.activity.WeatherMainActivity"
+            android:name=".ui.activity.WtMainActivity"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -248,16 +249,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.activity.WtSettingActivity"
             android:theme="@style/AppTheme" />
-
         <activity
-            android:name=".ui.activity.WtCitySearchActivity"
+            android:name=".ui.activity.WtSearchActivity"
             android:theme="@style/AppTheme" />
 
-        <!--widget provider -->
+        <!-- widget provider -->
         <receiver android:name=".ui.widget.WeatherWidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -268,7 +267,7 @@
                 android:resource="@xml/widget_weather_config" />
         </receiver>
 
-        <!--db content provider -->
+        <!-- db content provider -->
         <provider
             android:name=".provider.db.WtContentProvider"
             android:authorities="com.gary.weatherdemo.db.provider"
@@ -276,13 +275,19 @@
             android:exported="true"
             android:permission="com.gary.weatherdemo.DB_PROVIDER" />
 
-        <!--sp content provider -->
+        <!-- sp content provider -->
         <provider
             android:name=".provider.sp.WtSharedPreferenceProvider"
             android:authorities="com.gary.weatherdemo.sp.provider"
             android:enabled="true"
             android:exported="true"
             android:permission="com.gary.weatherdemo.SP_PROVIDER" />
+
+        <!-- background service -->
+        <service
+            android:name=".service.BgAliveService"
+            android:enabled="true"
+            android:exported="true" />
     </application>
 
 </manifest>

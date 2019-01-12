@@ -1,0 +1,26 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="常用设置">
+        <SwitchPreference
+            android:key="auto_update_switch_key"
+            android:title="自动更新"
+            android:summary="" />
+        <ListPreference
+            android:key="auto_update_internal_key"
+            android:title="自动更新间隔时间"
+            android:dialogTitle="间隔时间选择"
+            android:entries="@array/update_period_time_hint"
+            android:entryValues="@array/update_period_time_value" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="个性设置">
+        <EditTextPreference
+            android:key="owner_label_key"
+            android:capitalize="words"
+            android:inputType="textCapWords"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:selectAllOnFocus="true"
+            android:defaultValue="来自高德天气"
+            android:title="天气标签" />
+    </PreferenceCategory>
+</PreferenceScreen>

@@ -1,7 +1,10 @@
 package com.gary.weatherdemo.viewmodel;
 
+import android.app.Application;
+import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.MutableLiveData;
 import android.databinding.ObservableField;
+import android.support.annotation.NonNull;
 
 import com.gary.weatherdemo.bean.CityInfo;
 import com.gary.weatherdemo.model.DayForecastData;
@@ -20,7 +23,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 
-public class MainActivityViewModel {
+public class MainActivityViewModel extends AndroidViewModel {
     public final ObservableField<ForecastRecyclerAdapter> weatherAdapter = new ObservableField<>();
     private final ForecastRecyclerAdapter adapter;
     private MutableLiveData<CityInfo> cityInfo = new MutableLiveData<>();
@@ -28,7 +31,8 @@ public class MainActivityViewModel {
     private ArrayList<BaseItemDataBean> ItemDataList = new ArrayList<>();
     private MutableLiveData<LiveWeatherResult> liveWeatherData = new MutableLiveData<>();
 
-    public MainActivityViewModel() {
+    public MainActivityViewModel(@NonNull Application application) {
+        super(application);
         adapter = new ForecastRecyclerAdapter();
     }
 

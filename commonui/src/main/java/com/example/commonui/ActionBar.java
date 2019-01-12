@@ -79,13 +79,13 @@ public class ActionBar extends RelativeLayout implements View.OnClickListener {
         int viewId = view.getId();
         if (viewId == R.id.iv_left) {
             if (null != iActionBarOnClickListener) {
-                Log.d("","leftActBarItemClicked()");
-                iActionBarOnClickListener.leftActBarItemClicked();
+                Log.d("","onClickedActBarLeftBtn()");
+                iActionBarOnClickListener.onClickedActBarLeftBtn();
             }
         } else if (viewId == R.id.iv_right) {
             if (null != iActionBarOnClickListener) {
-                Log.d("","rightActBarItemClicked()");
-                iActionBarOnClickListener.rightActBarItemClicked();
+                Log.d("","onClickedActBarRightBtn()");
+                iActionBarOnClickListener.onClickedActBarRightBtn();
             }
         }
     }

@@ -19,7 +19,7 @@ public class ForecastTaskManager {
     private Handler threadHandler;
 
     /**
-     * process menu_analytics_options-thread(UI thread) works
+     * process main-thread(UI thread) works
      */
     private Handler uiHandler = new Handler();
 

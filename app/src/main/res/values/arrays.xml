@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="update_period_time_hint">
+        <item>1小時</item>
+        <item>2小時</item>
+        <item>6小時</item>
+        <item>12小時</item>
+    </string-array>
+
+    <string-array name="update_period_time_value">
+        <item>1</item>
+        <item>2</item>
+        <item>6</item>
+        <item>12</item>
+    </string-array>
+</resources>

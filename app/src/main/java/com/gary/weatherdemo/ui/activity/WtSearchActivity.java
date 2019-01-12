@@ -15,7 +15,7 @@ import com.gary.weatherdemo.utils.LogUtils;
 /**
  * Created by GaryCao on 2019/01/12.
  */
-public class WtCitySearchActivity extends AppCompatActivity implements IActionBarOnClickListener {
+public class WtSearchActivity extends AppCompatActivity implements IActionBarOnClickListener {
     private GridView commonCityGridView;
     private EditText citySearchEditText;
     private ImageButton citySearchBtn;
@@ -51,12 +51,12 @@ public class WtCitySearchActivity extends AppCompatActivity implements IActionBa
     }
 
     @Override
-    public void leftActBarItemClicked() {
-        LogUtils.d("leftActBarItemClicked()");
+    public void onClickedActBarLeftBtn() {
+        LogUtils.d("onClickedActBarLeftBtn()");
     }
 
     @Override
-    public void rightActBarItemClicked() {
-        LogUtils.d("rightActBarItemClicked()");
+    public void onClickedActBarRightBtn() {
+        LogUtils.d("onClickedActBarRightBtn()");
     }
 }
