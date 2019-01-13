@@ -2,7 +2,7 @@ package com.gary.weatherdemo.base;
 
 import android.app.Application;
 
-import com.gary.weatherdemo.workmanager.WorkerManagerUtils;
+import com.gary.weatherdemo.workmanager.WorkerManagerClient;
 
 /**
  * Created by GaryCao on 2018/10/25.
@@ -19,10 +19,10 @@ public class WeatherApplication extends /*MultiDex*/Application {
 
     private void initConfig(){
         /*load amap weather address-adcode infos*/
-        WorkerManagerUtils.getInstance().startLoadAdrAdcodeConfig();
+        WorkerManagerClient.getInstance().startLoadAdrAdcodeConfig();
 
         /*start periodic update current city weather*/
-        WorkerManagerUtils.getInstance().startPeriodicWeatherUpdate();
+        WorkerManagerClient.getInstance().startPeriodicWeatherUpdate();
     }
 
     public static WeatherApplication getInstance() {

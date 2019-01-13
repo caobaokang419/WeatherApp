@@ -239,7 +239,8 @@
             android:permission="android.permission.BIND_JOB_SERVICE" />
         <!-- Firebase end -->
 
-        <!--main activity-->
+
+        <!-- main activity -->
         <activity
             android:name=".ui.activity.WtMainActivity"
             android:theme="@style/AppTheme">
@@ -249,6 +250,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.activity.WtMainViewPageActivity"
+            android:theme="@style/AppTheme">
+        </activity>
+
         <activity
             android:name=".ui.activity.WtSettingActivity"
             android:theme="@style/AppTheme" />
@@ -288,6 +295,14 @@
             android:name=".service.BgAliveService"
             android:enabled="true"
             android:exported="true" />
+
+        <!-- broadcast receiver -->
+        <receiver
+            android:name=".reciever.WtReceiver"
+            android:enabled="true"
+            android:exported="true" />
+
+
     </application>
 
 </manifest>

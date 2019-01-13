@@ -15,6 +15,6 @@ public class ForecastDayViewModel {
         /*CityForecastEntity entity = new CityForecastEntity(weatherForecast);
         entity.setAdcode("440300"); //深圳:adcode:440300 citycode:0755
         entity.setCityName("深圳");
-        CityForecastDatabase.getInstance().getDb().cityForecastDAO().insert(entity);*/
+        WtDatabase.getInstance().getDb().cityForecastDAO().insert(entity);*/
     }
 }

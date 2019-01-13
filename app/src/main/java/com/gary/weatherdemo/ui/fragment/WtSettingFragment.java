@@ -16,6 +16,7 @@ import com.gary.weatherdemo.utils.SPConfigsUtils;
 
 /**
  * Created by GaryCao on 2019/01/12.
+ * PreferenceFragment设置界面
  */
 public class WtSettingFragment extends PreferenceFragment {
     private static final String KEY_PREF_ITEM_UPDATE_SWITCH ="auto_update_switch_key";

@@ -3,12 +3,12 @@ package com.gary.weatherdemo.workmanager;
 /**
  * Created by GaryCao on 2018/11/04.
  */
-public class WorkerManagerUtils  {
-    private static final String TAG = WorkerManagerUtils.class.getSimpleName();
-    private static WorkerManagerUtils instance = new WorkerManagerUtils();
+public class WorkerManagerClient {
+    private static final String TAG = WorkerManagerClient.class.getSimpleName();
+    private static WorkerManagerClient instance = new WorkerManagerClient();
     private IWorkerManager iWorkerManager;
 
-    private WorkerManagerUtils(){
+    private WorkerManagerClient(){
         init();
     }
 
@@ -28,7 +28,7 @@ public class WorkerManagerUtils  {
         iWorkerManager.queryCityWeather();
     }
 
-    public static WorkerManagerUtils getInstance() {
+    public static WorkerManagerClient getInstance() {
         return instance ;
     }
 }

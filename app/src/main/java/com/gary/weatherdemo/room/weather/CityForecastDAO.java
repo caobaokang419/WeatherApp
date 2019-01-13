@@ -1,4 +1,4 @@
-package com.gary.weatherdemo.room;
+package com.gary.weatherdemo.room.weather;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;

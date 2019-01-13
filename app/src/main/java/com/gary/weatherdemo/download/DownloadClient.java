@@ -3,11 +3,11 @@ package com.gary.weatherdemo.download;
 /**
  * Created by GaryCao on 2019/01/12.
  */
-public class DownloadUtil {
-    private static DownloadUtil instance = new DownloadUtil();
+public class DownloadClient {
+    private static DownloadClient instance = new DownloadClient();
     private static IDownload iDownload;
 
-    private DownloadUtil(){
+    private DownloadClient(){
         init();
     }
 
@@ -29,7 +29,7 @@ public class DownloadUtil {
         }
     }
 
-    public static DownloadUtil getInstance() {
+    public static DownloadClient getInstance() {
         return instance ;
     }
 }

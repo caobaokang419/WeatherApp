@@ -36,7 +36,6 @@ public class WtMainActivity extends BannerAdActivity implements IActionBarOnClic
         WeatherMainActivityBinding binding = DataBindingUtil.<WeatherMainActivityBinding>setContentView(this, R.layout.activity_weather_main);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        /*viewModel = new MainActivityViewModel();*/
         viewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
         binding.setViewModel(viewModel);
 
