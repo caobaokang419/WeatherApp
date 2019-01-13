@@ -6,8 +6,11 @@
 - 公共控件封装：自定义实现公共控件CommonUI，用于控件复用；
 - 公共数据接口：借助ContentProvider，提供天气数据（DB方式）& 配置属性（SharedPreference方式）的数据访问API，供第三方应用访问使用；--TBD
 - 配置文件解析：解析存储本地存储高德adcode和城市信息对照表，用于本地天气动态查询api调用；
+- 天气设置功能：PreferenceActivity+PreferenceFragment，替代单独使用PreferenceActivity，实现天气设置界面；
+- 天气城市查询：自动匹配输入城市，完成城市查询；
+- 左右滑动实现：ViewPager+FragmentPagerAdapter，实现左右页面滑动切换；
+- 下拉上拉刷新：下拉界面，实现天气自动查询；上拉界面，更新查询显示更多天气相关信息。
 - [RecyclerView封装](https://www.jianshu.com/p/4f9591291365)：Android推荐控件，优于ListView，处理不同类型的ItemView封装使用；
-
 
 -------
 ### MVVM框架和组件实现：
