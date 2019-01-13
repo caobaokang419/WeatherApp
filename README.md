@@ -38,9 +38,9 @@
 -------
 ### 其他扩展组件功能实现：
 - [EventBus 消息总线](https://www.jianshu.com/p/7ce7b02988a4)：针对Android优化的发布/订阅事件总线，取代Intent,Handler,BroadCast等消息传递机制 --TBD
-- 异步任务（不同场景）的解决方案选择：--TBD
+- 异步任务（不同场景）的解决方案选择：FIFO LIFO AsyncTask HandlerThread WorkManager不同方式，实现异步任务需求。
 - 缓存方案：DiskLruCache --TBD
-- 线程池方案：--TBD
+- 线程池方案：带缓冲的ThreadPoolExecutor方案 --TBD
 - 应用常驻&应用保活：--TBD
 
 
