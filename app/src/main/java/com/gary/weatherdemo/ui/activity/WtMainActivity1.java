@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.gary.weatherdemo.R;
-import com.gary.weatherdemo.ui.fragment.CityFragmentPagerAdapter;
+import com.gary.weatherdemo.ui.adapter.CityFragmentPagerAdapter;
 
 /**
  * Created by GaryCao on 2019/01/13.

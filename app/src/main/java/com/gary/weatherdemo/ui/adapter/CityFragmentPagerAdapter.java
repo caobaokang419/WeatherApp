@@ -1,4 +1,4 @@
-package com.gary.weatherdemo.ui.fragment;
+package com.gary.weatherdemo.ui.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * Created by GaryCao on 2019/01/12.
- * 左右滑动切换城市
+ * --弃用: 左右滑动切换城市，FragmentPagerAdapter不适用此场景
  */
 public class CityFragmentPagerAdapter extends FragmentPagerAdapter {
 

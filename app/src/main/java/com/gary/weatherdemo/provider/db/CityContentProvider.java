@@ -14,9 +14,9 @@ import java.util.ArrayList;
 
 /**
  * Created by GaryCao on 2019/01/05.
- * 提供供第三方应用统一的Weather-data访问API
+ * 提供供第三方应用统一的 高德城市配置表 的访问API
  */
-public class WtContentProvider extends ContentProvider {
+public class CityContentProvider extends ContentProvider {
     public static final String AUTOHORITY = "com.gary.weatherdemo.db.provider";
 
     public static final int CODE_CUR_CITY_WEATHER_INFO = 1;
@@ -33,7 +33,7 @@ public class WtContentProvider extends ContentProvider {
         mMatcher.addURI(AUTOHORITY, PATH_SELECT_CITY_WEATHER_INFO, CODE_SELECT_CITY_WEATHER_INFO);
     }
 
-    public WtContentProvider() {
+    public CityContentProvider() {
     }
 
     @Override
