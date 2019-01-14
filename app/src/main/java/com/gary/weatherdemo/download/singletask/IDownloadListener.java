@@ -1,10 +1,13 @@
-package com.gary.weatherdemo.download;
+package com.gary.weatherdemo.download.singletask;
 
 /**
  * Created by GaryCao on 2019/01/12.
  * TODO: 用于回调更新状态
  */
 public interface IDownloadListener {
+    /**下载开始*/
+    void onStart();
+
     /**下载进度刷新*/
     void onUpdate();
 

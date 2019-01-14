@@ -1,6 +1,6 @@
 package com.gary.weatherdemo.model;
 
-import com.gary.weatherdemo.model.base.BaseItemDataBean;
+import com.gary.weatherdemo.model.base.BaseItemBean;
 import com.gary.weatherdemo.model.base.ItemViewType;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Created by GaryCao on 2018/10/25.
  */
-public class LiveWeatherResult extends BaseItemDataBean {
+public class LiveWeatherBean extends BaseItemBean {
     @SerializedName("province")
     @Expose
     public final String province = null;
@@ -45,13 +45,13 @@ public class LiveWeatherResult extends BaseItemDataBean {
     @Expose
     public final String reporttime = null;
 
-    LiveWeatherResult(){
+    LiveWeatherBean(){
         super(ItemViewType.RV_CURRENT_WEATHER);
     }
 
     @Override
     public String toString() {
-        return "LiveWeatherResult: province = " + province
+        return "LiveWeatherBean: province = " + province
                 + ",city =" + city
                 + ",adcode =" + adcode
                 + ",weather =" + weather

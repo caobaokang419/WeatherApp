@@ -26,14 +26,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="36dp"
-            android:text="@{viewModel.liveWeatherResult.temperature}"/>
+            android:text="@{viewModel.liveWeatherBean.temperature}"/>
 
         <TextView
             android:id="@+id/cur_weather"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="36dp"
-            android:text="@{viewModel.liveWeatherResult.weather}"/>
+            android:text="@{viewModel.liveWeatherBean.weather}"/>
 
     </LinearLayout>
 </layout>

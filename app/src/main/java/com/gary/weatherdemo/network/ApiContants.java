@@ -11,4 +11,7 @@ public class ApiContants {
     public static final String AMAP_USER_EXTENSION_VALUE_BASE = "base";
     public static final String AMAP_USER_EXTENSION_VALUE_ALL = "all";
     public static final String AMAP_USER_OUTPUT_VALUE = "JSON"; //JSON or xml
+
+    //高德城市配置表下载地址
+    public static final String AMAP_CITY_CONFIG_FILE_URL = "http://a.amap.com/lbs/static/file/AMap_adcode_citycode.xlsx.zip";
 }

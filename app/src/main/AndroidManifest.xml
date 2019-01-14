@@ -251,8 +251,14 @@
             </intent-filter>
         </activity>
 
+        <!--弃用-->
         <activity
-            android:name=".ui.activity.WtMainViewPageActivity"
+            android:name=".ui.activity.WtMainActivity1"
+            android:theme="@style/AppTheme">
+        </activity>
+
+        <activity
+            android:name=".ui.activity.WtMainActivity2"
             android:theme="@style/AppTheme">
         </activity>
 
@@ -292,7 +298,7 @@
 
         <!-- background service -->
         <service
-            android:name=".service.BgAliveService"
+            android:name=".service.ForegroundService"
             android:enabled="true"
             android:exported="true" />
 

@@ -7,15 +7,13 @@ import android.view.ViewGroup;
 
 import com.gary.weatherdemo.R;
 import com.gary.weatherdemo.databinding.CurWeatherBinding;
-import com.gary.weatherdemo.databinding.WeatherForecastDayBinding;
-import com.gary.weatherdemo.model.LiveWeatherResult;
+import com.gary.weatherdemo.model.LiveWeatherBean;
 import com.gary.weatherdemo.viewmodel.CurWeatherViewModel;
-import com.gary.weatherdemo.viewmodel.ForecastDayViewModel;
 
 /**
  * Created by GaryCao on 2018/12/12.
  */
-public class CurWeatherViewItem implements IViewItem<LiveWeatherResult> {
+public class CurWeatherViewItem implements IViewItem<LiveWeatherBean> {
 
     private CurWeatherBinding binding;
 
@@ -30,7 +28,7 @@ public class CurWeatherViewItem implements IViewItem<LiveWeatherResult> {
         return itemView;
     }
 
-    public void bindView(@NonNull LiveWeatherResult data) {
+    public void bindView(@NonNull LiveWeatherBean data) {
         binding.setViewModel(new CurWeatherViewModel(data));
     }
 }

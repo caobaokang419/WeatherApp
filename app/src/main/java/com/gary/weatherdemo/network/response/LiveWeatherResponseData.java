@@ -1,6 +1,6 @@
 package com.gary.weatherdemo.network.response;
 
-import com.gary.weatherdemo.model.LiveWeatherResult;
+import com.gary.weatherdemo.model.LiveWeatherBean;
 import com.gary.weatherdemo.network.response.base.BaseResponseData;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -13,9 +13,9 @@ import java.util.List;
 public class LiveWeatherResponseData extends BaseResponseData {
     @SerializedName("lives")
     @Expose
-    private final List<LiveWeatherResult> liveWeatherResultList = null;
+    private final List<LiveWeatherBean> liveWeatherBeanList = null;
 
-    public LiveWeatherResult getWeatherLiveResult() {
-        return liveWeatherResultList ==null ? null: liveWeatherResultList.get(0);
+    public LiveWeatherBean getWeatherLiveResult() {
+        return liveWeatherBeanList ==null ? null: liveWeatherBeanList.get(0);
     }
 }

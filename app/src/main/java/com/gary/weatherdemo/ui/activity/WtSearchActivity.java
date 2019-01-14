@@ -8,9 +8,9 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
 
-import com.example.commonui.IActionBarOnClickListener;
+import com.example.commonui.listener.IActBarOnClickListener;
 import com.gary.weatherdemo.R;
-import com.gary.weatherdemo.bean.CityBean;
+import com.gary.weatherdemo.model.CityBean;
 import com.gary.weatherdemo.ui.adapter.CityGridAdapter;
 import com.gary.weatherdemo.utils.LogUtils;
 
@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * Created by GaryCao on 2019/01/12.
  */
-public class WtSearchActivity extends AppCompatActivity implements IActionBarOnClickListener {
+public class WtSearchActivity extends AppCompatActivity implements IActBarOnClickListener {
     private GridView commonCityGridView;
     private EditText citySearchEditText;
     private ImageButton citySearchBtn;
@@ -78,12 +78,12 @@ public class WtSearchActivity extends AppCompatActivity implements IActionBarOnC
     }
 
     @Override
-    public void onClickedActBarLeftBtn() {
-        LogUtils.d("onClickedActBarLeftBtn()");
+    public void onClickedLeftBtn() {
+        LogUtils.d("onClickedLeftBtn()");
     }
 
     @Override
-    public void onClickedActBarRightBtn() {
-        LogUtils.d("onClickedActBarRightBtn()");
+    public void onClickedRightBtn() {
+        LogUtils.d("onClickedRightBtn()");
     }
 }

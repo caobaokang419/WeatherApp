@@ -1,4 +1,4 @@
-package com.gary.weatherdemo.download;
+package com.gary.weatherdemo.download.singletask;
 
 /**
  * Created by GaryCao on 2019/01/12.

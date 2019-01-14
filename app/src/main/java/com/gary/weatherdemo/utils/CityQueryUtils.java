@@ -1,7 +1,7 @@
 package com.gary.weatherdemo.utils;
 
 import com.gary.weatherdemo.base.WeatherApplication;
-import com.gary.weatherdemo.bean.CityBean;
+import com.gary.weatherdemo.model.CityBean;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

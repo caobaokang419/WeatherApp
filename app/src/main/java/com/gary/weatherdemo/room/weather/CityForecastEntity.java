@@ -5,7 +5,8 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
 /**
- * Created by GaryCao on 2018/10/25.
+ * Created by GaryCao on 2018/10/25. *
+ * 高德城市天气DB Table
  */
 @Entity(tableName = CityForecastEntity.TABLE_NAME)
 public class CityForecastEntity {

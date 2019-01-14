@@ -6,7 +6,7 @@ import android.arch.persistence.room.PrimaryKey;
 
 /**
  * Created by GaryCao on 2019/01/13.
- * 高德城市配置信息DB Table
+ * 高德城市配置表DB Table
  */
 @Entity(tableName = CityInfoEntity.TABLE_NAME)
 public class CityInfoEntity {

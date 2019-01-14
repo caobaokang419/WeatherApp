@@ -8,27 +8,27 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.gary.weatherdemo.R;
-import com.gary.weatherdemo.bean.CityBean;
+import com.gary.weatherdemo.model.CityBean;
 
 import java.util.List;
 
 public class CityGridAdapter  extends BaseAdapter {
-    private List<CityBean> CityBeanList;
+    private List<CityBean> cityBeanList;
     private LayoutInflater layoutInflater;
 
-    public CityGridAdapter(Context context, List<CityBean> CityBeanList) {
-        this.CityBeanList = CityBeanList;
+    public CityGridAdapter(Context context, List<CityBean> cityBeanList) {
+        this.cityBeanList = cityBeanList;
         layoutInflater = LayoutInflater.from(context);
     }
 
     @Override
     public int getCount() {
-        return CityBeanList.size();
+        return cityBeanList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return CityBeanList.get(position);
+        return cityBeanList.get(position);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class CityGridAdapter  extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        CityBean CityBean = CityBeanList.get(position);
+        CityBean CityBean = cityBeanList.get(position);
         if (CityBean != null) {
             holder.city_name.setText(CityBean.adrName);
         }

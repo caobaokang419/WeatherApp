@@ -1,11 +1,11 @@
 package com.gary.weatherdemo.viewmodel;
 
-import com.gary.weatherdemo.model.LiveWeatherResult;
+import com.gary.weatherdemo.model.LiveWeatherBean;
 
 public class CurWeatherViewModel {
-    public final LiveWeatherResult liveWeatherResult;
+    public final LiveWeatherBean liveWeatherBean;
 
-    public CurWeatherViewModel(LiveWeatherResult result) {
-        liveWeatherResult = result;
+    public CurWeatherViewModel(LiveWeatherBean result) {
+        liveWeatherBean = result;
     }
 }

@@ -7,13 +7,13 @@ import android.view.ViewGroup;
 
 import com.gary.weatherdemo.R;
 import com.gary.weatherdemo.databinding.WeatherForecastDayBinding;
-import com.gary.weatherdemo.model.DayForecastData;
+import com.gary.weatherdemo.model.DayForecastBean;
 import com.gary.weatherdemo.viewmodel.ForecastDayViewModel;
 
 /**
  * Created by GaryCao on 2018/12/12.
  */
-public class ForcastDayViewItem implements IViewItem<DayForecastData> {
+public class ForcastDayViewItem implements IViewItem<DayForecastBean> {
     private WeatherForecastDayBinding binding;
 
     public static ForcastDayViewItem getViewItem() {
@@ -27,7 +27,7 @@ public class ForcastDayViewItem implements IViewItem<DayForecastData> {
         return itemView;
     }
 
-    public void bindView(@NonNull DayForecastData data) {
+    public void bindView(@NonNull DayForecastBean data) {
         binding.setViewModel(new ForecastDayViewModel(data));
     }
 }

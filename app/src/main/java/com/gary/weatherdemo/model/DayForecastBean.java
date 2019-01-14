@@ -1,6 +1,6 @@
 package com.gary.weatherdemo.model;
 
-import com.gary.weatherdemo.model.base.BaseItemDataBean;
+import com.gary.weatherdemo.model.base.BaseItemBean;
 import com.gary.weatherdemo.model.base.ItemViewType;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Created by GaryCao on 2018/10/25.
  */
-public class DayForecastData extends BaseItemDataBean {
+public class DayForecastBean extends BaseItemBean {
     @SerializedName("date")
     @Expose
     public final String date = null;
@@ -49,7 +49,7 @@ public class DayForecastData extends BaseItemDataBean {
     @Expose
     public final String nightpower = null;
 
-    DayForecastData(){
+    DayForecastBean(){
         super(ItemViewType.RV_FORECAST_DAY_WEATHER);
     }
 

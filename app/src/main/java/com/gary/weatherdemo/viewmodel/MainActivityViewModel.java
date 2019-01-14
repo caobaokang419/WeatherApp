@@ -6,10 +6,10 @@ import android.arch.lifecycle.MutableLiveData;
 import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
 
-import com.gary.weatherdemo.bean.CityBean;
-import com.gary.weatherdemo.model.DayForecastData;
-import com.gary.weatherdemo.model.LiveWeatherResult;
-import com.gary.weatherdemo.model.base.BaseItemDataBean;
+import com.gary.weatherdemo.model.CityBean;
+import com.gary.weatherdemo.model.DayForecastBean;
+import com.gary.weatherdemo.model.LiveWeatherBean;
+import com.gary.weatherdemo.model.base.BaseItemBean;
 import com.gary.weatherdemo.network.WeatherRequestClient;
 import com.gary.weatherdemo.network.response.AllForecastResponseData;
 import com.gary.weatherdemo.network.response.LiveWeatherResponseData;
@@ -26,10 +26,10 @@ import io.reactivex.schedulers.Schedulers;
 public class MainActivityViewModel extends AndroidViewModel {
     public final ObservableField<ForecastRecyclerAdapter> weatherAdapter = new ObservableField<>();
     private final ForecastRecyclerAdapter adapter;
-    private MutableLiveData<CityBean> cityInfo = new MutableLiveData<>();
+    private MutableLiveData<CityBean> curCityBean = new MutableLiveData<>();
 
-    private ArrayList<BaseItemDataBean> ItemDataList = new ArrayList<>();
-    private MutableLiveData<LiveWeatherResult> liveWeatherData = new MutableLiveData<>();
+    private ArrayList<BaseItemBean> ItemDataList = new ArrayList<>();
+    private MutableLiveData<LiveWeatherBean> liveWeatherData = new MutableLiveData<>();
 
     public MainActivityViewModel(@NonNull Application application) {
         super(application);
@@ -80,7 +80,7 @@ public class MainActivityViewModel extends AndroidViewModel {
                                 ItemDataList.add(liveWeatherData.getValue());
                             }
                             int index =0;
-                            for(DayForecastData fdata : responseData.getWeatherAllResult().dayForecastDataList){
+                            for(DayForecastBean fdata : responseData.getWeatherAllResult().dayForecastBeanList){
                                 ItemDataList.set(index+1,fdata);
                                 index++;
                             }
@@ -95,15 +95,15 @@ public class MainActivityViewModel extends AndroidViewModel {
                 });
     }
 
-    public MutableLiveData<LiveWeatherResult> getLiveWeatherData() {
+    public MutableLiveData<LiveWeatherBean> getLiveWeatherData() {
         return liveWeatherData;
     }
 
     public void loadCurCityInfo() {
-        cityInfo.setValue(new CityBean("深圳", "440300"));
+        curCityBean.setValue(new CityBean("深圳", "440300"));
     }
 
     public MutableLiveData<CityBean> getCurCityInfo() {
-        return cityInfo;
+        return curCityBean;
     }
 }

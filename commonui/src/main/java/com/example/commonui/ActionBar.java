@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.commonui.listener.IActBarOnClickListener;
+
 /**
  * Created by GaryCao on 2018/11/10.
  */
@@ -20,7 +22,7 @@ public class ActionBar extends RelativeLayout implements View.OnClickListener {
     private TextView titleView;
     private View leftActionView;
     private View rightActionView;
-    private IActionBarOnClickListener iActionBarOnClickListener;
+    private IActBarOnClickListener iActBarOnClickListener;
 
     public ActionBar(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -53,8 +55,8 @@ public class ActionBar extends RelativeLayout implements View.OnClickListener {
         }
     }
 
-    public void setOnClickListener(IActionBarOnClickListener listener) {
-        iActionBarOnClickListener = listener;
+    public void setOnClickListener(IActBarOnClickListener listener) {
+        iActBarOnClickListener = listener;
         if (null != leftActionView) {
             leftActionView.setOnClickListener(this);
         }
@@ -78,14 +80,14 @@ public class ActionBar extends RelativeLayout implements View.OnClickListener {
     public void onClick(View view) {
         int viewId = view.getId();
         if (viewId == R.id.iv_left) {
-            if (null != iActionBarOnClickListener) {
-                Log.d("","onClickedActBarLeftBtn()");
-                iActionBarOnClickListener.onClickedActBarLeftBtn();
+            if (null != iActBarOnClickListener) {
+                Log.d("","onClickedLeftBtn()");
+                iActBarOnClickListener.onClickedLeftBtn();
             }
         } else if (viewId == R.id.iv_right) {
-            if (null != iActionBarOnClickListener) {
-                Log.d("","onClickedActBarRightBtn()");
-                iActionBarOnClickListener.onClickedActBarRightBtn();
+            if (null != iActBarOnClickListener) {
+                Log.d("","onClickedRightBtn()");
+                iActBarOnClickListener.onClickedRightBtn();
             }
         }
     }

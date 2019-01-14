@@ -7,8 +7,8 @@ import android.os.IBinder;
 /**
  * Created by GaryCao on 2019/01/12.
  */
-public class BgAliveService extends Service {
-    public BgAliveService() {
+public class ForegroundService extends Service {
+    public ForegroundService() {
     }
 
     @Override

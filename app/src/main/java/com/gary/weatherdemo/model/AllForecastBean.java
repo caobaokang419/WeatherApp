@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by GaryCao on 2018/10/25.
  */
-public class AllForecastResult {
+public class AllForecastBean {
     @SerializedName("city")
     @Expose
     public final String city = null;
@@ -28,11 +28,11 @@ public class AllForecastResult {
 
     @SerializedName("casts")
     @Expose
-    public final List<DayForecastData> dayForecastDataList = null;
+    public final List<DayForecastBean> dayForecastBeanList = null;
 
     @Override
     public String toString() {
-        return "AllForecastResult: province = " + province
+        return "AllForecastBean: province = " + province
                 + ",city =" + city
                 + ",adcode =" + adcode
                 + ",reporttime" + reporttime;
