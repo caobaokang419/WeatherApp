@@ -41,7 +41,7 @@ public class WtMainActivity extends BannerAdActivity implements IActBarOnClickLi
     @Override
     protected void onResume() {
         if (viewModel != null) {
-            //viewModel.loadCurCityInfo();
+            viewModel.loadCurCityInfo();
         }
         super.onResume();
     }
