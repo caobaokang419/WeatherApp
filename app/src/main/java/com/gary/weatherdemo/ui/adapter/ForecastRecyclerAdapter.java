@@ -23,7 +23,7 @@ public class ForecastRecyclerAdapter extends RecyclerView.Adapter<BaseItemViewHo
 
     @Override
     public BaseItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return ItemViewHolderFactory.getViewHolderByType(parent,viewType);
+        return ItemViewHolderFactory.getViewHolderByType(parent, viewType);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class ForecastRecyclerAdapter extends RecyclerView.Adapter<BaseItemViewHo
 
     @Override
     public int getItemViewType(int position) {
-        return ItemDataList.get(position).getViewItemType();
+        return ItemDataList == null ? 0 : ItemDataList.get(position).getViewItemType();
     }
 
     @Override

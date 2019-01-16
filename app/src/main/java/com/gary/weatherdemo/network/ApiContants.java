@@ -14,4 +14,7 @@ public class ApiContants {
 
     //高德城市配置表下载地址
     public static final String AMAP_CITY_CONFIG_FILE_URL = "http://a.amap.com/lbs/static/file/AMap_adcode_citycode.xlsx.zip";
+
+    //高德城市配置表本地存储目录
+    public static final String AMAP_CITY_CONFIG_DIRECTIONARY = "/amap_weather/";
 }

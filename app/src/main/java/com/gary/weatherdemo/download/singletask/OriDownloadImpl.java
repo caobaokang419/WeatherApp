@@ -7,11 +7,16 @@ import java.net.URL;
  */
 public class OriDownloadImpl implements IDownload{
     @Override
-    public void startDownload(URL url, IDownloadListener iDownloadListener) {
+    public void startDownload(String url, IDownloadListener iDownloadListener) {
     }
 
     @Override
-    public void stopDownload() {
+    public void pauseDownload() {
+
+    }
+
+    @Override
+    public void cancelDownload() {
 
     }
 }

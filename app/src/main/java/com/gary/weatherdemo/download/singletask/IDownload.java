@@ -7,8 +7,11 @@ import java.net.URL;
  */
 public interface IDownload {
     /**启动下载*/
-    void startDownload(URL url, IDownloadListener iDownloadListener);
+    void startDownload(String url, IDownloadListener iDownloadListener);
 
-    /**结束下载*/
-    void stopDownload();
+    /**暂停下载*/
+    void pauseDownload();
+
+    /**取消下载*/
+    void cancelDownload();
 }

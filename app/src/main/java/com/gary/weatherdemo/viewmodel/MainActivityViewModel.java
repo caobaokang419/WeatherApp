@@ -41,65 +41,6 @@ public class MainActivityViewModel extends AndroidViewModel {
         adapter = new ForecastRecyclerAdapter();
     }
 
-    /*public void queryCityWeather(String adcode) {
-        WeatherRequestClient.getInstance().liveWeatherPost(adcode)
-                .subscribeOn(Schedulers.io())//设置1：在io子线程执行
-                .observeOn(AndroidSchedulers.mainThread()) //设置2：在UI主线程执行回调
-                .subscribe(new Observer<LiveWeatherResponseData>() {//设置3：UI主线程回調實現
-                    @Override
-                    public void onSubscribe(Disposable d) {}
-                    @Override
-                    public void onNext(LiveWeatherResponseData responseData) {
-                        if (responseData != null && responseData.isSuccessful()) {
-                            liveWeatherData.postValue(responseData.getWeatherLiveResult());
-
-                            if(ItemDataList.size()==0){
-                                ItemDataList.add(liveWeatherData.getValue());
-                            }else{
-                                ItemDataList.set(0,liveWeatherData.getValue());
-                            }
-                            adapter.setAdapterData(ItemDataList);
-                            weatherAdapter.set(adapter);
-                        }
-                    }
-                    @Override
-                    public void onError(Throwable e) {}
-                    @Override
-                    public void onComplete() {}
-                });
-
-        WeatherRequestClient.getInstance().forecastWeatherPost(adcode)
-                .subscribeOn(Schedulers.io())//设置1：在io子线程执行
-                .observeOn(AndroidSchedulers.mainThread()) //设置2：在UI主线程执行回调
-                .subscribe(new Observer<AllForecastResponseData>() {//设置3：UI主线程回調實現
-                    @Override
-                    public void onSubscribe(Disposable d) {
-                    }
-                    @Override
-                    public void onNext(AllForecastResponseData responseData) {
-                        if (responseData != null
-                                && responseData.isSuccessful()
-                                && responseData.getWeatherAllResult()!=null) {
-
-                            if(ItemDataList.size()==0){
-                                ItemDataList.add(liveWeatherData.getValue());
-                            }
-                            int index =0;
-                            for(DayForecastBean fdata : responseData.getWeatherAllResult().dayForecastBeanList){
-                                ItemDataList.set(index+1,fdata);
-                                index++;
-                            }
-                            adapter.setAdapterData(ItemDataList);
-                            weatherAdapter.set(adapter);
-                        }
-                    }
-                    @Override
-                    public void onError(Throwable e) {}
-                    @Override
-                    public void onComplete() {}
-                });
-    }*/
-
     public void queryCityWeather(String adcode) {
         Observable<LiveWeatherResponseData> observable1 =
                 WeatherRequestClient.getInstance().liveWeatherPost(adcode).subscribeOn(Schedulers.io());
@@ -111,7 +52,7 @@ public class MainActivityViewModel extends AndroidViewModel {
                 new BiFunction<LiveWeatherResponseData, AllForecastResponseData, ArrayList<BaseItemBean>>() {
                     @Override
                     public ArrayList<BaseItemBean> apply(LiveWeatherResponseData livedata,
-                                          AllForecastResponseData allForecastdata) throws Exception {
+                                                         AllForecastResponseData allForecastdata) throws Exception {
                         List<DayForecastBean> dayForecastList = null;
                         ArrayList<BaseItemBean> dataList = new ArrayList<>();
 
@@ -120,13 +61,13 @@ public class MainActivityViewModel extends AndroidViewModel {
                         }
                         if (allForecastdata != null
                                 && allForecastdata.isSuccessful()
-                                && allForecastdata.getWeatherAllResult() !=null) {
-                            dayForecastList =allForecastdata.getWeatherAllResult().dayForecastBeanList;
+                                && allForecastdata.getWeatherAllResult() != null) {
+                            dayForecastList = allForecastdata.getWeatherAllResult().dayForecastBeanList;
                         }
 
                         dataList.clear();
                         dataList.add(liveWeatherData.getValue());
-                        for(DayForecastBean fdata : dayForecastList){
+                        for (DayForecastBean fdata : dayForecastList) {
                             dataList.add(fdata);
                         }
 

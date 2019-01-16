@@ -302,6 +302,11 @@
             android:enabled="true"
             android:exported="true" />
 
+        <service
+            android:name=".service.DownloadService"
+            android:enabled="true"
+            android:exported="true" />
+
         <!-- broadcast receiver -->
         <receiver
             android:name=".reciever.WtReceiver"
