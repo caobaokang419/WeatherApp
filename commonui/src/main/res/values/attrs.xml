@@ -5,4 +5,9 @@
         <attr name="iv_left_icon" format="reference"/>
         <attr name="iv_right_icon" format="reference"/>
     </declare-styleable>
+
+    <declare-styleable name = "viewPagerIndicator">
+        <attr name = "select_item_icon" format = "reference" />
+        <attr name = "unselect_item_icon" format = "reference" />
+    </declare-styleable>
 </resources>

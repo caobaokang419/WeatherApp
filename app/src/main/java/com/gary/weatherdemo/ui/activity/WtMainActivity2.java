@@ -30,5 +30,6 @@ public class WtMainActivity2 extends AppCompatActivity {
         viewPager.setAdapter(cityPagerAdapter);
 
         pageIndicatorView = findViewById(R.id.page_indicatior);
+        pageIndicatorView.registerPageChangeListener(viewPager);
     }
 }
