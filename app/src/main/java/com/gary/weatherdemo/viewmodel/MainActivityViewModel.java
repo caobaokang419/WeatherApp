@@ -13,32 +13,29 @@ import com.gary.weatherdemo.model.base.BaseItemBean;
 import com.gary.weatherdemo.network.WeatherRequestClient;
 import com.gary.weatherdemo.network.response.AllForecastResponseData;
 import com.gary.weatherdemo.network.response.LiveWeatherResponseData;
-import com.gary.weatherdemo.ui.adapter.ForecastRecyclerAdapter;
-import com.google.firebase.auth.UserInfo;
+import com.gary.weatherdemo.ui.adapter.CityWeatherRecyclerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Observable;
-import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.BiFunction;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 
 public class MainActivityViewModel extends AndroidViewModel {
-    public final ObservableField<ForecastRecyclerAdapter> weatherAdapter = new ObservableField<>();
-    private final ForecastRecyclerAdapter adapter;
+    public final ObservableField<CityWeatherRecyclerAdapter> weatherAdapter = new ObservableField<>();
+    private final CityWeatherRecyclerAdapter adapter;
     private MutableLiveData<CityBean> curCityBean = new MutableLiveData<>();
 
-    private ArrayList<BaseItemBean> ItemDataList = new ArrayList<>();
+    private List<BaseItemBean> ItemDataList = new ArrayList<>();
     private MutableLiveData<LiveWeatherBean> liveWeatherData = new MutableLiveData<>();
 
     public MainActivityViewModel(@NonNull Application application) {
         super(application);
-        adapter = new ForecastRecyclerAdapter();
+        adapter = new CityWeatherRecyclerAdapter();
     }
 
     public void queryCityWeather(String adcode) {
@@ -74,9 +71,9 @@ public class MainActivityViewModel extends AndroidViewModel {
                         return dataList;
                     }
                 }).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<ArrayList<BaseItemBean>>() {
+                .subscribe(new Consumer<List<BaseItemBean>>() {
                     @Override
-                    public void accept(ArrayList<BaseItemBean> dataList) throws Exception {
+                    public void accept(List<BaseItemBean> dataList) throws Exception {
                         ItemDataList = dataList;
                         adapter.setAdapterData(ItemDataList);
                         weatherAdapter.set(adapter);

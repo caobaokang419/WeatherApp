@@ -18,7 +18,6 @@ public class XUtilsDownloadImpl implements IDownload {
     private IDownloadListener downloadListener;
     private Callback.Cancelable cancelable;
 
-
     @Override
     public void startDownload(String url, IDownloadListener iDownloadListener) {
         downloadListener = iDownloadListener;
@@ -26,6 +25,7 @@ public class XUtilsDownloadImpl implements IDownload {
         RequestParams params = new RequestParams(url);
         params.setSaveFilePath(Environment.getExternalStorageDirectory() + ApiContants.AMAP_CITY_CONFIG_DIRECTIONARY);
         params.setAutoRename(true);
+        params.setCancelFast(true);
         cancelable = x.http().post(params, new Callback.ProgressCallback<File>() {
             @Override
             public void onSuccess(File result) {

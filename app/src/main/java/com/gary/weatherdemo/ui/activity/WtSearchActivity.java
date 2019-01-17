@@ -8,11 +8,9 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
 
-import com.example.commonui.listener.IActBarOnClickListener;
 import com.gary.weatherdemo.R;
 import com.gary.weatherdemo.model.CityBean;
-import com.gary.weatherdemo.ui.adapter.CityGridAdapter;
-import com.gary.weatherdemo.utils.LogUtils;
+import com.gary.weatherdemo.ui.adapter.CitySearchGridAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,12 +18,12 @@ import java.util.List;
 /**
  * Created by GaryCao on 2019/01/12.
  */
-public class WtSearchActivity extends AppCompatActivity implements IActBarOnClickListener {
+public class WtSearchActivity extends AppCompatActivity {
     private GridView commonCityGridView;
     private EditText citySearchEditText;
     private ImageButton citySearchBtn;
 
-    private CityGridAdapter cityGridAdapter;
+    private CitySearchGridAdapter citySearchGridAdapter;
     private String[] cityNames =
             new String[]{"深圳", "西安", "合肥", "武汉", "巢湖市", "北京", "上海", "广州", "成都", "南京", "杭州", "苏州"};
     private String[] cityAdcode =
@@ -61,8 +59,8 @@ public class WtSearchActivity extends AppCompatActivity implements IActBarOnClic
             CityBean CityBean = new CityBean(cityNames[i],cityAdcode[i]);
             cityBeanList.add(CityBean);
         }
-        cityGridAdapter = new CityGridAdapter(this, cityBeanList);
-        commonCityGridView.setAdapter(cityGridAdapter);
+        citySearchGridAdapter = new CitySearchGridAdapter(this, cityBeanList);
+        commonCityGridView.setAdapter(citySearchGridAdapter);
     }
 
     @Override
@@ -75,15 +73,5 @@ public class WtSearchActivity extends AppCompatActivity implements IActBarOnClic
     @Override
     protected void onDestroy() {
         super.onDestroy();
-    }
-
-    @Override
-    public void onClickedLeftBtn() {
-        LogUtils.d("onClickedLeftBtn()");
-    }
-
-    @Override
-    public void onClickedRightBtn() {
-        LogUtils.d("onClickedRightBtn()");
     }
 }

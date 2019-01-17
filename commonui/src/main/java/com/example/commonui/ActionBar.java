@@ -4,25 +4,21 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.commonui.listener.IActBarOnClickListener;
-
 /**
  * Created by GaryCao on 2018/11/10.
  */
-public class ActionBar extends RelativeLayout implements View.OnClickListener {
+public class ActionBar extends RelativeLayout {
     private LayoutInflater inflater;
     private RelativeLayout actionBarView;
     private TextView titleView;
     private View leftActionView;
     private View rightActionView;
-    private IActBarOnClickListener iActBarOnClickListener;
 
     public ActionBar(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -55,14 +51,15 @@ public class ActionBar extends RelativeLayout implements View.OnClickListener {
         }
     }
 
-    public void setOnClickListener(IActBarOnClickListener listener) {
-        iActBarOnClickListener = listener;
+    public void setLeftOnClickListener(View.OnClickListener listener) {
         if (null != leftActionView) {
-            leftActionView.setOnClickListener(this);
+            leftActionView.setOnClickListener(listener);
         }
+    }
 
+    public void setRightOnClickListener(View.OnClickListener listener) {
         if (null != rightActionView) {
-            rightActionView.setOnClickListener(this);
+            rightActionView.setOnClickListener(listener);
         }
     }
 
@@ -74,21 +71,5 @@ public class ActionBar extends RelativeLayout implements View.OnClickListener {
 
     public void setTitle(int resid) {
         titleView.setText(resid);
-    }
-
-    @Override
-    public void onClick(View view) {
-        int viewId = view.getId();
-        if (viewId == R.id.iv_left) {
-            if (null != iActBarOnClickListener) {
-                Log.d("","onClickedLeftBtn()");
-                iActBarOnClickListener.onClickedLeftBtn();
-            }
-        } else if (viewId == R.id.iv_right) {
-            if (null != iActBarOnClickListener) {
-                Log.d("","onClickedRightBtn()");
-                iActBarOnClickListener.onClickedRightBtn();
-            }
-        }
     }
 }

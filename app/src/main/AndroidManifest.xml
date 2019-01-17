@@ -269,6 +269,10 @@
             android:name=".ui.activity.WtSearchActivity"
             android:theme="@style/AppTheme" />
 
+        <activity
+            android:name=".ui.activity.WtDownloadActivity"
+            android:theme="@style/AppTheme" />
+
         <!-- widget provider -->
         <receiver android:name=".ui.widget.WeatherWidgetProvider">
             <intent-filter>
@@ -312,8 +316,6 @@
             android:name=".reciever.WtReceiver"
             android:enabled="true"
             android:exported="true" />
-
-
     </application>
 
 </manifest>

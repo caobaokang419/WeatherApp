@@ -14,7 +14,7 @@ public class DownloadClient {
     }
 
     private void init() {
-        iDownload = DownloadFactory.getDownloadInstant();
+        iDownload = DownloadFactory.createDownloadImpl();
     }
 
     /**

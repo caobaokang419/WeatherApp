@@ -12,11 +12,11 @@ import com.gary.weatherdemo.model.CityBean;
 
 import java.util.List;
 
-public class CityGridAdapter  extends BaseAdapter {
+public class CitySearchGridAdapter extends BaseAdapter {
     private List<CityBean> cityBeanList;
     private LayoutInflater layoutInflater;
 
-    public CityGridAdapter(Context context, List<CityBean> cityBeanList) {
+    public CitySearchGridAdapter(Context context, List<CityBean> cityBeanList) {
         this.cityBeanList = cityBeanList;
         layoutInflater = LayoutInflater.from(context);
     }

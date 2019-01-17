@@ -6,9 +6,9 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.View;
 
 import com.example.commonui.ActionBar;
-import com.example.commonui.listener.IActBarOnClickListener;
 import com.gary.weatherdemo.R;
 import com.gary.weatherdemo.model.CityBean;
 import com.gary.weatherdemo.databinding.WeatherMainActivityBinding;
@@ -17,7 +17,7 @@ import com.gary.weatherdemo.utils.LogUtils;
 import com.gary.weatherdemo.utils.WeatherUtils;
 import com.gary.weatherdemo.viewmodel.MainActivityViewModel;
 
-public class WtMainActivity extends BannerAdActivity implements IActBarOnClickListener {
+public class WtMainActivity extends BannerAdActivity{
     private MainActivityViewModel viewModel;
     private ActionBar actionBar;
 
@@ -56,8 +56,22 @@ public class WtMainActivity extends BannerAdActivity implements IActBarOnClickLi
     }
 
     private void initActionBar() {
-        actionBar = (ActionBar) findViewById(R.id.action_bar);
-        actionBar.setOnClickListener(this);
+        actionBar = findViewById(R.id.action_bar);
+        actionBar.setLeftOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LogUtils.d("onClickedLeftBtn()");
+                WeatherUtils.startActivity(getApplicationContext(), WtSearchActivity.class);
+            }
+        });
+
+        actionBar.setRightOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LogUtils.d("onClickedRightBtn()");
+                WeatherUtils.startActivity(getApplicationContext(), WtSettingActivity.class);
+            }
+        });
     }
 
     private void updateCityTitleView() {
@@ -70,18 +84,6 @@ public class WtMainActivity extends BannerAdActivity implements IActBarOnClickLi
                 viewModel.queryCityWeather(cityBean.adcCode);
             }
         });
-    }
-
-    @Override
-    public void onClickedLeftBtn() {
-        LogUtils.d("onClickedLeftBtn()");
-        WeatherUtils.startActivity(this, WtSearchActivity.class);
-    }
-
-    @Override
-    public void onClickedRightBtn() {
-        LogUtils.d("onClickedRightBtn()");
-        WeatherUtils.startActivity(this, WtSettingActivity.class);
     }
 
     /*@Subscribe(threadMode = ThreadMode.MAIN)

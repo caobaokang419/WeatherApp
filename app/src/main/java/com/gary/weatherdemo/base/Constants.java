@@ -1,7 +1,7 @@
 package com.gary.weatherdemo.base;
 
 public class Constants {
-    // google work manager types
+    // work manager types
     public static final String PERIODIC_UPATE_WORK_NAME = "periodic_update_work";
     public static final String LOAD_ADCODES_CONFIG_WORK_NAME = "load_adcodes_config_work";
     public static final String QUERY_CURRENT_WEATHER_WORK_NAME = "query_current_weather_work";

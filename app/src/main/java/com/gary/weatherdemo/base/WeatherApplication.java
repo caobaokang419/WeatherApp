@@ -4,6 +4,8 @@ import android.app.Application;
 
 import com.gary.weatherdemo.workmanager.WorkerManagerClient;
 
+import org.xutils.x;
+
 /**
  * Created by GaryCao on 2018/10/25.
  */
@@ -18,6 +20,9 @@ public class WeatherApplication extends /*MultiDex*/Application {
     }
 
     private void initConfig(){
+        x.Ext.init(this);
+        x.Ext.setDebug(true);
+
         /*load amap weather address-adcode infos*/
         WorkerManagerClient.getInstance().startLoadAdrAdcodeConfig();
 

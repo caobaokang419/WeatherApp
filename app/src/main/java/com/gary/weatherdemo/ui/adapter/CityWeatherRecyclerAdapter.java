@@ -8,16 +8,17 @@ import com.gary.weatherdemo.ui.viewholder.BaseItemViewHolder;
 import com.gary.weatherdemo.ui.viewholder.ItemViewHolderFactory;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class ForecastRecyclerAdapter extends RecyclerView.Adapter<BaseItemViewHolder> {
-    private ArrayList<BaseItemBean> ItemDataList = new ArrayList<>();
+public class CityWeatherRecyclerAdapter extends RecyclerView.Adapter<BaseItemViewHolder> {
+    private List<BaseItemBean> itemDataList = new ArrayList<>();
 
-    public ForecastRecyclerAdapter() {
+    public CityWeatherRecyclerAdapter() {
     }
 
-    public void setAdapterData(ArrayList<BaseItemBean> datas) {
-        ItemDataList.clear();
-        ItemDataList = datas;
+    public void setAdapterData(List<BaseItemBean> datas) {
+        itemDataList.clear();
+        itemDataList = datas;
         notifyDataSetChanged();
     }
 
@@ -28,16 +29,16 @@ public class ForecastRecyclerAdapter extends RecyclerView.Adapter<BaseItemViewHo
 
     @Override
     public void onBindViewHolder(BaseItemViewHolder holder, int position) {
-        holder.getIViewItem().bindView(ItemDataList.get(position));
+        holder.getIViewItem().bindView(itemDataList.get(position));
     }
 
     @Override
     public int getItemViewType(int position) {
-        return ItemDataList == null ? 0 : ItemDataList.get(position).getViewItemType();
+        return (itemDataList.size() == 0) ? 0 : itemDataList.get(position).getViewItemType();
     }
 
     @Override
     public int getItemCount() {
-        return ItemDataList.size();
+        return itemDataList.size();
     }
 }
