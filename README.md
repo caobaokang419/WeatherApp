@@ -32,8 +32,8 @@
 - [RxJava Android使用教程](https://gank.io/post/560e15be2dca930e00da1083)：异步网络请求任务处理
 - [Xutils3 使用教程](https://blog.csdn.net/carson_ho/article/details/73732076)：文件下载&断点续传管理 --TBD
 - [Glide 使用教程](https://www.jianshu.com/p/7ce7b02988a4)：Android推荐的热门图片加载库 备注：三大主流库ImageLoader,Picasso,Glide --TBD
-- [AdMob 使用教程](https://developers.google.com/admob/android/quick-start?hl=zh-CN#import_the_mobile_ads_sdk)：实现Google广告载入
-- [Firebase 使用教程](https://developers.google.com/firebase/docs/android/setup?hl=zh-CN)：移动应用后台服务端管理
+- [AdMob 使用教程](https://developers.google.com/admob/android/quick-start?hl=zh-CN#import_the_mobile_ads_sdk)：实现Google广告载入--国内不集成，移至：[FirebaseApp](https://github.com/caobaokang419/FirebaseApp)
+- [Firebase 使用教程](https://developers.google.com/firebase/docs/android/setup?hl=zh-CN)：移动应用后台服务端管理--国内不集成，移至：[FirebaseApp](https://github.com/caobaokang419/FirebaseApp)
 
 
 -------
