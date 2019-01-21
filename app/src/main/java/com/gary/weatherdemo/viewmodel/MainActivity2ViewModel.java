@@ -30,7 +30,7 @@ public class MainActivity2ViewModel extends AndroidViewModel {
     private final CityWeatherRecyclerAdapter adapter;
     private MutableLiveData<CityBean> curCityBean = new MutableLiveData<>();
 
-    private List<BaseItemBean> ItemDataList = new ArrayList<>();
+    private List<BaseItemBean> itemDataList = new ArrayList<>();
     private MutableLiveData<LiveWeatherBean> liveWeatherData = new MutableLiveData<>();
 
     public MainActivity2ViewModel(@NonNull Application application) {
@@ -74,8 +74,8 @@ public class MainActivity2ViewModel extends AndroidViewModel {
                 .subscribe(new Consumer<List<BaseItemBean>>() {
                     @Override
                     public void accept(List<BaseItemBean> dataList) throws Exception {
-                        ItemDataList = dataList;
-                        adapter.setAdapterData(ItemDataList);
+                        itemDataList = dataList;
+                        adapter.setAdapterData(itemDataList);
                         weatherAdapter.set(adapter);
                     }
                 });

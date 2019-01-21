@@ -5,4 +5,7 @@
     <dimen name="actionbar_item_height">40dip</dimen>
     <dimen name="actionbar_item_width">40dip</dimen>
     <dimen name="actionbar_item_magrin">6dip</dimen>
+
+    <dimen name="pager_indicator_item_start_magrin">3dip</dimen>
+    <dimen name="pager_indicator_item_radius">6dip</dimen>
 </resources>

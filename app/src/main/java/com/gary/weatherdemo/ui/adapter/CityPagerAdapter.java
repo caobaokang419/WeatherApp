@@ -16,11 +16,13 @@ import com.gary.weatherdemo.model.CityBean;
 import java.util.List;
 
 public class CityPagerAdapter extends PagerAdapter {
+    private Context context;
     private List<CityBean> cityBeanList;
     private List<View> viewList;
     private LayoutInflater layoutInflater;
 
     public CityPagerAdapter(Context context, List<CityBean> cityBeanList) {
+        this.context = context;
         this.cityBeanList = cityBeanList;
         layoutInflater = LayoutInflater.from(context);
     }
@@ -38,18 +40,16 @@ public class CityPagerAdapter extends PagerAdapter {
 
     @Override
     public View instantiateItem(ViewGroup container, int position) {
-        /*TextView cityView= cityBeanList.get(position).adrName;
-        container.addView(imageView);
-        return imageView;*/
-
-        container.addView(viewList.get(position));
-        return viewList.get(position);
+        TextView textView = new TextView(context);
+        textView.setText(cityBeanList.get(position).adrName);
+        container.addView(textView/*viewList.get(position)*/);
+        return textView/*viewList.get(position)*/;
     }
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        ImageView imageView=(ImageView)object;
-        container.removeView(imageView);
+        TextView textView=(TextView)object;
+        container.removeView(textView);
     }
 
     /*@Override

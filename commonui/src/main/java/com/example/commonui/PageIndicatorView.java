@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -24,8 +25,8 @@ public class PageIndicatorView extends LinearLayout {
         super(context, attrs);
         final TypedArray attributes = context.getTheme().obtainStyledAttributes(attrs, R.styleable.viewPagerIndicator, 0, 0);
         try {
-            selectItemImg = attributes.getDrawable(R.styleable.viewPagerIndicator_select_item_icon);
-            unselectItemImg = attributes.getDrawable(R.styleable.viewPagerIndicator_unselect_item_icon);
+            selectItemImg = attributes.getDrawable(R.styleable.viewPagerIndicator_iv_select_item_icon);
+            unselectItemImg = attributes.getDrawable(R.styleable.viewPagerIndicator_iv_unselect_item_icon);
         } finally {
             attributes.recycle();
         }
@@ -36,6 +37,7 @@ public class PageIndicatorView extends LinearLayout {
         if (unselectItemImg == null) {
             unselectItemImg = getResources().getDrawable(R.drawable.indicator_unselect_item);
         }
+        setGravity(Gravity.CENTER);
         setOrientation(HORIZONTAL);
     }
 
@@ -53,7 +55,7 @@ public class PageIndicatorView extends LinearLayout {
         this.removeAllViews();
 
         for (int i = 0; i < pageCount; i++) {
-            ImageView itemImage = new ImageView(getContext());
+            ImageView itemImage = generatorViewItem();
             if (pageSelectedIndex == i) {
                 itemImage.setBackground(selectItemImg);
             } else {
@@ -61,6 +63,15 @@ public class PageIndicatorView extends LinearLayout {
             }
             this.addView(itemImage);
         }
+    }
+
+    private ImageView generatorViewItem(){
+        ImageView itemImage = new ImageView(getContext());
+        int radios =(int)getResources().getDimension(R.dimen.pager_indicator_item_radius);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(radios,radios);
+        layoutParams.setMarginStart((int)getResources().getDimension(R.dimen.pager_indicator_item_start_magrin));
+        itemImage.setLayoutParams(layoutParams);
+        return itemImage;
     }
 
     class PageChangeListener implements ViewPager.OnPageChangeListener {

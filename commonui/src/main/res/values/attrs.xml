@@ -7,7 +7,7 @@
     </declare-styleable>
 
     <declare-styleable name = "viewPagerIndicator">
-        <attr name = "select_item_icon" format = "reference" />
-        <attr name = "unselect_item_icon" format = "reference" />
+        <attr name = "iv_select_item_icon" format = "reference" />
+        <attr name = "iv_unselect_item_icon" format = "reference" />
     </declare-styleable>
 </resources>
