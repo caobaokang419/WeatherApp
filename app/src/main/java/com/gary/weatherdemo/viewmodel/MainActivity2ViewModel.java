@@ -19,7 +19,9 @@ import com.gary.weatherdemo.network.response.LiveWeatherResponseData;
 import com.gary.weatherdemo.ui.adapter.CityWeatherRecyclerAdapter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -29,41 +31,37 @@ import io.reactivex.schedulers.Schedulers;
 
 
 public class MainActivity2ViewModel extends AndroidViewModel {
-    private int pageCount;
-    private int pageSelectedIndex;
-    private PageChangeListener pageChangeListener = new PageChangeListener();
+    private final String[] cityNames =
+            new String[]{"深圳", "西安", "合肥", "武汉", "巢湖市", "北京", "上海", "广州", "成都", "南京", "杭州", "苏州"};
+    private final String[] cityAdcode =
+            new String[]{"440300", "610100", "340100", "420100", "340181", "110000", "310000", "440100", "510100", "320100", "330100", "320500"};
 
-    public final ObservableField<CityWeatherRecyclerAdapter> weatherAdapter = new ObservableField<>();
-    private final CityWeatherRecyclerAdapter adapter;
+    private final Map<CityBean, CityWeatherRecyclerAdapter> adapterDatas = new HashMap<>();
     private MutableLiveData<CityBean> curCityBean = new MutableLiveData<>();
     private MutableLiveData<List<CityBean>> cityBeanList = new MutableLiveData<>();
-
-    private List<BaseItemBean> itemDataList = new ArrayList<>();
-    private MutableLiveData<LiveWeatherBean> liveWeatherData = new MutableLiveData<>();
-
-    private String[] cityNames =
-            new String[]{"深圳", "西安", "合肥", "武汉", "巢湖市", "北京", "上海", "广州", "成都", "南京", "杭州", "苏州"};
-    private String[] cityAdcode =
-            new String[]{"440300", "610100", "340100", "420100", "340181", "110000", "310000", "440100", "510100", "320100", "330100", "320500"};
+    private Map<CityBean, List<BaseItemBean>> cityWeatherDatas = new HashMap<>();
+    private PageChangeListener pageChangeListener = new PageChangeListener();
+    private int pageCount;
+    private int pageSelectedIndex;
 
     public MainActivity2ViewModel(@NonNull Application application) {
         super(application);
-        adapter = new CityWeatherRecyclerAdapter();
 
         List<CityBean> data = new ArrayList<>();
         for (int i = 0; i < cityNames.length; i++) {
-            CityBean CityBean = new CityBean(cityNames[i],cityAdcode[i]);
-            data.add(CityBean);
+            CityBean cityBean = new CityBean(cityNames[i], cityAdcode[i]);
+            data.add(cityBean);
+            adapterDatas.put(cityBean, new CityWeatherRecyclerAdapter());
         }
         cityBeanList.setValue(data);
     }
 
-    public void queryCityWeather(String adcode) {
+    public void queryCityWeather(final CityBean cityinfo) {
         Observable<LiveWeatherResponseData> observable1 =
-                WeatherRequestClient.getInstance().liveWeatherPost(adcode).subscribeOn(Schedulers.io());
+                WeatherRequestClient.getInstance().liveWeatherPost(cityinfo.adcCode).subscribeOn(Schedulers.io());
 
         Observable<AllForecastResponseData> observable2 =
-                WeatherRequestClient.getInstance().forecastWeatherPost(adcode).subscribeOn(Schedulers.io());
+                WeatherRequestClient.getInstance().forecastWeatherPost(cityinfo.adcCode).subscribeOn(Schedulers.io());
 
         Observable.zip(observable1, observable2,
                 new BiFunction<LiveWeatherResponseData, AllForecastResponseData, ArrayList<BaseItemBean>>() {
@@ -73,8 +71,9 @@ public class MainActivity2ViewModel extends AndroidViewModel {
                         List<DayForecastBean> dayForecastList = null;
                         ArrayList<BaseItemBean> dataList = new ArrayList<>();
 
+                        dataList.clear();
                         if (livedata != null && livedata.isSuccessful()) {
-                            liveWeatherData.postValue(livedata.getWeatherLiveResult());
+                            dataList.add(livedata.getWeatherLiveResult());
                         }
                         if (allForecastdata != null
                                 && allForecastdata.isSuccessful()
@@ -82,8 +81,6 @@ public class MainActivity2ViewModel extends AndroidViewModel {
                             dayForecastList = allForecastdata.getWeatherAllResult().dayForecastBeanList;
                         }
 
-                        dataList.clear();
-                        dataList.add(liveWeatherData.getValue());
                         for (DayForecastBean fdata : dayForecastList) {
                             dataList.add(fdata);
                         }
@@ -94,9 +91,9 @@ public class MainActivity2ViewModel extends AndroidViewModel {
                 .subscribe(new Consumer<List<BaseItemBean>>() {
                     @Override
                     public void accept(List<BaseItemBean> dataList) throws Exception {
-                        itemDataList = dataList;
-                        adapter.setAdapterData(itemDataList);
-                        weatherAdapter.set(adapter);
+                        cityWeatherDatas.put(cityinfo,dataList);
+                        CityWeatherRecyclerAdapter adapter = getCityWeatherRecyclerAdapter(cityinfo);
+                        adapter.setAdapterData(dataList);
                     }
                 });
     }
@@ -111,6 +108,10 @@ public class MainActivity2ViewModel extends AndroidViewModel {
 
     public List<CityBean> getCityInfoList() {
         return cityBeanList.getValue();
+    }
+
+    public CityWeatherRecyclerAdapter getCityWeatherRecyclerAdapter(CityBean cityinfo) {
+        return adapterDatas.get(cityinfo);
     }
 
     private void updateCurPageIndex(int index) {

@@ -9,7 +9,7 @@ import com.gary.weatherdemo.ui.adapter.CityFragmentPagerAdapter;
 
 /**
  * Created by GaryCao on 2019/01/13.
- * --弃用: 左右滑动切换城市：ViewPager+FragmentPagerAdapter,不适合此场景（View一致，data不同，count动态）
+ * 弃用: 左右滑动切换城市：ViewPager+FragmentPagerAdapter,不适合此场景（View一致，data不同，count动态）
  */
 public class WtMainActivity1 extends AppCompatActivity {
     private ViewPager viewPager;

@@ -17,6 +17,10 @@ import com.gary.weatherdemo.utils.LogUtils;
 import com.gary.weatherdemo.utils.WeatherUtils;
 import com.gary.weatherdemo.viewmodel.MainActivityViewModel;
 
+/**
+ * Created by GaryCao on 2019/01/22.
+ * 单个城市天气信息：不支持左右滑动切换城市
+ */
 public class WtMainActivity extends AppCompatActivity {
     private MainActivityViewModel viewModel;
     private ActionBar actionBar;

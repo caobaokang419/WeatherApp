@@ -5,7 +5,7 @@ package com.gary.weatherdemo.download.singletask;
  */
 public class DownloadFactory {
     public static int TYPE_DOWNLOAD_XUTILS = 0x01;
-    public static int TYPE_DOWNLOAD_ORIGIN = 0x01;
+    public static int TYPE_DOWNLOAD_ORIGIN = 0x02;
 
     /*静态工厂*/
     public static IDownload createDownloadImpl(){

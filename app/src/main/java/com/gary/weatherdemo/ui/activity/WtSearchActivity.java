@@ -8,9 +8,12 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
 
+import com.example.commonui.ActionBar;
 import com.gary.weatherdemo.R;
 import com.gary.weatherdemo.model.CityBean;
 import com.gary.weatherdemo.ui.adapter.CitySearchGridAdapter;
+import com.gary.weatherdemo.utils.LogUtils;
+import com.gary.weatherdemo.utils.WeatherUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +25,7 @@ public class WtSearchActivity extends AppCompatActivity {
     private GridView commonCityGridView;
     private EditText citySearchEditText;
     private ImageButton citySearchBtn;
+    private ActionBar actionBar;
 
     private CitySearchGridAdapter citySearchGridAdapter;
     private String[] cityNames =
@@ -48,7 +52,19 @@ public class WtSearchActivity extends AppCompatActivity {
             }
         });
 
+        initActionBar();
         initGridView();
+    }
+
+    private void initActionBar() {
+        actionBar = findViewById(R.id.action_bar);
+        actionBar.setLeftOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LogUtils.d("onClickedLeftBtn()");
+                WeatherUtils.startActivity(getApplicationContext(), WtSearchActivity.class);
+            }
+        });
     }
 
     private void initGridView(){

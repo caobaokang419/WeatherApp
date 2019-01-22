@@ -44,7 +44,7 @@ public class WtMainActivity2 extends AppCompatActivity {
         viewModel = ViewModelProviders.of(this).get(MainActivity2ViewModel.class);
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
-        cityPagerAdapter = new CityPagerAdapter(this,viewModel.getCityInfoList());
+        cityPagerAdapter = new CityPagerAdapter(this,viewModel);
         viewPager.setAdapter(cityPagerAdapter);
 
         pageIndicatorView = findViewById(R.id.page_indicatior);
@@ -88,7 +88,7 @@ public class WtMainActivity2 extends AppCompatActivity {
                 if (null != actionBar) {
                     actionBar.setTitle(cityBean.adrName);
                 }
-                viewModel.queryCityWeather(cityBean.adcCode);
+                viewModel.queryCityWeather(cityBean);
             }
         });
     }
