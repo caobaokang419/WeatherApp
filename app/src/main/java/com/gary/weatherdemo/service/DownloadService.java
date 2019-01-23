@@ -3,15 +3,10 @@ package com.gary.weatherdemo.service;
 import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
-import android.os.Environment;
 import android.os.IBinder;
-import android.webkit.DownloadListener;
-import android.widget.Toast;
 
-import com.gary.weatherdemo.download.singletask.DownloadClient;
-import com.gary.weatherdemo.download.singletask.IDownloadListener;
-
-import java.net.URL;
+import com.gary.weatherdemo.download.DownloadClient;
+import com.gary.weatherdemo.download.IDownloadListener;
 
 /**
  * Created by GaryCao on 2019/01/12.
@@ -45,7 +40,7 @@ public class DownloadService extends Service {
 
     public class DownloadBinder extends Binder {
         public void startDownload(String url) {
-            DownloadClient.getInstance().startDownload(url, downloadListener);
+            DownloadClient.getInstance().startDownload(url, mDownloadListener);
         }
 
         public void pauseDownload() {
@@ -58,7 +53,7 @@ public class DownloadService extends Service {
     }
 
     /*UI 通知刷新*/
-    private IDownloadListener downloadListener = new IDownloadListener() {
+    private IDownloadListener mDownloadListener = new IDownloadListener() {
         @Override
         public void onStart() {
 
@@ -70,7 +65,7 @@ public class DownloadService extends Service {
         }
 
         @Override
-        public void onSuccees() {
+        public void onSuccess() {
 
         }
 

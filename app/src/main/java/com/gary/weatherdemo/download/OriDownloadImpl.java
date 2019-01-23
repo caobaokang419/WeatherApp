@@ -1,6 +1,4 @@
-package com.gary.weatherdemo.download.singletask;
-
-import java.net.URL;
+package com.gary.weatherdemo.download;
 
 /**
  * Created by GaryCao on 2019/01/12.

@@ -28,7 +28,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.dayForecastBean.date}" />
+                android:text="@{viewModel.mDayForecastBean.date}" />
 
         </LinearLayout>
 
@@ -45,23 +45,23 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.dayForecastBean.dayweather}" />
+                android:text="@{viewModel.mDayForecastBean.dayweather}" />
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.dayForecastBean.daytemp+@string/temperature_signal}" />
+                android:text="@{viewModel.mDayForecastBean.daytemp+@string/temperature_signal}" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.dayForecastBean.daywind}" />
+                android:text="@{viewModel.mDayForecastBean.daywind}" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.dayForecastBean.daypower}" />
+                android:text="@{viewModel.mDayForecastBean.daypower}" />
 
         </LinearLayout>
 
@@ -78,23 +78,23 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.dayForecastBean.nightweather}" />
+                android:text="@{viewModel.mDayForecastBean.nightweather}" />
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.dayForecastBean.nighttemp+@string/temperature_signal}" />
+                android:text="@{viewModel.mDayForecastBean.nighttemp+@string/temperature_signal}" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.dayForecastBean.nightwind}" />
+                android:text="@{viewModel.mDayForecastBean.nightwind}" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.dayForecastBean.nightpower}" />
+                android:text="@{viewModel.mDayForecastBean.nightpower}" />
         </LinearLayout>
     </LinearLayout>
 </layout>

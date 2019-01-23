@@ -10,12 +10,12 @@ import org.xutils.x;
  * Created by GaryCao on 2018/10/25.
  */
 public class WeatherApplication extends /*MultiDex*/Application {
-    private static WeatherApplication weatherApplication;
+    private static WeatherApplication mWTApplication;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        weatherApplication = this;
+        mWTApplication = this;
         initConfig();
     }
 
@@ -31,6 +31,6 @@ public class WeatherApplication extends /*MultiDex*/Application {
     }
 
     public static WeatherApplication getInstance() {
-        return weatherApplication;
+        return mWTApplication;
     }
 }

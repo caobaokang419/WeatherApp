@@ -17,13 +17,6 @@ android {
         }
     }
 
-    //aaptOptions.cruncherEnabled = false
-    //aaptOptions.useNewCruncher = false
-
-    //packagingOptions {
-    //exclude 'META-INF/LICENSE'
-    //}
-
     /*defaultConfig {
         multiDexEnabled true
     }*/
@@ -33,13 +26,6 @@ android {
     }
 
     flavorDimensions "all"
-
-    productFlavors {
-        mainFlavor {
-            dimension "all"
-            resValue "string", "dynamic_links_uri_prefix", "https://YOUR_APP.page.link"
-        }
-    }
 
     sourceSets { main { assets.srcDirs = ['src/assets', 'src/assets/'] } }
 }

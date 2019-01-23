@@ -13,6 +13,6 @@ public interface IWorkerManager {
     void periodicQueryWeather();
 
     /**
-     * 分步任务：1:查询当前天气 2:查询天气预报*/
-    void queryCityWeather();
+     * 分步任务： 弃用：1:查询当前天气 2:查询天气预报 --轻量级非后台查询任务不适用！！！*/
+    /*void queryCityWeather();*/
 }

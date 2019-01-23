@@ -34,56 +34,55 @@ public class SPConfigsUtils {
     /*def update interval hour count*/
     private final int VALUE_DEF_UPDATE_PERIODIC_HOUR_COUNT = 1; //1 hour
 
-    private Context context;
-    private static SharedPreferences sharedPreferences;
-
-    private static SPConfigsUtils SPConfigsUtils;
+    private Context mContext;
+    private static SharedPreferences mSharedPreferences;
+    private static SPConfigsUtils mSpConfigsUtils;
 
     public synchronized static SPConfigsUtils getInstance() {
-        if (SPConfigsUtils == null) {
-            SPConfigsUtils = new SPConfigsUtils();
+        if (mSpConfigsUtils == null) {
+            mSpConfigsUtils = new SPConfigsUtils();
         }
-        return SPConfigsUtils;
+        return mSpConfigsUtils;
     }
 
     private SPConfigsUtils() {
-        this.context = WeatherApplication.getInstance();
-        sharedPreferences = context.getSharedPreferences(WEATHER_CONFIG, Context.MODE_PRIVATE);
+        this.mContext = WeatherApplication.getInstance();
+        mSharedPreferences = mContext.getSharedPreferences(WEATHER_CONFIG, Context.MODE_PRIVATE);
     }
 
     public int getInt(String keyname){
-        return sharedPreferences.getInt(keyname, 0);
+        return mSharedPreferences.getInt(keyname, 0);
     }
 
     public void setInt(String keyname, int value){
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putInt(keyname, value);
         editor.commit();
     }
 
     public boolean getBoolean(String keyname){
-        return sharedPreferences.getBoolean(keyname, false);
+        return mSharedPreferences.getBoolean(keyname, false);
     }
 
     public void setBoolean(String keyname, boolean value){
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putBoolean(keyname, value);
         editor.commit();
     }
 
     public String getString(String keyname){
-        return sharedPreferences.getString(keyname, "");
+        return mSharedPreferences.getString(keyname, "");
     }
 
     public void setString(String keyname, String value){
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putString(keyname, value);
         editor.commit();
     }
 
 
     public int getIntInProvider(String keyname){
-        Bundle bundle = context.getContentResolver().call(
+        Bundle bundle = mContext.getContentResolver().call(
                 Uri.parse(SP_CONTENT_URI), keyname, null, null);
         return bundle.getInt(keyname);
     }
@@ -91,12 +90,12 @@ public class SPConfigsUtils {
     public void setIntInProvider(String keyname, int value){
         Bundle bundle = new Bundle();
         bundle.putInt(keyname, value);
-        context.getContentResolver().call(
+        mContext.getContentResolver().call(
                 Uri.parse(SP_CONTENT_URI), KEY_SET_INT_VALUE, keyname, bundle);
     }
 
     public boolean getBooleanInProvider(String keyname){
-        Bundle bundle = context.getContentResolver().call(
+        Bundle bundle = mContext.getContentResolver().call(
                 Uri.parse(SP_CONTENT_URI), keyname, null, null);
         return bundle.getBoolean(keyname);
     }
@@ -104,12 +103,12 @@ public class SPConfigsUtils {
     public void setBooleanInProvider(String keyname, boolean value){
         Bundle bundle = new Bundle();
         bundle.putBoolean(keyname, value);
-        context.getContentResolver().call(
+        mContext.getContentResolver().call(
                 Uri.parse(SP_CONTENT_URI), KEY_SET_BOOLEAN_VALUE, keyname, bundle);
     }
 
     public String getStringInProvider(String keyname){
-        Bundle bundle = context.getContentResolver().call(
+        Bundle bundle = mContext.getContentResolver().call(
                 Uri.parse(SP_CONTENT_URI), keyname, null, null);
         return bundle.getString(keyname);
     }
@@ -117,7 +116,7 @@ public class SPConfigsUtils {
     public void setStringInProvider(String keyname, String value){
         Bundle bundle = new Bundle();
         bundle.putString(keyname, value);
-        context.getContentResolver().call(
+        mContext.getContentResolver().call(
                 Uri.parse(SP_CONTENT_URI), KEY_SET_STRING_VALUE, keyname, bundle);
     }
     //===================================================================================================

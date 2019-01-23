@@ -11,12 +11,12 @@ import com.gary.weatherdemo.utils.LogUtils;
  */
 public class AsyncTaskManager {
     private final String TAG = "AsyncTaskManager";
-    private static AsyncTaskManager asyncTaskManager;
-    private Context context;
+    private static AsyncTaskManager mAsyncTaskManager;
+    private Context mContext;
 
     /*私有构造*/
     private AsyncTaskManager(Context cont) {
-        context = cont;
+        mContext = cont;
         LogUtils.i(TAG, "AsyncTaskManager()");
     }
 
@@ -53,10 +53,10 @@ public class AsyncTaskManager {
     }
 
     public synchronized static AsyncTaskManager getInstance(Context context) {
-        if (asyncTaskManager == null) {
-            asyncTaskManager = new AsyncTaskManager(context);
+        if (mAsyncTaskManager == null) {
+            mAsyncTaskManager = new AsyncTaskManager(context);
         }
-        return asyncTaskManager;
+        return mAsyncTaskManager;
     }
     //===================================================================================================
     //for test

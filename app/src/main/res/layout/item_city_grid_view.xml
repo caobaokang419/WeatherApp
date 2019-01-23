@@ -14,8 +14,8 @@
         android:id="@+id/city_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="36dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="深圳"/>
+        android:text="深圳"
+        android:textSize="36dp" />
 </LinearLayout>

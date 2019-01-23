@@ -15,51 +15,52 @@ import android.widget.LinearLayout;
  * Created by GaryCao on 2019/01/10.
  */
 public class PageIndicatorView extends LinearLayout {
-    private int pageCount;
-    private int pageSelectedIndex;
-    private Drawable selectItemImg;
-    private Drawable unselectItemImg;
-    private PageChangeListener pageChangeListener = new PageChangeListener();
+    private int mPageCount;
+    private int mPageSelectedIndex;
+    private Drawable mSelectItem;
+    private Drawable mUnselectItem;
+
+    private PageChangeListener mPageChangeListener = new PageChangeListener();
 
     public PageIndicatorView(@NonNull final Context context, @Nullable final AttributeSet attrs) {
         super(context, attrs);
         final TypedArray attributes = context.getTheme().obtainStyledAttributes(attrs, R.styleable.viewPagerIndicator, 0, 0);
         try {
-            selectItemImg = attributes.getDrawable(R.styleable.viewPagerIndicator_iv_select_item_icon);
-            unselectItemImg = attributes.getDrawable(R.styleable.viewPagerIndicator_iv_unselect_item_icon);
+            mSelectItem = attributes.getDrawable(R.styleable.viewPagerIndicator_iv_select_item_icon);
+            mUnselectItem = attributes.getDrawable(R.styleable.viewPagerIndicator_iv_unselect_item_icon);
         } finally {
             attributes.recycle();
         }
 
-        if (selectItemImg == null) {
-            selectItemImg = getResources().getDrawable(R.drawable.indicator_select_item);
+        if (mSelectItem == null) {
+            mSelectItem = getResources().getDrawable(R.drawable.indicator_select_item);
         }
-        if (unselectItemImg == null) {
-            unselectItemImg = getResources().getDrawable(R.drawable.indicator_unselect_item);
+        if (mUnselectItem == null) {
+            mUnselectItem = getResources().getDrawable(R.drawable.indicator_unselect_item);
         }
         setGravity(Gravity.CENTER);
         setOrientation(HORIZONTAL);
     }
 
     private void updateCurPageIndex(int index) {
-        pageSelectedIndex = index;
+        mPageSelectedIndex = index;
         updateView();
     }
 
     private void updatePageCount(int count) {
-        pageCount = count;
+        mPageCount = count;
         updateView();
     }
 
     private void updateView() {
         this.removeAllViews();
 
-        for (int i = 0; i < pageCount; i++) {
+        for (int i = 0; i < mPageCount; i++) {
             ImageView itemImage = generatorViewItem();
-            if (pageSelectedIndex == i) {
-                itemImage.setBackground(selectItemImg);
+            if (mPageSelectedIndex == i) {
+                itemImage.setBackground(mSelectItem);
             } else {
-                itemImage.setBackground(unselectItemImg);
+                itemImage.setBackground(mUnselectItem);
             }
             this.addView(itemImage);
         }
@@ -92,7 +93,7 @@ public class PageIndicatorView extends LinearLayout {
     }
 
     public void registerPageChangeListener(ViewPager viewPager) {
-        viewPager.addOnPageChangeListener(pageChangeListener);
+        viewPager.addOnPageChangeListener(mPageChangeListener);
         updatePageCount(viewPager.getAdapter().getCount());
     }
 }

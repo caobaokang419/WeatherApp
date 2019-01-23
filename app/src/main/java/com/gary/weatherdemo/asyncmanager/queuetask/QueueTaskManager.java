@@ -1,7 +1,6 @@
 package com.gary.weatherdemo.asyncmanager.queuetask;
 
 import android.content.Context;
-import android.os.AsyncTask;
 
 import com.gary.weatherdemo.utils.LogUtils;
 
@@ -11,20 +10,20 @@ import com.gary.weatherdemo.utils.LogUtils;
  */
 public class QueueTaskManager {
     private final String TAG = "QueueTaskManager";
-    private static QueueTaskManager queueTaskManager;
-    private Context context;
+    private static QueueTaskManager mQueueTaskManager;
+    private Context mContext;
 
     /*私有构造*/
     private QueueTaskManager(Context cont) {
-        context = cont;
-        LogUtils.i(TAG, "queueTaskManager()");
+        mContext = cont;
+        LogUtils.i(TAG, "mQueueTaskManager()");
     }
 
     public synchronized static QueueTaskManager getInstance(Context context) {
-        if (queueTaskManager == null) {
-            queueTaskManager = new QueueTaskManager(context);
+        if (mQueueTaskManager == null) {
+            mQueueTaskManager = new QueueTaskManager(context);
         }
-        return queueTaskManager;
+        return mQueueTaskManager;
     }
     //===================================================================================================
     //for test

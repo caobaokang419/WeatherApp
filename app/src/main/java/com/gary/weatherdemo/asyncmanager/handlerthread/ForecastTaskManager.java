@@ -11,17 +11,17 @@ import com.gary.weatherdemo.utils.LogUtils;
  */
 public class ForecastTaskManager {
     private final String TAG = "ForecastTaskManager";
-    private static ForecastTaskManager forecastTaskManager;
+    private static ForecastTaskManager mForecastTaskManager;
 
     /**
      * process sub-thread works
      */
-    private Handler threadHandler;
+    private Handler mThreadHandler;
 
     /**
      * process main-thread(UI thread) works
      */
-    private Handler uiHandler = new Handler();
+    private Handler mUiHandler = new Handler();
 
     private ForecastTaskManager(Context context) {
         LogUtils.i(TAG, "ForecastTaskManager()");
@@ -33,7 +33,7 @@ public class ForecastTaskManager {
         HandlerThread handlerThread = new HandlerThread("weather_thread");
         handlerThread.start();
 
-        threadHandler = new Handler(handlerThread.getLooper()) {
+        mThreadHandler = new Handler(handlerThread.getLooper()) {
             @Override
             public void handleMessage(android.os.Message msg) {
                 //TODO... 用于处理耗时流程
@@ -42,10 +42,10 @@ public class ForecastTaskManager {
     }
 
     public synchronized static ForecastTaskManager getInstance(Context context) {
-        if (forecastTaskManager == null) {
-            forecastTaskManager = new ForecastTaskManager(context);
+        if (mForecastTaskManager == null) {
+            mForecastTaskManager = new ForecastTaskManager(context);
         }
-        return forecastTaskManager;
+        return mForecastTaskManager;
     }
     //===================================================================================================
     //for test

@@ -14,27 +14,24 @@ import androidx.work.WorkManager;
  * Created by GaryCao on 2018/11/04.
  */
 public class WorkerManagerImpl implements IWorkerManager {
-    // 设置任务约束
-    private static Constraints constraints = new Constraints.Builder()
-            .setRequiresDeviceIdle(true)
-            .setRequiresCharging(true)
-            .build();
-
     @Override
     public void loadAdrAdcodeConfig() {
         // 单次任务：OneTimeWorkRequest
         OneTimeWorkRequest.Builder loadConfigRequestBuilder =
                 new OneTimeWorkRequest.Builder(LoadCityConfigWorker.class);
-
-        loadConfigRequestBuilder.setConstraints(constraints);
         loadConfigRequestBuilder.addTag(Constants.LOAD_ADCODES_CONFIG_WORK_NAME);
-
         OneTimeWorkRequest loadConfigWorkRequest = loadConfigRequestBuilder.build();
         WorkManager.getInstance().enqueue(loadConfigWorkRequest);
     }
 
     @Override
     public void periodicQueryWeather() {
+        // 设置任务约束
+        Constraints constraints = new Constraints.Builder()
+                .setRequiresDeviceIdle(true)
+                .setRequiresCharging(true)
+                .build();
+
         // 定时任务：PeriodicWorkRequest
         PeriodicWorkRequest.Builder timerQueryRequestBuilder =
                 new PeriodicWorkRequest.Builder(
@@ -52,8 +49,9 @@ public class WorkerManagerImpl implements IWorkerManager {
     }
 
 
-    @Override
-    public void queryCityWeather() {
+    //轻量级非后台任务不适用于使用workmanager!!!
+    /*@Override*/
+    /*public void queryCityWeather() {
         // 任务分步1：查询当前天气
         OneTimeWorkRequest step1RequestBuilder =
                 new OneTimeWorkRequest.Builder(QueryCurrentWeatherWorker.class)
@@ -73,5 +71,5 @@ public class WorkerManagerImpl implements IWorkerManager {
                 .beginWith(step1RequestBuilder) //work firstly
                 .then(step2RequestBuilder) //work secondly
                 .enqueue();
-    }
+    }*/
 }

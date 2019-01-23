@@ -13,7 +13,6 @@ import com.gary.weatherdemo.R;
 import com.gary.weatherdemo.model.CityBean;
 import com.gary.weatherdemo.ui.adapter.CitySearchGridAdapter;
 import com.gary.weatherdemo.utils.LogUtils;
-import com.gary.weatherdemo.utils.WeatherUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,15 +21,15 @@ import java.util.List;
  * Created by GaryCao on 2019/01/12.
  */
 public class WtSearchActivity extends AppCompatActivity {
-    private GridView commonCityGridView;
-    private EditText citySearchEditText;
-    private ImageButton citySearchBtn;
-    private ActionBar actionBar;
+    private GridView mCityGridView;
+    private EditText mCitySearchEditText;
+    private ImageButton mCitySearchBtn;
+    private ActionBar mActionBar;
+    private CitySearchGridAdapter mCitySearchGridAdapter;
 
-    private CitySearchGridAdapter citySearchGridAdapter;
-    private String[] cityNames =
+    private final String[] mCityNames =
             new String[]{"深圳", "西安", "合肥", "武汉", "巢湖市", "北京", "上海", "广州", "成都", "南京", "杭州", "苏州"};
-    private String[] cityAdcode =
+    private final String[] mCityAdcode =
             new String[]{"440300", "610100", "340100", "420100", "340181", "110000", "310000", "440100", "510100", "320100", "330100", "320500"};
 
     @Override
@@ -42,10 +41,10 @@ public class WtSearchActivity extends AppCompatActivity {
     }
 
     private void initView(){
-        citySearchEditText = findViewById(R.id.city_edit_text);
+        mCitySearchEditText = findViewById(R.id.city_edit_text);
 
-        citySearchBtn = findViewById(R.id.city_search_btn);
-        citySearchBtn.setOnClickListener(new View.OnClickListener() {
+        mCitySearchBtn = findViewById(R.id.city_search_btn);
+        mCitySearchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -57,26 +56,25 @@ public class WtSearchActivity extends AppCompatActivity {
     }
 
     private void initActionBar() {
-        actionBar = findViewById(R.id.action_bar);
-        actionBar.setLeftOnClickListener(new View.OnClickListener() {
+        mActionBar = findViewById(R.id.action_bar);
+        mActionBar.setLeftOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 LogUtils.d("onClickedLeftBtn()");
-                WeatherUtils.startActivity(getApplicationContext(), WtSearchActivity.class);
             }
         });
     }
 
     private void initGridView(){
-        commonCityGridView = findViewById(R.id.city_grid_view);
+        mCityGridView = findViewById(R.id.city_grid_view);
 
         List<CityBean> cityBeanList = new ArrayList<>();
-        for (int i = 0; i < cityNames.length; i++) {
-            CityBean CityBean = new CityBean(cityNames[i],cityAdcode[i]);
+        for (int i = 0; i < mCityNames.length; i++) {
+            CityBean CityBean = new CityBean(mCityNames[i], mCityAdcode[i]);
             cityBeanList.add(CityBean);
         }
-        citySearchGridAdapter = new CitySearchGridAdapter(this, cityBeanList);
-        commonCityGridView.setAdapter(citySearchGridAdapter);
+        mCitySearchGridAdapter = new CitySearchGridAdapter(this, cityBeanList);
+        mCityGridView.setAdapter(mCitySearchGridAdapter);
     }
 
     @Override

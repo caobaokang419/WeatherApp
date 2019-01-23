@@ -16,9 +16,9 @@ public class RetrofitManager {
     private static final int DEFAULT_WRITE_TIME = 50;
     private static final int DEFAULT_READ_TIME = 30;
 
-    private OkHttpClient okHttpClient;
-    private Retrofit retrofit;
-    private static RetrofitManager retrofitManager;
+    private OkHttpClient mOkHttpClient;
+    private Retrofit mRetrofit;
+    private static RetrofitManager mRetrofitManager;
 
     private RetrofitManager() {
         initOkHttpClient();
@@ -26,9 +26,9 @@ public class RetrofitManager {
     }
 
     private void initRetrofit() {
-        retrofit = new Retrofit.Builder()
+        mRetrofit = new Retrofit.Builder()
                 .baseUrl(ApiContants.AMAP_BASE_URL)//设置服务器路径
-                .client(okHttpClient)//设置使用okhttp网络请求
+                .client(mOkHttpClient)//设置使用okhttp网络请求
                 .addConverterFactory(GsonConverterFactory.create())//添加转化库，默认是Gson
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())//添加回调库，采用RxJava
                 .build();
@@ -37,7 +37,7 @@ public class RetrofitManager {
     private void initOkHttpClient() {
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        okHttpClient = new OkHttpClient.Builder()
+        mOkHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(DEFAULT_CONNECT_TIME, TimeUnit.SECONDS)//连接超时时间
                 .writeTimeout(DEFAULT_WRITE_TIME, TimeUnit.SECONDS)//设置写操作超时时间
                 .readTimeout(DEFAULT_READ_TIME, TimeUnit.SECONDS)//设置读操作超时时间
@@ -46,16 +46,16 @@ public class RetrofitManager {
     }
 
     public synchronized static RetrofitManager getInstance() {
-        if (retrofitManager == null) {
-            retrofitManager = new RetrofitManager();
+        if (mRetrofitManager == null) {
+            mRetrofitManager = new RetrofitManager();
         }
-        return retrofitManager;
+        return mRetrofitManager;
     }
 
     /**
      * 泛型方法
      */
     public <T> T create(Class<T> service) {
-        return retrofit.create(service);
+        return mRetrofit.create(service);
     }
 }

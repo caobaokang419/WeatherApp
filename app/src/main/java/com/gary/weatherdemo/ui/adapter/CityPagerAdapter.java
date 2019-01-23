@@ -1,42 +1,39 @@
 package com.gary.weatherdemo.ui.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.gary.weatherdemo.R;
 import com.gary.weatherdemo.model.CityBean;
-import com.gary.weatherdemo.viewmodel.MainActivity2ViewModel;
+import com.gary.weatherdemo.viewmodel.MainActivityViewModel;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class CityPagerAdapter extends PagerAdapter {
-    private Context context;
-    private List<CityBean> cityBeanList;
-    private Map<CityBean, View> viewDatas = new HashMap<>();
-    private LayoutInflater layoutInflater;
-    private MainActivity2ViewModel viewModel;
+    private Context mContext;
+    private List<CityBean> mCityBeans;
+    private Map<CityBean, View> mViewDatas = new HashMap<>();
+    private LayoutInflater mLayoutInflater;
+    private MainActivityViewModel mViewModel;
 
-    public CityPagerAdapter(Context context, MainActivity2ViewModel viewmodel) {
-        this.context = context;
-        this.viewModel = viewmodel;
-        this.cityBeanList = viewmodel.getCityInfoList();
-        layoutInflater = LayoutInflater.from(context);
+    public CityPagerAdapter(Context context, MainActivityViewModel viewmodel) {
+        this.mContext = context;
+        this.mViewModel = viewmodel;
+        this.mCityBeans = viewmodel.getCityInfoList();
+        mLayoutInflater = LayoutInflater.from(context);
     }
 
     @Override
     public int getCount() {
-        return cityBeanList.size();
+        return mCityBeans.size();
     }
 
     @Override
@@ -45,19 +42,19 @@ public class CityPagerAdapter extends PagerAdapter {
         return view == object;
     }
 
-
     @Override
     public View instantiateItem(ViewGroup container, int position) {
         //demo code
-        /*TextView textView = new TextView(context);
-        textView.setText(cityBeanList.get(position).adrName);
+        /*TextView textView = new TextView(mContext);
+        textView.setText(mCityBeans.get(position).adrName);
         container.addView(textView);
         return textView;*/
-        View createdView = getViewItemByCity(cityBeanList.get(position));
+        View createdView = getViewItemByCity(mCityBeans.get(position));
         if (createdView == null) {
-            View newView = layoutInflater.inflate(R.layout.item_city_pager_view, container);
+            View newView = mLayoutInflater.inflate(R.layout.item_city_pager_view, container,false);
             RecyclerView recyclerView = newView.findViewById(R.id.recycler_view);
-            recyclerView.setAdapter(viewModel.getCityWeatherRecyclerAdapter(cityBeanList.get(position)));
+            recyclerView.setAdapter(mViewModel.getCityWeatherRecyclerAdapter(mCityBeans.get(position)));
+            recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
             createdView = newView;
         }
 
@@ -73,13 +70,13 @@ public class CityPagerAdapter extends PagerAdapter {
 
     /*@Override
     public CharSequence getPageTitle(int position) {
-        return cityBeanList.get(position).adrName;
+        return mCityBeans.get(position).adrName;
     }*/
 
     public View getViewItemByCity(CityBean cityinfo) {
-        if (viewDatas == null) {
+        if (mViewDatas == null) {
             return null;
         }
-        return viewDatas.get(cityinfo);
+        return mViewDatas.get(cityinfo);
     }
 }

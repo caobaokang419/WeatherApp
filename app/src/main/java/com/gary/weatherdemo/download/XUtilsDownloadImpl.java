@@ -1,4 +1,4 @@
-package com.gary.weatherdemo.download.singletask;
+package com.gary.weatherdemo.download;
 
 import android.os.Environment;
 import android.util.Log;
@@ -15,32 +15,32 @@ import java.io.File;
  * Created by GaryCao on 2019/01/12.
  */
 public class XUtilsDownloadImpl implements IDownload {
-    private IDownloadListener downloadListener;
-    private Callback.Cancelable cancelable;
+    private IDownloadListener mDownloadListener;
+    private Callback.Cancelable mCancelable;
 
     @Override
     public void startDownload(String url, IDownloadListener iDownloadListener) {
-        downloadListener = iDownloadListener;
+        mDownloadListener = iDownloadListener;
 
         RequestParams params = new RequestParams(url);
         params.setSaveFilePath(Environment.getExternalStorageDirectory() + ApiContants.AMAP_CITY_CONFIG_DIRECTIONARY);
         params.setAutoRename(true);
         params.setCancelFast(true);
-        cancelable = x.http().post(params, new Callback.ProgressCallback<File>() {
+        mCancelable = x.http().post(params, new Callback.ProgressCallback<File>() {
             @Override
             public void onSuccess(File result) {
-                downloadListener.onSuccees();
+                mDownloadListener.onSuccess();
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-                downloadListener.onFail();
+                mDownloadListener.onFail();
             }
 
             @Override
             public void onCancelled(CancelledException cex) {
 
-                downloadListener.onCancel();
+                mDownloadListener.onCancel();
             }
 
             @Override
@@ -57,12 +57,12 @@ public class XUtilsDownloadImpl implements IDownload {
             @Override
             public void onStarted() {
 
-                downloadListener.onStart();
+                mDownloadListener.onStart();
             }
 
             @Override
             public void onLoading(long total, long current, boolean isDownloading) {
-                downloadListener.onUpdate();
+                mDownloadListener.onUpdate();
                 Log.i("JAVA", "current：" + current + "，total：" + total);
             }
         });
@@ -75,6 +75,6 @@ public class XUtilsDownloadImpl implements IDownload {
 
     @Override
     public void cancelDownload() {
-        cancelable.cancel();
+        mCancelable.cancel();
     }
 }

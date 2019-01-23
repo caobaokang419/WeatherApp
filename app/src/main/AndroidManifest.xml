@@ -19,17 +19,6 @@
         <activity
             android:name=".ui.activity.WtMainActivity"
             android:theme="@style/AppTheme">
-        </activity>
-
-        <!--弃用-->
-        <activity
-            android:name=".ui.activity.WtMainActivity1"
-            android:theme="@style/AppTheme">
-        </activity>
-
-        <activity
-            android:name=".ui.activity.WtMainActivity2"
-            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,9 +26,21 @@
             </intent-filter>
         </activity>
 
+
+        <!--弃用-->
+        <activity
+            android:name=".ui.activity.WtMainActivity1"
+            android:theme="@style/AppTheme"></activity>
+
+        <!--弃用-->
+        <activity
+            android:name=".ui.activity.WtMainActivity2"
+            android:theme="@style/AppTheme"></activity>
+
         <activity
             android:name=".ui.activity.WtSettingActivity"
             android:theme="@style/AppTheme" />
+
         <activity
             android:name=".ui.activity.WtSearchActivity"
             android:theme="@style/AppTheme" />

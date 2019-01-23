@@ -6,24 +6,24 @@ import com.gary.weatherdemo.model.CityBean;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by GaryCao on 2018/10/28.
  */
 public class CityQueryUtils {
     private static final String TAG = CityQueryUtils.class.getSimpleName();
-    private static CityQueryUtils instance = new CityQueryUtils();
-    private ArrayList<CityBean> cityBeans = new ArrayList<>();
-    private volatile boolean isLoaded = false;
+    private static CityQueryUtils mInstance = new CityQueryUtils();
+    private List<CityBean> mCityBeans = new ArrayList<>();
+    private volatile boolean mIsLoaded = false;
 
-    /*avoid create() invoke by others users*/
+    /*私有构造*/
     private CityQueryUtils() {
     }
 
     public void loadAdcodeConfig() {
         /*praseFromAssets(Constants.AMAP_ADCODE_CONFIG_FILE_NAME);
 
-        //for test
         forTest();*/
     }
 
@@ -33,11 +33,11 @@ public class CityQueryUtils {
                     WeatherApplication.getInstance().getResources().getAssets().open(fileName));
             BufferedReader bufReader = new BufferedReader(inputReader);
             String line = "";
-            cityBeans.clear();
+            mCityBeans.clear();
             while ((line = bufReader.readLine()) != null) {
                 praseFileLineStr(line);
             }
-            isLoaded = true;
+            mIsLoaded = true;
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -53,29 +53,29 @@ public class CityQueryUtils {
 
         String[] strings = lineStr.split(":");
         if (strings != null && strings.length == 2) {
-            cityBeans.add(new CityBean(strings[0], strings[1]));
+            mCityBeans.add(new CityBean(strings[0], strings[1]));
             LogUtils.d("praseAdcodeConfigLineStr() " + strings[0] + ":" + strings[1]);
         }
     }
 
     public boolean isLoaded() {
-        return isLoaded;
+        return mIsLoaded;
     }
 
     public void setLoaded(boolean loaded) {
-        isLoaded = loaded;
+        mIsLoaded = loaded;
     }
 
     public String getAdcodeByAddress(String addr) {
-        if (!isLoaded) {
+        if (!mIsLoaded) {
             return null;
         }
 
-        if (null == addr || addr.isEmpty() || null == cityBeans || cityBeans.isEmpty()) {
+        if (null == addr || addr.isEmpty() || null == mCityBeans || mCityBeans.isEmpty()) {
             return null;
         }
 
-        for (CityBean adinfo : cityBeans) {
+        for (CityBean adinfo : mCityBeans) {
             if (adinfo.isAddrSearched(addr)) {
                 LogUtils.d("getAdcodeByAddress() " + addr + ": " + adinfo);
                 return adinfo.adcCode;
@@ -86,7 +86,7 @@ public class CityQueryUtils {
     }
 
     public static CityQueryUtils getInstance() {
-        return instance;
+        return mInstance;
     }
 
 

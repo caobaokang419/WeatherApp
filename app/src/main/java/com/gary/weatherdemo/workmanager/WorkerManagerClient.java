@@ -5,30 +5,26 @@ package com.gary.weatherdemo.workmanager;
  */
 public class WorkerManagerClient {
     private static final String TAG = WorkerManagerClient.class.getSimpleName();
-    private static WorkerManagerClient instance = new WorkerManagerClient();
-    private IWorkerManager iWorkerManager;
+    private static WorkerManagerClient mInstance = new WorkerManagerClient();
+    private IWorkerManager mIWorkerManager;
 
     private WorkerManagerClient(){
         init();
     }
 
     private void init(){
-        iWorkerManager = new WorkerManagerImpl();
+        mIWorkerManager = new WorkerManagerImpl();
     }
 
     public void startLoadAdrAdcodeConfig(){
-        iWorkerManager.loadAdrAdcodeConfig();
+        mIWorkerManager.loadAdrAdcodeConfig();
     }
 
     public void startPeriodicWeatherUpdate(){
-        iWorkerManager.periodicQueryWeather();
-    }
-
-    public void startQueryCityWeather(){
-        iWorkerManager.queryCityWeather();
+        mIWorkerManager.periodicQueryWeather();
     }
 
     public static WorkerManagerClient getInstance() {
-        return instance ;
+        return mInstance;
     }
 }

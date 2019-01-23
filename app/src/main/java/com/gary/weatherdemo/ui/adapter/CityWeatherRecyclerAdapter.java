@@ -11,14 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CityWeatherRecyclerAdapter extends RecyclerView.Adapter<BaseItemViewHolder> {
-    private List<BaseItemBean> itemDataList = new ArrayList<>();
+    private List<BaseItemBean> mItemDatas = new ArrayList<>();
 
     public CityWeatherRecyclerAdapter() {
     }
 
     public void setAdapterData(List<BaseItemBean> datas) {
-        itemDataList.clear();
-        itemDataList = datas;
+        mItemDatas.clear();
+        mItemDatas = datas;
         notifyDataSetChanged();
     }
 
@@ -29,16 +29,16 @@ public class CityWeatherRecyclerAdapter extends RecyclerView.Adapter<BaseItemVie
 
     @Override
     public void onBindViewHolder(BaseItemViewHolder holder, int position) {
-        holder.getIViewItem().bindView(itemDataList.get(position));
+        holder.getIViewItem().bindView(mItemDatas.get(position));
     }
 
     @Override
     public int getItemViewType(int position) {
-        return (itemDataList.size() == 0) ? 0 : itemDataList.get(position).getViewItemType();
+        return (mItemDatas.get(position) == null) ? 0 : mItemDatas.get(position).getViewItemType();
     }
 
     @Override
     public int getItemCount() {
-        return itemDataList.size();
+        return mItemDatas.size();
     }
 }

@@ -9,21 +9,21 @@ import com.gary.weatherdemo.utils.LogUtils;
  * 异步任务：处理先进后出的任务链表(LIFO:last-in first-out)
  */
 public class StackTaskManager {
-    private final String TAG = "stackTaskManager";
-    private static StackTaskManager stackTaskManager;
-    private Context context;
+    private final String TAG = "mStackTaskManager";
+    private static StackTaskManager mStackTaskManager;
+    private Context mContext;
 
     /*私有构造*/
     private StackTaskManager(Context cont) {
-        context = cont;
-        LogUtils.i(TAG, "stackTaskManager()");
+        mContext = cont;
+        LogUtils.i(TAG, "mStackTaskManager()");
     }
 
     public synchronized static StackTaskManager getInstance(Context context) {
-        if (stackTaskManager == null) {
-            stackTaskManager = new StackTaskManager(context);
+        if (mStackTaskManager == null) {
+            mStackTaskManager = new StackTaskManager(context);
         }
-        return stackTaskManager;
+        return mStackTaskManager;
     }
     //===================================================================================================
     //for test

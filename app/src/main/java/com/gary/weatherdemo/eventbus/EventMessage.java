@@ -1,16 +1,16 @@
 package com.gary.weatherdemo.eventbus;
 
 public class EventMessage {
-    private String message;
+    private String mMessage;
     public EventMessage(String message){
-        this.message=message;
+        this.mMessage = message;
     }
 
     public String getMessage() {
-        return message;
+        return mMessage;
     }
 
     public void setMessage(String message) {
-        this.message = message;
+        this.mMessage = message;
     }
 }

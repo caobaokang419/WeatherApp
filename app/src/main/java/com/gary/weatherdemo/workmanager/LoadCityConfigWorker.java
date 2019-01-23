@@ -12,16 +12,14 @@ import androidx.work.Worker;
  * 加载Adcode-address 对照表文件，供天气查询使用
  */
 public class LoadCityConfigWorker extends Worker {
-
     private static final String TAG = LoadCityConfigWorker.class.getSimpleName();
 
     @NonNull
     @Override
     public Result doWork() {
         //加载高德Address-Adcode对照配置表
-        LogUtils.d(TAG, "doWork() start");
+        LogUtils.d(TAG, "doWork()");
         CityQueryUtils.getInstance().loadAdcodeConfig();
-        LogUtils.d(TAG, "doWork() end");
         return Result.SUCCESS;
     }
 }

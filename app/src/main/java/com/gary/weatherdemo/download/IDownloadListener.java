@@ -1,4 +1,4 @@
-package com.gary.weatherdemo.download.singletask;
+package com.gary.weatherdemo.download;
 
 /**
  * Created by GaryCao on 2019/01/12.
@@ -12,7 +12,7 @@ public interface IDownloadListener {
     void onUpdate();
 
     /**下载成功*/
-    void onSuccees();
+    void onSuccess();
 
     /**下载失败*/
     void onFail();

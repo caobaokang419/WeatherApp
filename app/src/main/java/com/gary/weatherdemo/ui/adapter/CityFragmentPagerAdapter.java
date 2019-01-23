@@ -3,7 +3,6 @@ package com.gary.weatherdemo.ui.adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
 
 import java.util.List;
 
@@ -12,8 +11,7 @@ import java.util.List;
  * --弃用: 左右滑动切换城市，FragmentPagerAdapter不适用此场景
  */
 public class CityFragmentPagerAdapter extends FragmentPagerAdapter {
-
-    private List<Fragment> fragmentList;
+    private List<Fragment> mFragmentList;
 
     public CityFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -21,23 +19,23 @@ public class CityFragmentPagerAdapter extends FragmentPagerAdapter {
 
     public CityFragmentPagerAdapter(FragmentManager fm, List<Fragment> list) {
         super(fm);
-        this.fragmentList = list;
+        this.mFragmentList = list;
     }
 
     @Override
     public Fragment getItem(int position) {
-        if (fragmentList != null && position < fragmentList.size()) {
-            return fragmentList.get(position);
+        if (mFragmentList != null && position < mFragmentList.size()) {
+            return mFragmentList.get(position);
         }
         return null;
     }
 
     @Override
     public int getCount() {
-        if (fragmentList == null) {
+        if (mFragmentList == null) {
             return 0;
         }
-        return fragmentList.size();
+        return mFragmentList.size();
     }
 
     /**

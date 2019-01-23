@@ -1,4 +1,4 @@
-package com.gary.weatherdemo.download.singletask;
+package com.gary.weatherdemo.download;
 
 import com.gary.weatherdemo.network.ApiContants;
 
@@ -6,23 +6,23 @@ import com.gary.weatherdemo.network.ApiContants;
  * Created by GaryCao on 2019/01/12.
  */
 public class DownloadClient {
-    private static DownloadClient instance = new DownloadClient();
-    private static IDownload iDownload;
+    private static DownloadClient mInstance = new DownloadClient();
+    private static IDownload mIDownload;
 
     private DownloadClient() {
         init();
     }
 
     private void init() {
-        iDownload = DownloadFactory.createDownloadImpl();
+        mIDownload = DownloadFactory.createDownloadImpl();
     }
 
     /**
      * 启动文件下载
      */
     public void startDownload(String url, IDownloadListener iDownloadListener) {
-        if (null != iDownload) {
-            iDownload.startDownload(url, iDownloadListener);
+        if (null != mIDownload) {
+            mIDownload.startDownload(url, iDownloadListener);
         }
     }
 
@@ -30,8 +30,8 @@ public class DownloadClient {
      * 取消文件下载
      */
     public void cancelDownload() {
-        if (null != iDownload) {
-            iDownload.cancelDownload();
+        if (null != mIDownload) {
+            mIDownload.cancelDownload();
         }
     }
 
@@ -39,13 +39,13 @@ public class DownloadClient {
      * 暂停文件下载
      */
     public void pauseDownload() {
-        if (null != iDownload) {
-            iDownload.pauseDownload();
+        if (null != mIDownload) {
+            mIDownload.pauseDownload();
         }
     }
 
     public static DownloadClient getInstance() {
-        return instance;
+        return mInstance;
     }
 
     //===================================================================================================

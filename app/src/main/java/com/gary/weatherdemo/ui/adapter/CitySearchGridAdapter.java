@@ -13,22 +13,22 @@ import com.gary.weatherdemo.model.CityBean;
 import java.util.List;
 
 public class CitySearchGridAdapter extends BaseAdapter {
-    private List<CityBean> cityBeanList;
-    private LayoutInflater layoutInflater;
+    private List<CityBean> mCityBeanList;
+    private LayoutInflater mLayoutInflater;
 
     public CitySearchGridAdapter(Context context, List<CityBean> cityBeanList) {
-        this.cityBeanList = cityBeanList;
-        layoutInflater = LayoutInflater.from(context);
+        this.mCityBeanList = cityBeanList;
+        mLayoutInflater = LayoutInflater.from(context);
     }
 
     @Override
     public int getCount() {
-        return cityBeanList.size();
+        return mCityBeanList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return cityBeanList.get(position);
+        return mCityBeanList.get(position);
     }
 
     @Override
@@ -40,14 +40,14 @@ public class CitySearchGridAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
         if (convertView == null) {
-            convertView = layoutInflater.inflate(R.layout.item_city_grid_view, null);
+            convertView = mLayoutInflater.inflate(R.layout.item_city_grid_view, null);
             holder = new ViewHolder();
             holder.city_name = (TextView) convertView.findViewById(R.id.city_tv);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        CityBean CityBean = cityBeanList.get(position);
+        CityBean CityBean = mCityBeanList.get(position);
         if (CityBean != null) {
             holder.city_name.setText(CityBean.adrName);
         }

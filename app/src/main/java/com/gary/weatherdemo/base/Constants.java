@@ -8,5 +8,5 @@ public class Constants {
     public static final String QUERY_FORECAST_WORK_NAME = "query_forecast_work";
 
     // amap adcode config file name
-    public static final String AMAP_ADCODE_CONFIG_FILE_NAME = "amap_config.ini";
+    public static final String AMAP_ADCODE_CONFIG_FILE_NAME = "city.conf";
 }

@@ -25,15 +25,15 @@
             android:id="@+id/cur_temp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="36dp"
-            android:text="@{viewModel.liveWeatherBean.temperature}"/>
+            android:text="@{viewModel.mLiveWeatherBean.temperature+@string/temperature_signal}"
+            android:textSize="36dp" />
 
         <TextView
             android:id="@+id/cur_weather"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="36dp"
-            android:text="@{viewModel.liveWeatherBean.weather}"/>
+            android:text="@{viewModel.mLiveWeatherBean.weather}"
+            android:textSize="36dp" />
 
     </LinearLayout>
 </layout>

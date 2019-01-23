@@ -14,8 +14,7 @@ import com.gary.weatherdemo.viewmodel.CurWeatherViewModel;
  * Created by GaryCao on 2018/12/12.
  */
 public class CurWeatherViewItem implements IViewItem<LiveWeatherBean> {
-
-    private CurWeatherBinding binding;
+    private CurWeatherBinding mDataBinding;
 
     public static CurWeatherViewItem getViewItem() {
         return new CurWeatherViewItem();
@@ -24,11 +23,11 @@ public class CurWeatherViewItem implements IViewItem<LiveWeatherBean> {
     public View createView(ViewGroup parent) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_cur_weather, parent, false);
-        binding = CurWeatherBinding.bind(itemView);
+        mDataBinding = CurWeatherBinding.bind(itemView);
         return itemView;
     }
 
     public void bindView(@NonNull LiveWeatherBean data) {
-        binding.setViewModel(new CurWeatherViewModel(data));
+        mDataBinding.setViewModel(new CurWeatherViewModel(data));
     }
 }

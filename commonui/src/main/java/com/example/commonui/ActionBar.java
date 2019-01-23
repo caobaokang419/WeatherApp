@@ -14,22 +14,22 @@ import android.widget.TextView;
  * Created by GaryCao on 2018/11/10.
  */
 public class ActionBar extends RelativeLayout {
-    private LayoutInflater inflater;
-    private RelativeLayout actionBarView;
-    private TextView titleView;
-    private View leftActionView;
-    private View rightActionView;
+    private LayoutInflater mInflater;
+    private RelativeLayout mActionBarView;
+    private TextView mTitleView;
+    private View mLeftActionView;
+    private View mRightActionView;
 
     public ActionBar(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        actionBarView = (RelativeLayout) inflater.inflate(R.layout.actionbar, null);
-        addView(actionBarView);
+        mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        mActionBarView = (RelativeLayout) mInflater.inflate(R.layout.actionbar, null);
+        addView(mActionBarView);
 
-        titleView = (TextView) actionBarView.findViewById(R.id.tv_title);
-        leftActionView = (ImageView) actionBarView.findViewById(R.id.iv_left);
-        rightActionView = (ImageView) actionBarView.findViewById(R.id.iv_right);
+        mTitleView = (TextView) mActionBarView.findViewById(R.id.tv_title);
+        mLeftActionView = (ImageView) mActionBarView.findViewById(R.id.iv_left);
+        mRightActionView = (ImageView) mActionBarView.findViewById(R.id.iv_right);
 
         /*custom attrs*/
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.actionBar);
@@ -39,12 +39,12 @@ public class ActionBar extends RelativeLayout {
 
             Drawable iv_left = typedArray.getDrawable(R.styleable.actionBar_iv_left_icon);
             if (iv_left != null) {
-                leftActionView.setBackground(iv_left);
+                mLeftActionView.setBackground(iv_left);
             }
 
             Drawable iv_right = typedArray.getDrawable(R.styleable.actionBar_iv_right_icon);
             if (iv_right != null) {
-                rightActionView.setBackground(iv_right);
+                mRightActionView.setBackground(iv_right);
             }
 
             typedArray.recycle();
@@ -52,24 +52,24 @@ public class ActionBar extends RelativeLayout {
     }
 
     public void setLeftOnClickListener(View.OnClickListener listener) {
-        if (null != leftActionView) {
-            leftActionView.setOnClickListener(listener);
+        if (null != mLeftActionView) {
+            mLeftActionView.setOnClickListener(listener);
         }
     }
 
     public void setRightOnClickListener(View.OnClickListener listener) {
-        if (null != rightActionView) {
-            rightActionView.setOnClickListener(listener);
+        if (null != mRightActionView) {
+            mRightActionView.setOnClickListener(listener);
         }
     }
 
     public void setTitle(CharSequence title) {
         if (title != null) {
-            titleView.setText(title);
+            mTitleView.setText(title);
         }
     }
 
     public void setTitle(int resid) {
-        titleView.setText(resid);
+        mTitleView.setText(resid);
     }
 }

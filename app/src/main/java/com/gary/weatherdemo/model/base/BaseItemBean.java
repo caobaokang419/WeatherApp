@@ -4,13 +4,13 @@ package com.gary.weatherdemo.model.base;
  * Created by GaryCao on 2018/12/12.
  */
 public abstract class BaseItemBean {
-    private final int viewItemType;
+    private final int mViewItemType;
 
     public BaseItemBean(int viewItemType) {
-        this.viewItemType = viewItemType;
+        this.mViewItemType = viewItemType;
     }
 
     public int getViewItemType() {
-        return viewItemType;
+        return mViewItemType;
     }
 }
