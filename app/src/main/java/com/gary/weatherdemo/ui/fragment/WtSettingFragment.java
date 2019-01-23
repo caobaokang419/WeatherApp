@@ -10,7 +10,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.gary.weatherdemo.R;
-import com.gary.weatherdemo.utils.SPConfigsUtils;
+import com.gary.weatherdemo.utils.SpConfigsUtils;
 
 /**
  * Created by GaryCao on 2019/01/12.
@@ -43,7 +43,7 @@ public class WtSettingFragment extends PreferenceFragment {
         mAutoUpdateSwitchPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                SPConfigsUtils.getInstance().setBoolean(SPConfigsUtils.KEY_UPDATE_SWITCH, mAutoUpdateSwitchPref.isChecked());
+                SpConfigsUtils.getInstance().setBoolean(SpConfigsUtils.KEY_UPDATE_SWITCH, mAutoUpdateSwitchPref.isChecked());
                 return true;
             }
         });
@@ -66,6 +66,6 @@ public class WtSettingFragment extends PreferenceFragment {
 
     private void initViewState(){
         mAutoUpdateSwitchPref.setChecked(
-                SPConfigsUtils.getInstance().getBoolean(SPConfigsUtils.KEY_UPDATE_SWITCH));
+                SpConfigsUtils.getInstance().getBoolean(SpConfigsUtils.KEY_UPDATE_SWITCH));
     }
 }

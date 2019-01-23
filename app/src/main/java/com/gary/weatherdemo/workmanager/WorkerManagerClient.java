@@ -16,7 +16,7 @@ public class WorkerManagerClient {
         mIWorkerManager = new WorkerManagerImpl();
     }
 
-    public void startLoadAdrAdcodeConfig(){
+    public void loadAdrAdcodeConfig(){
         mIWorkerManager.loadAdrAdcodeConfig();
     }
 

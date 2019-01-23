@@ -1,1 +1,1 @@
-include ':app', ':commonui'
+include ':app', ':commonui', ':pluginlib'

@@ -24,7 +24,7 @@ public class WeatherApplication extends /*MultiDex*/Application {
         x.Ext.setDebug(true);
 
         /*load amap weather address-adcode infos*/
-        WorkerManagerClient.getInstance().startLoadAdrAdcodeConfig();
+        WorkerManagerClient.getInstance().loadAdrAdcodeConfig();
 
         /*start periodic update current city weather*/
         WorkerManagerClient.getInstance().startPeriodicWeatherUpdate();

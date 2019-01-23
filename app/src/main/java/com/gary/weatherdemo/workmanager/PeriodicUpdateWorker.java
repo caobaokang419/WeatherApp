@@ -15,11 +15,7 @@ public class PeriodicUpdateWorker extends Worker {
     @NonNull
     @Override
     public Result doWork() {
-        //TODO
-
         LogUtils.d(TAG,"doWork()");
-
-        // If there were no errors, return SUCCESS
         return Result.SUCCESS;
     }
 }

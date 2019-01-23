@@ -1,7 +1,7 @@
 package com.gary.weatherdemo.workmanager;
 
 import com.gary.weatherdemo.base.Constants;
-import com.gary.weatherdemo.utils.SPConfigsUtils;
+import com.gary.weatherdemo.utils.SpConfigsUtils;
 
 import java.util.concurrent.TimeUnit;
 
@@ -36,7 +36,7 @@ public class WorkerManagerImpl implements IWorkerManager {
         PeriodicWorkRequest.Builder timerQueryRequestBuilder =
                 new PeriodicWorkRequest.Builder(
                         PeriodicUpdateWorker.class,
-                        SPConfigsUtils.getInstance().getInt(SPConfigsUtils.KEY_UPDATE_PERIODIC_HOUR_COUNT),
+                        SpConfigsUtils.getInstance().getInt(SpConfigsUtils.KEY_UPDATE_PERIODIC_HOUR_COUNT),
                         TimeUnit.HOURS,
                         5,
                         TimeUnit.MINUTES);
@@ -47,29 +47,4 @@ public class WorkerManagerImpl implements IWorkerManager {
         PeriodicWorkRequest timerWorkRequest = timerQueryRequestBuilder.build();
         WorkManager.getInstance().enqueue(timerWorkRequest);
     }
-
-
-    //轻量级非后台任务不适用于使用workmanager!!!
-    /*@Override*/
-    /*public void queryCityWeather() {
-        // 任务分步1：查询当前天气
-        OneTimeWorkRequest step1RequestBuilder =
-                new OneTimeWorkRequest.Builder(QueryCurrentWeatherWorker.class)
-                        .setConstraints(constraints)
-                        .addTag(Constants.QUERY_CURRENT_WEATHER_WORK_NAME)
-                        .build();
-
-        // 任务分步2：查询天气预报
-        OneTimeWorkRequest step2RequestBuilder =
-                new OneTimeWorkRequest.Builder(QueryForecastWorker.class)
-                        .setConstraints(constraints)
-                        .addTag(Constants.QUERY_FORECAST_WORK_NAME)
-                        .build();
-
-        //执行分发任务
-        WorkManager.getInstance()
-                .beginWith(step1RequestBuilder) //work firstly
-                .then(step2RequestBuilder) //work secondly
-                .enqueue();
-    }*/
 }

@@ -18,7 +18,7 @@ public class PageIndicatorView extends LinearLayout {
     private int mPageCount;
     private int mPageSelectedIndex;
     private Drawable mSelectItem;
-    private Drawable mUnselectItem;
+    private Drawable mUnSelectItem;
 
     private PageChangeListener mPageChangeListener = new PageChangeListener();
 
@@ -27,7 +27,7 @@ public class PageIndicatorView extends LinearLayout {
         final TypedArray attributes = context.getTheme().obtainStyledAttributes(attrs, R.styleable.viewPagerIndicator, 0, 0);
         try {
             mSelectItem = attributes.getDrawable(R.styleable.viewPagerIndicator_iv_select_item_icon);
-            mUnselectItem = attributes.getDrawable(R.styleable.viewPagerIndicator_iv_unselect_item_icon);
+            mUnSelectItem = attributes.getDrawable(R.styleable.viewPagerIndicator_iv_unselect_item_icon);
         } finally {
             attributes.recycle();
         }
@@ -35,8 +35,8 @@ public class PageIndicatorView extends LinearLayout {
         if (mSelectItem == null) {
             mSelectItem = getResources().getDrawable(R.drawable.indicator_select_item);
         }
-        if (mUnselectItem == null) {
-            mUnselectItem = getResources().getDrawable(R.drawable.indicator_unselect_item);
+        if (mUnSelectItem == null) {
+            mUnSelectItem = getResources().getDrawable(R.drawable.indicator_unselect_item);
         }
         setGravity(Gravity.CENTER);
         setOrientation(HORIZONTAL);
@@ -60,7 +60,7 @@ public class PageIndicatorView extends LinearLayout {
             if (mPageSelectedIndex == i) {
                 itemImage.setBackground(mSelectItem);
             } else {
-                itemImage.setBackground(mUnselectItem);
+                itemImage.setBackground(mUnSelectItem);
             }
             this.addView(itemImage);
         }
