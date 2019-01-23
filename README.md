@@ -4,7 +4,7 @@
 ### 功能点实现说明：
 - [高德天气查询](https://lbs.amap.com/api/webservice/guide/api/weatherinfo/)：Get&Post方式可以正常返回查询高德天气数据并UI显示；
 - 公共控件封装：自定义实现公共控件CommonUI，用于控件复用；
-- 公共数据接口：借助ContentProvider，提供天气数据（DB方式）& 配置属性（SharedPreference方式）的数据访问API，供第三方应用访问使用；--TBD
+- 公共数据接口：借助ContentProvider，提供天气数据（DB方式）& 配置属性（SharedPreference方式）的数据访问API，供第三方应用访问使用；
 - 配置文件解析：解析存储本地存储高德adcode和城市信息对照表，用于本地天气动态查询api调用；
 - 左右滑动实现：ViewPager实现左右页面滑动切换；
 - 下拉上拉刷新：下拉界面，实现天气自动更新；上拉界面，查询显示更多天气相关信息。
@@ -30,18 +30,18 @@
 - [OkHttp3 使用教程](https://blog.csdn.net/xx326664162/article/details/77714126)：Http第三方库，Retrofit底层通过OkHttp实现网络请求 
 - [Gson 使用教程](https://baijiahao.baidu.com/s?id=1607221675455152057&wfr=spider&for=pc)：Google提供，主要用途为序列化Java对象为JSON字符串，或反序列化JSON字符串成Java对象
 - [RxJava Android使用教程](https://gank.io/post/560e15be2dca930e00da1083)：异步网络请求任务处理
-- [Xutils3 使用教程](https://blog.csdn.net/carson_ho/article/details/73732076)：文件下载&断点续传管理 --TBD
+- [Xutils3 使用教程](https://github.com/wyouflf/xUtils3)：国内框架，文件下载&断点续传管理
 - [Glide 使用教程](https://www.jianshu.com/p/7ce7b02988a4)：Android推荐的热门图片加载库 备注：三大主流库ImageLoader,Picasso,Glide --TBD
-- [AdMob 使用教程](https://developers.google.com/admob/android/quick-start?hl=zh-CN#import_the_mobile_ads_sdk)：实现Google广告载入--国内不集成，移至：[FirebaseApp](https://github.com/caobaokang419/FirebaseApp)
-- [Firebase 使用教程](https://developers.google.com/firebase/docs/android/setup?hl=zh-CN)：移动应用后台服务端管理--国内不集成，移至：[FirebaseApp](https://github.com/caobaokang419/FirebaseApp)
+- [AdMob 使用教程](https://developers.google.com/admob/android/quick-start?hl=zh-CN#import_the_mobile_ads_sdk)：Google提供，实现Google广告载入--国内不集成，移至：[FirebaseApp](https://github.com/caobaokang419/FirebaseApp)
+- [Firebase 使用教程](https://developers.google.com/firebase/docs/android/setup?hl=zh-CN)：Google提供，移动应用后台服务端管理--国内不集成，移至：[FirebaseApp](https://github.com/caobaokang419/FirebaseApp)
 
 
 -------
 ### 其他扩展组件功能实现：
-- [EventBus 消息总线](https://www.jianshu.com/p/7ce7b02988a4)：针对Android优化的发布/订阅事件总线，取代Intent,Handler,BroadCast等消息传递机制 --TBD
+- [EventBus 消息总线](https://www.jianshu.com/p/7ce7b02988a4)：针对Android优化的发布/订阅事件总线，取代Intent,Handler,BroadCast等消息传递机制 
 - 异步任务（不同场景）的解决方案选择：FIFO LIFO AsyncTask HandlerThread WorkManager不同方式，实现异步任务需求。
-- 缓存方案：DiskLruCache --TBD
-- 线程池方案：带缓冲的ThreadPoolExecutor方案 --TBD
+- 缓存方案：DiskLruCache，参照xUtils源码框架已提供的解决方案
+- 线程池方案：带缓冲和优先级的ThreadPoolExecutor方案，参照xUtils源码框架已提供的解决方案
 - 应用常驻&应用保活：--TBD
 
 
