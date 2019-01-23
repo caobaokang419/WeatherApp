@@ -29,8 +29,8 @@
 - [Retrofit 2.0 使用教程](https://blog.csdn.net/carson_ho/article/details/73732076)：热门的Android网络请求库
 - [OkHttp3 使用教程](https://blog.csdn.net/xx326664162/article/details/77714126)：Http第三方库，Retrofit底层通过OkHttp实现网络请求 
 - [Gson 使用教程](https://baijiahao.baidu.com/s?id=1607221675455152057&wfr=spider&for=pc)：Google提供，主要用途为序列化Java对象为JSON字符串，或反序列化JSON字符串成Java对象
-- [RxJava Android使用教程](https://gank.io/post/560e15be2dca930e00da1083)：异步网络请求任务处理
-- [Xutils3 使用教程](https://github.com/wyouflf/xUtils3)：国内框架，文件下载&断点续传管理
+- [RxJava Android使用教程](https://gank.io/post/560e15be2dca930e00da1083)：[RxAndroid](https://github.com/ReactiveX/RxAndroid)是在[RxJava(响应式编程)](https://github.com/ReactiveX/RxJava)基础上添加了Android线程调度，处理异步网络请求等耗时任务。
+- [Xutils3 使用教程](https://github.com/wyouflf/xUtils3)：国内开源框架，封装实现文件下载&断点续传&DB访问&ImageLoader等场景
 - [Glide 使用教程](https://www.jianshu.com/p/7ce7b02988a4)：Android推荐的热门图片加载库 备注：三大主流库ImageLoader,Picasso,Glide --TBD
 - [AdMob 使用教程](https://developers.google.com/admob/android/quick-start?hl=zh-CN#import_the_mobile_ads_sdk)：Google提供，实现Google广告载入--国内不集成，移至：[FirebaseApp](https://github.com/caobaokang419/FirebaseApp)
 - [Firebase 使用教程](https://developers.google.com/firebase/docs/android/setup?hl=zh-CN)：Google提供，移动应用后台服务端管理--国内不集成，移至：[FirebaseApp](https://github.com/caobaokang419/FirebaseApp)
