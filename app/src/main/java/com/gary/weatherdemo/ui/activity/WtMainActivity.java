@@ -41,9 +41,11 @@ public class WtMainActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
         mCityPagerAdapter = new CityPagerAdapter(this, mViewModel);
         mViewPager.setAdapter(mCityPagerAdapter);
+        mViewModel.registerPageChangeListener(mViewPager);
 
         mPageIndicatorView = findViewById(R.id.page_indicatior);
         mPageIndicatorView.registerPageChangeListener(mViewPager);
+
 
         initActionBar();
         updateCityTitleView();

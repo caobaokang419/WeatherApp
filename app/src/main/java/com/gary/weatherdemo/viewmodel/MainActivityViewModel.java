@@ -108,6 +108,11 @@ public class MainActivityViewModel extends AndroidViewModel {
     }
 
     public CityWeatherRecyclerAdapter getCityWeatherRecyclerAdapter(CityBean cityinfo) {
+        CityWeatherRecyclerAdapter adapter = mAdapterDatas.get(cityinfo);
+        if (adapter == null) {
+            mAdapterDatas.put(cityinfo, new CityWeatherRecyclerAdapter());
+        }
+
         return mAdapterDatas.get(cityinfo);
     }
 
