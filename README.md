@@ -61,7 +61,7 @@
 
 -------
 ### Screenshots：
-![](https://github.com/caobaokang419/WeatherApp/blob/master/screenshots/admob_banner_screenshot.bmp)
+![](https://github.com/caobaokang419/WeatherApp/blob/master/screenshots/city_weather_screenshot.jpg)
 
 -------
 ### License
