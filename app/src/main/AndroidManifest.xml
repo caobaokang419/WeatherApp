@@ -5,6 +5,9 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:name=".base.WeatherApplication"
@@ -21,11 +24,9 @@
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
 
         <!--弃用-->
         <activity
@@ -39,15 +40,21 @@
 
         <activity
             android:name=".ui.activity.WtSettingActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"></activity>
 
         <activity
             android:name=".ui.activity.WtSearchActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"></activity>
 
         <activity
             android:name=".ui.activity.WtDownloadActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme">
+        </activity>
+
+        <activity
+            android:name=".permission.WtPermissionActivity"
+            android:theme="@style/AppTheme">
+        </activity>
 
         <!-- widget provider -->
         <receiver android:name=".ui.widget.WeatherWidgetProvider">

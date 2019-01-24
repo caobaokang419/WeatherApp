@@ -119,4 +119,9 @@ public class XutilsFileUtil {
         }
         return result;
     }
+
+    public static String getFileNameByUrl(String url){
+        int index = url.lastIndexOf("/");
+        return url.substring(index+1);
+    }
 }

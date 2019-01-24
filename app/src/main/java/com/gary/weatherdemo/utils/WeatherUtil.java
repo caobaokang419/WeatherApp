@@ -6,7 +6,7 @@ import android.widget.Toast;
 
 import com.gary.weatherdemo.base.WeatherApplication;
 
-public class WeatherUtils {
+public class WeatherUtil {
     public static void showToast(String msg) {
         Toast.makeText(WeatherApplication.getInstance(), msg, Toast.LENGTH_SHORT).show();
     }

@@ -4,6 +4,7 @@ import android.os.Environment;
 import android.util.Log;
 
 import com.gary.weatherdemo.network.ApiContants;
+import com.gary.weatherdemo.utils.XutilsFileUtil;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -21,11 +22,14 @@ public class XUtilsDownloadImpl implements IDownload {
     @Override
     public void startDownload(String url, IDownloadListener iDownloadListener) {
         mDownloadListener = iDownloadListener;
-
+        String fileName = XutilsFileUtil.getFileNameByUrl(url);
+        String filePath = Environment.getExternalStorageDirectory() + ApiContants.AMAP_CITY_CONFIG_DIRECTIONARY + fileName;
         RequestParams params = new RequestParams(url);
-        params.setSaveFilePath(Environment.getExternalStorageDirectory() + ApiContants.AMAP_CITY_CONFIG_DIRECTIONARY);
-        params.setAutoRename(true);
+        params.setSaveFilePath(filePath);
+        params.setAutoRename(false);
+        params.setAutoResume(true);
         params.setCancelFast(true);
+        /*需要先动态申请存储权限*/
         mCancelable = x.http().post(params, new Callback.ProgressCallback<File>() {
             @Override
             public void onSuccess(File result) {

@@ -10,7 +10,7 @@ import com.gary.weatherdemo.base.WeatherApplication;
 /**
  * Created by GaryCao on 2018/10/25.
  */
-public class SpConfigsUtils {
+public class SpConfigsUtil {
     public static final String AUTOHORITY = "com.gary.weatherdemo.sp.provider";
     public static final String SP_CONTENT_URI = "content://"+AUTOHORITY;
 
@@ -36,16 +36,16 @@ public class SpConfigsUtils {
 
     private Context mContext;
     private static SharedPreferences mSharedPreferences;
-    private static SpConfigsUtils mSpConfigsUtils;
+    private static SpConfigsUtil mSpConfigsUtil;
 
-    public synchronized static SpConfigsUtils getInstance() {
-        if (mSpConfigsUtils == null) {
-            mSpConfigsUtils = new SpConfigsUtils();
+    public synchronized static SpConfigsUtil getInstance() {
+        if (mSpConfigsUtil == null) {
+            mSpConfigsUtil = new SpConfigsUtil();
         }
-        return mSpConfigsUtils;
+        return mSpConfigsUtil;
     }
 
-    private SpConfigsUtils() {
+    private SpConfigsUtil() {
         this.mContext = WeatherApplication.getInstance();
         mSharedPreferences = mContext.getSharedPreferences(WEATHER_CONFIG, Context.MODE_PRIVATE);
     }

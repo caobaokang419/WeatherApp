@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.gary.weatherdemo.utils.SpConfigsUtils;
+import com.gary.weatherdemo.utils.SpConfigsUtil;
 
 
 /**
@@ -36,24 +36,24 @@ public class WtSharedPreferenceProvider extends ContentProvider {
             return null;
         }
         Bundle bundle = new Bundle();
-        if (method.equalsIgnoreCase(SpConfigsUtils.KEY_CURRENT_CITY_NAME)) {
+        if (method.equalsIgnoreCase(SpConfigsUtil.KEY_CURRENT_CITY_NAME)) {
             bundle.getString(
                     method,
-                    SpConfigsUtils.getInstance().getString(SpConfigsUtils.KEY_CURRENT_CITY_NAME));
-        } else if (method.equalsIgnoreCase(SpConfigsUtils.KEY_CURRENT_CITY_ADCODE)) {
+                    SpConfigsUtil.getInstance().getString(SpConfigsUtil.KEY_CURRENT_CITY_NAME));
+        } else if (method.equalsIgnoreCase(SpConfigsUtil.KEY_CURRENT_CITY_ADCODE)) {
             bundle.getString(
                     method,
-                    SpConfigsUtils.getInstance().getString(SpConfigsUtils.KEY_CURRENT_CITY_ADCODE));
-        } else if (method.equalsIgnoreCase(SpConfigsUtils.KEY_UPDATE_PERIODIC_HOUR_COUNT)) {
+                    SpConfigsUtil.getInstance().getString(SpConfigsUtil.KEY_CURRENT_CITY_ADCODE));
+        } else if (method.equalsIgnoreCase(SpConfigsUtil.KEY_UPDATE_PERIODIC_HOUR_COUNT)) {
             bundle.getInt(
                     method,
-                    SpConfigsUtils.getInstance().getInt(SpConfigsUtils.KEY_UPDATE_PERIODIC_HOUR_COUNT));
-        } else if (method.equalsIgnoreCase(SpConfigsUtils.KEY_SET_INT_VALUE)) {
-            SpConfigsUtils.getInstance().setInt(arg, extras.getInt(arg));
-        } else if (method.equalsIgnoreCase(SpConfigsUtils.KEY_SET_STRING_VALUE)) {
-            SpConfigsUtils.getInstance().setString(arg, extras.getString(arg));
-        } else if (method.equalsIgnoreCase(SpConfigsUtils.KEY_SET_BOOLEAN_VALUE)) {
-            SpConfigsUtils.getInstance().setBoolean(arg, extras.getBoolean(arg));
+                    SpConfigsUtil.getInstance().getInt(SpConfigsUtil.KEY_UPDATE_PERIODIC_HOUR_COUNT));
+        } else if (method.equalsIgnoreCase(SpConfigsUtil.KEY_SET_INT_VALUE)) {
+            SpConfigsUtil.getInstance().setInt(arg, extras.getInt(arg));
+        } else if (method.equalsIgnoreCase(SpConfigsUtil.KEY_SET_STRING_VALUE)) {
+            SpConfigsUtil.getInstance().setString(arg, extras.getString(arg));
+        } else if (method.equalsIgnoreCase(SpConfigsUtil.KEY_SET_BOOLEAN_VALUE)) {
+            SpConfigsUtil.getInstance().setBoolean(arg, extras.getBoolean(arg));
         }
 
         //return super.call(method, arg, extras);

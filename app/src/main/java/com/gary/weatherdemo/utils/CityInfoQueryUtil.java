@@ -11,14 +11,14 @@ import java.util.List;
 /**
  * Created by GaryCao on 2018/10/28.
  */
-public class CityInfoQueryUtils {
-    private static final String TAG = CityInfoQueryUtils.class.getSimpleName();
-    private static CityInfoQueryUtils mInstance = new CityInfoQueryUtils();
+public class CityInfoQueryUtil {
+    private static final String TAG = CityInfoQueryUtil.class.getSimpleName();
+    private static CityInfoQueryUtil mInstance = new CityInfoQueryUtil();
     private List<CityBean> mCityBeans = new ArrayList<>();
     private volatile boolean mIsLoaded = false;
 
     /*私有构造*/
-    private CityInfoQueryUtils() {
+    private CityInfoQueryUtil() {
     }
 
     public void loadAdcodeConfig() {
@@ -85,7 +85,7 @@ public class CityInfoQueryUtils {
         return null;
     }
 
-    public static CityInfoQueryUtils getInstance() {
+    public static CityInfoQueryUtil getInstance() {
         return mInstance;
     }
 

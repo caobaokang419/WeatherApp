@@ -2,7 +2,7 @@ package com.gary.weatherdemo.workmanager;
 
 import android.support.annotation.NonNull;
 
-import com.gary.weatherdemo.utils.CityInfoQueryUtils;
+import com.gary.weatherdemo.utils.CityInfoQueryUtil;
 import com.gary.weatherdemo.utils.LogUtils;
 
 import androidx.work.Worker;
@@ -18,7 +18,7 @@ public class LoadCityConfigWorker extends Worker {
     @Override
     public Result doWork() {
         LogUtils.d(TAG, "doWork()");
-        CityInfoQueryUtils.getInstance().loadAdcodeConfig();
+        CityInfoQueryUtil.getInstance().loadAdcodeConfig();
         return Result.SUCCESS;
     }
 }
