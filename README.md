@@ -5,6 +5,7 @@
 - [高德天气查询](https://lbs.amap.com/api/webservice/guide/api/weatherinfo/)：Get&Post方式可以正常返回查询高德天气数据并UI显示；
 - 公共控件封装：自定义实现公共控件CommonUI，用于控件复用；
 - 公共数据接口：借助ContentProvider，提供天气数据（DB方式）& 配置属性（SharedPreference方式）的数据访问API，供第三方应用访问使用；
+- 配置文件下载：借助Xutils3，下载并存储[高德天气城市配置文件](http://a.amap.com/lbs/static/file/AMap_adcode_citycode.xlsx.zip)，并需动态申请存储权限；
 - 配置文件解析：解析存储本地存储高德adcode和城市信息对照表，用于本地天气动态查询api调用；
 - 左右滑动实现：ViewPager实现左右页面滑动切换；
 - 下拉上拉刷新：下拉界面，实现天气自动更新；上拉界面，查询显示更多天气相关信息。
