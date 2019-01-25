@@ -9,9 +9,9 @@ import com.gary.weatherdemo.utils.LogUtils;
 /**
  * Created by GaryCao on 2018/10/25.
  */
-public class ForecastTaskManager {
-    private final String TAG = "ForecastTaskManager";
-    private static ForecastTaskManager mForecastTaskManager;
+public class HandlerThreadManager {
+    private final String TAG = "HandlerThreadManager";
+    private static HandlerThreadManager mHandlerThreadManager;
 
     /**
      * process sub-thread works
@@ -23,8 +23,8 @@ public class ForecastTaskManager {
      */
     private Handler mUiHandler = new Handler();
 
-    private ForecastTaskManager(Context context) {
-        LogUtils.i(TAG, "ForecastTaskManager()");
+    private HandlerThreadManager(Context context) {
+        LogUtils.i(TAG, "HandlerThreadManager()");
         initWorkHandlerThread();
     }
 
@@ -41,12 +41,13 @@ public class ForecastTaskManager {
         };
     }
 
-    public synchronized static ForecastTaskManager getInstance(Context context) {
-        if (mForecastTaskManager == null) {
-            mForecastTaskManager = new ForecastTaskManager(context);
+    public synchronized static HandlerThreadManager getInstance(Context context) {
+        if (mHandlerThreadManager == null) {
+            mHandlerThreadManager = new HandlerThreadManager(context);
         }
-        return mForecastTaskManager;
+        return mHandlerThreadManager;
     }
+
     //===================================================================================================
     //for test
 

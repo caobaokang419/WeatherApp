@@ -8,6 +8,7 @@ import com.gary.weatherdemo.utils.LogUtils;
 /**
  * Created by GaryCao on 2018/10/25.
  * 异步任务
+ * 缺陷：无法中止&取消已execute()的任务
  */
 public class AsyncTaskManager {
     private final String TAG = "AsyncTaskManager";

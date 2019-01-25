@@ -18,7 +18,7 @@ public class WorkerManagerImpl implements IWorkerManager {
     public void loadAdrAdcodeConfig() {
         // 单次任务：OneTimeWorkRequest
         OneTimeWorkRequest.Builder loadConfigRequestBuilder =
-                new OneTimeWorkRequest.Builder(LoadCityConfigWorker.class);
+                new OneTimeWorkRequest.Builder(CityConfigLoaderWorker.class);
         loadConfigRequestBuilder.addTag(Constants.LOAD_ADCODES_CONFIG_WORK_NAME);
         OneTimeWorkRequest loadConfigWorkRequest = loadConfigRequestBuilder.build();
         WorkManager.getInstance().enqueue(loadConfigWorkRequest);

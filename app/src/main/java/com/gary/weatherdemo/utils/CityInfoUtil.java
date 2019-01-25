@@ -11,17 +11,17 @@ import java.util.List;
 /**
  * Created by GaryCao on 2018/10/28.
  */
-public class CityInfoQueryUtil {
-    private static final String TAG = CityInfoQueryUtil.class.getSimpleName();
-    private static CityInfoQueryUtil mInstance = new CityInfoQueryUtil();
+public class CityInfoUtil {
+    private static final String TAG = CityInfoUtil.class.getSimpleName();
+    private static CityInfoUtil mInstance = new CityInfoUtil();
     private List<CityBean> mCityBeans = new ArrayList<>();
-    private volatile boolean mIsLoaded = false;
+    private volatile boolean mIsCityConfigLoaded = false;
 
     /*私有构造*/
-    private CityInfoQueryUtil() {
+    private CityInfoUtil() {
     }
 
-    public void loadAdcodeConfig() {
+    public void loadCityConfig() {
         /*praseFromAssets(Constants.AMAP_ADCODE_CONFIG_FILE_NAME);
 
         forTest();*/
@@ -37,7 +37,7 @@ public class CityInfoQueryUtil {
             while ((line = bufReader.readLine()) != null) {
                 praseFileLineStr(line);
             }
-            mIsLoaded = true;
+            mIsCityConfigLoaded = true;
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -58,16 +58,16 @@ public class CityInfoQueryUtil {
         }
     }
 
-    public boolean isLoaded() {
-        return mIsLoaded;
+    public boolean isCityConfigLoaded() {
+        return mIsCityConfigLoaded;
     }
 
-    public void setLoaded(boolean loaded) {
-        mIsLoaded = loaded;
+    public void setCityConfigLoaded(boolean loaded) {
+        mIsCityConfigLoaded = loaded;
     }
 
     public String getAdcodeByAddress(String addr) {
-        if (!mIsLoaded) {
+        if (!mIsCityConfigLoaded) {
             return null;
         }
 
@@ -85,7 +85,7 @@ public class CityInfoQueryUtil {
         return null;
     }
 
-    public static CityInfoQueryUtil getInstance() {
+    public static CityInfoUtil getInstance() {
         return mInstance;
     }
 
