@@ -63,6 +63,41 @@ public class ThreadPoolManager {
          */
         private final TimeUnit unit = TimeUnit.MILLISECONDS;
 
+        /**
+         * para5:workQueue线程池的缓存队列（阻塞队列）
+         * 提交的任务将被存储在workQueue进行缓冲。
+         * 该队列只能存放通过execute方法提交的Runnable任务。
+         * <p>
+         * type1:ArrayBlockingQueue:  FIFO,一个由数组结构组成的有界阻塞队列。
+         * type2:LinkedBlockingQueue:  FIFO, 一个由链表结构组成的有界阻塞队列。
+         * type3:PriorityBlockingQueue:  FIFO,一个支持优先级排序的无界阻塞队列。
+         * <p>
+         * ？DealyQueue：一个使用优先级队列实现的无界阻塞队列。
+         * ?SynchronousQueue：一个不存储元素的阻塞队列。
+         * ?LinkedTransferQueue：一个由链表结构组成的无界阻塞队列。
+         * ?LinkedBlockingDeque：一个由链表结构组成的双向阻塞队列。
+         */
+        private final BlockingQueue<Runnable> workQueue = new ArrayBlockingQueue<Runnable>(4);
+
+        /**
+         * para6:threadFactory:线程池中用于创建线程的工厂
+         * 在这里使用线程工厂的目的也是为了解耦,将创建的实现细节通过工厂进行封装，
+         * 而不是直接将创建的方式固化在ThreadPoolExecutor本身的代码中。
+         * Thread newThread(Runnable r)
+         */
+        private final ThreadFactory threadFactory = Executors.defaultThreadFactory();//线程工厂
+
+        /**
+         * para7:RejectedExecutionHandler:线程池对拒绝任务的处理策略.
+         * 当线程池中的线程数量达到最大并且阻塞队列也已经满了无法再添加任务时，线程池所采取的处理策略。
+         * <p>
+         * type1:ThreadPoolExecutor.AbortPolicy:丢弃任务并抛出RejectedExecutionException异常。
+         * type2:ThreadPoolExecutor.DiscardPolicy：也是丢弃任务，但是不抛出异常。
+         * type3:ThreadPoolExecutor.DiscardOldestPolicy：丢弃队列最前面的任务，然后重新尝试执行任务（重复此过程）
+         * type4:ThreadPoolExecutor.CallerRunsPolicy：由调用线程处理该任务
+         */
+        private final RejectedExecutionHandler handler = new ThreadPoolExecutor.DiscardPolicy();
+
         private ThreadPoolExecutor mPool;
 
         public ThreadPoolProxy(int corePoolSize, int maximumPoolSize, long keepAliveTime) {
@@ -73,45 +108,6 @@ public class ThreadPoolManager {
 
         private void initPool() {
             if (mPool == null || mPool.isShutdown()) {
-                /**
-                 * para5:workQueue线程池的缓存队列
-                 * 提交的任务将被存储在workQueue进行缓冲。
-                 * 该队列只能存放通过execute方法提交的Runnable任务。
-                 */
-                BlockingQueue<Runnable> workQueue = null;
-
-                /**缓存队列workQueue type1: FIFO,大小有限制*/
-                workQueue = new ArrayBlockingQueue<Runnable>(4);
-                /**缓存队列workQueue type2: FIFO,大小有限制*/
-                //workQueue = new LinkedBlockingQueue();
-                /**缓存队列workQueue type3: FIFO,大小有限制*/
-                //workQueue = new PriorityBlockingQueue();
-
-                /**
-                 * para6:threadFactory:线程池中用于创建线程的工厂
-                 * 在这里使用线程工厂的目的也是为了解耦,将创建的实现细节通过工厂进行封装，
-                 * 而不是直接将创建的方式固化在ThreadPoolExecutor本身的代码中。
-                 * Thread newThread(Runnable r)
-                 */
-                ThreadFactory threadFactory = Executors.defaultThreadFactory();//线程工厂
-
-                /**
-                 * para7:RejectedExecutionHandler:线程池对拒绝任务的处理策略.
-                 * 当线程池中的线程数量达到最大并且阻塞队列也已经满了无法再添加任务时，线程池所采取的处理策略。
-                 */
-                RejectedExecutionHandler handler = null;//异常捕获器
-
-                /**拒绝任务处理策略 type1: 去掉队列中首个任务，将新加入的放到队列中去*/
-                //handler = new ThreadPoolExecutor.DiscardOldestPolicy();
-                /**拒绝任务处理策略 type2: 触发异常*/
-                //handler = new ThreadPoolExecutor.AbortPolicy();
-                /**拒绝任务处理策略 type3: 不做任何处理*/
-                handler = new ThreadPoolExecutor.DiscardPolicy();
-                /**拒绝任务处理策略 type4: 直接执行，不归线程池控制,在调用线程中执行*/
-                //handler = new ThreadPoolExecutor.CallerRunsPolicy();
-
-                //new Thread(task).start();
-
                 mPool = new ThreadPoolExecutor(
                         mCorePoolSize,//para1:核心线程池大小
                         mMaximumPoolSize,//para2:最大线程池大小

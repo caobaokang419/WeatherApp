@@ -1,6 +1,8 @@
 package com.gary.weatherdemo.permission;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -21,7 +23,8 @@ import java.util.List;
 public class WtPermissionActivity extends AppCompatActivity {
     public static int REQUEST_CODE_PERMISSION = 0x10001;
 
-    private static String[] needPermissions = {
+    /**/
+    private static String[] mAllNeededPermissions = {
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.READ_EXTERNAL_STORAGE,
     };
@@ -29,6 +32,12 @@ public class WtPermissionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        List<String> needPermissions = getDeniedPermissions(mAllNeededPermissions);
+        ActivityCompat.requestPermissions(
+                this,
+                needPermissions.toArray(new String[needPermissions.size()]),
+                REQUEST_CODE_PERMISSION);
     }
 
     /**
@@ -46,9 +55,10 @@ public class WtPermissionActivity extends AppCompatActivity {
             if (verifyPermissionsGrantResult(grantResults)) {
                 LogUtils.d("onRequestPermissionsResult success");
             }
+
+            finish();
         }
     }
-
 
     /**
      * 检测所有的权限是否都已授权
@@ -56,13 +66,13 @@ public class WtPermissionActivity extends AppCompatActivity {
      * @param permissions
      * @return
      */
-    private boolean checkPermissionsGranted(String[] permissions) {
+    private static boolean checkPermissionsGranted(Context context, String[] permissions) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return true;
         }
 
         for (String permission : permissions) {
-            if (PermissionChecker.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+            if (PermissionChecker.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
                 return false;
             }
         }
@@ -103,18 +113,15 @@ public class WtPermissionActivity extends AppCompatActivity {
 
     /**
      * 请求权限
-     *
-     * @param permissions 请求的权限
-     * @param requestCode 请求权限的请求码
      */
-    public void requestPermission(String[] permissions, int requestCode) {
-        this.REQUEST_CODE_PERMISSION = requestCode;
-        if (!checkPermissionsGranted(permissions)) {
-            List<String> needPermissions = getDeniedPermissions(permissions);
-            ActivityCompat.requestPermissions(
-                    this,
-                    needPermissions.toArray(new String[needPermissions.size()]),
-                    REQUEST_CODE_PERMISSION);
+    public static void startRequestAllPermission(Context context) {
+        if (!checkPermissionsGranted(context, mAllNeededPermissions)) {
+            Intent intent = new Intent();
+            intent.setAction("android.wt.action.PERMISSION_REQUEST");
+            intent.setClassName(
+                    "com.gary.weatherdemo.permission",
+                    "com.gary.weatherdemo.permission.WtPermissionActivity");
+            context.startActivity(intent);
         }
     }
 }

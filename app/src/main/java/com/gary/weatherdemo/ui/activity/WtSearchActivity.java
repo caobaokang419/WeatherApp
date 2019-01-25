@@ -61,6 +61,7 @@ public class WtSearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 LogUtils.d("onClickedLeftBtn()");
+                finish();
             }
         });
     }
