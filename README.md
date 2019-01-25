@@ -41,7 +41,7 @@
 ### 其他扩展组件功能实现：
 - [EventBus 消息总线](https://www.jianshu.com/p/7ce7b02988a4)：针对Android优化的发布/订阅事件总线，取代Intent,Handler,BroadCast等消息传递机制；
 - 异步任务方案：FIFO LIFO AsyncTask HandlerThread WorkManager不同方式，实现异步任务需求；
-- 磁盘缓存方案：[DiskLruCache](https://www.jianshu.com/p/f9cfbea586c2)不同于LruCache，LruCache是将数据缓存到内存中去，而DiskLruCache是外部缓存，例如可以将网络下载的图片永久的缓存到手机外部存储中去，并可以将缓存数据取出来使用；
+- [磁盘缓存方案](https://github.com/JakeWharton/DiskLruCache)：[DiskLruCache](https://www.jianshu.com/p/f9cfbea586c2)不同于LruCache，LruCache是将数据缓存到内存中去，而DiskLruCache是外部缓存，例如可以将网络下载的图片永久的缓存到手机外部存储中去，并可以将缓存数据取出来使用；
 - [线程池管理方案](https://www.jianshu.com/p/4d4634c92253)：带缓冲和优先级的ThreadPoolExecutor方案，参照xUtils源码框架已提供的解决方案；
 - 应用常驻&应用保活方案：--TBD
 - 插件式开发解决方案：odex插件式加载实现--TBD
