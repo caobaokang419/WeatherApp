@@ -39,20 +39,24 @@
 
 -------
 ### 其他扩展组件功能实现：
-- [EventBus 消息总线](https://www.jianshu.com/p/7ce7b02988a4)：针对Android优化的发布/订阅事件总线，取代Intent,Handler,BroadCast等消息传递机制 
-- 异步任务（不同场景）的解决方案选择：FIFO LIFO AsyncTask HandlerThread WorkManager不同方式，实现异步任务需求。
-- 缓存方案：DiskLruCache，参照xUtils源码框架已提供的解决方案
-- 线程池方案：带缓冲和优先级的ThreadPoolExecutor方案，参照xUtils源码框架已提供的解决方案
-- 应用常驻&应用保活：--TBD
+- [EventBus 消息总线](https://www.jianshu.com/p/7ce7b02988a4)：针对Android优化的发布/订阅事件总线，取代Intent,Handler,BroadCast等消息传递机制；
+- 异步任务方案：FIFO LIFO AsyncTask HandlerThread WorkManager不同方式，实现异步任务需求；
+- 磁盘缓存方案：[DiskLruCache](https://www.jianshu.com/p/f9cfbea586c2)不同于LruCache，LruCache是将数据缓存到内存中去，而DiskLruCache是外部缓存，例如可以将网络下载的图片永久的缓存到手机外部存储中去，并可以将缓存数据取出来使用；
+- [线程池管理方案](https://www.jianshu.com/p/4d4634c92253)：带缓冲和优先级的ThreadPoolExecutor方案，参照xUtils源码框架已提供的解决方案；
+- 应用常驻&应用保活方案：--TBD
+- 插件式开发解决方案：odex插件式加载实现--TBD
+- 服务器消息推送方案：国内TBD，海外使用[Cloud Message(云消息)](https://firebase.google.com/docs/remote-config/?hl=zh-CN)
+- 云配置方案：国内TBD，海外使用[Remote Config(远程配置)](https://firebase.google.com/docs/cloud-messaging/?hl=zh-CN)
 
 
 -------
 ### 测试&调试&更新维护功能实现：
-- 内存泄露：LeakCanary--TBD
+- 内存泄露：国内可集成LeakCanary，海外使用Firebase的[Crash Report(报错上报)](https://firebase.google.com/docs/crashlytics/?hl=zh-CN);
 - 调试框架：Stetho(Facebook开发的工具)，android as3.0后直接集成在IDE中了。--TBD
 - 测试框架：Mockito--TBD
-- 应用热更新：[腾讯tinker](https://github.com/Tencent/tinker)--TBD
-- 插件式更新：odex插件式加载实现--TBD
+- 自动化测试：android 单元测试用例--TBD
+- 应用热更新框架接入：[腾讯tinker](https://github.com/Tencent/tinker)--TBD
+
 
 -------
 ### Android推荐的应用程序的基础架构：
