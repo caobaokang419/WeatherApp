@@ -1,6 +1,9 @@
 ### 基于MVVM框架的高德天气APP：
 -------
+### Screenshots：
+![](https://github.com/caobaokang419/WeatherApp/blob/master/screenshots/city_weather_screenshot.jpg)
 
+-------
 ### 功能点实现说明：
 - [高德天气查询](https://lbs.amap.com/api/webservice/guide/api/weatherinfo/)：Get&Post方式可以正常返回查询高德天气数据并UI显示；
 - 公共控件封装：自定义实现公共控件CommonUI，用于控件复用；
@@ -66,9 +69,6 @@
 
 ![Android 应用程序的基础架构](https://developer.android.google.cn/topic/libraries/architecture/images/final-architecture.png)
 
--------
-### Screenshots：
-![](https://github.com/caobaokang419/WeatherApp/blob/master/screenshots/city_weather_screenshot.jpg)
 
 -------
 ### License
