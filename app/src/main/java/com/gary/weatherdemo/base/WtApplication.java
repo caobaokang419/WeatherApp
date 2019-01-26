@@ -9,8 +9,8 @@ import org.xutils.x;
 /**
  * Created by GaryCao on 2018/10/25.
  */
-public class WeatherApplication extends /*MultiDex*/Application {
-    private static WeatherApplication mWTApplication;
+public class WtApplication extends /*MultiDex*/Application {
+    private static WtApplication mWTApplication;
 
     @Override
     public void onCreate() {
@@ -30,7 +30,7 @@ public class WeatherApplication extends /*MultiDex*/Application {
         WorkerManagerClient.getInstance().startPeriodicWeatherUpdate();
     }
 
-    public static WeatherApplication getInstance() {
+    public static WtApplication getInstance() {
         return mWTApplication;
     }
 }

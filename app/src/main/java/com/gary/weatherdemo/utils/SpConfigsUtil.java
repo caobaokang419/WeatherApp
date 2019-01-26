@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 
-import com.gary.weatherdemo.base.WeatherApplication;
+import com.gary.weatherdemo.base.WtApplication;
 
 /**
  * Created by GaryCao on 2018/10/25.
@@ -46,7 +46,7 @@ public class SpConfigsUtil {
     }
 
     private SpConfigsUtil() {
-        this.mContext = WeatherApplication.getInstance();
+        this.mContext = WtApplication.getInstance();
         mSharedPreferences = mContext.getSharedPreferences(WEATHER_CONFIG, Context.MODE_PRIVATE);
     }
 

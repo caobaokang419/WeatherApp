@@ -21,7 +21,7 @@ public class AsyncTaskManager {
         LogUtils.i(TAG, "AsyncTaskManager()");
     }
 
-    private class MyAsyncTask extends AsyncTask<String, Integer, String> {
+    private static class MyAsyncTask extends AsyncTask<String, Integer, String> {
         /*执行异步任务前的执行，可执行UI操作*/
         @Override
         protected void onPreExecute() {

@@ -14,7 +14,7 @@ import com.gary.weatherdemo.R;
 import com.gary.weatherdemo.model.CityBean;
 import com.gary.weatherdemo.ui.adapter.CityPagerAdapter;
 import com.gary.weatherdemo.utils.LogUtils;
-import com.gary.weatherdemo.utils.WeatherUtil;
+import com.gary.weatherdemo.utils.WtUtil;
 import com.gary.weatherdemo.viewmodel.MainActivityViewModel;
 
 /**
@@ -57,7 +57,7 @@ public class WtMainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 LogUtils.d("onClickedLeftBtn()");
-                WeatherUtil.startActivity(getApplicationContext(), WtSearchActivity.class);
+                WtUtil.startActivity(getApplicationContext(), WtSearchActivity.class);
             }
         });
 
@@ -65,7 +65,7 @@ public class WtMainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 LogUtils.d("onClickedRightBtn()");
-                WeatherUtil.startActivity(getApplicationContext(), WtSettingActivity.class);
+                WtUtil.startActivity(getApplicationContext(), WtSettingActivity.class);
             }
         });
     }
