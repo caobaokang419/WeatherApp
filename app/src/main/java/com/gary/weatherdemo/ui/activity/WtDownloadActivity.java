@@ -8,9 +8,12 @@ import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.example.commonui.ActionBar;
 import com.gary.weatherdemo.R;
 import com.gary.weatherdemo.service.DownloadService;
 import com.gary.weatherdemo.network.ApiContants;
+import com.gary.weatherdemo.utils.LogUtils;
+import com.gary.weatherdemo.utils.WtUtil;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -19,11 +22,12 @@ import java.net.URL;
  * Created by GaryCao on 2019/01/13.
  * 高德城市配置表文件下載管理
  */
-public class WtDownloadActivity extends AppCompatActivity {
+public class WtDownloadActivity extends BaseActivity {
+    private ActionBar mActionBar;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreateNew(Bundle savedInstanceState) {
+        //super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_download);
         initView();
         bindDLService();
@@ -48,6 +52,19 @@ public class WtDownloadActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 downloadBinder.cancelDownload();
+            }
+        });
+
+        initActionBar();
+    }
+
+    private void initActionBar() {
+        mActionBar = findViewById(R.id.action_bar);
+        mActionBar.setLeftOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LogUtils.d("onClickedLeftBtn()");
+                finish();
             }
         });
     }

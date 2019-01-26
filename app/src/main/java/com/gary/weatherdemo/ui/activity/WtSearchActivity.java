@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * Created by GaryCao on 2019/01/12.
  */
-public class WtSearchActivity extends AppCompatActivity {
+public class WtSearchActivity extends BaseActivity {
     private GridView mCityGridView;
     private EditText mCitySearchEditText;
     private ImageButton mCitySearchBtn;
@@ -28,13 +28,13 @@ public class WtSearchActivity extends AppCompatActivity {
     private CitySearchGridAdapter mCitySearchGridAdapter;
 
     private final String[] mCityNames =
-            new String[]{"深圳", "西安", "合肥", "武汉", "巢湖市", "北京", "上海", "广州", "成都", "南京", "杭州", "苏州"};
+            new String[]{"深圳", "西安", "合肥", "武汉", "巢湖", "北京", "上海", "广州", "成都", "南京", "杭州", "苏州"};
     private final String[] mCityAdcode =
             new String[]{"440300", "610100", "340100", "420100", "340181", "110000", "310000", "440100", "510100", "320100", "330100", "320500"};
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreateNew(@Nullable Bundle savedInstanceState) {
+        //super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_search);
 
         initView();

@@ -9,16 +9,23 @@
             type="com.gary.weatherdemo.viewmodel.ForecastDayViewModel" />
     </data>
 
-    <LinearLayout
+    <!--<android.support.v7.widget.CardView
+        android:id="@+id/forecast_day_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
-        android:background="@color/forecast_item_background"
-        android:gravity="center"
+        app:cardBackgroundColor="@color/forecast_item_background"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="16dp"
         android:orientation="vertical">
+    </android.support.v7.widget.CardView>-->
+
+    <LinearLayout
+        android:id="@+id/forcast_day_view"
+        style="@style/WeatherRecycleItem">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -45,23 +52,23 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.mDayForecastBean.dayweather}" />
+                android:text="@{viewModel.mDayForecastBean.dayweather+@string/blank_space}" />
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.mDayForecastBean.daytemp+@string/temperature_signal}" />
+                android:text="@{viewModel.mDayForecastBean.daytemp+@string/temperature_signal+@string/blank_space}" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.mDayForecastBean.daywind}" />
+                android:text="@{viewModel.mDayForecastBean.daywind+@string/blank_space}" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.mDayForecastBean.daypower}" />
+                android:text="@{@string/fengli_hint+viewModel.mDayForecastBean.daypower+@string/blank_space}" />
 
         </LinearLayout>
 
@@ -78,23 +85,23 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.mDayForecastBean.nightweather}" />
+                android:text="@{viewModel.mDayForecastBean.nightweather+@string/blank_space}" />
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.mDayForecastBean.nighttemp+@string/temperature_signal}" />
+                android:text="@{viewModel.mDayForecastBean.nighttemp+@string/temperature_signal+@string/blank_space}" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.mDayForecastBean.nightwind}" />
+                android:text="@{viewModel.mDayForecastBean.nightwind+@string/blank_space}" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.mDayForecastBean.nightpower}" />
+                android:text="@{@string/fengli_hint+viewModel.mDayForecastBean.nightpower+@string/blank_space}" />
         </LinearLayout>
     </LinearLayout>
 </layout>

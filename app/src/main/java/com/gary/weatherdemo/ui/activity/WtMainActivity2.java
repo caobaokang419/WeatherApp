@@ -21,13 +21,13 @@ import com.gary.weatherdemo.viewmodel.MainActivityViewModel2;
  * Created by GaryCao on 2019/01/22.
  * 单个城市天气信息：不支持左右滑动切换城市
  */
-public class WtMainActivity2 extends AppCompatActivity {
+public class WtMainActivity2 extends BaseActivity {
     private MainActivityViewModel2 mViewModel;
     private ActionBar mActionBar;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreateNew(Bundle savedInstanceState) {
+        //super.onCreate(savedInstanceState);
         initViews();
         /*EventBus.getDefault().register(this);*/
     }

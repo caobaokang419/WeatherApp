@@ -17,5 +17,5 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:text="深圳"
-        android:textSize="36dp" />
+        android:textSize="24dp" />
 </LinearLayout>
