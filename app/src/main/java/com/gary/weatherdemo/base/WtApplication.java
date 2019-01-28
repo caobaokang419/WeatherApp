@@ -2,6 +2,7 @@ package com.gary.weatherdemo.base;
 
 import android.app.Application;
 
+import com.gary.weatherdemo.push.UmPushManager;
 import com.gary.weatherdemo.workmanager.WorkerManagerClient;
 
 import org.xutils.x;
@@ -28,6 +29,9 @@ public class WtApplication extends /*MultiDex*/Application {
 
         /*start periodic update current city weather*/
         WorkerManagerClient.getInstance().startPeriodicWeatherUpdate();
+
+        //umeng push register
+        UmPushManager.register(this);
     }
 
     public static WtApplication getInstance() {

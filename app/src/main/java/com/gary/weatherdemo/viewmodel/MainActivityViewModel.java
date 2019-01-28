@@ -53,18 +53,27 @@ public class MainActivityViewModel extends AndroidViewModel {
         mCityBeans.setValue(data);
     }
 
+    /**
+     * 查询城市天气
+     */
     public void queryCityWeather(final CityBean cityinfo) {
+        /**task1: 查询当前天气*/
         Observable<LiveWeatherResponseData> observable1 =
-                WeatherRequestClient.getInstance().liveWeatherPost(cityinfo.adcCode).subscribeOn(Schedulers.io());
+                WeatherRequestClient.getInstance().liveWeatherPost(cityinfo.adcCode)
+                        .subscribeOn(Schedulers.io());//被观察者Observable运行在子线程
 
+        /**task2: 查询未来天气预报*/
         Observable<AllForecastResponseData> observable2 =
-                WeatherRequestClient.getInstance().forecastWeatherPost(cityinfo.adcCode).subscribeOn(Schedulers.io());
+                WeatherRequestClient.getInstance().forecastWeatherPost(cityinfo.adcCode)
+                        .subscribeOn(Schedulers.io());
 
+        /**Observable.zip: 实现task1+ task2 异步任务都完成时，回调 订阅的UI刷新*/
         Observable.zip(observable1, observable2,
                 new BiFunction<LiveWeatherResponseData, AllForecastResponseData, ArrayList<BaseItemBean>>() {
                     @Override
                     public ArrayList<BaseItemBean> apply(LiveWeatherResponseData livedata,
                                                          AllForecastResponseData allForecastdata) throws Exception {
+                        /**task1+task2 ，此处可以处理耗时流程（子线程）*/
                         List<DayForecastBean> dayForecastList = null;
                         ArrayList<BaseItemBean> dataList = new ArrayList<>();
 
@@ -84,11 +93,13 @@ public class MainActivityViewModel extends AndroidViewModel {
 
                         return dataList;
                     }
-                }).observeOn(AndroidSchedulers.mainThread())
+                })
+                .observeOn(AndroidSchedulers.mainThread())//观察者运行在UI线程
                 .subscribe(new Consumer<List<BaseItemBean>>() {
                     @Override
                     public void accept(List<BaseItemBean> dataList) throws Exception {
-                        mCityWeatherDatas.put(cityinfo,dataList);
+                        /**实现UI订阅逻辑（AndroidSchedulers.mainThread）*/
+                        mCityWeatherDatas.put(cityinfo, dataList);
                         CityWeatherRecyclerAdapter adapter = getCityWeatherRecyclerAdapter(cityinfo);
                         adapter.setAdapterData(dataList);
                     }

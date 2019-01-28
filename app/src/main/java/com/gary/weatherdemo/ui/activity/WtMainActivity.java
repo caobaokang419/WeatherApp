@@ -12,6 +12,7 @@ import com.example.commonui.ActionBar;
 import com.example.commonui.PageIndicatorView;
 import com.gary.weatherdemo.R;
 import com.gary.weatherdemo.model.CityBean;
+import com.gary.weatherdemo.permission.WtPermissionActivity;
 import com.gary.weatherdemo.ui.adapter.CityPagerAdapter;
 import com.gary.weatherdemo.utils.LogUtils;
 import com.gary.weatherdemo.utils.WtUtil;
@@ -33,6 +34,10 @@ public class WtMainActivity extends BaseActivity {
         //super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_main);
         initView();
+
+        /*if(WtPermissionActivity.startRequestAllPermission(this)){
+            finish();
+        }*/
     }
 
     private void initView(){

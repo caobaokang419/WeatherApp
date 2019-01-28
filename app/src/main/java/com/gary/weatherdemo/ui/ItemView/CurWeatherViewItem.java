@@ -23,11 +23,13 @@ public class CurWeatherViewItem implements IViewItem<LiveWeatherBean> {
     public View createView(ViewGroup parent) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_cur_weather, parent, false);
+        //获取CurWeatherViewItem 的CurWeatherBinding对象
         mDataBinding = CurWeatherBinding.bind(itemView);
         return itemView;
     }
 
     public void bindView(@NonNull LiveWeatherBean data) {
+        //关联CurWeatherBinding对象 & 数据 CurWeatherViewModel(data)
         mDataBinding.setViewModel(new CurWeatherViewModel(data));
     }
 }
