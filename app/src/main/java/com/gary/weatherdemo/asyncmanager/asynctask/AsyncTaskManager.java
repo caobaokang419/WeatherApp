@@ -3,11 +3,11 @@ package com.gary.weatherdemo.asyncmanager.asynctask;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.gary.weatherdemo.utils.LogUtils;
+import com.gary.weatherdemo.utils.CLog;
 
 /**
  * Created by GaryCao on 2018/10/25.
- * 异步任务
+ * 异步任务 Type1
  * 缺陷：无法中止&取消已execute()的任务
  */
 public class AsyncTaskManager {
@@ -18,7 +18,7 @@ public class AsyncTaskManager {
     /*私有构造*/
     private AsyncTaskManager(Context cont) {
         mContext = cont;
-        LogUtils.i(TAG, "AsyncTaskManager()");
+        CLog.i(TAG, "AsyncTaskManager()");
     }
 
     private static class MyAsyncTask extends AsyncTask<String, Integer, String> {

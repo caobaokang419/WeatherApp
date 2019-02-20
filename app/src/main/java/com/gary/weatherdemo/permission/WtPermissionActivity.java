@@ -11,7 +11,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.PermissionChecker;
 import android.support.v7.app.AppCompatActivity;
 
-import com.gary.weatherdemo.utils.LogUtils;
+import com.gary.weatherdemo.utils.CLog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,7 +73,7 @@ public class WtPermissionActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_CODE_PERMISSION) {
             if (checkPermissionsGrantResult(grantResults)) {
-                LogUtils.d("onRequestPermissionsResult success");
+                CLog.d("onRequestPermissionsResult success");
             }
 
             finish();

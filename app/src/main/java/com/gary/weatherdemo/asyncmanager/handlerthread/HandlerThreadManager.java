@@ -3,11 +3,14 @@ package com.gary.weatherdemo.asyncmanager.handlerthread;
 import android.content.Context;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.os.Looper;
 
-import com.gary.weatherdemo.utils.LogUtils;
+import com.gary.weatherdemo.utils.CLog;
 
 /**
  * Created by GaryCao on 2018/10/25.
+ * 异步任务 Type2
+ * 缺陷：单个线程轮询任务，容易阻塞消息队列
  */
 public class HandlerThreadManager {
     private final String TAG = "HandlerThreadManager";
@@ -21,15 +24,15 @@ public class HandlerThreadManager {
     /**
      * process main-thread(UI thread) works
      */
-    private Handler mUiHandler = new Handler();
+    private Handler mUiHandler = new Handler(Looper.getMainLooper());
 
     private HandlerThreadManager(Context context) {
-        LogUtils.i(TAG, "HandlerThreadManager()");
+        CLog.i(TAG, "HandlerThreadManager()");
         initWorkHandlerThread();
     }
 
     private void initWorkHandlerThread() {
-        LogUtils.i(TAG, "initWorkHandlerThread()");
+        CLog.i(TAG, "initWorkHandlerThread()");
         HandlerThread handlerThread = new HandlerThread("weather_thread");
         handlerThread.start();
 

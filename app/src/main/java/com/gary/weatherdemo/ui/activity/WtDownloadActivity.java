@@ -8,7 +8,7 @@ import com.gary.weatherdemo.R;
 import com.gary.weatherdemo.download.DownloadManager;
 import com.gary.weatherdemo.download.IDownloadCallback;
 import com.gary.weatherdemo.network.ApiContants;
-import com.gary.weatherdemo.utils.LogUtils;
+import com.gary.weatherdemo.utils.CLog;
 
 /**
  * Created by GaryCao on 2019/01/13.
@@ -55,7 +55,7 @@ public class WtDownloadActivity extends BaseActivity {
         mActionBar.setLeftOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LogUtils.d("onClickedLeftBtn()");
+                CLog.d("onClickedLeftBtn()");
                 finish();
             }
         });

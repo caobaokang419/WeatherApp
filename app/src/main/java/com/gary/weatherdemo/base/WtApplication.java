@@ -21,6 +21,7 @@ public class WtApplication extends /*MultiDex*/Application {
     }
 
     private void initConfig(){
+        /*xutils configs*/
         x.Ext.init(this);
         x.Ext.setDebug(true);
 

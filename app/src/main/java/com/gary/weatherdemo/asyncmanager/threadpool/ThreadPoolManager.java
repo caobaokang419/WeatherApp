@@ -14,7 +14,9 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Created by GaryCao on 2018/10/25.
- * 线程管理类，管理线程池，一个应用中有多个线程池，每个线程池做自己相关的业务(concurrent tasks manager)
+ * 异步任务 Type3: 线程池机制
+ * 优点：线程管理类，管理线程池，一个应用中可以有多个线程池，每个线程池做自己相关的业务
+ * 缺陷：需自行封装实现机制，建议可转为采用成熟开源框架
  */
 public class ThreadPoolManager {
     //普通线程池

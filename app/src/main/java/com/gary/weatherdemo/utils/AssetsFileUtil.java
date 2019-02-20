@@ -4,15 +4,8 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Environment;
-import android.os.StatFs;
-
-import org.xutils.common.util.IOUtil;
-import org.xutils.common.util.LogUtil;
-import org.xutils.x;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -69,7 +62,7 @@ public class AssetsFileUtil {
             e.printStackTrace();
         }
         for (String str : files) {
-            LogUtils.d(str);
+            CLog.d(str);
         }
         return files;
     }

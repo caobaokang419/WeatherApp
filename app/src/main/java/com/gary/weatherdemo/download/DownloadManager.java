@@ -7,11 +7,15 @@ import android.content.ServiceConnection;
 import android.os.IBinder;
 
 import com.gary.weatherdemo.network.ApiContants;
+import com.gary.weatherdemo.utils.CLog;
 
 /**
  * Created by GaryCao on 2019/01/12.
  */
 public class DownloadManager {
+    private final String TAG = "DownloadManager";
+
+    /*GoF23 设计原则2：迪米特法则（最少知道原则）（Demeter Principle）：method&field 尽量private*/
     private static DownloadManager mInstance;
     private Context mContext;
     private boolean mIsBinded;
@@ -24,14 +28,12 @@ public class DownloadManager {
         if (mIsBinded) {
             return;
         }
-
         Intent intent = new Intent(mContext, DownloadService.class);
         intent.setAction("com.gary.weather.action.DOWNLOAD_SERVICE");
-        if(mContext.bindService(intent, mConnection, Context.BIND_AUTO_CREATE)){
-            ;
+        if (mContext.bindService(intent, mConnection, Context.BIND_AUTO_CREATE)) {
+            CLog.d(TAG,"bind service success!");
         }
     }
-
 
     private DownloadService.DownloadBinder mDownloadBinder;
     private ServiceConnection mConnection = new ServiceConnection() {
@@ -77,9 +79,13 @@ public class DownloadManager {
     }
 
     /*GoF23 单例模式*/
-    public synchronized static DownloadManager getInstance(Context context) {
+    public static DownloadManager getInstance(Context context) {
         if (mInstance == null) {
-            mInstance = new DownloadManager(context);
+            synchronized (DownloadManager.class) {
+                if (mInstance == null) {
+                    mInstance = new DownloadManager(context);
+                }
+            }
         }
         return mInstance;
     }

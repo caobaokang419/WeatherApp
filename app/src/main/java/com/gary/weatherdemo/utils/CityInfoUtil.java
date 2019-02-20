@@ -54,7 +54,7 @@ public class CityInfoUtil {
         String[] strings = lineStr.split(":");
         if (strings != null && strings.length == 2) {
             mCityBeans.add(new CityBean(strings[0], strings[1]));
-            LogUtils.d("praseAdcodeConfigLineStr() " + strings[0] + ":" + strings[1]);
+            CLog.d("praseAdcodeConfigLineStr() " + strings[0] + ":" + strings[1]);
         }
     }
 
@@ -77,7 +77,7 @@ public class CityInfoUtil {
 
         for (CityBean adinfo : mCityBeans) {
             if (adinfo.isAddrSearched(addr)) {
-                LogUtils.d("getAdcodeByAddress() " + addr + ": " + adinfo);
+                CLog.d("getAdcodeByAddress() " + addr + ": " + adinfo);
                 return adinfo.adcCode;
             }
         }

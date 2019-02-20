@@ -5,7 +5,7 @@ import android.util.Log;
 import com.gary.weatherdemo.BuildConfig;
 
 
-public class LogUtils {
+public class CLog {
     private static String TAG = BuildConfig.APPLICATION_ID;
 
     public static void e(String Msg) {

@@ -5,16 +5,14 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.example.commonui.ActionBar;
 import com.example.commonui.PageIndicatorView;
 import com.gary.weatherdemo.R;
 import com.gary.weatherdemo.model.CityBean;
-import com.gary.weatherdemo.permission.WtPermissionActivity;
 import com.gary.weatherdemo.ui.adapter.CityPagerAdapter;
-import com.gary.weatherdemo.utils.LogUtils;
+import com.gary.weatherdemo.utils.CLog;
 import com.gary.weatherdemo.utils.WtUtil;
 import com.gary.weatherdemo.viewmodel.MainActivityViewModel;
 
@@ -61,7 +59,7 @@ public class WtMainActivity extends BaseActivity {
         mActionBar.setLeftOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LogUtils.d("onClickedLeftBtn()");
+                CLog.d("onClickedLeftBtn()");
                 WtUtil.startActivity(getApplicationContext(), WtSearchActivity.class);
             }
         });
@@ -69,7 +67,7 @@ public class WtMainActivity extends BaseActivity {
         mActionBar.setRightOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LogUtils.d("onClickedRightBtn()");
+                CLog.d("onClickedRightBtn()");
                 WtUtil.startActivity(getApplicationContext(), WtSettingActivity.class);
             }
         });
