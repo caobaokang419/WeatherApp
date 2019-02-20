@@ -1,18 +1,16 @@
-package com.gary.weatherdemo.service;
+package com.gary.weatherdemo.download;
 
 import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
 
-import com.gary.weatherdemo.download.DownloadClient;
-import com.gary.weatherdemo.download.IDownloadListener;
-
 /**
  * Created by GaryCao on 2019/01/12.
  */
 public class DownloadService extends Service {
     private DownloadBinder mBinder = new DownloadBinder();
+    private static IDownload mIDownload;
 
     public DownloadService() {
     }
@@ -20,6 +18,11 @@ public class DownloadService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        init();
+    }
+
+    private void init() {
+        mIDownload = DownloadFactory.createDownloadImpl();
     }
 
     @Override
@@ -39,44 +42,22 @@ public class DownloadService extends Service {
 
 
     public class DownloadBinder extends Binder {
-        public void startDownload(String url) {
-            DownloadClient.getInstance().startDownload(url, mDownloadListener);
+        public void startDownload(String url, IDownloadCallback callback) {
+            if (mIDownload != null) {
+                mIDownload.startDownload(url, callback);
+            }
         }
 
         public void pauseDownload() {
-            DownloadClient.getInstance().pauseDownload();
+            if (mIDownload != null) {
+                mIDownload.pauseDownload();
+            }
         }
 
         public void cancelDownload() {
-            DownloadClient.getInstance().cancelDownload();
+            if (mIDownload != null) {
+                mIDownload.cancelDownload();
+            }
         }
     }
-
-    /*UI 通知刷新*/
-    private IDownloadListener mDownloadListener = new IDownloadListener() {
-        @Override
-        public void onStart() {
-
-        }
-
-        @Override
-        public void onUpdate() {
-
-        }
-
-        @Override
-        public void onSuccess() {
-
-        }
-
-        @Override
-        public void onFail() {
-
-        }
-
-        @Override
-        public void onCancel() {
-
-        }
-    };
 }

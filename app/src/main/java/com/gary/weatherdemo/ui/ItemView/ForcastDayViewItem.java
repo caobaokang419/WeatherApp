@@ -16,7 +16,7 @@ import com.gary.weatherdemo.viewmodel.ForecastDayViewModel;
 public class ForcastDayViewItem implements IViewItem<DayForecastBean> {
     private WeatherForecastDayBinding mDataBinding;
 
-    public static ForcastDayViewItem getViewItem() {
+    public static ForcastDayViewItem createViewItem() {
         return new ForcastDayViewItem();
     }
 

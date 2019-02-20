@@ -43,8 +43,8 @@ public class ReflectUtil {
      * @param method_name 对象方法
      * @return
      */
-    public static void invokeNoStaticMethod(Object instance, String method_name) {
-        invokeNoStaticMethod(instance, method_name, null);
+    public static void invokeInstanceMethod(Object instance, String method_name) {
+        invokeInstanceMethod(instance, method_name, null);
     }
 
     /**
@@ -55,7 +55,7 @@ public class ReflectUtil {
      * @param parameters  方法参数
      * @return
      */
-    public static void invokeNoStaticMethod(Object instance, String method_name, Object[] parameters) {
+    public static void invokeInstanceMethod(Object instance, String method_name, Object[] parameters) {
         try {
             Method getMethod = instance.getClass().getDeclaredMethod(method_name);
             getMethod.invoke(instance, parameters);

@@ -24,7 +24,7 @@ public class CityWeatherRecyclerAdapter extends RecyclerView.Adapter<BaseItemVie
 
     @Override
     public BaseItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return ItemViewHolderFactory.getViewHolderByType(parent, viewType);
+        return ItemViewHolderFactory.createViewHolderByType(parent, viewType);
     }
 
     @Override

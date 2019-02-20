@@ -33,9 +33,6 @@
             android:theme="@style/AppTheme"></activity>
 
         <!--弃用-->
-        <activity
-            android:name=".ui.activity.WtMainActivity2"
-            android:theme="@style/AppTheme"></activity>
 
         <activity
             android:name=".ui.activity.WtSettingActivity"
@@ -47,8 +44,7 @@
 
         <activity
             android:name=".ui.activity.WtDownloadActivity"
-            android:theme="@style/AppTheme">
-        </activity>
+            android:theme="@style/AppTheme"></activity>
 
         <activity
             android:name=".permission.WtPermissionActivity"
@@ -92,9 +88,14 @@
             android:exported="true" />
 
         <service
-            android:name=".service.DownloadService"
+            android:name=".download.DownloadService"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.gary.weather.action.DOWNLOAD_SERVICE" />
+            </intent-filter>
+        </service>
+
 
         <!-- broadcast receiver -->
         <receiver

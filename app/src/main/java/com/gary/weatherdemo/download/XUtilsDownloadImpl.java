@@ -16,12 +16,12 @@ import java.io.File;
  * Created by GaryCao on 2019/01/12.
  */
 public class XUtilsDownloadImpl implements IDownload {
-    private IDownloadListener mDownloadListener;
+    private IDownloadCallback mDownloadListener;
     private Callback.Cancelable mCancelable;
 
     @Override
-    public void startDownload(String url, IDownloadListener iDownloadListener) {
-        mDownloadListener = iDownloadListener;
+    public void startDownload(String url, IDownloadCallback iDownloadCallback) {
+        mDownloadListener = iDownloadCallback;
         String fileName = XutilsFileUtil.getFileNameByUrl(url);
         String filePath = Environment.getExternalStorageDirectory() + ApiContants.AMAP_CITY_CONFIG_DIRECTIONARY + fileName;
         RequestParams params = new RequestParams(url);

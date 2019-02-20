@@ -13,9 +13,10 @@ import androidx.work.WorkManager;
 /**
  * Created by GaryCao on 2018/11/04.
  */
-public class WorkerManagerImpl implements IWorkerManager {
-    @Override
-    public void loadAdrAdcodeConfig() {
+public class WtWorkerManager {
+    private static final String TAG = WtWorkerManager.class.getSimpleName();
+
+    public static void loadAdrAdcodeConfig() {
         // 单次任务：OneTimeWorkRequest
         OneTimeWorkRequest.Builder loadConfigRequestBuilder =
                 new OneTimeWorkRequest.Builder(CityConfigLoaderWorker.class);
@@ -24,8 +25,7 @@ public class WorkerManagerImpl implements IWorkerManager {
         WorkManager.getInstance().enqueue(loadConfigWorkRequest);
     }
 
-    @Override
-    public void periodicQueryWeather() {
+    public static void startPeriodicWeatherUpdate(){
         // 设置任务约束
         Constraints constraints = new Constraints.Builder()
                 .setRequiresDeviceIdle(true)

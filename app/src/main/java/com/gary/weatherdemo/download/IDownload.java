@@ -5,7 +5,7 @@ package com.gary.weatherdemo.download;
  */
 public interface IDownload {
     /**启动下载*/
-    void startDownload(String url, IDownloadListener iDownloadListener);
+    void startDownload(String url, IDownloadCallback iDownloadCallback);
 
     /**暂停下载*/
     void pauseDownload();

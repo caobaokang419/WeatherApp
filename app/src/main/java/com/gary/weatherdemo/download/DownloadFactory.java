@@ -7,7 +7,7 @@ public class DownloadFactory {
     public static int TYPE_DOWNLOAD_XUTILS = 0x01;
     public static int TYPE_DOWNLOAD_ORIGIN = 0x02;
 
-    /*静态工厂*/
+    /*GoF23 静态工厂方法*/
     public static IDownload createDownloadImpl(){
         return createDownloadImpl(TYPE_DOWNLOAD_XUTILS);
     }

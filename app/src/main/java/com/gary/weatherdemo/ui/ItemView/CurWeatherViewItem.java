@@ -16,7 +16,7 @@ import com.gary.weatherdemo.viewmodel.CurWeatherViewModel;
 public class CurWeatherViewItem implements IViewItem<LiveWeatherBean> {
     private CurWeatherBinding mDataBinding;
 
-    public static CurWeatherViewItem getViewItem() {
+    public static CurWeatherViewItem createViewItem() {
         return new CurWeatherViewItem();
     }
 

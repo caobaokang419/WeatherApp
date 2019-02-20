@@ -5,7 +5,7 @@ package com.gary.weatherdemo.download;
  */
 public class OriDownloadImpl implements IDownload{
     @Override
-    public void startDownload(String url, IDownloadListener iDownloadListener) {
+    public void startDownload(String url, IDownloadCallback iDownloadCallback) {
     }
 
     @Override
