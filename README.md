@@ -6,19 +6,25 @@
 -------
 ### 功能点实现说明：
 - [高德天气查询](https://lbs.amap.com/api/webservice/guide/api/weatherinfo/)：Get&Post方式可以正常返回查询高德天气数据并UI显示；
-- 公共控件封装：自定义实现公共控件CommonUI，用于控件复用；
-- 公共数据接口：借助ContentProvider，提供天气数据（DB方式）& 配置属性（SharedPreference方式）的数据访问API，供第三方应用访问使用；
 - 配置文件下载：借助Xutils3，下载并存储[高德天气城市配置文件](http://a.amap.com/lbs/static/file/AMap_adcode_citycode.xlsx.zip)，并需先动态申请存储权限；
 - 配置文件解析：解析存储本地存储高德adcode和城市信息对照表，用于本地天气动态查询api调用；
+- 应用权限申请：sdk23后，需动态申请应用权限，实现封装权限动态申请机制；
+- 国内消息推送：集成Umeng推送平台，海外移至使用[Cloud Message(云消息)](https://firebase.google.com/docs/remote-config/?hl=zh-CN)
+- 云端配置方案：国内TBD，海外移至使用[Remote Config(远程配置)](https://firebase.google.com/docs/cloud-messaging/?hl=zh-CN)
+- 公共数据接口：借助ContentProvider，提供天气数据（DB方式）& 配置属性（SharedPreference方式）的数据访问API，供第三方应用访问使用；
+- [数据缓存功能](http://www.androiddocs.com/samples/DisplayingBitmaps/src/com.example.android.displayingbitmaps/util/DiskLruCache.html)：封装DiskLruCache，实现磁盘缓存网络下载的图片&文本&Json及其他格式数据。--Xutils框架已有功能解析；
+- [线程管理功能](https://www.jianshu.com/p/4d4634c92253)：封装ThreadPoolExecutor，线程池管理实现。--Xutils框架已有功能解析；
+- 异步任务方案：AsyncTask HandlerThread WorkManager不同方式，实现异步任务需求；
+
+
+-------
+### UI框架和组件实现说明：
 - 左右滑动实现：ViewPager实现左右页面滑动切换；
 - 下拉上拉刷新：下拉界面，实现天气自动更新；上拉界面，查询显示更多天气相关信息；
 - 天气设置功能：PreferenceActivity+PreferenceFragment，替代单独使用PreferenceActivity，实现天气设置界面；
 - 天气城市查询：输入城市自动匹配，用于城市天气查询；
-- 应用权限申请：sdk23后，需动态申请应用权限，实现封装权限动态申请机制；
-- 国内消息推送：集成Umeng推送平台；
-- [数据缓存功能](http://www.androiddocs.com/samples/DisplayingBitmaps/src/com.example.android.displayingbitmaps/util/DiskLruCache.html)：封装DiskLruCache，实现磁盘缓存网络下载的图片&文本&Json及其他格式数据，改善用户体验和性能；
-- [线程管理功能](https://www.jianshu.com/p/4d4634c92253)：封装ThreadPoolExecutor，并发处理耗时请求，改善性能体验；
-- [RecyclerView封装](https://www.jianshu.com/p/4f9591291365)：Android推荐控件，优于ListView，处理不同类型的ItemView封装使用；
+- 公共控件封装：自定义实现公共控件CommonUI，用于控件应用内复用；
+- [RecyclerView封装](https://www.jianshu.com/p/4f9591291365)：Android推荐控件，优于ListView，统一实现封装不同类型的ItemView；
 
 -------
 ### MVVM框架和组件实现：
@@ -44,16 +50,7 @@
 - [ThreadPoolExecutor 使用教程](https://www.jianshu.com/p/4d4634c92253)：带缓冲和优先级的线程池管理方案，参照xUtils源码框架已提供的ThreadPoolExecutor解决方案；
 - [AdMob 使用教程](https://developers.google.com/admob/android/quick-start?hl=zh-CN#import_the_mobile_ads_sdk)：Google提供，实现Google广告载入--国内不集成，移至：[FirebaseApp](https://github.com/caobaokang419/FirebaseApp)
 - [Firebase 使用教程](https://developers.google.com/firebase/docs/android/setup?hl=zh-CN)：Google提供，移动应用后台服务端管理--国内不集成，移至：[FirebaseApp](https://github.com/caobaokang419/FirebaseApp)
-
-
--------
-### 移动应用扩展功能：
 - [EventBus 消息总线](https://www.jianshu.com/p/7ce7b02988a4)：针对Android优化的发布/订阅事件总线，取代Intent,Handler,BroadCast等消息传递机制；
-- 异步任务方案：FIFO LIFO AsyncTask HandlerThread WorkManager不同方式，实现异步任务需求；
-- 应用常驻&应用保活方案：--TBD
-- 插件式开发解决方案：odex插件式加载实现--TBD
-- 服务器消息推送方案：国内暂集成友盟Push平台，海外移至使用[Cloud Message(云消息)](https://firebase.google.com/docs/remote-config/?hl=zh-CN)
-- 云配置方案：国内TBD，海外移至使用[Remote Config(远程配置)](https://firebase.google.com/docs/cloud-messaging/?hl=zh-CN)
 
 
 -------
