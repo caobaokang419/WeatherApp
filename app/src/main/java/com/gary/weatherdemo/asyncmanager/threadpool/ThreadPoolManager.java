@@ -36,6 +36,7 @@ public class ThreadPoolManager {
 
     /**
      * 线程池代理类
+     * GoF23 设计模式 4：代理模式：新增一个代理类替封装对原对象的访问
      */
     public static class ThreadPoolProxy {
         /**

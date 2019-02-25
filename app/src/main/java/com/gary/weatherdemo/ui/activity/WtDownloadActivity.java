@@ -66,7 +66,6 @@ public class WtDownloadActivity extends BaseActivity {
         super.onDestroy();
     }
 
-    /*GoF23 观察者模式: UI 通知刷新*/
     private IDownloadCallback mDownloadCallback = new IDownloadCallback() {
         @Override
         public void onStart() {

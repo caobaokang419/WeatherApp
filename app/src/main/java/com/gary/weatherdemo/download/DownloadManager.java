@@ -15,7 +15,7 @@ import com.gary.weatherdemo.utils.CLog;
 public class DownloadManager {
     private final String TAG = "DownloadManager";
 
-    /*GoF23 设计原则2：迪米特法则（最少知道原则）（Demeter Principle）：method&field 尽量private*/
+    /*GoF23 设计模式原则2：迪米特法则（最少知道原则）（Demeter Principle）*/
     private static DownloadManager mInstance;
     private Context mContext;
     private boolean mIsBinded;
@@ -78,7 +78,7 @@ public class DownloadManager {
         }
     }
 
-    /*GoF23 单例模式*/
+    /*GoF23 设计模式 2：单例模式*/
     public static DownloadManager getInstance(Context context) {
         if (mInstance == null) {
             synchronized (DownloadManager.class) {

@@ -26,7 +26,7 @@ public class RetrofitManager {
     }
 
     private void initRetrofit() {
-        /*GoF23 Builder模式*/
+        /*GoF23 设计模式 3：Builder模式*/
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(ApiContants.AMAP_BASE_URL)//设置服务器路径
                 .client(mOkHttpClient)//设置使用okhttp网络请求
