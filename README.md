@@ -13,7 +13,7 @@
 - 云端配置方案：国内TBD，海外移至使用[Remote Config(远程配置)](https://firebase.google.com/docs/cloud-messaging/?hl=zh-CN)
 - 公共数据接口：借助ContentProvider，提供天气数据（DB方式）& 配置属性（SharedPreference方式）的数据访问API，供第三方应用访问使用；
 - [数据缓存功能](http://www.androiddocs.com/samples/DisplayingBitmaps/src/com.example.android.displayingbitmaps/util/DiskLruCache.html)：封装DiskLruCache，实现磁盘缓存网络下载的图片&文本&Json及其他格式数据。--Xutils框架功能解析；
-- [线程管理功能](https://www.jianshu.com/p/4d4634c92253)：封装ThreadPoolExecutor，线程池管理实现。--Xutils框架功能解析；
+- [任务管理功能](https://www.jianshu.com/p/4d4634c92253)：封装ThreadPoolExecutor，实现TaskExecutor机制。--Xutils框架功能解析；
 - 异步任务方案：AsyncTask HandlerThread WorkManager不同方式，实现异步任务需求；
 
 
