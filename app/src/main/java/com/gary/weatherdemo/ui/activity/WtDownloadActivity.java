@@ -8,13 +8,14 @@ import com.gary.weatherdemo.R;
 import com.gary.weatherdemo.download.DownloadManager;
 import com.gary.weatherdemo.download.IDownloadCallback;
 import com.gary.weatherdemo.network.ApiContants;
+import com.gary.weatherdemo.permission.WtPermissionActivity;
 import com.gary.weatherdemo.utils.CLog;
 
 /**
  * Created by GaryCao on 2019/01/13.
  * 高德城市配置表文件下載管理
  */
-public class WtDownloadActivity extends BaseActivity {
+public class WtDownloadActivity extends BaseActivity implements WtPermissionActivity.IPermitRequestCallback {
     private ActionBar mActionBar;
 
     @Override
@@ -22,6 +23,29 @@ public class WtDownloadActivity extends BaseActivity {
         //super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_download);
         initView();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        WtPermissionActivity.addListener(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        WtPermissionActivity.addListener(this);
+    }
+
+
+    @Override
+    public void onPermitRequestedSuccess() {
+        CLog.d("WtDownloadActivity","onClickedLeftBtn()");
+    }
+
+    @Override
+    public void onPermitRequestedFail() {
+        CLog.d("WtDownloadActivity","onClickedLeftBtn()");
     }
 
     private void initView() {

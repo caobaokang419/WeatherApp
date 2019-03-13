@@ -11,6 +11,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.PermissionChecker;
 import android.support.v7.app.AppCompatActivity;
 
+import com.gary.weatherdemo.download.IDownloadCallback;
 import com.gary.weatherdemo.utils.CLog;
 
 import java.util.ArrayList;
@@ -30,6 +31,8 @@ public class WtPermissionActivity extends AppCompatActivity {
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.READ_EXTERNAL_STORAGE,
     };
+
+    private static List<IPermitRequestCallback> mCallbacks = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,8 +77,15 @@ public class WtPermissionActivity extends AppCompatActivity {
         if (requestCode == REQUEST_CODE_PERMISSION) {
             if (checkPermissionsGrantResult(grantResults)) {
                 CLog.d("onRequestPermissionsResult success");
+                for (IPermitRequestCallback callback : mCallbacks) {
+                    callback.onPermitRequestedSuccess();
+                }
+            } else {
+                CLog.d("onRequestPermissionsResult fail");
+                for (IPermitRequestCallback callback : mCallbacks) {
+                    callback.onPermitRequestedFail();
+                }
             }
-
             finish();
         }
     }
@@ -129,6 +139,23 @@ public class WtPermissionActivity extends AppCompatActivity {
             }
         }
         return true;
+    }
+
+    /*GoF23 设计模式 6：观察者模式: 订阅&通知UI刷新*/
+    public static void addListener(IPermitRequestCallback callback){
+        mCallbacks.add(callback);
+    }
+
+    public static void removeListener(IPermitRequestCallback callback){
+        mCallbacks.remove(callback);
+    }
+
+    public interface IPermitRequestCallback {
+        /**授权成功*/
+        void onPermitRequestedSuccess();
+
+        /**授权失败*/
+        void onPermitRequestedFail();
     }
 
     //===================================================================================================

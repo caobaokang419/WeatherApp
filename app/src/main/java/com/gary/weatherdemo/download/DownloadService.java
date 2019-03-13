@@ -10,7 +10,7 @@ import android.os.IBinder;
  */
 public class DownloadService extends Service {
     private DownloadBinder mBinder = new DownloadBinder();
-    private static IDownload mIDownload;
+    private IDownload mIDownload;
 
     public DownloadService() {
     }
@@ -22,7 +22,7 @@ public class DownloadService extends Service {
     }
 
     private void init() {
-        /*GoF23 设计原则3：依赖倒转原则（Dependence Inversion Principle）：针对interface编程*/
+        /*GoF23 设计原则3：依赖倒转原则（Dependence Inversion Principle）：针对interface编程，不针对对象编程*/
         mIDownload = DownloadFactory.createDownloadImpl();
     }
 

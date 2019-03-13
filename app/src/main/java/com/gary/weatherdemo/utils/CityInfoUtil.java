@@ -1,6 +1,6 @@
 package com.gary.weatherdemo.utils;
 
-import com.gary.weatherdemo.base.WtApplication;
+import com.gary.weatherdemo.WtApplication;
 import com.gary.weatherdemo.model.CityBean;
 
 import java.io.BufferedReader;

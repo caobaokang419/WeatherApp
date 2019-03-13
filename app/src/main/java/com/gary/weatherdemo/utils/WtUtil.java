@@ -6,7 +6,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.widget.Toast;
 
-import com.gary.weatherdemo.base.WtApplication;
+import com.gary.weatherdemo.WtApplication;
 
 public class WtUtil {
     public static void showToast(String msg) {

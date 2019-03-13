@@ -6,7 +6,7 @@ import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.gary.weatherdemo.R;
-import com.gary.weatherdemo.base.Constants;
+import com.gary.weatherdemo.constant.Constants;
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.message.IUmengRegisterCallback;
 import com.umeng.message.PushAgent;

@@ -1,6 +1,10 @@
 package com.gary.weatherdemo.workmanager;
 
-import com.gary.weatherdemo.base.Constants;
+import android.support.annotation.NonNull;
+
+import com.gary.weatherdemo.constant.Constants;
+import com.gary.weatherdemo.utils.CLog;
+import com.gary.weatherdemo.utils.CityInfoUtil;
 import com.gary.weatherdemo.utils.SpConfigsUtil;
 
 import java.util.concurrent.TimeUnit;
@@ -9,6 +13,7 @@ import androidx.work.Constraints;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
+import androidx.work.Worker;
 
 /**
  * Created by GaryCao on 2018/11/04.
@@ -25,7 +30,7 @@ public class WtWorkerManager {
         WorkManager.getInstance().enqueue(loadConfigWorkRequest);
     }
 
-    public static void startPeriodicWeatherUpdate(){
+    public static void startPeriodicWeatherUpdate() {
         // 设置任务约束
         Constraints constraints = new Constraints.Builder()
                 .setRequiresDeviceIdle(true)
@@ -46,5 +51,26 @@ public class WtWorkerManager {
 
         PeriodicWorkRequest timerWorkRequest = timerQueryRequestBuilder.build();
         WorkManager.getInstance().enqueue(timerWorkRequest);
+    }
+
+    /*package 可见*/
+    class PeriodicUpdateWorker extends Worker {
+        @NonNull
+        @Override
+        public Result doWork() {
+            CLog.d(TAG, "doWork()");
+            return Result.SUCCESS;
+        }
+    }
+
+    /*package 可见*/
+    class CityConfigLoaderWorker extends Worker {
+        @NonNull
+        @Override
+        public Result doWork() {
+            CLog.d(TAG, "doWork()");
+            CityInfoUtil.getInstance().loadCityConfig();
+            return Result.SUCCESS;
+        }
     }
 }

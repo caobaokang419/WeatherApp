@@ -4,13 +4,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import com.gary.weatherdemo.model.base.BaseItemBean;
-import com.gary.weatherdemo.ui.viewholder.BaseItemViewHolder;
+import com.gary.weatherdemo.ui.viewholder.ItemViewHolder;
 import com.gary.weatherdemo.ui.viewholder.ItemViewHolderFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CityWeatherRecyclerAdapter extends RecyclerView.Adapter<BaseItemViewHolder> {
+public class CityWeatherRecyclerAdapter extends RecyclerView.Adapter<ItemViewHolder> {
     private List<BaseItemBean> mItemDatas = new ArrayList<>();
 
     public CityWeatherRecyclerAdapter() {
@@ -23,12 +23,12 @@ public class CityWeatherRecyclerAdapter extends RecyclerView.Adapter<BaseItemVie
     }
 
     @Override
-    public BaseItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return ItemViewHolderFactory.createViewHolderByType(parent, viewType);
     }
 
     @Override
-    public void onBindViewHolder(BaseItemViewHolder holder, int position) {
+    public void onBindViewHolder(ItemViewHolder holder, int position) {
         holder.getIViewItem().bindView(mItemDatas.get(position));
     }
 

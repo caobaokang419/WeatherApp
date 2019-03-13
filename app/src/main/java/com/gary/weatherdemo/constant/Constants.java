@@ -1,4 +1,4 @@
-package com.gary.weatherdemo.base;
+package com.gary.weatherdemo.constant;
 
 public class Constants {
     // work manager types

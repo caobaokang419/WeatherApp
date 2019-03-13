@@ -14,8 +14,6 @@ import com.gary.weatherdemo.utils.CLog;
  */
 public class DownloadManager {
     private final String TAG = "DownloadManager";
-
-    /*GoF23 设计模式原则2：迪米特法则（最少知道原则）（Demeter Principle）*/
     private static DownloadManager mInstance;
     private Context mContext;
     private boolean mIsBinded;

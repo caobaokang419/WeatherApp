@@ -5,8 +5,7 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
-import com.gary.weatherdemo.base.WtApplication;
-import com.gary.weatherdemo.network.WeatherRequestClient;
+import com.gary.weatherdemo.WtApplication;
 import com.gary.weatherdemo.room.city.CityInfoDAO;
 import com.gary.weatherdemo.room.city.CityInfoEntity;
 import com.gary.weatherdemo.room.weather.CityForecastDAO;

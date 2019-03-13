@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 
-import com.gary.weatherdemo.base.WtApplication;
+import com.gary.weatherdemo.WtApplication;
 
 /**
  * Created by GaryCao on 2018/10/25.

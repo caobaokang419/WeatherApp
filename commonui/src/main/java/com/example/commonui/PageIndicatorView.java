@@ -93,9 +93,7 @@ public class PageIndicatorView extends LinearLayout {
     }
 
     public void registerPageChangeListener(ViewPager viewPager) {
-        /*GoF23 设计模式 6：观察者模式: 订阅&通知UI刷新*/
         viewPager.addOnPageChangeListener(mPageChangeListener);
-
         updatePageCount(viewPager.getAdapter().getCount());
     }
 }

@@ -1,4 +1,4 @@
-package com.gary.weatherdemo.base;
+package com.gary.weatherdemo;
 
 import android.app.Application;
 

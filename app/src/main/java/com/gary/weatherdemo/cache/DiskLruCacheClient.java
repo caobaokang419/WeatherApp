@@ -3,7 +3,7 @@ package com.gary.weatherdemo.cache;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 
-import com.gary.weatherdemo.base.WtApplication;
+import com.gary.weatherdemo.WtApplication;
 import com.gary.weatherdemo.cache.origin.CacheUtil;
 import com.gary.weatherdemo.cache.origin.DiskLruCache;
 import com.gary.weatherdemo.utils.ConvertUtil;
