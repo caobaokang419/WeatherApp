@@ -10,13 +10,16 @@ import com.gary.weatherdemo.ui.ItemView.IViewItem;
  */
 public class ItemViewHolder extends RecyclerView.ViewHolder {
     private IViewItem mIViewItem;
-    public ItemViewHolder(IViewItem viewItem , ViewGroup parent) {
-        /*GoF23 设计模式 8：策略模式：viewItem （策略模式的决定权在用户，由外部用户决定具体用哪个算法）*/
+
+    public ItemViewHolder(IViewItem viewItem, ViewGroup parent) {
+        /**
+         * GoF23 设计模式 8：策略模式：viewItem （策略模式的决定权在用户，由外部用户决定具体用哪个算法）
+         */
         super(viewItem.createView(parent));
         mIViewItem = viewItem;
     }
 
-    public IViewItem getIViewItem(){
+    public IViewItem getIViewItem() {
         return mIViewItem;
     }
 }

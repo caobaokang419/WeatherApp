@@ -42,7 +42,9 @@ public class WtMainActivity extends BaseActivity {
 
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
         mCityPagerAdapter = new CityPagerAdapter(this, mViewModel);
-        /*GoF23 设计模式 7：适配器模式*/
+        /**
+         * GoF23 设计模式 7：适配器模式
+         */
         mViewPager.setAdapter(mCityPagerAdapter);
         mViewModel.registerPageChangeListener(mViewPager);
 

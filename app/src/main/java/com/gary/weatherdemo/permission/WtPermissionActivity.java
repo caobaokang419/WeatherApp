@@ -141,20 +141,26 @@ public class WtPermissionActivity extends AppCompatActivity {
         return true;
     }
 
-    /*GoF23 设计模式 6：观察者模式: 订阅&通知UI刷新*/
-    public static void addListener(IPermitRequestCallback callback){
+    /**
+     * GoF23 设计模式 6：观察者模式: 订阅&通知UI刷新
+     */
+    public static void addListener(IPermitRequestCallback callback) {
         mCallbacks.add(callback);
     }
 
-    public static void removeListener(IPermitRequestCallback callback){
+    public static void removeListener(IPermitRequestCallback callback) {
         mCallbacks.remove(callback);
     }
 
     public interface IPermitRequestCallback {
-        /**授权成功*/
+        /**
+         * 授权成功
+         */
         void onPermitRequestedSuccess();
 
-        /**授权失败*/
+        /**
+         * 授权失败
+         */
         void onPermitRequestedFail();
     }
 

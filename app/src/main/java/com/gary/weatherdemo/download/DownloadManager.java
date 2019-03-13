@@ -29,7 +29,7 @@ public class DownloadManager {
         Intent intent = new Intent(mContext, DownloadService.class);
         intent.setAction("com.gary.weather.action.DOWNLOAD_SERVICE");
         if (mContext.bindService(intent, mConnection, Context.BIND_AUTO_CREATE)) {
-            CLog.d(TAG,"bind service success!");
+            CLog.d(TAG, "bind service success!");
         }
     }
 
@@ -76,7 +76,9 @@ public class DownloadManager {
         }
     }
 
-    /*GoF23 设计模式 2：单例模式*/
+    /**
+     * GoF23 设计模式 2：单例模式：延迟加载
+     */
     public static DownloadManager getInstance(Context context) {
         if (mInstance == null) {
             synchronized (DownloadManager.class) {
