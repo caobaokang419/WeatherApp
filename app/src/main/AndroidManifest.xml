@@ -29,7 +29,7 @@
 
         <!--弃用-->
         <activity
-            android:name=".ui.activity.WtMainActivity1"
+            android:name=".mvp.CityWeatherActivity"
             android:theme="@style/AppTheme"></activity>
 
         <!--弃用-->
