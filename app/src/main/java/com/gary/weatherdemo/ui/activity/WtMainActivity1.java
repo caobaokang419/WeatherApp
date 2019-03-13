@@ -22,9 +22,18 @@ public class WtMainActivity1 extends BaseActivity {
         initView();
     }
 
-    private void initView(){
+    private void initView() {
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
         mCityPagerAdapter = new CityFragmentPagerAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(mCityPagerAdapter);
+    }
+
+    @Override
+    protected void onActionBarLeftClicked() {
+    }
+
+    @Override
+    protected void onActionBarRightClicked() {
+
     }
 }

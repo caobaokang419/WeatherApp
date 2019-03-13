@@ -13,11 +13,11 @@ import com.gary.weatherdemo.viewmodel.ForecastDayViewModel;
 /**
  * Created by GaryCao on 2018/12/12.
  */
-public class ForcastDayViewItem implements IViewItem<DayForecastBean> {
+public class ForecastDayViewItem implements IViewItem<DayForecastBean> {
     private WeatherForecastDayBinding mDataBinding;
 
-    public static ForcastDayViewItem createViewItem() {
-        return new ForcastDayViewItem();
+    public static ForecastDayViewItem createViewItem() {
+        return new ForecastDayViewItem();
     }
 
     public View createView(ViewGroup parent) {

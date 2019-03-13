@@ -22,7 +22,6 @@ import com.gary.weatherdemo.viewmodel.MainActivityViewModel;
  */
 public class WtMainActivity extends BaseActivity {
     private MainActivityViewModel mViewModel;
-    private ActionBar mActionBar;
     private ViewPager mViewPager;
     private CityPagerAdapter mCityPagerAdapter;
     private PageIndicatorView mPageIndicatorView;
@@ -38,7 +37,7 @@ public class WtMainActivity extends BaseActivity {
         }*/
     }
 
-    private void initView(){
+    private void initView() {
         mViewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
 
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
@@ -50,27 +49,7 @@ public class WtMainActivity extends BaseActivity {
         mPageIndicatorView = findViewById(R.id.page_indicatior);
         mPageIndicatorView.registerPageChangeListener(mViewPager);
 
-        initActionBar();
         updateCityTitleView();
-    }
-
-    private void initActionBar() {
-        mActionBar = findViewById(R.id.action_bar);
-        mActionBar.setLeftOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CLog.d("onClickedLeftBtn()");
-                WtUtil.startActivity(getApplicationContext(), WtSearchActivity.class);
-            }
-        });
-
-        mActionBar.setRightOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CLog.d("onClickedRightBtn()");
-                WtUtil.startActivity(getApplicationContext(), WtSettingActivity.class);
-            }
-        });
     }
 
     @Override
@@ -79,6 +58,17 @@ public class WtMainActivity extends BaseActivity {
             mViewModel.loadCurCityInfo(new CityBean("深圳", "440300"));
         }
         super.onResume();
+    }
+
+
+    @Override
+    protected void onActionBarLeftClicked() {
+        WtUtil.startActivity(getApplicationContext(), WtSearchActivity.class);
+    }
+
+    @Override
+    protected void onActionBarRightClicked() {
+        WtUtil.startActivity(getApplicationContext(), WtSettingActivity.class);
     }
 
     private void updateCityTitleView() {

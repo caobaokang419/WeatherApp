@@ -16,6 +16,8 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by GaryCao on 2019/03/13.
  *
+ * GoF23 设计模式 9：模板方法模式
+ *
  */
 public abstract class TaskRunnable<Params, Result> implements Runnable {
     private final static String TAG = "Task";

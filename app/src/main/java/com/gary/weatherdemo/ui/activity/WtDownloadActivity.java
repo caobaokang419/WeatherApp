@@ -16,8 +16,6 @@ import com.gary.weatherdemo.utils.CLog;
  * 高德城市配置表文件下載管理
  */
 public class WtDownloadActivity extends BaseActivity implements WtPermissionActivity.IPermitRequestCallback {
-    private ActionBar mActionBar;
-
     @Override
     protected void onCreateNew(Bundle savedInstanceState) {
         //super.onCreate(savedInstanceState);
@@ -40,12 +38,12 @@ public class WtDownloadActivity extends BaseActivity implements WtPermissionActi
 
     @Override
     public void onPermitRequestedSuccess() {
-        CLog.d("WtDownloadActivity","onClickedLeftBtn()");
+        CLog.d("WtDownloadActivity", "onClickedLeftBtn()");
     }
 
     @Override
     public void onPermitRequestedFail() {
-        CLog.d("WtDownloadActivity","onClickedLeftBtn()");
+        CLog.d("WtDownloadActivity", "onClickedLeftBtn()");
     }
 
     private void initView() {
@@ -70,24 +68,21 @@ public class WtDownloadActivity extends BaseActivity implements WtPermissionActi
                 DownloadManager.getInstance(WtDownloadActivity.this).cancelDownload();
             }
         });
-
-        initActionBar();
-    }
-
-    private void initActionBar() {
-        mActionBar = findViewById(R.id.action_bar);
-        mActionBar.setLeftOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CLog.d("onClickedLeftBtn()");
-                finish();
-            }
-        });
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    @Override
+    protected void onActionBarLeftClicked() {
+        finish();
+    }
+
+    @Override
+    protected void onActionBarRightClicked() {
+
     }
 
     private IDownloadCallback mDownloadCallback = new IDownloadCallback() {

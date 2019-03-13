@@ -23,7 +23,6 @@ public class WtSearchActivity extends BaseActivity {
     private GridView mCityGridView;
     private EditText mCitySearchEditText;
     private ImageButton mCitySearchBtn;
-    private ActionBar mActionBar;
     private CitySearchGridAdapter mCitySearchGridAdapter;
 
     private final String[] mCityNames =
@@ -50,19 +49,17 @@ public class WtSearchActivity extends BaseActivity {
             }
         });
 
-        initActionBar();
         initGridView();
     }
 
-    private void initActionBar() {
-        mActionBar = findViewById(R.id.action_bar);
-        mActionBar.setLeftOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CLog.d("onClickedLeftBtn()");
-                finish();
-            }
-        });
+    @Override
+    protected void onActionBarLeftClicked() {
+        finish();
+    }
+
+    @Override
+    protected void onActionBarRightClicked() {
+
     }
 
     private void initGridView(){
