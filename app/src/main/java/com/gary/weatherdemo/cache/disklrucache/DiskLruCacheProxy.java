@@ -1,10 +1,10 @@
-package com.gary.weatherdemo.cache;
+package com.gary.weatherdemo.cache.disklrucache;
 
 import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
 
-import com.gary.weatherdemo.cache.origin.DiskLruCache;
+import com.gary.weatherdemo.cache.disklrucache.origin.DiskLruCache;
 import com.gary.weatherdemo.utils.WtUtil;
 
 import java.io.File;

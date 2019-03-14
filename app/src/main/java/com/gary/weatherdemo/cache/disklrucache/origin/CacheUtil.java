@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.gary.weatherdemo.cache.origin;
+package com.gary.weatherdemo.cache.disklrucache.origin;
 
 import com.gary.weatherdemo.utils.ConvertUtil;
 

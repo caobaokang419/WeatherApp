@@ -2,9 +2,9 @@ package com.gary.weatherdemo.workmanager;
 
 import android.support.annotation.NonNull;
 
+import com.gary.weatherdemo.cache.memorycache.CityCacheClient;
 import com.gary.weatherdemo.constant.Constants;
 import com.gary.weatherdemo.utils.CLog;
-import com.gary.weatherdemo.utils.CityInfoUtil;
 import com.gary.weatherdemo.utils.SpConfigsUtil;
 
 import java.util.concurrent.TimeUnit;
@@ -69,7 +69,7 @@ public class WtWorkerManager {
         @Override
         public Result doWork() {
             CLog.d(TAG, "doWork()");
-            CityInfoUtil.getInstance().loadCityConfig();
+            CityCacheClient.getInstance().loadCityConfigCache();
             return Result.SUCCESS;
         }
     }
