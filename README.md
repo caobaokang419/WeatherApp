@@ -1,4 +1,11 @@
 ### 基于MVVM框架的高德天气APP：
+
+-------
+### 开源说明：
+- 开源动机：HomeWork，利用非工作的私人时间，以这种方式敦促自己持续进行：工作地点&工作时间&工作内容以外的技术学习；
+- 开源背景：借助高德天气开放的API平台（作为后台），借助网络开放资源，化简为繁，探索主流的框架开发方式；
+- 项目分支：[WeatherDemo](https://github.com/wustcbk/WeatherDemo) 迁移至此，独立维护。
+
 -------
 ### Screenshots：
 ![](https://github.com/caobaokang419/WeatherApp/blob/master/screenshots/city_weather_screenshot.jpg)
