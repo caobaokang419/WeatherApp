@@ -7,6 +7,12 @@
 - 项目分支：[WeatherDemo](https://github.com/wustcbk/WeatherDemo) 迁移至此，独立维护。
 
 -------
+### 博客专栏：
+- [CSDN博客专栏1：Android mvvm框架的高德天气应用](https://blog.csdn.net/cbk861110/column/info/33307)
+- [CSDN博客专栏2：设计模式：从入门到精通（Android篇）](https://blog.csdn.net/cbk861110/column/info/33476)
+
+
+-------
 ### Screenshots：
 ![](https://github.com/caobaokang419/WeatherApp/blob/master/screenshots/city_weather_screenshot.jpg)
 
@@ -73,11 +79,6 @@
 ### Android推荐的应用程序的基础架构：
 
 ![Android 应用程序的基础架构](https://developer.android.google.cn/topic/libraries/architecture/images/final-architecture.png)
-
--------
-### 应用架构组件&设计模式 博客专栏：
-- [CSDN博客专栏1：Android mvvm框架的高德天气应用](https://blog.csdn.net/cbk861110/column/info/33307)
-- [CSDN博客专栏2：设计模式：从入门到精通（Android篇）](https://blog.csdn.net/cbk861110/column/info/33476)
 
 
 
