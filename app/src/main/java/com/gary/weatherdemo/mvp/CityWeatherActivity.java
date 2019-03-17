@@ -10,12 +10,12 @@ import com.gary.weatherdemo.ui.adapter.CityFragmentPagerAdapter;
 
 /**
  * Created by GaryCao on 2019/01/13.
- *
- *  MVP应用框架元素4：Activity or Fragment （仅用于MVVM框架对比&参考）
- *
- *  UI弃用: 左右滑动切换城市：ViewPager+FragmentPagerAdapter,不适合此场景（View一致，data不同，count动态）
+ * <p>
+ * MVP应用框架元素4：Activity or Fragment （仅用于MVVM框架对比&参考）
+ * <p>
+ * UI弃用: 左右滑动切换城市：ViewPager+FragmentPagerAdapter,不适合此场景（View一致，data不同，count动态）
  */
-public class CityWeatherActivity extends BaseActivity implements IView{
+public class CityWeatherActivity extends BaseActivity implements IView {
     private ViewPager mViewPager;
     private CityFragmentPagerAdapter mCityPagerAdapter;
     private IPresenter iPresenter;
@@ -57,6 +57,7 @@ public class CityWeatherActivity extends BaseActivity implements IView{
 
     @Override
     public void updateCityWeather() {
-
+        /**MVP特征1：View不直接访问Model，只访问Presenter*/
+        iPresenter.queryCityWeather(null);
     }
 }

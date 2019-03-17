@@ -4,18 +4,16 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
 
-import com.gary.weatherdemo.WtApplication;
 import com.gary.weatherdemo.model.CityBean;
 import com.gary.weatherdemo.utils.CLog;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by GaryCao on 2019/03/14.
- * 高德城市配置缓存实现，供UI直接获取，不再需要重复&频繁请求DB或assert文件数据
+ * 高德城市配置缓存实现
+ * 优点：统一提供，供不同UI直接获取，不再需要重复&频繁请求DB或assert文件城市配置信息数据
  */
 public class CityCacheClient {
     private static final String TAG = CityCacheClient.class.getSimpleName();
@@ -34,15 +32,13 @@ public class CityCacheClient {
     private static CityCacheClient mCityCacheClient;
 
     /**
-     * 缓存是否加载OK
-     */
-    private volatile boolean mCityCacheLoaded = false;
-
-    /**
      * 高德天气城市配置表缓存数组（1.首次读取assert配置文件获取 2.后续读取DB获取）
      */
-    private static List<CityBean> mCityBeans;
+    private List<CityBean> mCityBeans;
 
+    private CityCacheManager mCityCacheManager;
+
+    private List<ICityConfigCallback> mCityConfigCallbacks = new ArrayList<>();
 
     /**
      * 私有构造
@@ -50,6 +46,7 @@ public class CityCacheClient {
     private CityCacheClient() {
         initWorkHandlerThread();
         mCityBeans = new ArrayList<>();
+        mCityCacheManager = new CityCacheManager();
     }
 
     private void initWorkHandlerThread() {
@@ -59,47 +56,38 @@ public class CityCacheClient {
         mWorkHandler = new Handler(handlerThread.getLooper());
     }
 
+    /**
+     * 加载缓存
+     */
     public void loadCityConfigCache() {
-        /*praseFromAssets(Constants.AMAP_ADCODE_CONFIG_FILE_NAME);*/
+        /*mCityCacheManager.praseFromAssets(Constants.AMAP_ADCODE_CONFIG_FILE_NAME);*/
+
+        notifyCityConfigChanged();
     }
 
-    private boolean praseFromAssets(String fileName) {
-        try {
-            InputStreamReader inputReader = new InputStreamReader(
-                    WtApplication.getInstance().getResources().getAssets().open(fileName));
-            BufferedReader bufReader = new BufferedReader(inputReader);
-            String line = "";
-            mCityBeans.clear();
-            while ((line = bufReader.readLine()) != null) {
-                praseFileLineStr(line);
+    /**
+     * 通知UI数据变化：场景1：加载OK； 场景2：DB变化（TODO）
+     */
+    private void notifyCityConfigChanged() {
+        runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                for (ICityConfigCallback callback : mCityConfigCallbacks) {
+                    callback.onCityConfigChanged();
+                }
             }
-            mCityCacheLoaded = true;
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return false;
+        });
     }
 
-    private void praseFileLineStr(String lineStr) {
-        if (lineStr == null || lineStr.isEmpty()) {
-            return;
-        }
-
-        String[] strings = lineStr.split(":");
-        if (strings != null && strings.length == 2) {
-            mCityBeans.add(new CityBean(strings[0], strings[1]));
-            CLog.d("praseFileLineStr() " + strings[0] + ":" + strings[1]);
-        }
+    private void runOnUIThread(Runnable runnable) {
+        mUiHandler.post(runnable);
     }
-
 
     /**
      * 通过地区名称，返回匹配成功的数据
      */
     public String getAdcodeByAddrName(String addrName) {
-        if (!mCityCacheLoaded) {
+        if (!mCityCacheManager.isCityCacheLoaded()) {
             return null;
         }
 
@@ -115,6 +103,14 @@ public class CityCacheClient {
         }
 
         return null;
+    }
+
+    public void addCallbackListener(ICityConfigCallback callback) {
+        mCityConfigCallbacks.add(callback);
+    }
+
+    public void removeCallbackListener(ICityConfigCallback callback) {
+        mCityConfigCallbacks.remove(callback);
     }
 
     public static CityCacheClient getInstance() {

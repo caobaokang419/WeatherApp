@@ -27,9 +27,7 @@ import java.io.Writer;
  */
 public class CityWeatherPresenter implements IPresenter{
     private IView iView;
-
     public CityWeatherPresenter(){
-
     }
 
     @Override
@@ -44,6 +42,6 @@ public class CityWeatherPresenter implements IPresenter{
 
     @Override
     public void queryCityWeather(CityBean cityBean) {
-
+        CityWeatherModel.getInstance().getCityWeather(cityBean);
     }
 }
