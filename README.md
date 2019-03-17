@@ -10,7 +10,7 @@
 ### 博客专栏：
 - [CSDN博客专栏1：Android mvvm框架的高德天气应用](https://blog.csdn.net/cbk861110/column/info/33307)
 - [CSDN博客专栏2：设计模式：从入门到精通（Android篇）](https://blog.csdn.net/cbk861110/column/info/33476)
-- [CSDN博客专栏3：Firebase实战：入门到精通（Android篇））](https://blog.csdn.net/cbk861110/column/info/33806)
+- [CSDN博客专栏3：Firebase实战：入门到精通（Android篇）](https://blog.csdn.net/cbk861110/column/info/33806)
 
 
 -------
