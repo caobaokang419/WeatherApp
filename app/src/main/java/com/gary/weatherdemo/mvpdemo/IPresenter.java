@@ -1,4 +1,4 @@
-package com.gary.weatherdemo.mvp;
+package com.gary.weatherdemo.mvpdemo;
 
 import com.gary.weatherdemo.model.CityBean;
 

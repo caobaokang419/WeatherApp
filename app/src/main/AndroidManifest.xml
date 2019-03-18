@@ -23,29 +23,27 @@
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <!--弃用-->
+        <!-- 弃用 -->
         <activity
-            android:name=".mvp.CityWeatherActivity"
-            android:theme="@style/AppTheme"></activity>
+            android:name=".mvpdemo.MvpCityWeatherActivity"
+            android:theme="@style/AppTheme" />
 
-        <!--弃用-->
+        <!-- 弃用 -->
 
         <activity
             android:name=".ui.activity.WtSettingActivity"
-            android:theme="@style/AppTheme"></activity>
-
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".ui.activity.WtSearchActivity"
-            android:theme="@style/AppTheme"></activity>
-
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".ui.activity.WtDownloadActivity"
-            android:theme="@style/AppTheme"></activity>
-
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".permission.WtPermissionActivity"
             android:theme="@style/AppTheme">
@@ -86,7 +84,6 @@
             android:name=".service.ForegroundService"
             android:enabled="true"
             android:exported="true" />
-
         <service
             android:name=".download.DownloadService"
             android:enabled="true"
@@ -96,12 +93,13 @@
             </intent-filter>
         </service>
 
-
         <!-- broadcast receiver -->
         <receiver
             android:name=".reciever.WtReceiver"
             android:enabled="true"
             android:exported="true" />
+
+        <activity android:name=".mvcdemo.MvcDemoActivity"></activity>
     </application>
 
 </manifest>

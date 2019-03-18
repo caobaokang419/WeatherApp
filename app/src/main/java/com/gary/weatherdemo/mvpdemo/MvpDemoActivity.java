@@ -1,7 +1,6 @@
-package com.gary.weatherdemo.mvp;
+package com.gary.weatherdemo.mvpdemo;
 
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.gary.weatherdemo.R;
@@ -11,11 +10,13 @@ import com.gary.weatherdemo.ui.adapter.CityFragmentPagerAdapter;
 /**
  * Created by GaryCao on 2019/01/13.
  * <p>
- * MVP应用框架元素4：Activity or Fragment （仅用于MVVM框架对比&参考）
+ * MVP应用框架元素4：Activity or Fragment （仅用于MVVM|MVP|MVC框架对比&参考）
  * <p>
- * UI弃用: 左右滑动切换城市：ViewPager+FragmentPagerAdapter,不适合此场景（View一致，data不同，count动态）
+ * MVC:View可以直接访问MODEL
+ * MVP：相对于MVC的区别：View不可以直接访问MODEL，需要通过Presenter跳转。
+ * MVVM：相对于MVP的区别：不用应用实现Presenter->View的逻辑，LiveData机制自动实现。
  */
-public class CityWeatherActivity extends BaseActivity implements IView {
+public class MvpDemoActivity extends BaseActivity implements IView {
     private ViewPager mViewPager;
     private CityFragmentPagerAdapter mCityPagerAdapter;
     private IPresenter iPresenter;
@@ -25,7 +26,7 @@ public class CityWeatherActivity extends BaseActivity implements IView {
         //super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_main1);
         initView();
-        iPresenter = new CityWeatherPresenter();
+        iPresenter = new MvpDemoPresenter();
     }
 
     @Override

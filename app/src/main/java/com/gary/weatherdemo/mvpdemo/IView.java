@@ -1,4 +1,4 @@
-package com.gary.weatherdemo.mvp;
+package com.gary.weatherdemo.mvpdemo;
 
 /**
  * Created by GaryCao on 2019/03/13.
