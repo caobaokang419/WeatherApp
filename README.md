@@ -77,12 +77,12 @@
 
 
 -------
-### Android开发组件工具集：
+### Android推荐的开发组件工具集（Jetpack）：
 ![](https://github.com/caobaokang419/WeatherApp/blob/master/screenshots/Jetpack.png)
 
 
 -------
-### Android推荐的应用程序的基础架构：
+### Android推荐的应用程序的基础架构（Android Architecture Components）：
 
 ![Android 应用程序的基础架构](https://developer.android.google.cn/topic/libraries/architecture/images/final-architecture.png)
 
