@@ -27,7 +27,7 @@ android {
 
     flavorDimensions "all"
 
-    sourceSets { main { assets.srcDirs = ['src/assets', 'src/assets/'] } }
+    sourceSets { main { assets.srcDirs = ['src/assets', 'src/main/assets/'] } }
 }
 
 dependencies {

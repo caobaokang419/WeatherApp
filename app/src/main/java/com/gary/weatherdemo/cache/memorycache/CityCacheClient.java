@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
 
+import com.gary.weatherdemo.constant.Constants;
 import com.gary.weatherdemo.model.CityBean;
 import com.gary.weatherdemo.utils.CLog;
 
@@ -22,7 +23,7 @@ public class CityCacheClient {
     /**
      * process main-thread(UI thread) works
      */
-    public static Handler mUiHandler = new Handler(Looper.getMainLooper());
+    private static Handler mUiHandler = new Handler(Looper.getMainLooper());
 
     /**
      * process sub-thread works
@@ -34,18 +35,21 @@ public class CityCacheClient {
     /**
      * 高德天气城市配置表缓存数组（1.首次读取assert配置文件获取 2.后续读取DB获取）
      */
-    private List<CityBean> mCityBeans;
+    private List<CityBean> mCityBeans = new ArrayList<>();
 
     private CityCacheManager mCityCacheManager;
 
     private List<ICityConfigCallback> mCityConfigCallbacks = new ArrayList<>();
+
+    public interface ICityConfigCallback {
+        void onCityConfigChanged();
+    }
 
     /**
      * 私有构造
      */
     private CityCacheClient() {
         initWorkHandlerThread();
-        mCityBeans = new ArrayList<>();
         mCityCacheManager = new CityCacheManager();
     }
 
@@ -60,9 +64,13 @@ public class CityCacheClient {
      * 加载缓存
      */
     public void loadCityConfigCache() {
-        /*mCityCacheManager.praseFromAssets(Constants.AMAP_ADCODE_CONFIG_FILE_NAME);*/
-
-        notifyCityConfigChanged();
+        runOnWorkThread(new Runnable() {
+            @Override
+            public void run() {
+                mCityCacheManager.loadCityConfigFromAssets(Constants.AMAP_ADCODE_CONFIG_FILE_NAME);
+                notifyCityConfigChanged();
+            }
+        });
     }
 
     /**
@@ -79,8 +87,24 @@ public class CityCacheClient {
         });
     }
 
+    /**
+     * UI主线程
+     */
     private void runOnUIThread(Runnable runnable) {
         mUiHandler.post(runnable);
+    }
+
+    /**
+     * 工作子线程
+     */
+    private void runOnWorkThread(Runnable runnable) {
+        mWorkHandler.post(runnable);
+    }
+
+    public void refreshCacheData(List<CityBean> data) {
+        synchronized (mLock) {
+            mCityBeans = data;
+        }
     }
 
     /**

@@ -25,16 +25,27 @@ public class CityCacheManager {
 
     }
 
-    public boolean praseFromAssets(String fileName) {
+    public boolean loadCityConfigFromAssets(String fileName) {
         try {
             InputStreamReader inputReader = new InputStreamReader(
                     WtApplication.getInstance().getResources().getAssets().open(fileName));
             BufferedReader bufReader = new BufferedReader(inputReader);
-            String line = "";
 
+            List<CityBean> cityBeans = new ArrayList<>();
+            String line;
             while ((line = bufReader.readLine()) != null) {
-                praseFileLineStr(line);
+                if (line == null || line.isEmpty()) {
+                    continue;
+                }
+
+                String[] lineInfo = line.split(":");
+                if (lineInfo != null && lineInfo.length == 2) {
+                    cityBeans.add(new CityBean(lineInfo[0], lineInfo[1]));
+                    CLog.d(TAG, "loadCityConfigFromAssets() " + lineInfo[0] + ":" + lineInfo[1]);
+                }
             }
+
+            CityCacheClient.getInstance().refreshCacheData(cityBeans);
             mCityCacheLoaded = true;
             return true;
         } catch (Exception e) {
@@ -42,21 +53,6 @@ public class CityCacheManager {
         }
 
         return false;
-    }
-
-    private void praseFileLineStr(String lineStr) {
-        if (lineStr == null || lineStr.isEmpty()) {
-            return;
-        }
-
-        List<CityBean> cityBeans = new ArrayList<>();
-        cityBeans.clear();
-
-        String[] strings = lineStr.split(":");
-        if (strings != null && strings.length == 2) {
-            cityBeans.add(new CityBean(strings[0], strings[1]));
-            CLog.d("praseFileLineStr() " + strings[0] + ":" + strings[1]);
-        }
     }
 
     public boolean isCityCacheLoaded() {

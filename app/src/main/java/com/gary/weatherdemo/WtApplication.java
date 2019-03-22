@@ -2,6 +2,7 @@ package com.gary.weatherdemo;
 
 import android.app.Application;
 
+import com.gary.weatherdemo.cache.memorycache.CityCacheClient;
 import com.gary.weatherdemo.push.UmPushManager;
 import com.gary.weatherdemo.workmanager.WtWorkerManager;
 
@@ -26,10 +27,11 @@ public class WtApplication extends /*MultiDex*/Application {
         x.Ext.setDebug(true);
 
         /*load amap weather address-adcode infos*/
-        WtWorkerManager.loadAdrAdcodeConfig();
-
+        //WtWorkerManager.loadAdrAdcodeConfig();
         /*start periodic update current city weather*/
-        WtWorkerManager.startPeriodicWeatherUpdate();
+        //WtWorkerManager.startPeriodicWeatherUpdate();
+
+        CityCacheClient.getInstance().loadCityConfigCache();
 
         //umeng push register
         UmPushManager.register(this);

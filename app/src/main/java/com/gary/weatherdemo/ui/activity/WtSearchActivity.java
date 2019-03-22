@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 
 import com.example.commonui.ActionBar;
 import com.gary.weatherdemo.R;
+import com.gary.weatherdemo.constant.Constants;
 import com.gary.weatherdemo.model.CityBean;
 import com.gary.weatherdemo.ui.adapter.CitySearchGridAdapter;
 import com.gary.weatherdemo.utils.CLog;
@@ -25,16 +26,9 @@ public class WtSearchActivity extends BaseActivity {
     private ImageButton mCitySearchBtn;
     private CitySearchGridAdapter mCitySearchGridAdapter;
 
-    private final String[] mCityNames =
-            new String[]{"深圳", "西安", "合肥", "武汉", "巢湖", "北京", "上海", "广州", "成都", "南京", "杭州", "苏州"};
-    private final String[] mCityAdcode =
-            new String[]{"440300", "610100", "340100", "420100", "340181", "110000", "310000", "440100", "510100", "320100", "330100", "320500"};
-
     @Override
     protected void onCreateNew(@Nullable Bundle savedInstanceState) {
-        //super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_search);
-
         initView();
     }
 
@@ -64,13 +58,7 @@ public class WtSearchActivity extends BaseActivity {
 
     private void initGridView(){
         mCityGridView = findViewById(R.id.city_grid_view);
-
-        List<CityBean> cityBeanList = new ArrayList<>();
-        for (int i = 0; i < mCityNames.length; i++) {
-            CityBean CityBean = new CityBean(mCityNames[i], mCityAdcode[i]);
-            cityBeanList.add(CityBean);
-        }
-        mCitySearchGridAdapter = new CitySearchGridAdapter(this, cityBeanList);
+        mCitySearchGridAdapter = new CitySearchGridAdapter(this, Constants.COMMON_CITY_BEANS);
         mCityGridView.setAdapter(mCitySearchGridAdapter);
     }
 

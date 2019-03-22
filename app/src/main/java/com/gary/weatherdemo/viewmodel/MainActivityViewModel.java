@@ -6,6 +6,7 @@ import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
 
+import com.gary.weatherdemo.constant.Constants;
 import com.gary.weatherdemo.model.CityBean;
 import com.gary.weatherdemo.model.DayForecastBean;
 import com.gary.weatherdemo.model.base.BaseItemBean;
@@ -32,6 +33,16 @@ public class MainActivityViewModel extends AndroidViewModel {
     private final String[] mCityAdcode =
             new String[]{"440300", "610100", "340100", "420100"};
 
+    /*private final static List<CityBean> mCommonCityBeans = new ArrayList<>();
+    static {
+        mCommonCityBeans.add(new CityBean("深圳", "440300"));
+        mCommonCityBeans.add(new CityBean("西安", "610100"));
+        mCommonCityBeans.add(new CityBean("合肥", "340100"));
+        mCommonCityBeans.add(new CityBean("巢湖", "340181"));
+        mCommonCityBeans.add(new CityBean("武汉", "420100"));
+        mCommonCityBeans.add(new CityBean("北京", "340181"));
+    }*/
+
     private final Map<CityBean, CityWeatherRecyclerAdapter> mAdapterDatas = new HashMap<>();
     private MutableLiveData<CityBean> mCurCityBean = new MutableLiveData<>();
     private MutableLiveData<List<CityBean>> mCityBeans = new MutableLiveData<>();
@@ -43,14 +54,10 @@ public class MainActivityViewModel extends AndroidViewModel {
 
     public MainActivityViewModel(@NonNull Application application) {
         super(application);
-
-        List<CityBean> data = new ArrayList<>();
-        for (int i = 0; i < mCityNames.length; i++) {
-            CityBean cityBean = new CityBean(mCityNames[i], mCityAdcode[i]);
-            data.add(cityBean);
+        for (CityBean cityBean : Constants.COMMON_CITY_BEANS) {
             mAdapterDatas.put(cityBean, new CityWeatherRecyclerAdapter());
         }
-        mCityBeans.setValue(data);
+        mCityBeans.setValue(Constants.COMMON_CITY_BEANS);
     }
 
     /**
