@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/city_search_item_layout"
+    android:layout_width="match_parent"
+    android:layout_height="32dp"
+    android:background="@color/forecast_item_background"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/city_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="shenzhen"
+        android:textSize="16dp"/>
+</LinearLayout>

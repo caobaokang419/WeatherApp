@@ -1,7 +1,7 @@
 package com.gary.weatherdemo.cache.memorycache;
 
 import com.gary.weatherdemo.WtApplication;
-import com.gary.weatherdemo.model.CityBean;
+import com.gary.weatherdemo.bean.CityBean;
 import com.gary.weatherdemo.utils.CLog;
 
 import java.io.BufferedReader;

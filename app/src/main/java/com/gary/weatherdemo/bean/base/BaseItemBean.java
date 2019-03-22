@@ -1,4 +1,4 @@
-package com.gary.weatherdemo.model.base;
+package com.gary.weatherdemo.bean.base;
 
 /**
  * Created by GaryCao on 2018/12/12.

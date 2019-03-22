@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 import com.gary.weatherdemo.R;
 import com.gary.weatherdemo.databinding.CurWeatherBinding;
-import com.gary.weatherdemo.model.LiveWeatherBean;
+import com.gary.weatherdemo.bean.LiveWeatherBean;
 import com.gary.weatherdemo.viewmodel.CurWeatherViewModel;
 
 /**
@@ -16,10 +16,14 @@ import com.gary.weatherdemo.viewmodel.CurWeatherViewModel;
 public class CurWeatherViewItem implements IViewItem<LiveWeatherBean> {
     private CurWeatherBinding mDataBinding;
 
+    /**
+     * 静态工厂方法
+     */
     public static CurWeatherViewItem createViewItem() {
         return new CurWeatherViewItem();
     }
 
+    @Override
     public View createView(ViewGroup parent) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_cur_weather, parent, false);
@@ -28,6 +32,7 @@ public class CurWeatherViewItem implements IViewItem<LiveWeatherBean> {
         return itemView;
     }
 
+    @Override
     public void bindView(@NonNull LiveWeatherBean data) {
         //关联CurWeatherBinding对象 & 数据 CurWeatherViewModel(data)
         mDataBinding.setViewModel(new CurWeatherViewModel(data));

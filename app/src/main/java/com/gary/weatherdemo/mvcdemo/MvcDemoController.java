@@ -1,6 +1,6 @@
 package com.gary.weatherdemo.mvcdemo;
 
-import com.gary.weatherdemo.model.CityBean;
+import com.gary.weatherdemo.bean.CityBean;
 
 public class MvcDemoController implements IController {
     private IModel iModel;

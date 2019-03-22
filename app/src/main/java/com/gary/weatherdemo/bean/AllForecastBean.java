@@ -1,4 +1,4 @@
-package com.gary.weatherdemo.model;
+package com.gary.weatherdemo.bean;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

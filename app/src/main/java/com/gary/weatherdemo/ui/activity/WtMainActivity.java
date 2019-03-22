@@ -5,14 +5,11 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
-import android.view.View;
 
-import com.example.commonui.ActionBar;
 import com.example.commonui.PageIndicatorView;
 import com.gary.weatherdemo.R;
-import com.gary.weatherdemo.model.CityBean;
+import com.gary.weatherdemo.bean.CityBean;
 import com.gary.weatherdemo.ui.adapter.CityPagerAdapter;
-import com.gary.weatherdemo.utils.CLog;
 import com.gary.weatherdemo.utils.WtUtil;
 import com.gary.weatherdemo.viewmodel.MainActivityViewModel;
 

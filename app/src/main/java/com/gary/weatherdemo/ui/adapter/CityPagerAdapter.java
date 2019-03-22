@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.gary.weatherdemo.R;
-import com.gary.weatherdemo.model.CityBean;
+import com.gary.weatherdemo.bean.CityBean;
 import com.gary.weatherdemo.viewmodel.MainActivityViewModel;
 
 import java.util.HashMap;

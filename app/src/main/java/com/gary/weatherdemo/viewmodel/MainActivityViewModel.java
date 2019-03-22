@@ -7,13 +7,13 @@ import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
 
 import com.gary.weatherdemo.constant.Constants;
-import com.gary.weatherdemo.model.CityBean;
-import com.gary.weatherdemo.model.DayForecastBean;
-import com.gary.weatherdemo.model.base.BaseItemBean;
+import com.gary.weatherdemo.bean.CityBean;
+import com.gary.weatherdemo.bean.DayForecastBean;
+import com.gary.weatherdemo.bean.base.BaseItemBean;
 import com.gary.weatherdemo.network.WeatherRequestClient;
 import com.gary.weatherdemo.network.response.AllForecastResponseData;
 import com.gary.weatherdemo.network.response.LiveWeatherResponseData;
-import com.gary.weatherdemo.ui.adapter.CityWeatherRecyclerAdapter;
+import com.gary.weatherdemo.ui.adapter.CommonRecyclerAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,7 +43,7 @@ public class MainActivityViewModel extends AndroidViewModel {
         mCommonCityBeans.add(new CityBean("北京", "340181"));
     }*/
 
-    private final Map<CityBean, CityWeatherRecyclerAdapter> mAdapterDatas = new HashMap<>();
+    private final Map<CityBean, CommonRecyclerAdapter> mAdapterDatas = new HashMap<>();
     private MutableLiveData<CityBean> mCurCityBean = new MutableLiveData<>();
     private MutableLiveData<List<CityBean>> mCityBeans = new MutableLiveData<>();
     private Map<CityBean, List<BaseItemBean>> mCityWeatherDatas = new HashMap<>();
@@ -55,7 +55,7 @@ public class MainActivityViewModel extends AndroidViewModel {
     public MainActivityViewModel(@NonNull Application application) {
         super(application);
         for (CityBean cityBean : Constants.COMMON_CITY_BEANS) {
-            mAdapterDatas.put(cityBean, new CityWeatherRecyclerAdapter());
+            mAdapterDatas.put(cityBean, new CommonRecyclerAdapter());
         }
         mCityBeans.setValue(Constants.COMMON_CITY_BEANS);
     }
@@ -107,7 +107,7 @@ public class MainActivityViewModel extends AndroidViewModel {
                     public void accept(List<BaseItemBean> dataList) throws Exception {
                         /**实现UI订阅逻辑（AndroidSchedulers.mainThread）*/
                         mCityWeatherDatas.put(cityinfo, dataList);
-                        CityWeatherRecyclerAdapter adapter = getCityWeatherRecyclerAdapter(cityinfo);
+                        CommonRecyclerAdapter adapter = getCityWeatherRecyclerAdapter(cityinfo);
                         adapter.setAdapterData(dataList);
                     }
                 });
@@ -125,10 +125,10 @@ public class MainActivityViewModel extends AndroidViewModel {
         return mCityBeans.getValue();
     }
 
-    public CityWeatherRecyclerAdapter getCityWeatherRecyclerAdapter(CityBean cityinfo) {
-        CityWeatherRecyclerAdapter adapter = mAdapterDatas.get(cityinfo);
+    public CommonRecyclerAdapter getCityWeatherRecyclerAdapter(CityBean cityinfo) {
+        CommonRecyclerAdapter adapter = mAdapterDatas.get(cityinfo);
         if (adapter == null) {
-            mAdapterDatas.put(cityinfo, new CityWeatherRecyclerAdapter());
+            mAdapterDatas.put(cityinfo, new CommonRecyclerAdapter());
         }
 
         return mAdapterDatas.get(cityinfo);

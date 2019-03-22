@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.gary.weatherdemo.model.base.BaseItemBean;
+import com.gary.weatherdemo.bean.base.BaseItemBean;
 
 
 /**

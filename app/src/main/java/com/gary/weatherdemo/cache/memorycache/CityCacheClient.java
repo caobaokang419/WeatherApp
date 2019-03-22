@@ -5,7 +5,7 @@ import android.os.HandlerThread;
 import android.os.Looper;
 
 import com.gary.weatherdemo.constant.Constants;
-import com.gary.weatherdemo.model.CityBean;
+import com.gary.weatherdemo.bean.CityBean;
 import com.gary.weatherdemo.utils.CLog;
 
 import java.util.ArrayList;

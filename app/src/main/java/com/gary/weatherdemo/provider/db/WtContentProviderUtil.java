@@ -16,11 +16,22 @@ public class WtContentProviderUtil {
     public WtContentProviderUtil(Context context) {
     }
 
-    public static synchronized WtContentProviderUtil getInstant(Context context) {
+    public static WtContentProviderUtil getInstant(Context context) {
+        if (mInstant == null) {
+            /*双重检查加锁，减少使用同步*/
+            synchronized(WtContentProviderUtil.class){
+                if (mInstant == null) {
+                    mInstant = new WtContentProviderUtil(context);
+                }
+            }
+        }
+        return mInstant;
+    }
+
+    /*public synchronized static WtContentProviderUtil getInstant(Context context) {
         if (mInstant == null) {
             mInstant = new WtContentProviderUtil(context);
         }
-
         return mInstant;
-    }
+    }*/
 }

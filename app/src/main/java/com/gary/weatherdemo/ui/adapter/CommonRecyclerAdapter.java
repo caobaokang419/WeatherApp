@@ -3,17 +3,17 @@ package com.gary.weatherdemo.ui.adapter;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
-import com.gary.weatherdemo.model.base.BaseItemBean;
+import com.gary.weatherdemo.bean.base.BaseItemBean;
 import com.gary.weatherdemo.ui.viewholder.ItemViewHolder;
 import com.gary.weatherdemo.ui.viewholder.ItemViewHolderFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CityWeatherRecyclerAdapter extends RecyclerView.Adapter<ItemViewHolder> {
+public class CommonRecyclerAdapter extends RecyclerView.Adapter<ItemViewHolder> {
     private List<BaseItemBean> mItemDatas = new ArrayList<>();
 
-    public CityWeatherRecyclerAdapter() {
+    public CommonRecyclerAdapter() {
     }
 
     public void setAdapterData(List<BaseItemBean> datas) {

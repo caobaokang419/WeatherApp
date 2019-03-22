@@ -1,7 +1,7 @@
-package com.gary.weatherdemo.model;
+package com.gary.weatherdemo.bean;
 
-import com.gary.weatherdemo.model.base.BaseItemBean;
-import com.gary.weatherdemo.model.base.ItemViewType;
+import com.gary.weatherdemo.bean.base.BaseItemBean;
+import com.gary.weatherdemo.bean.base.ItemViewType;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -46,7 +46,7 @@ public class LiveWeatherBean extends BaseItemBean {
     public final String reporttime = null;
 
     LiveWeatherBean(){
-        super(ItemViewType.RV_CURRENT_WEATHER);
+        super(ItemViewType.RV_CURRENT_WEATHER_ITEM_TYPE);
     }
 
     @Override

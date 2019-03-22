@@ -7,15 +7,9 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
 
-import com.example.commonui.ActionBar;
 import com.gary.weatherdemo.R;
 import com.gary.weatherdemo.constant.Constants;
-import com.gary.weatherdemo.model.CityBean;
 import com.gary.weatherdemo.ui.adapter.CitySearchGridAdapter;
-import com.gary.weatherdemo.utils.CLog;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by GaryCao on 2019/01/12.

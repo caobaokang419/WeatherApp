@@ -4,36 +4,36 @@ import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.gary.weatherdemo.R;
-import com.gary.weatherdemo.databinding.WeatherForecastDayBinding;
 import com.gary.weatherdemo.bean.DayForecastBean;
-import com.gary.weatherdemo.viewmodel.ForecastDayViewModel;
+import com.gary.weatherdemo.bean.SearchCityItemBean;
 
 /**
  * Created by GaryCao on 2018/12/12.
  */
-public class ForecastDayViewItem implements IViewItem<DayForecastBean> {
-    private WeatherForecastDayBinding mDataBinding;
+public class CitySearchViewItem implements IViewItem<SearchCityItemBean> {
+    private TextView mCityNameTxt ;
 
     /**
      * 静态工厂方法
      */
-    public static ForecastDayViewItem createViewItem() {
-        return new ForecastDayViewItem();
+    public static CitySearchViewItem createViewItem() {
+        return new CitySearchViewItem();
     }
 
     @Override
     public View createView(ViewGroup parent) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_forecast_day, parent, false);
-
+        mCityNameTxt = itemView.findViewById(R.id.city_name);
         return itemView;
     }
 
     @Override
-    public void bindView(@NonNull DayForecastBean data) {
-        mDataBinding.setViewModel(new ForecastDayViewModel(data));
+    public void bindView(@NonNull SearchCityItemBean data) {
+        mCityNameTxt.setText(data.adrName);
     }
 }
 

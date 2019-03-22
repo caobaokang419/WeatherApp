@@ -1,6 +1,6 @@
 package com.gary.weatherdemo.mvpdemo;
 
-import com.gary.weatherdemo.model.CityBean;
+import com.gary.weatherdemo.bean.CityBean;
 
 /**
  * Created by GaryCao on 2019/03/13.

@@ -1,6 +1,6 @@
 package com.gary.weatherdemo.network.response;
 
-import com.gary.weatherdemo.model.AllForecastBean;
+import com.gary.weatherdemo.bean.AllForecastBean;
 import com.gary.weatherdemo.network.response.base.BaseResponseData;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
