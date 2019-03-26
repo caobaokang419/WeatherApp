@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
 
+import com.gary.weatherdemo.bean.base.BaseItemBean;
 import com.gary.weatherdemo.constant.Constants;
 import com.gary.weatherdemo.bean.CityBean;
 import com.gary.weatherdemo.utils.CLog;
@@ -32,10 +33,6 @@ public class CityCacheClient {
 
     private static CityCacheClient mCityCacheClient;
 
-    /**
-     * 高德天气城市配置表缓存数组（1.首次读取assert配置文件获取 2.后续读取DB获取）
-     */
-    private List<CityBean> mCityBeans = new ArrayList<>();
 
     private CityCacheManager mCityCacheManager;
 
@@ -101,32 +98,15 @@ public class CityCacheClient {
         mWorkHandler.post(runnable);
     }
 
-    public void refreshCacheData(List<CityBean> data) {
-        synchronized (mLock) {
-            mCityBeans = data;
-        }
-    }
-
     /**
      * 通过地区名称，返回匹配成功的数据
      */
     public String getAdcodeByAddrName(String addrName) {
-        if (!mCityCacheManager.isCityCacheLoaded()) {
-            return null;
-        }
+        return mCityCacheManager.getAdcodeByAddrName(addrName);
+    }
 
-        if (null == addrName || addrName.isEmpty() || null == mCityBeans || mCityBeans.isEmpty()) {
-            return null;
-        }
-
-        for (CityBean adinfo : mCityBeans) {
-            if (adinfo.isAddrSearched(addrName)) {
-                CLog.d("getAdcodeByAddrName() " + addrName + ": " + adinfo);
-                return adinfo.adcCode;
-            }
-        }
-
-        return null;
+    public List<BaseItemBean> getSearchCityBeans() {
+        return mCityCacheManager.getSearchCityBeans();
     }
 
     public void addCallbackListener(ICityConfigCallback callback) {

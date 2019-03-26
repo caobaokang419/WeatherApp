@@ -34,8 +34,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="0.2"
-            android:gravity="center"
             android:background="@color/forecast_item_background"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <ImageButton
@@ -58,7 +58,8 @@
         android:columnWidth="80dp"
         android:horizontalSpacing="10dp"
         android:numColumns="3"
-        android:verticalSpacing="10dp" />
+        android:verticalSpacing="10dp"
+        android:visibility="gone" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/city_list_view"

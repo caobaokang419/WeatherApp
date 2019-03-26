@@ -9,23 +9,23 @@ import com.google.gson.annotations.SerializedName;
  * Created by GaryCao on 2018/10/25.
  */
 public class SearchCityItemBean extends BaseItemBean {
-    public String adrName;
-    public String adcCode;
+    private CityBean mCityBean;
 
-    SearchCityItemBean() {
+    public SearchCityItemBean(CityBean cityBean) {
         super(ItemViewType.RV_SEARCH_CITY_ITEM_TYPE);
+        mCityBean = cityBean;
     }
 
-    public void setAdcCode(String adcCode) {
-        this.adcCode = adcCode;
+    public void setCityBean(CityBean mCityBean) {
+        this.mCityBean = mCityBean;
     }
 
-    public void setAdrName(String adrName) {
-        this.adrName = adrName;
+    public CityBean getCityBean() {
+        return mCityBean;
     }
 
     @Override
     public String toString() {
-        return "SearchCityItemBean: adrName = " + adrName + ",adcCode =" + adcCode;
+        return "SearchCityItemBean: " + mCityBean.toString();
     }
 }

@@ -27,7 +27,7 @@ public class ForecastDayViewItem implements IViewItem<DayForecastBean> {
     public View createView(ViewGroup parent) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_forecast_day, parent, false);
-
+        mDataBinding = WeatherForecastDayBinding.bind(itemView);
         return itemView;
     }
 

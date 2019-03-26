@@ -2,6 +2,8 @@ package com.gary.weatherdemo.cache.memorycache;
 
 import com.gary.weatherdemo.WtApplication;
 import com.gary.weatherdemo.bean.CityBean;
+import com.gary.weatherdemo.bean.SearchCityItemBean;
+import com.gary.weatherdemo.bean.base.BaseItemBean;
 import com.gary.weatherdemo.utils.CLog;
 
 import java.io.BufferedReader;
@@ -21,6 +23,16 @@ public class CityCacheManager {
      */
     private volatile boolean mCityCacheLoaded = false;
 
+    /**
+     * 高德天气城市配置表缓存数组（1.首次读取assert配置文件获取 2.后续读取DB获取）
+     */
+    private List<CityBean> mCityBeans = new ArrayList<>();
+
+    /**
+     * 高德天气城市配置数据列表
+     */
+    private List<BaseItemBean> mSearchCityBeans = new ArrayList<>();
+
     public CityCacheManager() {
 
     }
@@ -32,6 +44,7 @@ public class CityCacheManager {
             BufferedReader bufReader = new BufferedReader(inputReader);
 
             List<CityBean> cityBeans = new ArrayList<>();
+            List<BaseItemBean> searchCityBeans = new ArrayList<>();
             String line;
             while ((line = bufReader.readLine()) != null) {
                 if (line == null || line.isEmpty()) {
@@ -40,12 +53,17 @@ public class CityCacheManager {
 
                 String[] lineInfo = line.split(":");
                 if (lineInfo != null && lineInfo.length == 2) {
-                    cityBeans.add(new CityBean(lineInfo[0], lineInfo[1]));
+                    CityBean cityBean = new CityBean(lineInfo[0], lineInfo[1]);
+                    cityBeans.add(cityBean);
+                    searchCityBeans.add(new SearchCityItemBean(cityBean));
                     CLog.d(TAG, "loadCityConfigFromAssets() " + lineInfo[0] + ":" + lineInfo[1]);
                 }
             }
 
-            CityCacheClient.getInstance().refreshCacheData(cityBeans);
+            synchronized (CityCacheManager.this) {
+                mCityBeans = cityBeans;
+                mSearchCityBeans = searchCityBeans;
+            }
             mCityCacheLoaded = true;
             return true;
         } catch (Exception e) {
@@ -53,6 +71,36 @@ public class CityCacheManager {
         }
 
         return false;
+    }
+
+    /**
+     * 通过地区名称，返回匹配成功的数据
+     */
+    public String getAdcodeByAddrName(String addrName) {
+        if (!isCityCacheLoaded()) {
+            return null;
+        }
+
+        if (null == addrName || addrName.isEmpty() || null == mCityBeans || mCityBeans.isEmpty()) {
+            return null;
+        }
+
+        for (CityBean adinfo : mCityBeans) {
+            if (adinfo.isAddrSearched(addrName)) {
+                CLog.d("getAdcodeByAddrName() " + addrName + ": " + adinfo);
+                return adinfo.adcCode;
+            }
+        }
+
+        return null;
+    }
+
+    public List<BaseItemBean> getSearchCityBeans() {
+        if (!isCityCacheLoaded()) {
+            return new ArrayList<>();
+        }
+
+        return mSearchCityBeans;
     }
 
     public boolean isCityCacheLoaded() {

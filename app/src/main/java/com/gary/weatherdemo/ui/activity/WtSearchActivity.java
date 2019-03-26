@@ -2,14 +2,22 @@ package com.gary.weatherdemo.ui.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
 
 import com.gary.weatherdemo.R;
+import com.gary.weatherdemo.bean.CityBean;
+import com.gary.weatherdemo.cache.memorycache.CityCacheClient;
 import com.gary.weatherdemo.constant.Constants;
 import com.gary.weatherdemo.ui.adapter.CitySearchGridAdapter;
+import com.gary.weatherdemo.ui.adapter.CommonRecyclerAdapter;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by GaryCao on 2019/01/12.
@@ -19,6 +27,8 @@ public class WtSearchActivity extends BaseActivity {
     private EditText mCitySearchEditText;
     private ImageButton mCitySearchBtn;
     private CitySearchGridAdapter mCitySearchGridAdapter;
+
+    private CommonRecyclerAdapter mAdapter ;
 
     @Override
     protected void onCreateNew(@Nullable Bundle savedInstanceState) {
@@ -37,7 +47,8 @@ public class WtSearchActivity extends BaseActivity {
             }
         });
 
-        initGridView();
+        //initGridView();
+        initRecyclerView();
     }
 
     @Override
@@ -54,6 +65,14 @@ public class WtSearchActivity extends BaseActivity {
         mCityGridView = findViewById(R.id.city_grid_view);
         mCitySearchGridAdapter = new CitySearchGridAdapter(this, Constants.COMMON_CITY_BEANS);
         mCityGridView.setAdapter(mCitySearchGridAdapter);
+    }
+
+    private void initRecyclerView(){
+        RecyclerView recyclerView = findViewById(R.id.city_list_view);
+        mAdapter = new CommonRecyclerAdapter();
+        mAdapter.setAdapterData(CityCacheClient.getInstance().getSearchCityBeans());
+        recyclerView.setAdapter(mAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     @Override

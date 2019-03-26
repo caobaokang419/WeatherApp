@@ -14,7 +14,7 @@ import com.gary.weatherdemo.bean.SearchCityItemBean;
  * Created by GaryCao on 2018/12/12.
  */
 public class CitySearchViewItem implements IViewItem<SearchCityItemBean> {
-    private TextView mCityNameTxt ;
+    private TextView mCityNameTxt;
 
     /**
      * 静态工厂方法
@@ -26,14 +26,14 @@ public class CitySearchViewItem implements IViewItem<SearchCityItemBean> {
     @Override
     public View createView(ViewGroup parent) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_forecast_day, parent, false);
+                .inflate(R.layout.item_search_city, parent, false);
         mCityNameTxt = itemView.findViewById(R.id.city_name);
         return itemView;
     }
 
     @Override
     public void bindView(@NonNull SearchCityItemBean data) {
-        mCityNameTxt.setText(data.adrName);
+        mCityNameTxt.setText(data.getCityBean().adrName);
     }
 }
 
