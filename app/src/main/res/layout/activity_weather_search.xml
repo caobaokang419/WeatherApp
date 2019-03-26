@@ -11,7 +11,7 @@
         android:background="@color/actionbar_background"
         android:gravity="center_vertical"
         actionbar:iv_left_icon="@drawable/ic_action_bar_back"
-        actionbar:tv_title_str="城市搜索" />
+        actionbar:tv_title_str="添加城市" />
 
     <LinearLayout
         android:id="@+id/search_bar"
