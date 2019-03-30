@@ -44,8 +44,8 @@ public class CityInfoEntity {
             return null;
         }
         CityInfoEntity entity = new CityInfoEntity();
-        entity.setAdcode(cityBean.adcCode);
-        entity.setCityName(cityBean.adrName);
+        entity.setAdcode(cityBean.cityCode);
+        entity.setCityName(cityBean.cityName);
         return entity;
     }
 

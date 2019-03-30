@@ -8,41 +8,16 @@ import android.support.v4.view.ViewPager;
 
 import com.gary.weatherdemo.constant.Constants;
 import com.gary.weatherdemo.bean.CityBean;
-import com.gary.weatherdemo.bean.DayForecastBean;
 import com.gary.weatherdemo.bean.base.BaseItemBean;
-import com.gary.weatherdemo.network.WeatherRequestClient;
-import com.gary.weatherdemo.network.response.AllForecastResponseData;
-import com.gary.weatherdemo.network.response.LiveWeatherResponseData;
+import com.gary.weatherdemo.repository.WtRepository;
 import com.gary.weatherdemo.ui.adapter.CommonRecyclerAdapter;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.BiFunction;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
-
 
 public class MainActivityViewModel extends AndroidViewModel {
-    private final String[] mCityNames =
-            new String[]{"深圳", "西安", "合肥", "武汉"};
-    private final String[] mCityAdcode =
-            new String[]{"440300", "610100", "340100", "420100"};
-
-    /*private final static List<CityBean> mCommonCityBeans = new ArrayList<>();
-    static {
-        mCommonCityBeans.add(new CityBean("深圳", "440300"));
-        mCommonCityBeans.add(new CityBean("西安", "610100"));
-        mCommonCityBeans.add(new CityBean("合肥", "340100"));
-        mCommonCityBeans.add(new CityBean("巢湖", "340181"));
-        mCommonCityBeans.add(new CityBean("武汉", "420100"));
-        mCommonCityBeans.add(new CityBean("北京", "340181"));
-    }*/
-
     private final Map<CityBean, CommonRecyclerAdapter> mAdapterDatas = new HashMap<>();
     private MutableLiveData<CityBean> mCurCityBean = new MutableLiveData<>();
     private MutableLiveData<List<CityBean>> mCityBeans = new MutableLiveData<>();
@@ -63,54 +38,16 @@ public class MainActivityViewModel extends AndroidViewModel {
     /**
      * 查询城市天气
      */
-    public void queryCityWeather(final CityBean cityinfo) {
-        /**task1: 查询当前天气*/
-        Observable<LiveWeatherResponseData> observable1 =
-                WeatherRequestClient.getInstance().liveWeatherPost(cityinfo.adcCode)
-                        .subscribeOn(Schedulers.io());//被观察者Observable运行在子线程
-
-        /**task2: 查询未来天气预报*/
-        Observable<AllForecastResponseData> observable2 =
-                WeatherRequestClient.getInstance().forecastWeatherPost(cityinfo.adcCode)
-                        .subscribeOn(Schedulers.io());
-
-        /**Observable.zip: 实现task1+ task2 异步任务都完成时，回调 订阅的UI刷新*/
-        Observable.zip(observable1, observable2,
-                new BiFunction<LiveWeatherResponseData, AllForecastResponseData, ArrayList<BaseItemBean>>() {
-                    @Override
-                    public ArrayList<BaseItemBean> apply(LiveWeatherResponseData livedata,
-                                                         AllForecastResponseData allForecastdata) throws Exception {
-                        /**task1+task2 ，此处可以处理耗时流程（子线程）*/
-                        List<DayForecastBean> dayForecastList = null;
-                        ArrayList<BaseItemBean> dataList = new ArrayList<>();
-
-                        dataList.clear();
-                        if (livedata != null && livedata.isSuccessful()) {
-                            dataList.add(livedata.getWeatherLiveResult());
-                        }
-                        if (allForecastdata != null
-                                && allForecastdata.isSuccessful()
-                                && allForecastdata.getWeatherAllResult() != null) {
-                            dayForecastList = allForecastdata.getWeatherAllResult().dayForecastBeanList;
-                        }
-
-                        for (DayForecastBean fdata : dayForecastList) {
-                            dataList.add(fdata);
-                        }
-
-                        return dataList;
-                    }
-                })
-                .observeOn(AndroidSchedulers.mainThread())//观察者运行在UI线程
-                .subscribe(new Consumer<List<BaseItemBean>>() {
-                    @Override
-                    public void accept(List<BaseItemBean> dataList) throws Exception {
-                        /**实现UI订阅逻辑（AndroidSchedulers.mainThread）*/
-                        mCityWeatherDatas.put(cityinfo, dataList);
-                        CommonRecyclerAdapter adapter = getCityWeatherRecyclerAdapter(cityinfo);
-                        adapter.setAdapterData(dataList);
-                    }
-                });
+    public void queryCityWeather(final CityBean cityBean) {
+        WtRepository.queryCityWeather(cityBean, new WtRepository.IQueryWeather() {
+            @Override
+            public void onWeatherQueryCompleted(List<BaseItemBean> data) {
+                /**实现UI订阅逻辑（AndroidSchedulers.mainThread）*/
+                mCityWeatherDatas.put(cityBean, data);
+                CommonRecyclerAdapter adapter = getCityWeatherRecyclerAdapter(cityBean);
+                adapter.setAdapterData(data);
+            }
+        });
     }
 
     public void loadCurCityInfo(CityBean cityBean) {

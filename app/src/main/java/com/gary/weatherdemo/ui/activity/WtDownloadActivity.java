@@ -32,7 +32,7 @@ public class WtDownloadActivity extends BaseActivity implements WtPermissionActi
     @Override
     protected void onPause() {
         super.onPause();
-        WtPermissionActivity.addListener(this);
+        WtPermissionActivity.removeListener(this);
     }
 
 

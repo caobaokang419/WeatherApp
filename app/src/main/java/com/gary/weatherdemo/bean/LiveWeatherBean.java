@@ -1,7 +1,6 @@
 package com.gary.weatherdemo.bean;
 
 import com.gary.weatherdemo.bean.base.BaseItemBean;
-import com.gary.weatherdemo.bean.base.ItemViewType;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

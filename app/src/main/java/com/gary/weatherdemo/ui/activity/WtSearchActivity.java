@@ -45,10 +45,15 @@ public class WtSearchActivity extends BaseActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (charSequence == null || charSequence.toString().isEmpty()) {
-                    mCitySearchRecycleAdapter.onCityListModeChanged(
+                    mCitySearchRecycleAdapter.setAdapterData(
+                            CacheClient.getInstance().getCityItemBeans());
+                    mCitySearchRecycleAdapter.setCurMode(
                             CitySearchRecyclerAdapter.CityListMode.CITY_LIST_NORMAL_MODE);
                 } else {
-                    mCitySearchRecycleAdapter.onCityListModeChanged(
+                    mCitySearchRecycleAdapter.setAdapterData(
+                            CacheClient.getInstance().getPairedBeansByKeyWord(charSequence.toString());)
+                    ;
+                    mCitySearchRecycleAdapter.setCurMode(
                             CitySearchRecyclerAdapter.CityListMode.CITY_LIST_SEARCH_MODE);
                 }
             }
@@ -90,7 +95,7 @@ public class WtSearchActivity extends BaseActivity {
     private void initRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.city_list_view);
         mCitySearchRecycleAdapter = new CitySearchRecyclerAdapter();
-        mCitySearchRecycleAdapter.setAdapterData(CacheClient.getInstance().getSearchCityBeans());
+        mCitySearchRecycleAdapter.setAdapterData(CacheClient.getInstance().getCityItemBeans());
         recyclerView.setAdapter(mCitySearchRecycleAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

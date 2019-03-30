@@ -7,13 +7,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.gary.weatherdemo.R;
-import com.gary.weatherdemo.bean.DayForecastBean;
-import com.gary.weatherdemo.bean.SearchCityItemBean;
+import com.gary.weatherdemo.bean.CityItemBean;
 
 /**
  * Created by GaryCao on 2018/12/12.
  */
-public class CitySearchViewItem implements IViewItem<SearchCityItemBean> {
+public class CitySearchViewItem implements IViewItem<CityItemBean> {
     private TextView mCityNameTxt;
 
     /**
@@ -32,8 +31,8 @@ public class CitySearchViewItem implements IViewItem<SearchCityItemBean> {
     }
 
     @Override
-    public void bindView(@NonNull SearchCityItemBean data) {
-        mCityNameTxt.setText(data.getCityBean().adrName);
+    public void bindView(@NonNull CityItemBean data) {
+        mCityNameTxt.setText(data.getCityBean().cityName);
     }
 }
 

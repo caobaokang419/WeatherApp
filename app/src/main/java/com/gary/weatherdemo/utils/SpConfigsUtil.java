@@ -25,14 +25,16 @@ public class SpConfigsUtil {
     public static final String KEY_SET_STRING_VALUE = "set_string_value";
     public static final String KEY_SET_BOOLEAN_VALUE = "set_boolean_value";
 
-    /*def city name*/
-    private final String VALUE_DEF_CITY_NAME = "深圳"; //深圳
-    /*def city adcode*/
-    private final String VALUE_DEF_CITY_ADCODE = "440300"; //深圳: 440300
-    /*def update switch*/
-    private final boolean VALUE_DEF_UPDATE_SWITCH = true;
-    /*def update interval hour count*/
-    private final int VALUE_DEF_UPDATE_PERIODIC_HOUR_COUNT = 1; //1 hour
+    static final class DefaultConfig{
+        /*def city name*/
+        private final String VALUE_DEF_CITY_NAME = "深圳"; //深圳
+        /*def city adcode*/
+        private final String VALUE_DEF_CITY_ADCODE = "440300"; //深圳: 440300
+        /*def update switch*/
+        private final boolean VALUE_DEF_UPDATE_SWITCH = true;
+        /*def update interval hour count*/
+        private final int VALUE_DEF_UPDATE_PERIODIC_HOUR_COUNT = 1; //1 hour
+    }
 
     private Context mContext;
     private static SharedPreferences mSharedPreferences;

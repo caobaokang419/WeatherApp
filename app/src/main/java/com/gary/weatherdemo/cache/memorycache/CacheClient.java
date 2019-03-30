@@ -99,14 +99,14 @@ public class CacheClient {
     }
 
     /**
-     * 通过地区名称，返回匹配成功的数据
+     * 通过关键字，返回匹配数据
      */
-    public String getAdcodeByAddrName(String addrName) {
-        return mCacheManager.getAdcodeByAddrName(addrName);
+    public List<BaseItemBean> getPairedBeansByKeyWord(String keyword) {
+        return mCacheManager.getPairedBeansByKeyWord(keyword);
     }
 
-    public List<BaseItemBean> getSearchCityBeans() {
-        return mCacheManager.getSearchCityBeans();
+    public List<BaseItemBean> getCityItemBeans() {
+        return mCacheManager.getCityItemBeans();
     }
 
     public List<CityBean> getSelectedCityBeans() {

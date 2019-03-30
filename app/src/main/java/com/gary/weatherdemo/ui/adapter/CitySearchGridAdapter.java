@@ -49,7 +49,7 @@ public class CitySearchGridAdapter extends BaseAdapter {
         }
         CityBean CityBean = mCityBeanList.get(position);
         if (CityBean != null) {
-            holder.city_name.setText(CityBean.adrName);
+            holder.city_name.setText(CityBean.cityName);
         }
         return convertView;
     }

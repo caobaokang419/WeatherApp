@@ -46,7 +46,7 @@ public class CityPagerAdapter extends PagerAdapter {
     public View instantiateItem(ViewGroup container, int position) {
         //demo code
         /*TextView textView = new TextView(mContext);
-        textView.setText(mCityBeans.get(position).adrName);
+        textView.setText(mCityBeans.get(position).cityName);
         container.addView(textView);
         return textView;*/
         View createdView = getViewItemByCity(mCityBeans.get(position));
@@ -70,7 +70,7 @@ public class CityPagerAdapter extends PagerAdapter {
 
     /*@Override
     public CharSequence getPageTitle(int position) {
-        return mCityBeans.get(position).adrName;
+        return mCityBeans.get(position).cityName;
     }*/
 
     public View getViewItemByCity(CityBean cityinfo) {

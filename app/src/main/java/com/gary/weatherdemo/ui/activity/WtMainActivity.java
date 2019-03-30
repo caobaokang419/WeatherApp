@@ -75,7 +75,7 @@ public class WtMainActivity extends BaseActivity {
             @Override
             public void onChanged(@Nullable CityBean cityBean) {
                 if (null != mActionBar) {
-                    mActionBar.setTitle(cityBean.adrName);
+                    mActionBar.setTitle(cityBean.cityName);
                 }
                 mViewModel.queryCityWeather(cityBean);
             }

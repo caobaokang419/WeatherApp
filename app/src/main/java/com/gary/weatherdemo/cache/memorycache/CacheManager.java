@@ -2,10 +2,9 @@ package com.gary.weatherdemo.cache.memorycache;
 
 import com.gary.weatherdemo.WtApplication;
 import com.gary.weatherdemo.bean.CityBean;
-import com.gary.weatherdemo.bean.SearchCityItemBean;
+import com.gary.weatherdemo.bean.CityItemBean;
 import com.gary.weatherdemo.bean.base.BaseItemBean;
 import com.gary.weatherdemo.constant.Constants;
-import com.gary.weatherdemo.repository.WtRepository;
 import com.gary.weatherdemo.utils.CLog;
 
 import java.io.BufferedReader;
@@ -34,14 +33,14 @@ public class CacheManager {
     /**
      * 高德天气城市配置数据列表
      */
-    private List<BaseItemBean> mSearchCityBeans = new ArrayList<>();
+    private List<BaseItemBean> mCityItemBeans = new ArrayList<>();
 
     /**
      * 主Pager页显示的城市列表
      */
     private List<CityBean> mSelectedCityBeans = new ArrayList<>();
 
-    public CacheManager()  {
+    public CacheManager() {
         mSelectedCityBeans = Constants.COMMON_CITY_BEANS; //TODO
     }
 
@@ -52,7 +51,7 @@ public class CacheManager {
             BufferedReader bufReader = new BufferedReader(inputReader);
 
             List<CityBean> cityBeans = new ArrayList<>();
-            List<BaseItemBean> searchCityBeans = new ArrayList<>();
+            List<BaseItemBean> cityItemBeans = new ArrayList<>();
             String line;
             while ((line = bufReader.readLine()) != null) {
                 if (line == null || line.isEmpty()) {
@@ -63,15 +62,15 @@ public class CacheManager {
                 if (lineInfo != null && lineInfo.length == 2) {
                     CityBean cityBean = new CityBean(lineInfo[0], lineInfo[1]);
                     cityBeans.add(cityBean);
-                    searchCityBeans.add(new SearchCityItemBean(cityBean));
-                    WtRepository.insertCityBean(cityBean);
+                    cityItemBeans.add(new CityItemBean(cityBean));
+                    //WtRepository.insertCityBean(cityBean);
                     CLog.d(TAG, "loadCityConfigFromAssets() " + lineInfo[0] + ":" + lineInfo[1]);
                 }
             }
 
             synchronized (CacheManager.this) {
                 mCityBeans = cityBeans;
-                mSearchCityBeans = searchCityBeans;
+                mCityItemBeans = cityItemBeans;
             }
             mCityCacheLoaded.set(true);
             return true;
@@ -83,33 +82,34 @@ public class CacheManager {
     }
 
     /**
-     * 通过地区名称，返回匹配成功的数据
+     * 通过关键字，返回匹配数据
      */
-    public String getAdcodeByAddrName(String addrName) {
+    public List<BaseItemBean> getPairedBeansByKeyWord(String keyword) {
         if (!isCityCacheLoaded()) {
             return null;
         }
-
-        if (null == addrName || addrName.isEmpty() || null == mCityBeans || mCityBeans.isEmpty()) {
+        if (null == keyword
+                || keyword.isEmpty()
+                || null == mCityItemBeans
+                || mCityItemBeans.isEmpty()) {
             return null;
         }
 
-        for (CityBean adinfo : mCityBeans) {
-            if (adinfo.isAddrSearched(addrName)) {
-                CLog.d("getAdcodeByAddrName() " + addrName + ": " + adinfo);
-                return adinfo.adcCode;
+        List<BaseItemBean> itemBeans = new ArrayList<>();
+        /*for (BaseItemBean item : mCityItemBeans) {
+            if ((CityItemBean) item.isSearched(keyword)) {
+                itemBeans.add(item);
             }
-        }
-
-        return null;
+        }*/
+        return itemBeans;
     }
 
-    public List<BaseItemBean> getSearchCityBeans() {
+    public List<BaseItemBean> getCityItemBeans() {
         if (!isCityCacheLoaded()) {
             return new ArrayList<>();
         }
 
-        return mSearchCityBeans;
+        return mCityItemBeans;
     }
 
     public List<CityBean> getSelectedCityBeans() {
