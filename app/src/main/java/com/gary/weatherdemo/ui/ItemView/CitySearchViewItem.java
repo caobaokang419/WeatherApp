@@ -32,7 +32,9 @@ public class CitySearchViewItem implements IViewItem<CityItemBean> {
 
     @Override
     public void bindView(@NonNull CityItemBean data) {
-        mCityNameTxt.setText(data.getCityBean().cityName);
+        if (data != null && data.getCityBean() != null) {
+            mCityNameTxt.setText(data.getCityBean().cityName);
+        }
     }
 }
 

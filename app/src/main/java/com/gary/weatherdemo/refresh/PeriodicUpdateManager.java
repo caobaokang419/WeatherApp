@@ -4,8 +4,9 @@ import android.os.Handler;
 import android.os.HandlerThread;
 
 import com.gary.weatherdemo.bean.CityBean;
+import com.gary.weatherdemo.bean.base.BaseItemBean;
 import com.gary.weatherdemo.cache.memorycache.CacheClient;
-import com.gary.weatherdemo.utils.CLog;
+import com.gary.weatherdemo.repository.WtRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,12 +18,12 @@ public class PeriodicUpdateManager {
     private static Object mLock = new Object();
     private static BlockingQueue<CityBean> mQueue = new LinkedBlockingQueue<>();
     private HandlerThread mHandlerThread;
-    private Handler mHandler;
+    private Handler mWorkHandler;
 
     private PeriodicUpdateManager() {
         mHandlerThread = new HandlerThread("PeriodicUpdate");
         mHandlerThread.run();
-        mHandler = new Handler(mHandlerThread.getLooper());
+        mWorkHandler = new Handler(mHandlerThread.getLooper());
     }
 
     public static PeriodicUpdateManager getInstant() {
@@ -51,19 +52,25 @@ public class PeriodicUpdateManager {
     public void startPeriodicUpdate() {
         synchronized (mLock) {
             mQueue.clear();
-            List<CityBean> cityBeans = CacheClient.getInstance().getSelectedCityBeans();
+            List<CityBean> cityBeans = CacheClient.getInstance().getFixedCityBeans();
             for (CityBean cityBean : cityBeans) {
                 mQueue.add(cityBean);
             }
-            executeTask();
+            executeCurrentTask();
         }
     }
 
-    private void executeTask() {
+    private void executeCurrentTask() {
         if (mQueue.isEmpty()) {
             notifyCityWeatherChanged();
         } else {
-            //CityBean cityBean = mQueue.take();
+            CityBean cityBean = mQueue.poll();
+            WtRepository.queryCityWeather(cityBean, new WtRepository.IQueryWeather() {
+                @Override
+                public void onWeatherQueryCompleted(List<BaseItemBean> data) {
+                    executeCurrentTask();
+                }
+            });
         }
     }
 

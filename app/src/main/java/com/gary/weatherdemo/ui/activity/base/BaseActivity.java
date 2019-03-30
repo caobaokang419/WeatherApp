@@ -1,4 +1,4 @@
-package com.gary.weatherdemo.ui.activity;
+package com.gary.weatherdemo.ui.activity.base;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

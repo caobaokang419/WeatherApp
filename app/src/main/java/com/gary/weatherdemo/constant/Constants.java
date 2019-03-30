@@ -16,12 +16,15 @@ public class Constants {
     public static final String AMAP_ADCODE_CONFIG_FILE_NAME = "city.conf";
 
     // um push
-    public static final String UM_PUSH_APP_KEY = "5c4e7057b465f50f6300171f";
-    public static final String UM_PUSH_MESSAGE_SECRET_KEY = "57bdbf9232a34e1d0bc882ae4759b64d";
-    public static final String UM_PUSH_CHANNEL_NAME = "umeng_amap";
+    public class UmDefConfig {
+        public static final String UM_PUSH_APP_KEY = "5c4e7057b465f50f6300171f";
+        public static final String UM_PUSH_MESSAGE_SECRET_KEY = "57bdbf9232a34e1d0bc882ae4759b64d";
+        public static final String UM_PUSH_CHANNEL_NAME = "umeng_amap";
+    }
 
     // common city
     public static final List<CityBean> COMMON_CITY_BEANS = new ArrayList<>();
+
     static {
         COMMON_CITY_BEANS.add(new CityBean("深圳", "440300"));
         COMMON_CITY_BEANS.add(new CityBean("西安", "610100"));

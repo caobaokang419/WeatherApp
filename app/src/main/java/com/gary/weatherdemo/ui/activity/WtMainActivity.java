@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import com.example.commonui.PageIndicatorView;
 import com.gary.weatherdemo.R;
 import com.gary.weatherdemo.bean.CityBean;
+import com.gary.weatherdemo.ui.activity.base.BaseActivity;
 import com.gary.weatherdemo.ui.adapter.CityPagerAdapter;
 import com.gary.weatherdemo.utils.WtUtil;
 import com.gary.weatherdemo.viewmodel.MainActivityViewModel;

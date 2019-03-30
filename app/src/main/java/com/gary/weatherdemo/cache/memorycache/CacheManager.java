@@ -38,10 +38,10 @@ public class CacheManager {
     /**
      * 主Pager页显示的城市列表
      */
-    private List<CityBean> mSelectedCityBeans = new ArrayList<>();
+    private List<CityBean> mFixedCityBeans = new ArrayList<>();
 
     public CacheManager() {
-        mSelectedCityBeans = Constants.COMMON_CITY_BEANS; //TODO
+        mFixedCityBeans = Constants.COMMON_CITY_BEANS; //TODO
     }
 
     public boolean loadCityConfigFromAssets(String fileName) {
@@ -96,11 +96,14 @@ public class CacheManager {
         }
 
         List<BaseItemBean> itemBeans = new ArrayList<>();
-        /*for (BaseItemBean item : mCityItemBeans) {
-            if ((CityItemBean) item.isSearched(keyword)) {
-                itemBeans.add(item);
+        for (BaseItemBean item : mCityItemBeans) {
+            if (item instanceof CityItemBean) {
+                CityItemBean itemBean = (CityItemBean) item;
+                if (itemBean.isSearched(keyword)) {
+                    itemBeans.add(item);
+                }
             }
-        }*/
+        }
         return itemBeans;
     }
 
@@ -112,8 +115,8 @@ public class CacheManager {
         return mCityItemBeans;
     }
 
-    public List<CityBean> getSelectedCityBeans() {
-        return mSelectedCityBeans;
+    public List<CityBean> getFixedCityBeans() {
+        return mFixedCityBeans;
     }
 
     public boolean isCityCacheLoaded() {

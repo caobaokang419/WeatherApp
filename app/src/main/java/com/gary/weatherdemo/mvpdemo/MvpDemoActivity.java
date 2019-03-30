@@ -4,7 +4,7 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 
 import com.gary.weatherdemo.R;
-import com.gary.weatherdemo.ui.activity.BaseActivity;
+import com.gary.weatherdemo.ui.activity.base.BaseActivity;
 import com.gary.weatherdemo.ui.adapter.CityFragmentPagerAdapter;
 
 /**

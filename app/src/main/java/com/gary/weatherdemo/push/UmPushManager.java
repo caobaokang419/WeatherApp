@@ -34,10 +34,10 @@ public class UmPushManager {
         // 参数五：Push推送业务的secret 填充Umeng Message Secret对应信息（需替换）
         UMConfigure.init(
                 context,
-                Constants.UM_PUSH_APP_KEY,
-                Constants.UM_PUSH_CHANNEL_NAME,
+                Constants.UmDefConfig.UM_PUSH_APP_KEY,
+                Constants.UmDefConfig.UM_PUSH_CHANNEL_NAME,
                 UMConfigure.DEVICE_TYPE_PHONE,
-                Constants.UM_PUSH_MESSAGE_SECRET_KEY);
+                Constants.UmDefConfig.UM_PUSH_MESSAGE_SECRET_KEY);
 
         //获取消息推送代理示例
         PushAgent mPushAgent = PushAgent.getInstance(context);

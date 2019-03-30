@@ -109,8 +109,8 @@ public class CacheClient {
         return mCacheManager.getCityItemBeans();
     }
 
-    public List<CityBean> getSelectedCityBeans() {
-        return mCacheManager.getSelectedCityBeans();
+    public List<CityBean> getFixedCityBeans() {
+        return mCacheManager.getFixedCityBeans();
     }
 
     public void addCallbackListener(ICityConfigCallback callback) {

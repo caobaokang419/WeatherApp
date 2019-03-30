@@ -3,12 +3,12 @@ package com.gary.weatherdemo.ui.activity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.commonui.ActionBar;
 import com.gary.weatherdemo.R;
 import com.gary.weatherdemo.download.DownloadManager;
 import com.gary.weatherdemo.download.IDownloadCallback;
 import com.gary.weatherdemo.network.ApiContants;
 import com.gary.weatherdemo.permission.WtPermissionActivity;
+import com.gary.weatherdemo.ui.activity.base.BaseActivity;
 import com.gary.weatherdemo.utils.CLog;
 
 /**

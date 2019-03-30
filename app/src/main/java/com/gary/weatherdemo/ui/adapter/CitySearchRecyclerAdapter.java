@@ -1,5 +1,7 @@
 package com.gary.weatherdemo.ui.adapter;
 
+import com.gary.weatherdemo.ui.adapter.base.CommonRecyclerAdapter;
+
 public class CitySearchRecyclerAdapter extends CommonRecyclerAdapter {
     public enum CityListMode {
         CITY_LIST_NORMAL_MODE,

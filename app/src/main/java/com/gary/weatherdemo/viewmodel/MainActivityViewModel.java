@@ -10,7 +10,7 @@ import com.gary.weatherdemo.constant.Constants;
 import com.gary.weatherdemo.bean.CityBean;
 import com.gary.weatherdemo.bean.base.BaseItemBean;
 import com.gary.weatherdemo.repository.WtRepository;
-import com.gary.weatherdemo.ui.adapter.CommonRecyclerAdapter;
+import com.gary.weatherdemo.ui.adapter.base.CommonRecyclerAdapter;
 
 import java.util.HashMap;
 import java.util.List;

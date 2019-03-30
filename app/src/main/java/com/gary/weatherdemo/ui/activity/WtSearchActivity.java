@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import com.gary.weatherdemo.R;
 import com.gary.weatherdemo.cache.memorycache.CacheClient;
 import com.gary.weatherdemo.constant.Constants;
+import com.gary.weatherdemo.ui.activity.base.BaseActivity;
 import com.gary.weatherdemo.ui.adapter.CitySearchGridAdapter;
 import com.gary.weatherdemo.ui.adapter.CitySearchRecyclerAdapter;
 
@@ -51,8 +52,7 @@ public class WtSearchActivity extends BaseActivity {
                             CitySearchRecyclerAdapter.CityListMode.CITY_LIST_NORMAL_MODE);
                 } else {
                     mCitySearchRecycleAdapter.setAdapterData(
-                            CacheClient.getInstance().getPairedBeansByKeyWord(charSequence.toString());)
-                    ;
+                            CacheClient.getInstance().getPairedBeansByKeyWord(charSequence.toString()));
                     mCitySearchRecycleAdapter.setCurMode(
                             CitySearchRecyclerAdapter.CityListMode.CITY_LIST_SEARCH_MODE);
                 }
