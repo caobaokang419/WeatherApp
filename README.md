@@ -2,7 +2,7 @@
 
 -------
 ### 开源说明：
-- 开源动机：HomeWork，利用非工作的私人时间，以这种方式敦促自己持续进行：工作地点&工作时间&工作内容以外的技术学习；
+- 开源动机：HomeWork，利用私人时间敦促自己持续进行：工作地点&工作时间&工作内容以外的技术学习；
 - 开源背景：借助高德天气开放的API平台（作为后台），借助网络开放资源，化简为繁，探索主流的框架开发方式；
 - 项目分支：[WeatherDemo](https://github.com/wustcbk/WeatherDemo) 迁移至此，独立维护。
 
@@ -10,7 +10,6 @@
 ### 博客专栏：
 - [CSDN博客专栏1：Android mvvm框架的高德天气应用](https://blog.csdn.net/cbk861110/column/info/33307)
 - [CSDN博客专栏2：设计模式：从入门到精通（Android篇）](https://blog.csdn.net/cbk861110/column/info/33476)
-- [CSDN博客专栏3：Firebase实战：入门到精通（Android篇）](https://blog.csdn.net/cbk861110/column/info/33806)
 
 
 -------
@@ -20,15 +19,16 @@
 -------
 ### 功能点实现说明：
 - [高德天气查询](https://lbs.amap.com/api/webservice/guide/api/weatherinfo/)：Get&Post方式可以正常返回查询高德天气数据并UI显示；
-- 配置文件下载：借助Xutils3，下载并存储[高德天气城市配置文件](http://a.amap.com/lbs/static/file/AMap_adcode_citycode.xlsx.zip)，并需先动态申请存储权限；
+- 配置文件下载：借助Xutils3，下载并存储[高德天气城市配置文件](http://a.amap.com/lbs/static/file/AMap_adcode_citycode.xlsx.zip)；
 - 配置文件解析：解析存储本地存储高德adcode和城市信息对照表，用于本地天气动态查询api调用；
 - 应用权限申请：sdk23后，需动态申请应用权限，实现封装权限动态申请机制；
 - 国内消息推送：集成Umeng推送平台，海外移至使用[Cloud Message(云消息)](https://firebase.google.com/docs/remote-config/?hl=zh-CN)
 - 云端配置方案：国内TBD，海外移至使用[Remote Config(远程配置)](https://firebase.google.com/docs/cloud-messaging/?hl=zh-CN)
 - 公共数据接口：借助ContentProvider，提供天气数据（DB方式）& 配置属性（SharedPreference方式）的数据访问API，供第三方应用访问使用；
-- [数据缓存功能](http://www.androiddocs.com/samples/DisplayingBitmaps/src/com.example.android.displayingbitmaps/util/DiskLruCache.html)：封装DiskLruCache，实现磁盘缓存网络下载的图片&文本&Json及其他格式数据。--Xutils框架功能解析；
-- [任务管理功能](https://www.jianshu.com/p/4d4634c92253)：封装ThreadPoolExecutor，实现TaskExecutor机制。--Xutils框架功能解析；
-- 异步任务方案：AsyncTask HandlerThread WorkManager不同方式，实现异步任务需求；
+- [数据缓存功能](http://www.androiddocs.com/samples/DisplayingBitmaps/src/com.example.android.displayingbitmaps/util/DiskLruCache.html)：1. 实现封装磁盘缓存；2. 实现数据内存缓存；
+- [任务管理功能](https://www.jianshu.com/p/4d4634c92253)：1. 封装线程池ThreadPoolExecutor；2.泛型的TaskExecutor机制实现；
+- 异步任务管理：AsyncTask HandlerThread WorkManager不同方式，实现不同场景的异步任务需求；
+- 天气定期更新：1. 定时启动后台任务+轮询查询城市队列：实现定时&批量更新城市天气数据。
 
 
 -------
