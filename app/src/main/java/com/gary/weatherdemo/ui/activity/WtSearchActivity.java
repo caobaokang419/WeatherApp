@@ -12,14 +12,10 @@ import android.widget.GridView;
 import android.widget.ImageButton;
 
 import com.gary.weatherdemo.R;
-import com.gary.weatherdemo.bean.CityBean;
-import com.gary.weatherdemo.cache.memorycache.CityCacheClient;
+import com.gary.weatherdemo.cache.memorycache.CacheClient;
 import com.gary.weatherdemo.constant.Constants;
 import com.gary.weatherdemo.ui.adapter.CitySearchGridAdapter;
 import com.gary.weatherdemo.ui.adapter.CitySearchRecyclerAdapter;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by GaryCao on 2019/01/12.
@@ -94,7 +90,7 @@ public class WtSearchActivity extends BaseActivity {
     private void initRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.city_list_view);
         mCitySearchRecycleAdapter = new CitySearchRecyclerAdapter();
-        mCitySearchRecycleAdapter.setAdapterData(CityCacheClient.getInstance().getSearchCityBeans());
+        mCitySearchRecycleAdapter.setAdapterData(CacheClient.getInstance().getSearchCityBeans());
         recyclerView.setAdapter(mCitySearchRecycleAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

@@ -4,24 +4,27 @@ import com.gary.weatherdemo.WtApplication;
 import com.gary.weatherdemo.bean.CityBean;
 import com.gary.weatherdemo.bean.SearchCityItemBean;
 import com.gary.weatherdemo.bean.base.BaseItemBean;
+import com.gary.weatherdemo.constant.Constants;
+import com.gary.weatherdemo.repository.WtRepository;
 import com.gary.weatherdemo.utils.CLog;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Created by GaryCao on 2019/03/14.
  * 高德城市配置缓存实现
  * 优点：统一提供，供不同UI直接获取，不再需要重复&频繁请求DB或assert文件城市配置信息数据
  */
-public class CityCacheManager {
-    private static final String TAG = CityCacheManager.class.getSimpleName();
+public class CacheManager {
+    private static final String TAG = CacheManager.class.getSimpleName();
     /**
      * 缓存是否加载OK
      */
-    private volatile boolean mCityCacheLoaded = false;
+    private volatile AtomicBoolean mCityCacheLoaded = new AtomicBoolean(false);
 
     /**
      * 高德天气城市配置表缓存数组（1.首次读取assert配置文件获取 2.后续读取DB获取）
@@ -33,8 +36,13 @@ public class CityCacheManager {
      */
     private List<BaseItemBean> mSearchCityBeans = new ArrayList<>();
 
-    public CityCacheManager() {
+    /**
+     * 主Pager页显示的城市列表
+     */
+    private List<CityBean> mSelectedCityBeans = new ArrayList<>();
 
+    public CacheManager()  {
+        mSelectedCityBeans = Constants.COMMON_CITY_BEANS; //TODO
     }
 
     public boolean loadCityConfigFromAssets(String fileName) {
@@ -56,15 +64,16 @@ public class CityCacheManager {
                     CityBean cityBean = new CityBean(lineInfo[0], lineInfo[1]);
                     cityBeans.add(cityBean);
                     searchCityBeans.add(new SearchCityItemBean(cityBean));
+                    WtRepository.insertCityBean(cityBean);
                     CLog.d(TAG, "loadCityConfigFromAssets() " + lineInfo[0] + ":" + lineInfo[1]);
                 }
             }
 
-            synchronized (CityCacheManager.this) {
+            synchronized (CacheManager.this) {
                 mCityBeans = cityBeans;
                 mSearchCityBeans = searchCityBeans;
             }
-            mCityCacheLoaded = true;
+            mCityCacheLoaded.set(true);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -103,7 +112,11 @@ public class CityCacheManager {
         return mSearchCityBeans;
     }
 
+    public List<CityBean> getSelectedCityBeans() {
+        return mSelectedCityBeans;
+    }
+
     public boolean isCityCacheLoaded() {
-        return mCityCacheLoaded;
+        return mCityCacheLoaded.get();
     }
 }

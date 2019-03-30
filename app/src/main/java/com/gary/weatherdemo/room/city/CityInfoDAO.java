@@ -26,6 +26,9 @@ public interface CityInfoDAO {
     @Delete
     void delete(CityInfoEntity entity);
 
+    @Query("DELETE FROM " + CityInfoEntity.TABLE_NAME )
+    void deleteAll();
+
     @Update
     void update(CityInfoEntity entity);
 }

@@ -2,9 +2,8 @@ package com.gary.weatherdemo;
 
 import android.app.Application;
 
-import com.gary.weatherdemo.cache.memorycache.CityCacheClient;
+import com.gary.weatherdemo.cache.memorycache.CacheClient;
 import com.gary.weatherdemo.push.UmPushManager;
-import com.gary.weatherdemo.workmanager.WtWorkerManager;
 
 import org.xutils.x;
 
@@ -31,7 +30,7 @@ public class WtApplication extends /*MultiDex*/Application {
         /*start periodic update current city weather*/
         //WtWorkerManager.startPeriodicWeatherUpdate();
 
-        CityCacheClient.getInstance().loadCityConfigCache();
+        CacheClient.getInstance().loadCityConfigCache();
 
         //umeng push register
         UmPushManager.register(this);

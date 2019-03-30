@@ -80,11 +80,9 @@ public class DownloadManager {
      * GoF23 设计模式 2：单例模式：延迟加载
      */
     public static DownloadManager getInstance(Context context) {
-        if (mInstance == null) {
-            synchronized (DownloadManager.class) {
-                if (mInstance == null) {
-                    mInstance = new DownloadManager(context);
-                }
+        synchronized (DownloadManager.class) {
+            if (mInstance == null) {
+                mInstance = new DownloadManager(context);
             }
         }
         return mInstance;

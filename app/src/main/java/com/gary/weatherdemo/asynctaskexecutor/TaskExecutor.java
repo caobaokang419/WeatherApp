@@ -69,8 +69,8 @@ public class TaskExecutor {
             if (mTaskExecutor == null) {
                 mTaskExecutor = new TaskExecutor();
             }
-            return mTaskExecutor;
         }
+        return mTaskExecutor;
     }
     //===================================================================================================
     //for test

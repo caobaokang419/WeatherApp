@@ -25,7 +25,7 @@ public class MvpDemoModel implements IModel{
             if (mMvpDemoModel == null) {
                 mMvpDemoModel = new MvpDemoModel();
             }
-            return mMvpDemoModel;
         }
+        return mMvpDemoModel;
     }
 }

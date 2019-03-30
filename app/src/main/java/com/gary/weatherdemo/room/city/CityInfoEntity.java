@@ -4,6 +4,8 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
+import com.gary.weatherdemo.bean.CityBean;
+
 /**
  * Created by GaryCao on 2019/01/13.
  * 高德城市配置表DB Table
@@ -35,5 +37,19 @@ public class CityInfoEntity {
 
     public String getAdcode() {
         return adcode;
+    }
+
+    public static CityInfoEntity fromCityBean(CityBean cityBean) {
+        if (cityBean == null) {
+            return null;
+        }
+        CityInfoEntity entity = new CityInfoEntity();
+        entity.setAdcode(cityBean.adcCode);
+        entity.setCityName(cityBean.adrName);
+        return entity;
+    }
+
+    public static CityBean toCityInfoEntity(CityInfoEntity entity) {
+        return entity == null ? null : new CityBean(entity.adcode, entity.city_name);
     }
 }

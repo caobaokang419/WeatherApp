@@ -4,9 +4,9 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
 
+import com.gary.weatherdemo.bean.CityBean;
 import com.gary.weatherdemo.bean.base.BaseItemBean;
 import com.gary.weatherdemo.constant.Constants;
-import com.gary.weatherdemo.bean.CityBean;
 import com.gary.weatherdemo.utils.CLog;
 
 import java.util.ArrayList;
@@ -17,8 +17,8 @@ import java.util.List;
  * 高德城市配置缓存实现
  * 优点：统一提供，供不同UI直接获取，不再需要重复&频繁请求DB或assert文件城市配置信息数据
  */
-public class CityCacheClient {
-    private static final String TAG = CityCacheClient.class.getSimpleName();
+public class CacheClient {
+    private static final String TAG = CacheClient.class.getSimpleName();
     private static final Object mLock = new Object();
 
     /**
@@ -31,10 +31,10 @@ public class CityCacheClient {
      */
     private static Handler mWorkHandler;
 
-    private static CityCacheClient mCityCacheClient;
+    private static CacheClient mCacheClient;
 
 
-    private CityCacheManager mCityCacheManager;
+    private CacheManager mCacheManager;
 
     private List<ICityConfigCallback> mCityConfigCallbacks = new ArrayList<>();
 
@@ -45,9 +45,9 @@ public class CityCacheClient {
     /**
      * 私有构造
      */
-    private CityCacheClient() {
+    private CacheClient() {
         initWorkHandlerThread();
-        mCityCacheManager = new CityCacheManager();
+        mCacheManager = new CacheManager();
     }
 
     private void initWorkHandlerThread() {
@@ -64,7 +64,7 @@ public class CityCacheClient {
         runOnWorkThread(new Runnable() {
             @Override
             public void run() {
-                mCityCacheManager.loadCityConfigFromAssets(Constants.AMAP_ADCODE_CONFIG_FILE_NAME);
+                mCacheManager.loadCityConfigFromAssets(Constants.AMAP_ADCODE_CONFIG_FILE_NAME);
                 notifyCityConfigChanged();
             }
         });
@@ -102,11 +102,15 @@ public class CityCacheClient {
      * 通过地区名称，返回匹配成功的数据
      */
     public String getAdcodeByAddrName(String addrName) {
-        return mCityCacheManager.getAdcodeByAddrName(addrName);
+        return mCacheManager.getAdcodeByAddrName(addrName);
     }
 
     public List<BaseItemBean> getSearchCityBeans() {
-        return mCityCacheManager.getSearchCityBeans();
+        return mCacheManager.getSearchCityBeans();
+    }
+
+    public List<CityBean> getSelectedCityBeans() {
+        return mCacheManager.getSelectedCityBeans();
     }
 
     public void addCallbackListener(ICityConfigCallback callback) {
@@ -117,12 +121,12 @@ public class CityCacheClient {
         mCityConfigCallbacks.remove(callback);
     }
 
-    public static CityCacheClient getInstance() {
+    public static CacheClient getInstance() {
         synchronized (mLock) {
-            if (mCityCacheClient == null) {
-                mCityCacheClient = new CityCacheClient();
+            if (mCacheClient == null) {
+                mCacheClient = new CacheClient();
             }
-            return mCityCacheClient;
+            return mCacheClient;
         }
     }
 }

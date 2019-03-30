@@ -42,8 +42,8 @@ public abstract class WtDatabase extends RoomDatabase {
                                 /*.allowMainThreadQueries()*//*db 耗时不应在UI线程发起*/
                                 .build();
             }
-            return mWtDatabase;
         }
+        return mWtDatabase;
     }
 
     //===================================================================================================
