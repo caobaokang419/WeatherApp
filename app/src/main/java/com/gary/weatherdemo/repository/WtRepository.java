@@ -9,6 +9,7 @@ import com.gary.weatherdemo.http.response.AllForecastResponseData;
 import com.gary.weatherdemo.http.response.LiveWeatherResponseData;
 import com.gary.weatherdemo.room.WtDatabase;
 import com.gary.weatherdemo.room.city.CityInfoEntity;
+import com.gary.weatherdemo.utils.NetworkUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +40,10 @@ public class WtRepository {
     }
 
     public static void queryCityWeather(final CityBean citybean, final IQueryWeather iQueryWeather) {
+        if (!NetworkUtil.isNetworkConnected()) {
+            return;
+        }
+
         /**task1: 查询当前天气*/
         Observable<LiveWeatherResponseData> observable1 =
                 queryCityCurWeather(citybean).subscribeOn(Schedulers.io());//被观察者Observable运行在子线程
