@@ -1,4 +1,4 @@
-package com.gary.weatherdemo.network.response.base;
+package com.gary.weatherdemo.http.response.base;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 
-import com.gary.weatherdemo.network.ApiContants;
+import com.gary.weatherdemo.http.ApiContants;
 import com.gary.weatherdemo.utils.CLog;
 
 /**

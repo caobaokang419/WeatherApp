@@ -1,4 +1,4 @@
-package com.gary.weatherdemo.network;
+package com.gary.weatherdemo.http;
 
 import java.util.concurrent.TimeUnit;
 

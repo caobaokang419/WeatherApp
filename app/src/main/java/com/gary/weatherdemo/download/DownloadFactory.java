@@ -3,7 +3,7 @@ package com.gary.weatherdemo.download;
 import android.os.Environment;
 import android.util.Log;
 
-import com.gary.weatherdemo.network.ApiContants;
+import com.gary.weatherdemo.http.ApiContants;
 import com.gary.weatherdemo.utils.XutilsFileUtil;
 
 import org.xutils.common.Callback;

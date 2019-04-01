@@ -11,6 +11,7 @@ import com.gary.weatherdemo.utils.CLog;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * Created by GaryCao on 2019/03/14.
@@ -33,6 +34,7 @@ public class CacheClient {
 
     private static CacheClient mCacheClient;
 
+    private static CountDownLatch mCacheLoaderLatch;
 
     private CacheManager mCacheManager;
 
@@ -48,6 +50,7 @@ public class CacheClient {
     private CacheClient() {
         initWorkHandlerThread();
         mCacheManager = new CacheManager();
+        mCacheLoaderLatch = new CountDownLatch(1);
     }
 
     private void initWorkHandlerThread() {
@@ -66,6 +69,7 @@ public class CacheClient {
             public void run() {
                 mCacheManager.loadCityConfigFromAssets(Constants.AMAP_ADCODE_CONFIG_FILE_NAME);
                 notifyCityConfigChanged();
+                mCacheLoaderLatch.countDown();
             }
         });
     }
@@ -113,11 +117,11 @@ public class CacheClient {
         return mCacheManager.getFixedCityBeans();
     }
 
-    public void addCallbackListener(ICityConfigCallback callback) {
+    public void addListener(ICityConfigCallback callback) {
         mCityConfigCallbacks.add(callback);
     }
 
-    public void removeCallbackListener(ICityConfigCallback callback) {
+    public void removeListener(ICityConfigCallback callback) {
         mCityConfigCallbacks.remove(callback);
     }
 

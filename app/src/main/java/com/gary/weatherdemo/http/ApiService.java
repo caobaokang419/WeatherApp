@@ -1,7 +1,7 @@
-package com.gary.weatherdemo.network;
+package com.gary.weatherdemo.http;
 
-import com.gary.weatherdemo.network.response.AllForecastResponseData;
-import com.gary.weatherdemo.network.response.LiveWeatherResponseData;
+import com.gary.weatherdemo.http.response.AllForecastResponseData;
+import com.gary.weatherdemo.http.response.LiveWeatherResponseData;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;

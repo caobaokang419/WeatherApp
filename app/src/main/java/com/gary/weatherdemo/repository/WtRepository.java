@@ -4,9 +4,9 @@ import com.gary.weatherdemo.WtApplication;
 import com.gary.weatherdemo.bean.CityBean;
 import com.gary.weatherdemo.bean.DayForecastBean;
 import com.gary.weatherdemo.bean.base.BaseItemBean;
-import com.gary.weatherdemo.network.WeatherRequestClient;
-import com.gary.weatherdemo.network.response.AllForecastResponseData;
-import com.gary.weatherdemo.network.response.LiveWeatherResponseData;
+import com.gary.weatherdemo.http.WeatherRequestClient;
+import com.gary.weatherdemo.http.response.AllForecastResponseData;
+import com.gary.weatherdemo.http.response.LiveWeatherResponseData;
 import com.gary.weatherdemo.room.WtDatabase;
 import com.gary.weatherdemo.room.city.CityInfoEntity;
 
@@ -38,16 +38,14 @@ public class WtRepository {
         return WeatherRequestClient.getInstance().forecastWeatherPost(cityBean.cityCode);
     }
 
-    public static void queryCityWeather(final CityBean cityinfo, final IQueryWeather iQueryWeather) {
+    public static void queryCityWeather(final CityBean citybean, final IQueryWeather iQueryWeather) {
         /**task1: 查询当前天气*/
         Observable<LiveWeatherResponseData> observable1 =
-                WeatherRequestClient.getInstance().liveWeatherPost(cityinfo.cityCode)
-                        .subscribeOn(Schedulers.io());//被观察者Observable运行在子线程
+                queryCityCurWeather(citybean).subscribeOn(Schedulers.io());//被观察者Observable运行在子线程
 
         /**task2: 查询未来天气预报*/
         Observable<AllForecastResponseData> observable2 =
-                WeatherRequestClient.getInstance().forecastWeatherPost(cityinfo.cityCode)
-                        .subscribeOn(Schedulers.io());
+                queryCityForecast(citybean).subscribeOn(Schedulers.io());
 
         /**Observable.zip: 实现task1+ task2 异步任务都完成时，回调 订阅的UI刷新*/
         Observable.zip(observable1, observable2,

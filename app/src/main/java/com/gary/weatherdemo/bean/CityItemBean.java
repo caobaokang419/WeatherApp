@@ -3,7 +3,7 @@ package com.gary.weatherdemo.bean;
 import android.support.annotation.NonNull;
 
 import com.gary.weatherdemo.bean.base.BaseItemBean;
-import com.gary.weatherdemo.pinyin.PinyinUtils;
+import com.gary.weatherdemo.pinyin.HanziToPinyinUtils;
 
 /**
  * Created by GaryCao on 2018/10/25.
@@ -20,9 +20,9 @@ public class CityItemBean extends BaseItemBean implements Comparable<CityItemBea
         super(ItemViewType.RV_SEARCH_CITY_ITEM_TYPE);
         mCityName = cityBean.cityName;
         mCityCode = cityBean.cityCode;
-        mCityBeanPinYin = PinyinUtils.getPinYin(mCityName);
-        mCityNameFirstChar = PinyinUtils.getPinYinHeadChar(mCityName);
-        mCityNameFirstLetter = PinyinUtils.getPinYinFirstLetter(mCityName);
+        mCityBeanPinYin = HanziToPinyinUtils.getPinYin(mCityName);
+        mCityNameFirstChar = HanziToPinyinUtils.getPinYinHeadChar(mCityName);
+        mCityNameFirstLetter = HanziToPinyinUtils.getPinYinFirstLetter(mCityName);
     }
 
     public void setCityBean(CityBean mCityBean) {

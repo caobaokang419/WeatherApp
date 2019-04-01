@@ -1,4 +1,4 @@
-package com.gary.weatherdemo.network;
+package com.gary.weatherdemo.http;
 
 /**
  * Created by GaryCao on 2018/10/25.

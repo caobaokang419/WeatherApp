@@ -23,18 +23,9 @@
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <!-- 弃用 -->
-        <activity
-            android:name=".mvpdemo.MvpCityWeatherActivity"
-            android:theme="@style/AppTheme" />
-
-        <!-- 弃用 -->
-
         <activity
             android:name=".ui.activity.WtSettingActivity"
             android:theme="@style/AppTheme" />
