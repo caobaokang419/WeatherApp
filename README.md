@@ -37,9 +37,9 @@
 - 左右滑动实现：ViewPager实现左右页面滑动切换；
 - 下拉上拉刷新：下拉界面，实现天气自动更新；上拉界面，查询显示更多天气相关信息；
 - 天气设置功能：PreferenceActivity+PreferenceFragment，替代单独使用PreferenceActivity，实现天气设置界面；
-- 天气城市查询：输入城市自动匹配，用于城市天气查询；
+- 天气城市查询：输入城市，自动查找匹配的城市项，用于完成指定城市的天气查询；
 - 公共控件封装：自定义实现公共控件CommonUI，用于控件应用内复用；
-- [RecyclerView封装](https://www.jianshu.com/p/4f9591291365)：Android推荐控件，优于ListView，统一实现封装不同类型的ItemView；
+- [RecyclerView封装](https://www.jianshu.com/p/4f9591291365)：Android推荐控件，优于ListView，统一实现封装不同UI+Data的ItemView；
 
 -------
 ### MVVM框架和组件实现：
