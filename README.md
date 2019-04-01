@@ -28,7 +28,8 @@
 - [数据缓存功能](http://www.androiddocs.com/samples/DisplayingBitmaps/src/com.example.android.displayingbitmaps/util/DiskLruCache.html)：1. 实现封装磁盘缓存；2. 实现数据内存缓存；
 - [任务管理功能](https://www.jianshu.com/p/4d4634c92253)：1. 封装线程池ThreadPoolExecutor；2.泛型的TaskExecutor机制实现；
 - 异步任务管理：AsyncTask HandlerThread WorkManager不同方式，实现不同场景的异步任务需求；
-- 天气定期更新：1. 定时启动后台任务+轮询查询城市队列：实现定时&批量更新城市天气数据。
+- 天气定期更新：1. 定时启动后台任务；2.轮询查询城市队列：实现定时&批量更新城市天气数据。
+- 汉字拼音转换：集成汉字转拼音工具（第三方pinyin4j），实现城市列表拼音搜索功能；
 
 
 -------
