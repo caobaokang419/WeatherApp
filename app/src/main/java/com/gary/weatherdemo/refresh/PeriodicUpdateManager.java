@@ -4,7 +4,7 @@ import android.os.Handler;
 import android.os.HandlerThread;
 
 import com.gary.weatherdemo.bean.CityBean;
-import com.gary.weatherdemo.bean.base.BaseItemBean;
+import com.gary.weatherdemo.bean.IViewItemBean;
 import com.gary.weatherdemo.cache.memorycache.CacheClient;
 import com.gary.weatherdemo.repository.WtRepository;
 
@@ -67,7 +67,7 @@ public class PeriodicUpdateManager {
             CityBean cityBean = mQueue.poll();
             WtRepository.queryCityWeather(cityBean, new WtRepository.IQueryWeather() {
                 @Override
-                public void onWeatherQueryCompleted(List<BaseItemBean> data) {
+                public void onWeatherQueryCompleted(List<IViewItemBean> data) {
                     executeCurrentTask();
                 }
             });

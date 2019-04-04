@@ -1,18 +1,10 @@
-package com.gary.weatherdemo.bean.base;
+package com.gary.weatherdemo.bean;
 
 /**
  * Created by GaryCao on 2018/12/12.
  */
-public abstract class BaseItemBean {
-    private final int mViewItemType;
-
-    public BaseItemBean(int viewItemType) {
-        this.mViewItemType = viewItemType;
-    }
-
-    public int getViewItemType() {
-        return mViewItemType;
-    }
+public interface IViewItemBean {
+    public int getViewItemType();
 
     /**
      * Created by GaryCao on 2018/12/12.

@@ -5,13 +5,14 @@ import android.os.HandlerThread;
 import android.os.Looper;
 
 import com.gary.weatherdemo.bean.CityBean;
-import com.gary.weatherdemo.bean.base.BaseItemBean;
+import com.gary.weatherdemo.bean.IViewItemBean;
 import com.gary.weatherdemo.constant.Constants;
 import com.gary.weatherdemo.utils.CLog;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Created by GaryCao on 2019/03/14.
@@ -39,6 +40,16 @@ public class CacheClient {
     private CacheManager mCacheManager;
 
     private List<ICityConfigCallback> mCityConfigCallbacks = new ArrayList<>();
+
+    /**
+     * 主Pager页显示的城市列表
+     */
+    private List<CityBean> mFixedCityBeans = Constants.COMMON_CITY_BEANS; //TODO
+
+    /**
+     * 缓存是否加载OK
+     */
+    private volatile AtomicBoolean mCityCacheLoaded = new AtomicBoolean(false);
 
     public interface ICityConfigCallback {
         void onCityConfigChanged();
@@ -68,6 +79,7 @@ public class CacheClient {
             @Override
             public void run() {
                 mCacheManager.loadCityConfigFromAssets(Constants.AMAP_ADCODE_CONFIG_FILE_NAME);
+                mCityCacheLoaded.set(true);
                 notifyCityConfigChanged();
                 mCacheLoaderLatch.countDown();
             }
@@ -105,16 +117,22 @@ public class CacheClient {
     /**
      * 通过关键字，返回匹配数据
      */
-    public List<BaseItemBean> getPairedBeansByKeyWord(String keyword) {
+    public List<IViewItemBean> getPairedBeansByKeyWord(String keyword) {
+        if (!isCityCacheLoaded()) {
+            return new ArrayList<>();
+        }
         return mCacheManager.getPairedBeansByKeyWord(keyword);
     }
 
-    public List<BaseItemBean> getCityItemBeans() {
+    public List<IViewItemBean> getCityItemBeans() {
+        if (!isCityCacheLoaded()) {
+            return new ArrayList<>();
+        }
         return mCacheManager.getCityItemBeans();
     }
 
     public List<CityBean> getFixedCityBeans() {
-        return mCacheManager.getFixedCityBeans();
+        return mFixedCityBeans;
     }
 
     public void addListener(ICityConfigCallback callback) {
@@ -123,6 +141,10 @@ public class CacheClient {
 
     public void removeListener(ICityConfigCallback callback) {
         mCityConfigCallbacks.remove(callback);
+    }
+
+    public boolean isCityCacheLoaded() {
+        return mCityCacheLoaded.get();
     }
 
     public static CacheClient getInstance() {

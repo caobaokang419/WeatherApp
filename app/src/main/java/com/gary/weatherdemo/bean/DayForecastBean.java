@@ -1,13 +1,12 @@
 package com.gary.weatherdemo.bean;
 
-import com.gary.weatherdemo.bean.base.BaseItemBean;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by GaryCao on 2018/10/25.
  */
-public class DayForecastBean extends BaseItemBean {
+public class DayForecastBean implements IViewItemBean {
     @SerializedName("date")
     @Expose
     public final String date = null;
@@ -48,8 +47,9 @@ public class DayForecastBean extends BaseItemBean {
     @Expose
     public final String nightpower = null;
 
-    DayForecastBean(){
-        super(ItemViewType.RV_FORECAST_DAY_WEATHER_ITEM_TYPE);
+    @Override
+    public int getViewItemType(){
+        return ItemViewType.RV_FORECAST_DAY_WEATHER_ITEM_TYPE;
     }
 
     @Override

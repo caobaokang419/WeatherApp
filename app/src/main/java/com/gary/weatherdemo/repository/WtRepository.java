@@ -3,7 +3,7 @@ package com.gary.weatherdemo.repository;
 import com.gary.weatherdemo.WtApplication;
 import com.gary.weatherdemo.bean.CityBean;
 import com.gary.weatherdemo.bean.DayForecastBean;
-import com.gary.weatherdemo.bean.base.BaseItemBean;
+import com.gary.weatherdemo.bean.IViewItemBean;
 import com.gary.weatherdemo.http.WeatherRequestClient;
 import com.gary.weatherdemo.http.response.AllForecastResponseData;
 import com.gary.weatherdemo.http.response.LiveWeatherResponseData;
@@ -54,29 +54,29 @@ public class WtRepository {
 
         /**Observable.zip: 实现task1+ task2 异步任务都完成时，回调 订阅的UI刷新*/
         Observable.zip(observable1, observable2,
-                new BiFunction<LiveWeatherResponseData, AllForecastResponseData, List<BaseItemBean>>() {
+                new BiFunction<LiveWeatherResponseData, AllForecastResponseData, List<IViewItemBean>>() {
                     @Override
-                    public List<BaseItemBean> apply(LiveWeatherResponseData livedata,
-                                                    AllForecastResponseData allForecastdata) throws Exception {
+                    public List<IViewItemBean> apply(LiveWeatherResponseData livedata,
+                                                     AllForecastResponseData allForecastdata) throws Exception {
                         /**task1+task2 ，此处可以处理耗时流程（子线程）*/
                         return combineWeatherData(livedata, allForecastdata);
                     }
                 })
                 .observeOn(AndroidSchedulers.mainThread())//观察者运行在UI线程
-                .subscribe(new Consumer<List<BaseItemBean>>() {
+                .subscribe(new Consumer<List<IViewItemBean>>() {
                     @Override
-                    public void accept(List<BaseItemBean> dataList) throws Exception {
+                    public void accept(List<IViewItemBean> dataList) throws Exception {
                         /**实现UI订阅逻辑（AndroidSchedulers.mainThread）*/
                         iQueryWeather.onWeatherQueryCompleted(dataList);
                     }
                 });
     }
 
-    private static List<BaseItemBean> combineWeatherData(
+    private static List<IViewItemBean> combineWeatherData(
             LiveWeatherResponseData livedata,
             AllForecastResponseData allForecastdata) {
         List<DayForecastBean> dayForecastList = null;
-        List<BaseItemBean> dataList = new ArrayList<>();
+        List<IViewItemBean> dataList = new ArrayList<>();
         dataList.clear();
         if (livedata != null && livedata.isSuccessful()) {
             dataList.add(livedata.getWeatherLiveResult());
@@ -93,6 +93,6 @@ public class WtRepository {
     }
 
     public interface IQueryWeather {
-        void onWeatherQueryCompleted(List<BaseItemBean> data);
+        void onWeatherQueryCompleted(List<IViewItemBean> data);
     }
 }

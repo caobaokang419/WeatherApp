@@ -1,13 +1,12 @@
 package com.gary.weatherdemo.bean;
 
-import com.gary.weatherdemo.bean.base.BaseItemBean;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by GaryCao on 2018/10/25.
  */
-public class LiveWeatherBean extends BaseItemBean {
+public class LiveWeatherBean implements IViewItemBean {
     @SerializedName("province")
     @Expose
     public final String province = null;
@@ -44,8 +43,9 @@ public class LiveWeatherBean extends BaseItemBean {
     @Expose
     public final String reporttime = null;
 
-    LiveWeatherBean(){
-        super(ItemViewType.RV_CURRENT_WEATHER_ITEM_TYPE);
+    @Override
+    public int getViewItemType(){
+        return ItemViewType.RV_CURRENT_WEATHER_ITEM_TYPE;
     }
 
     @Override

@@ -8,7 +8,7 @@ import android.support.v4.view.ViewPager;
 
 import com.gary.weatherdemo.constant.Constants;
 import com.gary.weatherdemo.bean.CityBean;
-import com.gary.weatherdemo.bean.base.BaseItemBean;
+import com.gary.weatherdemo.bean.IViewItemBean;
 import com.gary.weatherdemo.repository.WtRepository;
 import com.gary.weatherdemo.ui.adapter.base.CommonRecyclerAdapter;
 
@@ -21,7 +21,7 @@ public class MainActivityViewModel extends AndroidViewModel {
     private final Map<CityBean, CommonRecyclerAdapter> mAdapterDatas = new HashMap<>();
     private MutableLiveData<CityBean> mCurCityBean = new MutableLiveData<>();
     private MutableLiveData<List<CityBean>> mCityBeans = new MutableLiveData<>();
-    private Map<CityBean, List<BaseItemBean>> mCityWeatherDatas = new HashMap<>();
+    private Map<CityBean, List<IViewItemBean>> mCityWeatherDatas = new HashMap<>();
 
     private PageChangeListener mPageChangeListener = new PageChangeListener();
     private int mPageCount;
@@ -41,7 +41,7 @@ public class MainActivityViewModel extends AndroidViewModel {
     public void queryCityWeather(final CityBean cityBean) {
         WtRepository.queryCityWeather(cityBean, new WtRepository.IQueryWeather() {
             @Override
-            public void onWeatherQueryCompleted(List<BaseItemBean> data) {
+            public void onWeatherQueryCompleted(List<IViewItemBean> data) {
                 /**实现UI订阅逻辑（AndroidSchedulers.mainThread）*/
                 mCityWeatherDatas.put(cityBean, data);
                 CommonRecyclerAdapter adapter = getCityWeatherRecyclerAdapter(cityBean);

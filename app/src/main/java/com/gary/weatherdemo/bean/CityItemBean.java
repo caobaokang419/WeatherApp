@@ -2,13 +2,12 @@ package com.gary.weatherdemo.bean;
 
 import android.support.annotation.NonNull;
 
-import com.gary.weatherdemo.bean.base.BaseItemBean;
-import com.gary.weatherdemo.pinyin.HanziToPinyinUtils;
+import com.gary.weatherdemo.pinyin.HanziToPinyinHelper;
 
 /**
  * Created by GaryCao on 2018/10/25.
  */
-public class CityItemBean extends BaseItemBean implements Comparable<CityItemBean> {
+public class CityItemBean implements IViewItemBean,Comparable<CityItemBean> {
     private CityBean mCityBean;
     private String mCityName;
     private String mCityCode;
@@ -17,12 +16,16 @@ public class CityItemBean extends BaseItemBean implements Comparable<CityItemBea
     private String mCityBeanPinYin;//汉字全拼音
 
     public CityItemBean(CityBean cityBean) {
-        super(ItemViewType.RV_SEARCH_CITY_ITEM_TYPE);
         mCityName = cityBean.cityName;
         mCityCode = cityBean.cityCode;
-        mCityBeanPinYin = HanziToPinyinUtils.getPinYin(mCityName);
-        mCityNameFirstChar = HanziToPinyinUtils.getPinYinHeadChar(mCityName);
-        mCityNameFirstLetter = HanziToPinyinUtils.getPinYinFirstLetter(mCityName);
+        mCityBeanPinYin = HanziToPinyinHelper.getPinYin(mCityName);
+        mCityNameFirstChar = HanziToPinyinHelper.getPinYinHeadChar(mCityName);
+        mCityNameFirstLetter = HanziToPinyinHelper.getPinYinFirstLetter(mCityName);
+    }
+
+    @Override
+    public int getViewItemType(){
+        return ItemViewType.RV_SEARCH_CITY_ITEM_TYPE;
     }
 
     public void setCityBean(CityBean mCityBean) {

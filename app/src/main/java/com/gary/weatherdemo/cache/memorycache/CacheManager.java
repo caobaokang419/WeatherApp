@@ -3,15 +3,13 @@ package com.gary.weatherdemo.cache.memorycache;
 import com.gary.weatherdemo.WtApplication;
 import com.gary.weatherdemo.bean.CityBean;
 import com.gary.weatherdemo.bean.CityItemBean;
-import com.gary.weatherdemo.bean.base.BaseItemBean;
-import com.gary.weatherdemo.constant.Constants;
+import com.gary.weatherdemo.bean.IViewItemBean;
 import com.gary.weatherdemo.utils.CLog;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Created by GaryCao on 2019/03/14.
@@ -20,10 +18,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 public class CacheManager {
     private static final String TAG = CacheManager.class.getSimpleName();
-    /**
-     * 缓存是否加载OK
-     */
-    private volatile AtomicBoolean mCityCacheLoaded = new AtomicBoolean(false);
+
+    private static final Object mLock = new Object();
 
     /**
      * 高德天气城市配置表缓存数组（1.首次读取assert配置文件获取 2.后续读取DB获取）
@@ -33,15 +29,9 @@ public class CacheManager {
     /**
      * 高德天气城市配置数据列表
      */
-    private List<BaseItemBean> mCityItemBeans = new ArrayList<>();
-
-    /**
-     * 主Pager页显示的城市列表
-     */
-    private List<CityBean> mFixedCityBeans = new ArrayList<>();
+    private List<IViewItemBean> mCityItemBeans = new ArrayList<>();
 
     public CacheManager() {
-        mFixedCityBeans = Constants.COMMON_CITY_BEANS; //TODO
     }
 
     public boolean loadCityConfigFromAssets(String fileName) {
@@ -51,7 +41,7 @@ public class CacheManager {
             BufferedReader bufReader = new BufferedReader(inputReader);
 
             List<CityBean> cityBeans = new ArrayList<>();
-            List<BaseItemBean> cityItemBeans = new ArrayList<>();
+            List<IViewItemBean> cityItemBeans = new ArrayList<>();
             String line;
             while ((line = bufReader.readLine()) != null) {
                 if (line == null || line.isEmpty()) {
@@ -68,11 +58,10 @@ public class CacheManager {
                 }
             }
 
-            synchronized (CacheManager.this) {
+            synchronized (mLock) {
                 mCityBeans = cityBeans;
                 mCityItemBeans = cityItemBeans;
             }
-            mCityCacheLoaded.set(true);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -84,10 +73,7 @@ public class CacheManager {
     /**
      * 通过关键字，返回匹配数据
      */
-    public List<BaseItemBean> getPairedBeansByKeyWord(String keyword) {
-        if (!isCityCacheLoaded()) {
-            return null;
-        }
+    public List<IViewItemBean> getPairedBeansByKeyWord(String keyword) {
         if (null == keyword
                 || keyword.isEmpty()
                 || null == mCityItemBeans
@@ -95,31 +81,23 @@ public class CacheManager {
             return null;
         }
 
-        List<BaseItemBean> itemBeans = new ArrayList<>();
-        for (BaseItemBean item : mCityItemBeans) {
-            if (item instanceof CityItemBean) {
-                CityItemBean itemBean = (CityItemBean) item;
-                if (itemBean.isSearched(keyword)) {
-                    itemBeans.add(item);
+        List<IViewItemBean> itemBeans = new ArrayList<>();
+        synchronized (mLock) {
+            for (IViewItemBean item : mCityItemBeans) {
+                if (item instanceof CityItemBean) {
+                    CityItemBean itemBean = (CityItemBean) item;
+                    if (itemBean.isSearched(keyword)) {
+                        itemBeans.add(item);
+                    }
                 }
             }
         }
         return itemBeans;
     }
 
-    public List<BaseItemBean> getCityItemBeans() {
-        if (!isCityCacheLoaded()) {
-            return new ArrayList<>();
+    public List<IViewItemBean> getCityItemBeans() {
+        synchronized (mLock) {
+            return mCityItemBeans;
         }
-
-        return mCityItemBeans;
-    }
-
-    public List<CityBean> getFixedCityBeans() {
-        return mFixedCityBeans;
-    }
-
-    public boolean isCityCacheLoaded() {
-        return mCityCacheLoaded.get();
     }
 }

@@ -14,6 +14,10 @@ import android.widget.ImageButton;
 import com.gary.weatherdemo.R;
 import com.gary.weatherdemo.cache.memorycache.CacheClient;
 import com.gary.weatherdemo.constant.Constants;
+import com.gary.weatherdemo.filter.FilterChain;
+import com.gary.weatherdemo.filter.FilterFixedItem;
+import com.gary.weatherdemo.filter.FilterSearchWord;
+import com.gary.weatherdemo.filter.NoFilter;
 import com.gary.weatherdemo.ui.activity.base.BaseActivity;
 import com.gary.weatherdemo.ui.adapter.CitySearchGridAdapter;
 import com.gary.weatherdemo.ui.adapter.CitySearchRecyclerAdapter;
@@ -46,13 +50,23 @@ public class WtSearchActivity extends BaseActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (charSequence == null || charSequence.toString().isEmpty()) {
-                    mCitySearchRecycleAdapter.setAdapterData(
-                            CacheClient.getInstance().getCityItemBeans());
+                    /*mCitySearchRecycleAdapter.setAdapterData(
+                            CacheClient.getInstance().getCityItemBeans());*/
+
+                    FilterChain filterChain = new FilterChain();
+                    filterChain.addFilter(new NoFilter());
+                    filterChain.doFilter(CacheClient.getInstance().getCityItemBeans());
                     mCitySearchRecycleAdapter.setCurMode(
                             CitySearchRecyclerAdapter.CityListMode.CITY_LIST_NORMAL_MODE);
                 } else {
-                    mCitySearchRecycleAdapter.setAdapterData(
-                            CacheClient.getInstance().getPairedBeansByKeyWord(charSequence.toString()));
+                    /*mCitySearchRecycleAdapter.setAdapterData(
+                            CacheClient.getInstance().getPairedBeansByKeyWord(charSequence.toString()));*/
+
+                    String keyword = charSequence.toString();
+                    FilterChain filterChain = new FilterChain();
+                    filterChain.addFilter(new FilterSearchWord(keyword));
+                    filterChain.addFilter(new FilterFixedItem());
+                    filterChain.doFilter(CacheClient.getInstance().getCityItemBeans());
                     mCitySearchRecycleAdapter.setCurMode(
                             CitySearchRecyclerAdapter.CityListMode.CITY_LIST_SEARCH_MODE);
                 }
