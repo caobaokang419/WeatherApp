@@ -1,6 +1,5 @@
 package com.gary.weatherdemo.permission;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -25,7 +24,7 @@ public class WtPermissionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         //发起权限申请
-        List<String> needPermissions = WtPermissionUtils.getNeedGrantPermissions(this);
+        List<String> needPermissions = WtPermissionHelper.getNeedGrantPermissions(this);
         ActivityCompat.requestPermissions(
                 this,
                 needPermissions.toArray(new String[needPermissions.size()]),
@@ -44,7 +43,7 @@ public class WtPermissionActivity extends AppCompatActivity {
                                            @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_CODE_PERMISSION) {
-            if (WtPermissionUtils.checkPermissionsGrantResult(grantResults)) {
+            if (WtPermissionHelper.checkPermissionsGrantResult(grantResults)) {
                 CLog.d("onRequestPermissionsResult success");
                 for (IPermitRequestCallback callback : mCallbacks) {
                     callback.onPermitRequestedSuccess();

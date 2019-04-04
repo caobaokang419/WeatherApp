@@ -4,9 +4,10 @@ import android.support.annotation.NonNull;
 
 import com.gary.weatherdemo.cache.memorycache.CacheClient;
 import com.gary.weatherdemo.constant.Constants;
+import com.gary.weatherdemo.provider.sp.SpConfigProviderClient;
 import com.gary.weatherdemo.refresh.PeriodicUpdateManager;
 import com.gary.weatherdemo.utils.CLog;
-import com.gary.weatherdemo.utils.SpConfigsUtil;
+import com.gary.weatherdemo.utils.SpConfigUtil;
 
 import java.util.concurrent.TimeUnit;
 
@@ -42,7 +43,8 @@ public class WtWorkerManager {
         PeriodicWorkRequest.Builder timerQueryRequestBuilder =
                 new PeriodicWorkRequest.Builder(
                         PeriodicUpdateWorker.class,
-                        SpConfigsUtil.getInstance().getInt(SpConfigsUtil.KEY_UPDATE_PERIODIC_HOUR_COUNT),
+                        /*SpConfigUtil.getInstance().getInt(SpConfigUtil.KEY_UPDATE_PERIODIC_HOUR_COUNT),*/
+                        SpConfigProviderClient.getIntInProvider(SpConfigUtil.KEY_UPDATE_PERIODIC_HOUR_COUNT),
                         TimeUnit.HOURS,
                         5,
                         TimeUnit.MINUTES);

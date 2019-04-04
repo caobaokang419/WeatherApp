@@ -56,19 +56,19 @@
 
         <!-- db content provider -->
         <provider
-            android:name=".provider.db.WtContentProvider"
+            android:name=".provider.db.DbProvider"
             android:authorities="com.gary.weatherdemo.db.provider"
             android:enabled="true"
             android:exported="true"
-            android:permission="com.gary.weatherdemo.DB_PROVIDER" />
+            android:permission="com.gary.weatherdemo.PERMISSION_DB_PROVIDER" />
 
         <!-- sp content provider -->
         <provider
-            android:name=".provider.sp.WtSharedPreferenceProvider"
+            android:name=".provider.sp.SpConfigProvider"
             android:authorities="com.gary.weatherdemo.sp.provider"
             android:enabled="true"
             android:exported="true"
-            android:permission="com.gary.weatherdemo.SP_PROVIDER" />
+            android:permission="com.gary.weatherdemo.PERMISSION_SP_PROVIDER" />
 
         <!-- background service -->
         <service

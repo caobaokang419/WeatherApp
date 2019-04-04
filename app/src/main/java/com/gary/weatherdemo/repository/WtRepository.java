@@ -8,7 +8,7 @@ import com.gary.weatherdemo.http.WeatherRequestClient;
 import com.gary.weatherdemo.http.response.AllForecastResponseData;
 import com.gary.weatherdemo.http.response.LiveWeatherResponseData;
 import com.gary.weatherdemo.room.WtDatabase;
-import com.gary.weatherdemo.room.city.CityInfoEntity;
+import com.gary.weatherdemo.room.city.CityBeanEntity;
 import com.gary.weatherdemo.utils.NetworkUtil;
 
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class WtRepository {
     public static void insertCityBean(CityBean cityBean) {
-        CityInfoEntity entity = CityInfoEntity.fromCityBean(cityBean);
+        CityBeanEntity entity = CityBeanEntity.fromCityBean(cityBean);
         WtDatabase.getInstance(WtApplication.getInstance()).cityInfoDAO().insert(entity);
     }
 

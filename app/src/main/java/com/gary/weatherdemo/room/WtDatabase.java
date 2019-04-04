@@ -6,15 +6,15 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
 import com.gary.weatherdemo.WtApplication;
-import com.gary.weatherdemo.room.city.CityInfoDAO;
-import com.gary.weatherdemo.room.city.CityInfoEntity;
+import com.gary.weatherdemo.room.city.CityBeanDAO;
+import com.gary.weatherdemo.room.city.CityBeanEntity;
 import com.gary.weatherdemo.room.weather.CityForecastDAO;
 import com.gary.weatherdemo.room.weather.CityForecastEntity;
 
 /**
  * Created by GaryCao on 2018/10/25.
  */
-@Database(entities = {CityForecastEntity.class, CityInfoEntity.class}, version = 1, exportSchema = false)
+@Database(entities = {CityForecastEntity.class, CityBeanEntity.class}, version = 1, exportSchema = false)
 public abstract class WtDatabase extends RoomDatabase {
     public static final String WEATHER_DB_NAME = "weather_db";
     private static WtDatabase mWtDatabase;
@@ -24,7 +24,7 @@ public abstract class WtDatabase extends RoomDatabase {
     public abstract CityForecastDAO cityForecastDAO();
 
     /*城市配置表DB*/
-    public abstract CityInfoDAO cityInfoDAO();
+    public abstract CityBeanDAO cityInfoDAO();
 
     @Override
     public void clearAllTables() {
@@ -48,7 +48,7 @@ public abstract class WtDatabase extends RoomDatabase {
 
     //===================================================================================================
     //for test
-    private void insertCityInfo(CityInfoEntity entity) {
+    private void insertCityInfo(CityBeanEntity entity) {
         WtDatabase.getInstance(WtApplication.getInstance()).cityInfoDAO().insert(entity);
     }
 }

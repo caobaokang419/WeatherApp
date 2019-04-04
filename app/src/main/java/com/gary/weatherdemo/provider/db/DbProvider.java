@@ -10,61 +10,30 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 
+import com.gary.weatherdemo.room.city.CityBeanEntity;
+import com.gary.weatherdemo.room.weather.CityForecastEntity;
+
 import java.util.ArrayList;
 
 /**
  * Created by GaryCao on 2019/01/05.
- * 提供供第三方应用统一的 高德城市配置表 的访问API
+ * 提供供第三方应用统一的Weather-data访问API
  */
-public class CityContentProvider extends ContentProvider {
-    public static final String AUTOHORITY = "com.gary.weatherdemo.db.provider";
+public class DbProvider extends ContentProvider {
+    public static final String DB_AUTHORITY = "com.gary.weatherdemo.db.provider";
 
-    public static final int CODE_CUR_CITY_WEATHER_INFO = 1;
-    public static final int CODE_SELECT_CITY_WEATHER_INFO = 2;
-
-    public static final String PATH_CUR_CITY_WEATHER_INFO = "cur_city_weather_info";
-    public static final String PATH_SELECT_CITY_WEATHER_INFO = "select_city_weather_info";
+    public static final int CODE_CITY_CONFIG = 101;
+    public static final int CODE_CITY_WEATHER = 201;
 
     private static final UriMatcher mMatcher;
 
     static {
         mMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-        mMatcher.addURI(AUTOHORITY, PATH_CUR_CITY_WEATHER_INFO, CODE_CUR_CITY_WEATHER_INFO);
-        mMatcher.addURI(AUTOHORITY, PATH_SELECT_CITY_WEATHER_INFO, CODE_SELECT_CITY_WEATHER_INFO);
+        mMatcher.addURI(DB_AUTHORITY, CityBeanEntity.TABLE_NAME, CODE_CITY_CONFIG);
+        mMatcher.addURI(DB_AUTHORITY, CityForecastEntity.TABLE_NAME, CODE_CITY_WEATHER);
     }
 
-    public CityContentProvider() {
-    }
-
-    @Override
-    public int delete(Uri uri, String selection, String[] selectionArgs) {
-        switch (mMatcher.match(uri)) {
-            case CODE_CUR_CITY_WEATHER_INFO:
-                break;
-            case CODE_SELECT_CITY_WEATHER_INFO:
-                break;
-        }
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
-
-    @Override
-    public String getType(Uri uri) {
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
-
-    @Override
-    public Uri insert(Uri uri, ContentValues values) {
-        switch (mMatcher.match(uri)) {
-            case CODE_CUR_CITY_WEATHER_INFO:
-                //TODO
-                break;
-            case CODE_SELECT_CITY_WEATHER_INFO:
-                //TODO
-                break;
-        }
-
-        // TODO: Implement this to handle requests to insert a new row.
-        throw new UnsupportedOperationException("Not yet implemented");
+    public DbProvider() {
     }
 
     @Override
@@ -73,14 +42,40 @@ public class CityContentProvider extends ContentProvider {
     }
 
     @Override
+    public Uri insert(Uri uri, ContentValues values) {
+        /*switch (mMatcher.match(uri)) {
+            case CityBeanEntity.TABLE_NAME:
+                //TODO
+                break;
+            case CityForecastEntity.TABLE_NAME:
+                //TODO
+                break;
+        }*/
+
+        // TODO: Implement this to handle requests to insert a new row.
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    @Override
+    public int delete(Uri uri, String selection, String[] selectionArgs) {
+        /*switch (mMatcher.match(uri)) {
+            case CityBeanEntity.TABLE_NAME:
+                break;
+            case CityForecastEntity.TABLE_NAME:
+                break;
+        }*/
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    @Override
     public Cursor query(Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
-        switch (mMatcher.match(uri)) {
-            case CODE_CUR_CITY_WEATHER_INFO:
+        /*switch (mMatcher.match(uri)) {
+            case CityBeanEntity.TABLE_NAME:
                 break;
-            case CODE_SELECT_CITY_WEATHER_INFO:
+            case CityForecastEntity.TABLE_NAME:
                 break;
-        }
+        }*/
 
         throw new UnsupportedOperationException("Not yet implemented");
     }
@@ -88,12 +83,12 @@ public class CityContentProvider extends ContentProvider {
     @Override
     public int update(Uri uri, ContentValues values, String selection,
                       String[] selectionArgs) {
-        switch (mMatcher.match(uri)) {
-            case CODE_CUR_CITY_WEATHER_INFO:
+        /*switch (mMatcher.match(uri)) {
+            case CityBeanEntity.TABLE_NAME:
                 break;
-            case CODE_SELECT_CITY_WEATHER_INFO:
+            case CityForecastEntity.TABLE_NAME:
                 break;
-        }
+        }*/
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
@@ -101,5 +96,10 @@ public class CityContentProvider extends ContentProvider {
     @Override
     public ContentProviderResult[] applyBatch(@NonNull ArrayList<ContentProviderOperation> operations) throws OperationApplicationException {
         return super.applyBatch(operations);
+    }
+
+    @Override
+    public String getType(Uri uri) {
+        throw new UnsupportedOperationException("Not yet implemented");
     }
 }

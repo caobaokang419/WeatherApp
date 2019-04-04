@@ -12,7 +12,7 @@ import android.support.v4.content.PermissionChecker;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WtPermissionUtils {
+public class WtPermissionHelper {
     /**
      * 需动态申请的权限列表
      */
@@ -95,6 +95,6 @@ public class WtPermissionUtils {
      * 发起权限申请
      */
     public void test(Context context) {
-        WtPermissionUtils.startRequestAllPermission(context);
+        WtPermissionHelper.startRequestAllPermission(context);
     }
 }
