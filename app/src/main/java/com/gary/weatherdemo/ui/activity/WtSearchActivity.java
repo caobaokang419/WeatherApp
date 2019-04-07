@@ -15,7 +15,7 @@ import com.gary.weatherdemo.R;
 import com.gary.weatherdemo.cache.memorycache.CacheClient;
 import com.gary.weatherdemo.constant.Constants;
 import com.gary.weatherdemo.filter.FilterChain;
-import com.gary.weatherdemo.filter.FilterFixedItem;
+import com.gary.weatherdemo.filter.FilterSkipFixedItem;
 import com.gary.weatherdemo.filter.FilterSearchWord;
 import com.gary.weatherdemo.filter.NoFilter;
 import com.gary.weatherdemo.ui.activity.base.BaseActivity;
@@ -65,7 +65,7 @@ public class WtSearchActivity extends BaseActivity {
                     String keyword = charSequence.toString();
                     FilterChain filterChain = new FilterChain();
                     filterChain.addFilter(new FilterSearchWord(keyword));
-                    filterChain.addFilter(new FilterFixedItem());
+                    filterChain.addFilter(new FilterSkipFixedItem());
                     filterChain.doFilter(CacheClient.getInstance().getCityItemBeans());
                     mCitySearchRecycleAdapter.setCurMode(
                             CitySearchRecyclerAdapter.CityListMode.CITY_LIST_SEARCH_MODE);

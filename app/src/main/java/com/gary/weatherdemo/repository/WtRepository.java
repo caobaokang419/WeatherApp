@@ -26,7 +26,7 @@ import io.reactivex.schedulers.Schedulers;
  * GoF23 设计模式 10：外观模式: db+http apis
  */
 public class WtRepository {
-    public static void insertCityBean(CityBean cityBean) {
+    public static void insertCityBeanEntity(CityBean cityBean) {
         CityBeanEntity entity = CityBeanEntity.fromCityBean(cityBean);
         WtDatabase.getInstance(WtApplication.getInstance()).cityInfoDAO().insert(entity);
     }

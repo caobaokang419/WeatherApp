@@ -53,7 +53,7 @@ public class CacheManager {
                     CityBean cityBean = new CityBean(lineInfo[0], lineInfo[1]);
                     cityBeans.add(cityBean);
                     cityItemBeans.add(new CityItemBean(cityBean));
-                    //WtRepository.insertCityBean(cityBean);
+                    //WtRepository.insertCityBeanEntity(cityBean);
                     CLog.d(TAG, "loadCityConfigFromAssets() " + lineInfo[0] + ":" + lineInfo[1]);
                 }
             }

@@ -6,6 +6,8 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
+import com.gary.weatherdemo.room.weather.CityForecastEntity;
+
 import java.util.List;
 
 /**
@@ -25,6 +27,10 @@ public interface CityBeanDAO {
 
     @Delete
     void delete(CityBeanEntity entity);
+
+    @Query("DELETE FROM " + CityBeanEntity.TABLE_NAME
+            +"  WHERE "+CityBeanEntity.COLUMN_CITY_CODE+" LIKE :cityAdcode")
+    void deleteByCityAdcode(String cityAdcode);
 
     @Query("DELETE FROM " + CityBeanEntity.TABLE_NAME )
     void deleteAll();

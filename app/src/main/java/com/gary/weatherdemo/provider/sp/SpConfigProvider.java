@@ -32,21 +32,21 @@ public class SpConfigProvider extends ContentProvider {
             return null;
         }
         Bundle bundle = new Bundle();
-        if (method.equalsIgnoreCase(SpConfigUtil.KEY_CURRENT_CITY_ADCODE)) {
-            String curCityAdcode = SpConfigUtil.getInstance().getString(
-                    SpConfigUtil.KEY_CURRENT_CITY_ADCODE,
-                    SpConfigUtil.DefaultConfig.VALUE_DEF_CITY_ADCODE);
-            bundle.putString(method, curCityAdcode);
+        if (method.equalsIgnoreCase(SpConfigUtil.KEY_DEF_CITY_ADCODE)) {
+            String adcode = SpConfigUtil.getInstance().getString(
+                    SpConfigUtil.KEY_DEF_CITY_ADCODE,
+                    SpConfigUtil.DefConfig.DEF_CITY_ADCODE);
+            bundle.putString(method, adcode);
         } else if (method.equalsIgnoreCase(SpConfigUtil.KEY_UPDATE_SWITCH)) {
-            boolean switchEnable = SpConfigUtil.getInstance().getBoolean(
+            boolean isEnable = SpConfigUtil.getInstance().getBoolean(
                     SpConfigUtil.KEY_UPDATE_SWITCH,
-                    SpConfigUtil.DefaultConfig.VALUE_DEF_UPDATE_SWITCH);
-            bundle.putBoolean(method, switchEnable);
+                    SpConfigUtil.DefConfig.DEF_UPDATE_SWITCH);
+            bundle.putBoolean(method, isEnable);
         } else if (method.equalsIgnoreCase(SpConfigUtil.KEY_UPDATE_PERIODIC_HOUR_COUNT)) {
-            int periodicdHourCount = SpConfigUtil.getInstance().getInt(
+            int hourCount = SpConfigUtil.getInstance().getInt(
                     SpConfigUtil.KEY_UPDATE_PERIODIC_HOUR_COUNT,
-                    SpConfigUtil.DefaultConfig.VALUE_DEF_UPDATE_PERIODIC_HOUR_COUNT);
-            bundle.putInt(method, periodicdHourCount);
+                    SpConfigUtil.DefConfig.DEF_UPDATE_PERIODIC_HOUR_COUNT);
+            bundle.putInt(method, hourCount);
         } else if (method.equalsIgnoreCase(SpConfigProviderClient.KEY_SET_INT_VALUE)) {
             SpConfigUtil.getInstance().setInt(arg, extras.getInt(arg));
         } else if (method.equalsIgnoreCase(SpConfigProviderClient.KEY_SET_STRING_VALUE)) {

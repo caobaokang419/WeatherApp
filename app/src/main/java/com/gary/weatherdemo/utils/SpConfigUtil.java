@@ -10,17 +10,13 @@ import com.gary.weatherdemo.WtApplication;
  */
 public class SpConfigUtil {
     private static final String WEATHER_CONFIG = "weather_config";
-    public static final String KEY_CURRENT_CITY_ADCODE = "cur_city_adcode";
-    public static final String KEY_UPDATE_SWITCH = "wt_update_switch";
+    public static final String KEY_DEF_CITY_ADCODE = "def_city_adcode";
+    public static final String KEY_UPDATE_SWITCH = "update_switch";
     public static final String KEY_UPDATE_PERIODIC_HOUR_COUNT = "update_periodic_hour_count";
-
-    public static final class DefaultConfig {
-        /*def city adcode*/
-        public static final String VALUE_DEF_CITY_ADCODE = "440300"; //深圳: 440300
-        /*def update switch*/
-        public static final boolean VALUE_DEF_UPDATE_SWITCH = true;
-        /*def update interval hour count*/
-        public static final int VALUE_DEF_UPDATE_PERIODIC_HOUR_COUNT = 1; //1 hour
+    public static final class DefConfig {
+        public static final String DEF_CITY_ADCODE = "440300"; //深圳: 440300
+        public static final boolean DEF_UPDATE_SWITCH = true;
+        public static final int DEF_UPDATE_PERIODIC_HOUR_COUNT = 1; //1 hour
     }
 
     private Context mContext;

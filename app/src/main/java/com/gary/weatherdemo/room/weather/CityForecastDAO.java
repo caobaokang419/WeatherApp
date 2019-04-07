@@ -25,6 +25,13 @@ public interface CityForecastDAO {
     @Delete
     void delete(CityForecastEntity entity);
 
+    @Query("DELETE FROM " + CityForecastEntity.TABLE_NAME
+            +"  WHERE "+CityForecastEntity.COLUMN_CODE+" LIKE :cityAdcode")
+    void deleteByCityAdcode(String cityAdcode);
+
+    @Query("DELETE FROM " +CityForecastEntity.TABLE_NAME)
+    void deleteAll();
+
     @Update
     void update(CityForecastEntity entity);
 }

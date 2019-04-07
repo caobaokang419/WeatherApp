@@ -9,10 +9,15 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 
+import com.gary.weatherdemo.WtApplication;
+import com.gary.weatherdemo.bean.CityBean;
+import com.gary.weatherdemo.room.WtDatabase;
 import com.gary.weatherdemo.room.city.CityBeanEntity;
 import com.gary.weatherdemo.room.weather.CityForecastEntity;
 
+import java.security.Provider;
 import java.util.ArrayList;
 
 /**
@@ -22,15 +27,27 @@ import java.util.ArrayList;
 public class DbProvider extends ContentProvider {
     public static final String DB_AUTHORITY = "com.gary.weatherdemo.db.provider";
 
+    //高德城市配置表
     public static final int CODE_CITY_CONFIG = 101;
-    public static final int CODE_CITY_WEATHER = 201;
+    public static final int CODE_CITY_CONFIG_ID = 102;
+    public static final int CODE_CITY_CONFIG_ADCODE = 103;
+
+    //城市天气表
+    public static final int CODE_CITY_FORECAST = 201;
+    public static final int CODE_CITY_FORECAST_ID = 202;
+    public static final int CODE_CITY_FORECAST_ADCODE = 203;
 
     private static final UriMatcher mMatcher;
 
     static {
         mMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         mMatcher.addURI(DB_AUTHORITY, CityBeanEntity.TABLE_NAME, CODE_CITY_CONFIG);
-        mMatcher.addURI(DB_AUTHORITY, CityForecastEntity.TABLE_NAME, CODE_CITY_WEATHER);
+        mMatcher.addURI(DB_AUTHORITY, CityBeanEntity.TABLE_NAME + "/#", CODE_CITY_CONFIG_ID);
+        mMatcher.addURI(DB_AUTHORITY, CityBeanEntity.TABLE_NAME + "/adcode", CODE_CITY_CONFIG_ADCODE);
+
+        mMatcher.addURI(DB_AUTHORITY, CityForecastEntity.TABLE_NAME, CODE_CITY_FORECAST);
+        mMatcher.addURI(DB_AUTHORITY, CityForecastEntity.TABLE_NAME + "/#", CODE_CITY_FORECAST_ID);
+        mMatcher.addURI(DB_AUTHORITY, CityForecastEntity.TABLE_NAME + "/adcode", CODE_CITY_FORECAST_ADCODE);
     }
 
     public DbProvider() {
@@ -43,14 +60,25 @@ public class DbProvider extends ContentProvider {
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
-        /*switch (mMatcher.match(uri)) {
-            case CityBeanEntity.TABLE_NAME:
-                //TODO
+        switch (mMatcher.match(uri)) {
+            case CODE_CITY_CONFIG:
+                CityBeanEntity cityBeanEntity = CityBeanEntity.fromContentValues(values);
+                WtDatabase.getInstance(WtApplication.getInstance()).cityInfoDAO().insert(cityBeanEntity);
                 break;
-            case CityForecastEntity.TABLE_NAME:
-                //TODO
+            case CODE_CITY_CONFIG_ID:
                 break;
-        }*/
+            case CODE_CITY_CONFIG_ADCODE:
+                break;
+
+            case CODE_CITY_FORECAST:
+                CityForecastEntity cityForecastEntity = CityForecastEntity.fromContentValues(values);
+                WtDatabase.getInstance(WtApplication.getInstance()).cityForecastDAO().insert(cityForecastEntity);
+                break;
+            case CODE_CITY_FORECAST_ID:
+                break;
+            case CODE_CITY_FORECAST_ADCODE:
+                break;
+        }
 
         // TODO: Implement this to handle requests to insert a new row.
         throw new UnsupportedOperationException("Not yet implemented");
@@ -58,24 +86,47 @@ public class DbProvider extends ContentProvider {
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        /*switch (mMatcher.match(uri)) {
-            case CityBeanEntity.TABLE_NAME:
+        switch (mMatcher.match(uri)) {
+            case CODE_CITY_CONFIG:
+            case CODE_CITY_CONFIG_ID:
                 break;
-            case CityForecastEntity.TABLE_NAME:
+            case CODE_CITY_CONFIG_ADCODE:
+                String adcode1 = uri.getLastPathSegment();
+                WtDatabase.getInstance(WtApplication.getInstance())
+                        .cityForecastDAO().deleteByCityAdcode(adcode1);
                 break;
-        }*/
+
+            case CODE_CITY_FORECAST:
+            case CODE_CITY_FORECAST_ID:
+                break;
+            case CODE_CITY_FORECAST_ADCODE:
+                String adcode2 = uri.getLastPathSegment();
+                WtDatabase.getInstance(WtApplication.getInstance())
+                        .cityForecastDAO().deleteByCityAdcode(adcode2);
+                break;
+        }
+
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
     @Override
     public Cursor query(Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
-        /*switch (mMatcher.match(uri)) {
-            case CityBeanEntity.TABLE_NAME:
+        switch (mMatcher.match(uri)) {
+            case CODE_CITY_CONFIG:
                 break;
-            case CityForecastEntity.TABLE_NAME:
+            case CODE_CITY_CONFIG_ID:
                 break;
-        }*/
+            case CODE_CITY_CONFIG_ADCODE:
+                break;
+
+            case CODE_CITY_FORECAST:
+                break;
+            case CODE_CITY_FORECAST_ID:
+                break;
+            case CODE_CITY_FORECAST_ADCODE:
+                break;
+        }
 
         throw new UnsupportedOperationException("Not yet implemented");
     }
@@ -83,12 +134,21 @@ public class DbProvider extends ContentProvider {
     @Override
     public int update(Uri uri, ContentValues values, String selection,
                       String[] selectionArgs) {
-        /*switch (mMatcher.match(uri)) {
-            case CityBeanEntity.TABLE_NAME:
+        switch (mMatcher.match(uri)) {
+            case CODE_CITY_CONFIG:
                 break;
-            case CityForecastEntity.TABLE_NAME:
+            case CODE_CITY_CONFIG_ID:
                 break;
-        }*/
+            case CODE_CITY_CONFIG_ADCODE:
+                break;
+
+            case CODE_CITY_FORECAST:
+                break;
+            case CODE_CITY_FORECAST_ID:
+                break;
+            case CODE_CITY_FORECAST_ADCODE:
+                break;
+        }
         throw new UnsupportedOperationException("Not yet implemented");
     }
 

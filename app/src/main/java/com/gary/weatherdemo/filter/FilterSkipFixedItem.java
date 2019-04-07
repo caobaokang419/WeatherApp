@@ -8,7 +8,7 @@ import com.gary.weatherdemo.cache.memorycache.CacheClient;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FilterFixedItem implements Filter {
+public class FilterSkipFixedItem implements Filter {
 
     @Override
     public FilterType getFilterType() {
@@ -21,7 +21,7 @@ public class FilterFixedItem implements Filter {
         for (IViewItemBean item : datas) {
             if (item instanceof CityItemBean) {
                 CityItemBean itemBean = (CityItemBean) item;
-                if (isFixedItem(itemBean)) {
+                if (!isFixedItem(itemBean)) {
                     tempDatas.add(item);
                 }
             }
