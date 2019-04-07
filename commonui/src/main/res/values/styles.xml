@@ -16,4 +16,9 @@
         <item name="android:layout_height">@dimen/actionbar_item_height</item>
         <item name="android:textColor">@color/actionbar_title</item>
     </style>
+
+    <style name="CustomAlertDialog" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/dlg_enter_ani</item>
+        <item name="android:windowExitAnimation">@anim/dlg_exit_ani</item>
+    </style>
 </resources>

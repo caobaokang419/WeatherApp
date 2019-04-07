@@ -28,6 +28,8 @@ android {
     flavorDimensions "all"
 
     sourceSets { main { assets.srcDirs = ['src/assets', 'src/main/assets/'] } }
+
+    sourceSets { main { res.srcDirs = ['src/main/res', 'src/main/res/anim'] } }
 }
 
 dependencies {
