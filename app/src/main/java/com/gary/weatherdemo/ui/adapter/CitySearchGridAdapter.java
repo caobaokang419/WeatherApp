@@ -54,8 +54,7 @@ public class CitySearchGridAdapter extends BaseAdapter {
         return convertView;
     }
 
-    class ViewHolder {
+    static class ViewHolder {
         TextView city_name;
     }
-
 }

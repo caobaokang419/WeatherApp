@@ -1,5 +1,6 @@
 package com.gary.weatherdemo.utils;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
