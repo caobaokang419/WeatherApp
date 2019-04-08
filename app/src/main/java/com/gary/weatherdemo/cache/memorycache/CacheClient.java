@@ -11,6 +11,7 @@ import com.gary.weatherdemo.utils.CLog;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -22,24 +23,21 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class CacheClient {
     private static final String TAG = CacheClient.class.getSimpleName();
     private static final Object mLock = new Object();
+    private static CacheClient mCacheClient;
 
     /**
      * process main-thread(UI thread) works
      */
-    private static Handler mUiHandler = new Handler(Looper.getMainLooper());
+    private Handler mUiHandler = new Handler(Looper.getMainLooper());
 
     /**
      * process sub-thread works
      */
-    private static Handler mWorkHandler;
+    private Handler mWorkHandler;
 
-    private static CacheClient mCacheClient;
-
-    private static CountDownLatch mCacheLoaderLatch;
-
+    private CountDownLatch mCacheLoaderLatch;
     private CacheManager mCacheManager;
-
-    private List<ICityConfigCallback> mCityConfigCallbacks = new ArrayList<>();
+    private List<ICityConfigCallback> mCityConfigCallbacks = new CopyOnWriteArrayList<>();
 
     /**
      * 主Pager页显示的城市列表
@@ -72,6 +70,20 @@ public class CacheClient {
     }
 
     /**
+     * UI主线程
+     */
+    private void runOnUIThread(Runnable runnable) {
+        mUiHandler.post(runnable);
+    }
+
+    /**
+     * 工作子线程
+     */
+    private void runOnWorkThread(Runnable runnable) {
+        mWorkHandler.post(runnable);
+    }
+
+    /**
      * 加载缓存
      */
     public void loadCityConfigCache() {
@@ -100,50 +112,26 @@ public class CacheClient {
         });
     }
 
-    /**
-     * UI主线程
-     */
-    private void runOnUIThread(Runnable runnable) {
-        mUiHandler.post(runnable);
-    }
-
-    /**
-     * 工作子线程
-     */
-    private void runOnWorkThread(Runnable runnable) {
-        mWorkHandler.post(runnable);
-    }
-
-    /**
-     * 通过关键字，返回匹配数据
-     */
-    public List<IViewItemBean> getPairedBeansByKeyWord(String keyword) {
-        if (!isCityCacheLoaded()) {
-            return new ArrayList<>();
-        }
-        return mCacheManager.getPairedBeansByKeyWord(keyword);
-    }
-
-    public List<IViewItemBean> getCityItemBeans() {
+    public synchronized List<IViewItemBean> getCityItemBeans() {
         if (!isCityCacheLoaded()) {
             return new ArrayList<>();
         }
         return mCacheManager.getCityItemBeans();
     }
 
-    public List<CityBean> getFixedCityBeans() {
+    public synchronized List<CityBean> getFixedCityBeans() {
         return mFixedCityBeans;
     }
 
-    public void addListener(ICityConfigCallback callback) {
+    public synchronized void addListener(ICityConfigCallback callback) {
         mCityConfigCallbacks.add(callback);
     }
 
-    public void removeListener(ICityConfigCallback callback) {
+    public synchronized void removeListener(ICityConfigCallback callback) {
         mCityConfigCallbacks.remove(callback);
     }
 
-    public boolean isCityCacheLoaded() {
+    public synchronized boolean isCityCacheLoaded() {
         return mCityCacheLoaded.get();
     }
 

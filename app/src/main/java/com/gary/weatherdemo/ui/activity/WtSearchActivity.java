@@ -51,7 +51,7 @@ public class WtSearchActivity extends BaseActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (charSequence == null || charSequence.toString().isEmpty()) {
                     /*mCitySearchRecycleAdapter.setAdapterData(
-                            CacheClient.getInstance().getCityItemBeans());*/
+                            CacheClient.getContext().getCityItemBeans());*/
 
                     FilterChain filterChain = new FilterChain();
                     filterChain.addFilter(new NoFilter());
@@ -60,7 +60,7 @@ public class WtSearchActivity extends BaseActivity {
                             CitySearchRecyclerAdapter.CityListMode.CITY_LIST_NORMAL_MODE);
                 } else {
                     /*mCitySearchRecycleAdapter.setAdapterData(
-                            CacheClient.getInstance().getPairedBeansByKeyWord(charSequence.toString()));*/
+                            CacheClient.getContext().getPairedBeansByKeyWord(charSequence.toString()));*/
 
                     String keyword = charSequence.toString();
                     FilterChain filterChain = new FilterChain();

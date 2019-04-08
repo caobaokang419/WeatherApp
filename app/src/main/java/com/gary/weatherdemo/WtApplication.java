@@ -1,6 +1,7 @@
 package com.gary.weatherdemo;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.gary.weatherdemo.cache.memorycache.CacheClient;
 import com.gary.weatherdemo.push.UmPushManager;
@@ -11,12 +12,12 @@ import org.xutils.x;
  * Created by GaryCao on 2018/10/25.
  */
 public class WtApplication extends /*MultiDex*/Application {
-    private static WtApplication mWTApplication;
+    private static Context mAppContext;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        mWTApplication = this;
+        setContext(this);
         initConfig();
     }
 
@@ -36,7 +37,11 @@ public class WtApplication extends /*MultiDex*/Application {
         UmPushManager.register(this);
     }
 
-    public static WtApplication getInstance() {
-        return mWTApplication;
+    private static void setContext(Context context) {
+        mAppContext = context;
+    }
+
+    public static Context getContext() {
+        return mAppContext;
     }
 }

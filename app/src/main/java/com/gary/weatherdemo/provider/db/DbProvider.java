@@ -9,15 +9,12 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.net.Uri;
 import android.support.annotation.NonNull;
-import android.text.TextUtils;
 
 import com.gary.weatherdemo.WtApplication;
-import com.gary.weatherdemo.bean.CityBean;
 import com.gary.weatherdemo.room.WtDatabase;
 import com.gary.weatherdemo.room.city.CityBeanEntity;
 import com.gary.weatherdemo.room.weather.CityForecastEntity;
 
-import java.security.Provider;
 import java.util.ArrayList;
 
 /**
@@ -63,7 +60,7 @@ public class DbProvider extends ContentProvider {
         switch (mMatcher.match(uri)) {
             case CODE_CITY_CONFIG:
                 CityBeanEntity cityBeanEntity = CityBeanEntity.fromContentValues(values);
-                WtDatabase.getInstance(WtApplication.getInstance()).cityInfoDAO().insert(cityBeanEntity);
+                WtDatabase.getInstance(WtApplication.getContext()).cityInfoDAO().insert(cityBeanEntity);
                 break;
             case CODE_CITY_CONFIG_ID:
                 break;
@@ -72,11 +69,13 @@ public class DbProvider extends ContentProvider {
 
             case CODE_CITY_FORECAST:
                 CityForecastEntity cityForecastEntity = CityForecastEntity.fromContentValues(values);
-                WtDatabase.getInstance(WtApplication.getInstance()).cityForecastDAO().insert(cityForecastEntity);
+                WtDatabase.getInstance(WtApplication.getContext()).cityForecastDAO().insert(cityForecastEntity);
                 break;
             case CODE_CITY_FORECAST_ID:
                 break;
             case CODE_CITY_FORECAST_ADCODE:
+                break;
+            default:
                 break;
         }
 
@@ -92,7 +91,7 @@ public class DbProvider extends ContentProvider {
                 break;
             case CODE_CITY_CONFIG_ADCODE:
                 String adcode1 = uri.getLastPathSegment();
-                WtDatabase.getInstance(WtApplication.getInstance())
+                WtDatabase.getInstance(WtApplication.getContext())
                         .cityForecastDAO().deleteByCityAdcode(adcode1);
                 break;
 
@@ -101,8 +100,10 @@ public class DbProvider extends ContentProvider {
                 break;
             case CODE_CITY_FORECAST_ADCODE:
                 String adcode2 = uri.getLastPathSegment();
-                WtDatabase.getInstance(WtApplication.getInstance())
+                WtDatabase.getInstance(WtApplication.getContext())
                         .cityForecastDAO().deleteByCityAdcode(adcode2);
+                break;
+            default:
                 break;
         }
 
@@ -126,6 +127,8 @@ public class DbProvider extends ContentProvider {
                 break;
             case CODE_CITY_FORECAST_ADCODE:
                 break;
+            default:
+                break;
         }
 
         throw new UnsupportedOperationException("Not yet implemented");
@@ -147,6 +150,8 @@ public class DbProvider extends ContentProvider {
             case CODE_CITY_FORECAST_ID:
                 break;
             case CODE_CITY_FORECAST_ADCODE:
+                break;
+            default:
                 break;
         }
         throw new UnsupportedOperationException("Not yet implemented");

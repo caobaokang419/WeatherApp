@@ -7,6 +7,7 @@ import com.gary.weatherdemo.bean.IViewItemBean;
 import com.gary.weatherdemo.utils.CLog;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,8 +19,6 @@ import java.util.List;
  */
 public class CacheManager {
     private static final String TAG = CacheManager.class.getSimpleName();
-
-    private static final Object mLock = new Object();
 
     /**
      * 高德天气城市配置表缓存数组（1.首次读取assert配置文件获取 2.后续读取DB获取）
@@ -35,9 +34,10 @@ public class CacheManager {
     }
 
     public boolean loadCityConfigFromAssets(String fileName) {
+        InputStreamReader inputReader = null;
         try {
-            InputStreamReader inputReader = new InputStreamReader(
-                    WtApplication.getInstance().getResources().getAssets().open(fileName));
+            inputReader = new InputStreamReader(
+                    WtApplication.getContext().getResources().getAssets().open(fileName));
             BufferedReader bufReader = new BufferedReader(inputReader);
 
             List<CityBean> cityBeans = new ArrayList<>();
@@ -58,45 +58,27 @@ public class CacheManager {
                 }
             }
 
-            synchronized (mLock) {
+            synchronized (this) {
                 mCityBeans = cityBeans;
                 mCityItemBeans = cityItemBeans;
             }
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-        }
-
-        return false;
-    }
-
-    /**
-     * 通过关键字，返回匹配数据
-     */
-    public List<IViewItemBean> getPairedBeansByKeyWord(String keyword) {
-        if (null == keyword
-                || keyword.isEmpty()
-                || null == mCityItemBeans
-                || mCityItemBeans.isEmpty()) {
-            return null;
-        }
-
-        List<IViewItemBean> itemBeans = new ArrayList<>();
-        synchronized (mLock) {
-            for (IViewItemBean item : mCityItemBeans) {
-                if (item instanceof CityItemBean) {
-                    CityItemBean itemBean = (CityItemBean) item;
-                    if (itemBean.isSearched(keyword)) {
-                        itemBeans.add(item);
-                    }
+        } finally {
+            if (inputReader != null) {
+                try {
+                    inputReader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
         }
-        return itemBeans;
+        return false;
     }
 
     public List<IViewItemBean> getCityItemBeans() {
-        synchronized (mLock) {
+        synchronized (this) {
             return mCityItemBeans;
         }
     }

@@ -105,7 +105,7 @@ public class CityForecastEntity {
     }
 
     public void setNightPower(String nightpower) {
-        this.daypower = daypower;
+        this.nightpower = nightpower;
     }
 
     public static ContentValues toContentValues(DayForecastBean forecastBean) {

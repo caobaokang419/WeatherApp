@@ -31,7 +31,7 @@ public class SpConfigUtil {
     }
 
     private SpConfigUtil() {
-        this.mContext = WtApplication.getInstance();
+        this.mContext = WtApplication.getContext();
         mSharedPreferences = mContext.getSharedPreferences(WEATHER_CONFIG, Context.MODE_PRIVATE);
     }
 

@@ -49,6 +49,6 @@ public abstract class WtDatabase extends RoomDatabase {
     //===================================================================================================
     //for test
     private void insertCityInfo(CityBeanEntity entity) {
-        WtDatabase.getInstance(WtApplication.getInstance()).cityInfoDAO().insert(entity);
+        WtDatabase.getInstance(WtApplication.getContext()).cityInfoDAO().insert(entity);
     }
 }

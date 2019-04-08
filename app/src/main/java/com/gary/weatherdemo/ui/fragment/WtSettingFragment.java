@@ -44,7 +44,7 @@ public class WtSettingFragment extends PreferenceFragment {
         mAutoUpdateSwitchPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                //SpConfigUtil.getInstance().setBoolean(SpConfigUtil.KEY_UPDATE_SWITCH, mAutoUpdateSwitchPref.isChecked());
+                //SpConfigUtil.getContext().setBoolean(SpConfigUtil.KEY_UPDATE_SWITCH, mAutoUpdateSwitchPref.isChecked());
                 SpConfigProviderClient.setBooleanInProvider(
                         SpConfigUtil.KEY_UPDATE_SWITCH,
                         mAutoUpdateSwitchPref.isChecked());
@@ -71,6 +71,6 @@ public class WtSettingFragment extends PreferenceFragment {
     private void initViewState() {
         mAutoUpdateSwitchPref.setChecked(
                 SpConfigProviderClient.getBooleanInProvider(SpConfigUtil.KEY_UPDATE_SWITCH)
-                /*SpConfigUtil.getInstance().getBoolean(SpConfigUtil.KEY_UPDATE_SWITCH)*/);
+                /*SpConfigUtil.getContext().getBoolean(SpConfigUtil.KEY_UPDATE_SWITCH)*/);
     }
 }

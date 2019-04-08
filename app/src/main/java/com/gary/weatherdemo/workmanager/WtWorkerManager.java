@@ -43,7 +43,7 @@ public class WtWorkerManager {
         PeriodicWorkRequest.Builder timerQueryRequestBuilder =
                 new PeriodicWorkRequest.Builder(
                         PeriodicUpdateWorker.class,
-                        /*SpConfigUtil.getInstance().getInt(SpConfigUtil.KEY_UPDATE_PERIODIC_HOUR_COUNT),*/
+                        /*SpConfigUtil.getContext().getInt(SpConfigUtil.KEY_UPDATE_PERIODIC_HOUR_COUNT),*/
                         SpConfigProviderClient.getIntInProvider(SpConfigUtil.KEY_UPDATE_PERIODIC_HOUR_COUNT),
                         TimeUnit.HOURS,
                         5,

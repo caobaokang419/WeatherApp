@@ -1,6 +1,5 @@
 package com.gary.weatherdemo.utils;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -10,7 +9,7 @@ import com.gary.weatherdemo.WtApplication;
 
 public class WtUtil {
     public static void showToast(String msg) {
-        Toast.makeText(WtApplication.getInstance(), msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(WtApplication.getContext(), msg, Toast.LENGTH_SHORT).show();
     }
 
     public static void startActivity(Context context, String classname) {

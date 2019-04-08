@@ -28,7 +28,7 @@ import io.reactivex.schedulers.Schedulers;
 public class WtRepository {
     public static void insertCityBeanEntity(CityBean cityBean) {
         CityBeanEntity entity = CityBeanEntity.fromCityBean(cityBean);
-        WtDatabase.getInstance(WtApplication.getInstance()).cityInfoDAO().insert(entity);
+        WtDatabase.getInstance(WtApplication.getContext()).cityInfoDAO().insert(entity);
     }
 
     public static Observable<LiveWeatherResponseData> queryCityCurWeather(CityBean cityBean) {

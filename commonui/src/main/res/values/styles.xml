@@ -18,7 +18,7 @@
     </style>
 
     <style name="CustomAlertDialog" parent="@android:style/Animation">
-        <item name="android:windowEnterAnimation">@anim/dlg_enter_ani</item>
-        <item name="android:windowExitAnimation">@anim/dlg_exit_ani</item>
+        <item name="android:windowEnterAnimation">@anim/ani_dlg_enter</item>
+        <item name="android:windowExitAnimation">@anim/ani_dlg_exit</item>
     </style>
 </resources>
