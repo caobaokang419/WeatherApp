@@ -8,7 +8,6 @@ import com.gary.weatherdemo.bean.CityBean;
  * MVP应用框架元素6：Model （用于MVVM框架对比&参考）
  */
 public class MvpDemoModel implements IModel{
-    private static final Object mLock = new Object();
     private static MvpDemoModel mMvpDemoModel;
 
     private MvpDemoModel(){
@@ -20,11 +19,9 @@ public class MvpDemoModel implements IModel{
 
     }
 
-    public static MvpDemoModel getInstance() {
-        synchronized (mLock) {
-            if (mMvpDemoModel == null) {
-                mMvpDemoModel = new MvpDemoModel();
-            }
+    public synchronized static MvpDemoModel getInstance() {
+        if (mMvpDemoModel == null) {
+            mMvpDemoModel = new MvpDemoModel();
         }
         return mMvpDemoModel;
     }

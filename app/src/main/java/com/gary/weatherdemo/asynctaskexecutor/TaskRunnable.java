@@ -4,20 +4,10 @@ import android.content.Context;
 import android.support.annotation.UiThread;
 import android.support.annotation.WorkerThread;
 
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.RejectedExecutionHandler;
-import java.util.concurrent.ThreadFactory;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-
 /**
  * Created by GaryCao on 2019/03/13.
- *
+ * <p>
  * GoF23 设计模式 9：模板方法模式
- *
  */
 public abstract class TaskRunnable<Params, Result> implements Runnable {
     private final static String TAG = "Task";
@@ -43,14 +33,12 @@ public abstract class TaskRunnable<Params, Result> implements Runnable {
     }
 
     private void postComplete(final Result result) {
-        if (TaskExecutor.mUiHandler != null) {
-            TaskExecutor.mUiHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    onComplete(result);
-                }
-            });
-        }
+        TaskExecutor.getInstance().runOnWorkThread(new Runnable() {
+            @Override
+            public void run() {
+                onComplete(result);
+            }
+        });
     }
 
     @WorkerThread

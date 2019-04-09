@@ -22,26 +22,24 @@ import com.gary.weatherdemo.utils.CLog;
  */
 public class TaskExecutor {
     private static final String TAG = "TaskExecutor";
-    private static final Object mLock = new Object();
-
     /**
      * process main-thread(UI thread) works
      */
-    public static Handler mUiHandler = new Handler(Looper.getMainLooper());
+    public Handler mUiHandler = new Handler(Looper.getMainLooper());
 
     /**
      * process sub-thread works
      */
-    private static Handler mWorkHandler;
+    private Handler mWorkHandler;
 
     private static TaskExecutor mTaskExecutor;
 
     //普通线程池
-    private static ThreadPoolProxy mWorkPool =
+    private ThreadPoolProxy mWorkPool =
             new ThreadPoolProxy(1, 3, 5 * 1000);
 
     //下载专用线程池
-    private static ThreadPoolProxy mDownloadPool =
+    private ThreadPoolProxy mDownloadPool =
             new ThreadPoolProxy(3, 3, 5 * 1000);
 
     /*私有构造*/
@@ -64,11 +62,13 @@ public class TaskExecutor {
         mWorkHandler = new Handler(handlerThread.getLooper());
     }
 
-    public static TaskExecutor getInstance() {
-        synchronized (mLock) {
-            if (mTaskExecutor == null) {
-                mTaskExecutor = new TaskExecutor();
-            }
+    public void runOnWorkThread(Runnable runnable) {
+        mWorkHandler.post(runnable);
+    }
+
+    public synchronized static TaskExecutor getInstance() {
+        if (mTaskExecutor == null) {
+            mTaskExecutor = new TaskExecutor();
         }
         return mTaskExecutor;
     }

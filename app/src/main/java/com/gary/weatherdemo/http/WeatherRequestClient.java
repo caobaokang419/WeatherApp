@@ -24,11 +24,9 @@ public class WeatherRequestClient {
         return apiService;
     }
 
-    public static WeatherRequestClient getInstance() {
-        synchronized (WeatherRequestClient.class) {
-            if (weatherRequestClient == null) {
-                weatherRequestClient = new WeatherRequestClient();
-            }
+    public synchronized static WeatherRequestClient getInstance() {
+        if (weatherRequestClient == null) {
+            weatherRequestClient = new WeatherRequestClient();
         }
         return weatherRequestClient;
     }

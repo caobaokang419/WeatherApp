@@ -22,7 +22,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 public class CacheClient {
     private static final String TAG = CacheClient.class.getSimpleName();
-    private static final Object mLock = new Object();
     private static CacheClient mCacheClient;
 
     /**
@@ -123,11 +122,11 @@ public class CacheClient {
         return mFixedCityBeans;
     }
 
-    public synchronized void addListener(ICityConfigCallback callback) {
+    public void addListener(ICityConfigCallback callback) {
         mCityConfigCallbacks.add(callback);
     }
 
-    public synchronized void removeListener(ICityConfigCallback callback) {
+    public void removeListener(ICityConfigCallback callback) {
         mCityConfigCallbacks.remove(callback);
     }
 
@@ -135,12 +134,10 @@ public class CacheClient {
         return mCityCacheLoaded.get();
     }
 
-    public static CacheClient getInstance() {
-        synchronized (mLock) {
-            if (mCacheClient == null) {
-                mCacheClient = new CacheClient();
-            }
-            return mCacheClient;
+    public synchronized static CacheClient getInstance() {
+        if (mCacheClient == null) {
+            mCacheClient = new CacheClient();
         }
+        return mCacheClient;
     }
 }

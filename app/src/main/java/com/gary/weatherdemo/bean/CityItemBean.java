@@ -61,7 +61,7 @@ public class CityItemBean implements IViewItemBean,Comparable<CityItemBean> {
     @Override
     public int hashCode() {
         int index = 1;
-        index = index * 31 + Integer.valueOf(mCityBean.cityCode);
+        index = index * 31 + Integer.parseInt(mCityBean.cityCode);
         return index;
     }
 

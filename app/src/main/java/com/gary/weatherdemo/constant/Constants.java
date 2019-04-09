@@ -24,13 +24,7 @@ public class Constants {
     }
 
     // common city
-    List<String> stringList = new LinkedList<String>(){{
-        add("a");
-        add("b");
-        add("c");
-    }};
-
-    /*public static final List<CityBean> COMMON_CITY_BEANS = new ArrayList<>();
+    public static final List<CityBean> COMMON_CITY_BEANS = new ArrayList<>();
     static {
         COMMON_CITY_BEANS.add(new CityBean("深圳", "440300"));
         COMMON_CITY_BEANS.add(new CityBean("西安", "610100"));
@@ -38,13 +32,5 @@ public class Constants {
         COMMON_CITY_BEANS.add(new CityBean("巢湖", "340181"));
         COMMON_CITY_BEANS.add(new CityBean("武汉", "420100"));
         COMMON_CITY_BEANS.add(new CityBean("北京", "340181"));
-    }*/
-    public static final List<CityBean> COMMON_CITY_BEANS = new ArrayList<CityBean>() {{
-        add(new CityBean("深圳", "440300"));
-        add(new CityBean("西安", "610100"));
-        add(new CityBean("合肥", "340100"));
-        add(new CityBean("巢湖", "340181"));
-        add(new CityBean("武汉", "420100"));
-        add(new CityBean("北京", "340181"));
-    }};
+    }
 }
