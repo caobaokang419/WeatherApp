@@ -16,7 +16,7 @@ public class WtPermissionHelper {
     /**
      * 需动态申请的权限列表
      */
-    public final static String[] mAllPermissions = {
+    private final static String[] mAllPermissions = {
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.READ_EXTERNAL_STORAGE,
     };

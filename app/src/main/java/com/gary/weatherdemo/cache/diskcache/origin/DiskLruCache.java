@@ -16,6 +16,8 @@
 
 package com.gary.weatherdemo.cache.diskcache.origin;
 
+import com.gary.weatherdemo.utils.IOUtil;
+
 import java.io.BufferedWriter;
 import java.io.Closeable;
 import java.io.EOFException;
@@ -807,18 +809,21 @@ public final class DiskLruCache implements Closeable {
                     written[index] = true;
                 }
                 File dirtyFile = entry.getDirtyFile(index);
-                FileOutputStream outputStream;
+                FileOutputStream outputStream = null;
                 try {
                     outputStream = new FileOutputStream(dirtyFile);
                 } catch (FileNotFoundException e) {
                     // Attempt to recreate the cache directory.
-                    directory.mkdirs();
+
                     try {
+                        directory.mkdirs();
                         outputStream = new FileOutputStream(dirtyFile);
                     } catch (FileNotFoundException e2) {
                         // We are unable to recover. Silently eat the writes.
                         return NULL_OUTPUT_STREAM;
                     }
+                } finally {
+                    IOUtil.closeQuietly(outputStream);
                 }
                 return new FaultHidingOutputStream(outputStream);
             }

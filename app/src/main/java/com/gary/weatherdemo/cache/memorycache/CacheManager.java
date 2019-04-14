@@ -42,16 +42,18 @@ public class CacheManager {
 
     public boolean loadCityConfigFromAssets(String fileName) {
         InputStreamReader inputReader = null;
+        BufferedReader bufReader = null;
+
         try {
             inputReader = new InputStreamReader(
                     WtApplication.getContext().getResources().getAssets().open(fileName));
-            BufferedReader bufReader = new BufferedReader(inputReader);
+            bufReader = new BufferedReader(inputReader);
 
             List<CityBean> cityBeans = new ArrayList<>();
             List<IViewItemBean> cityItemBeans = new ArrayList<>();
             String line;
             while ((line = bufReader.readLine()) != null) {
-                if (line == null || line.isEmpty()) {
+                if (line.isEmpty()) {
                     continue;
                 }
 
@@ -75,6 +77,7 @@ public class CacheManager {
             e.printStackTrace();
         } finally {
             IOUtil.closeQuietly(inputReader);
+            IOUtil.closeQuietly(bufReader);
         }
         return false;
     }
@@ -92,6 +95,8 @@ public class CacheManager {
     }
 
     public void loadCityItemBeansByFilters(final FilterChain filterChain) {
-        mSearchCityItemBeans = filterChain.doFilter(mCityItemBeans);
+        synchronized (this) {
+            mSearchCityItemBeans = filterChain.doFilter(mCityItemBeans);
+        }
     }
 }

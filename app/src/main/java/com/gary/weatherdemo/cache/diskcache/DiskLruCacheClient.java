@@ -7,6 +7,7 @@ import com.gary.weatherdemo.WtApplication;
 import com.gary.weatherdemo.cache.diskcache.origin.CacheUtil;
 import com.gary.weatherdemo.cache.diskcache.origin.DiskLruCache;
 import com.gary.weatherdemo.utils.ConvertUtil;
+import com.gary.weatherdemo.utils.IOUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,7 +31,6 @@ import java.io.Serializable;
 public final class DiskLruCacheClient {
     private static final String TAG = "DiskLruCacheClient";
     private DiskLruCacheProxy mDiskLruCacheProxy;
-    private static Object mLock = new Object();
     public static DiskLruCacheClient mInstant;
 
     private DiskLruCacheClient() {
@@ -40,13 +40,9 @@ public final class DiskLruCacheClient {
     /**
      * Singleton Instant，唯一入口
      */
-    public static DiskLruCacheClient getInstant() {
+    public synchronized static DiskLruCacheClient getInstant() {
         if (mInstant == null) {
-            synchronized (mLock) {
-                if (mInstant == null) {
-                    mInstant = new DiskLruCacheClient();
-                }
-            }
+            mInstant = new DiskLruCacheClient();
         }
         return mInstant;
     }
@@ -63,11 +59,12 @@ public final class DiskLruCacheClient {
         }
 
         DiskLruCache.Editor edit = null;
+        OutputStream os = null;
         BufferedWriter bw = null;
         try {
             edit = mDiskLruCacheProxy.editor(key);
             if (edit == null) return;
-            OutputStream os = edit.newOutputStream(0);
+            os = edit.newOutputStream(0);
             bw = new BufferedWriter(new OutputStreamWriter(os));
             bw.write(value);
             edit.commit();//write CLEAN
@@ -80,12 +77,8 @@ public final class DiskLruCacheClient {
                 e1.printStackTrace();
             }
         } finally {
-            try {
-                if (bw != null)
-                    bw.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            IOUtil.closeQuietly(os);
+            IOUtil.closeQuietly(bw);
         }
     }
 
@@ -400,8 +393,8 @@ public final class DiskLruCacheClient {
     //===================================================================================================
     //for test
     /*用戶ID缓存*/
-    public void saveCacheUserId(String key,String userid) {
-        DiskLruCacheClient.getInstant().putKeyAndStringValue(key,userid);
+    public void saveCacheUserId(String key, String userid) {
+        DiskLruCacheClient.getInstant().putKeyAndStringValue(key, userid);
     }
 
     public String getCacheUserId(String key) {
@@ -409,8 +402,8 @@ public final class DiskLruCacheClient {
     }
 
     /*用戶头像缓存*/
-    public void saveCacheUserPhoto(String key,Drawable photo) {
-        DiskLruCacheClient.getInstant().putKeyAndDrawable(key,photo);
+    public void saveCacheUserPhoto(String key, Drawable photo) {
+        DiskLruCacheClient.getInstant().putKeyAndDrawable(key, photo);
     }
 
     public Drawable getCacheUserPhoto(String key) {

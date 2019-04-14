@@ -13,7 +13,7 @@ import com.gary.weatherdemo.utils.CLog;
  * Created by GaryCao on 2019/01/12.
  */
 public class DownloadManager {
-    private final String TAG = "DownloadManager";
+    private static final String TAG = "DownloadManager";
     private static DownloadManager mInstance;
     private Context mContext;
     private boolean mIsBinded;
