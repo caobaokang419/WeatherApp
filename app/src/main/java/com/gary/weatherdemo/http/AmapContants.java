@@ -3,7 +3,7 @@ package com.gary.weatherdemo.http;
 /**
  * Created by GaryCao on 2018/10/25.
  */
-public class ApiContants {
+public class AmapContants {
     public static final String AMAP_BASE_URL = "https://restapi.amap.com/";
     public static final String AMAP_WEATHER_GET = "v3/weather/weatherInfo?";
 

@@ -34,7 +34,7 @@ public final class DiskLruCacheClient {
     public static DiskLruCacheClient mInstant;
 
     private DiskLruCacheClient() {
-        mDiskLruCacheProxy = new DiskLruCacheProxy(WtApplication.getInstance());
+        mDiskLruCacheProxy = new DiskLruCacheProxy(WtApplication.getContext());
     }
 
     /**

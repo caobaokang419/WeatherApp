@@ -12,11 +12,11 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * Import from xUtils3: https://github.com/wyouflf/xUtils3
+ * origin from xUtils3: https://github.com/wyouflf/xUtils3
  */
-public final class XutilMD5 {
+public final class MD5Util {
 
-    private XutilMD5() {
+    private MD5Util() {
     }
 
     private static final char hexDigits[] =

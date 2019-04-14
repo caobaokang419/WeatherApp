@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 
-import com.gary.weatherdemo.http.ApiContants;
+import com.gary.weatherdemo.http.AmapContants;
 import com.gary.weatherdemo.utils.CLog;
 
 /**
@@ -90,6 +90,6 @@ public class DownloadManager {
     //for test
     /*高德天气城市配置表文件下载*/
     private void downloadConfigFile(Context context) {
-        DownloadManager.getInstance(context).startDownload(ApiContants.AMAP_CITY_CONFIG_FILE_URL, null);
+        DownloadManager.getInstance(context).startDownload(AmapContants.AMAP_CITY_CONFIG_FILE_URL, null);
     }
 }

@@ -64,7 +64,7 @@
 
         <!-- sp content provider -->
         <provider
-            android:name=".provider.sp.SpConfigProvider"
+            android:name=".provider.sp.SpProvider"
             android:authorities="com.gary.weatherdemo.sp.provider"
             android:enabled="true"
             android:exported="true"

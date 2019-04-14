@@ -12,11 +12,11 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
 /**
- * Import from xUtils3: https://github.com/wyouflf/xUtils3
+ * origin from xUtils3: https://github.com/wyouflf/xUtils3
  */
-public class XutilsFileUtil {
+public class FileUtil {
 
-    private XutilsFileUtil() {
+    private FileUtil() {
     }
 
     public static File getCacheDir(String dirName) {

@@ -66,6 +66,10 @@ public class TaskExecutor {
         mWorkHandler.post(runnable);
     }
 
+    public void runOnUIThread(Runnable runnable) {
+        mUiHandler.post(runnable);
+    }
+
     public synchronized static TaskExecutor getInstance() {
         if (mTaskExecutor == null) {
             mTaskExecutor = new TaskExecutor();

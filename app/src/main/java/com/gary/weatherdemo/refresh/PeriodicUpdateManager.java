@@ -7,6 +7,7 @@ import com.gary.weatherdemo.bean.CityBean;
 import com.gary.weatherdemo.bean.IViewItemBean;
 import com.gary.weatherdemo.cache.memorycache.CacheClient;
 import com.gary.weatherdemo.repository.WtRepository;
+import com.gary.weatherdemo.repository.WtRepositoryHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +66,7 @@ public class PeriodicUpdateManager {
             notifyCityWeatherChanged();
         } else {
             CityBean cityBean = mQueue.poll();
-            WtRepository.queryCityWeather(cityBean, new WtRepository.IQueryWeather() {
+            WtRepositoryHelper.queryCityWeather(cityBean, new WtRepositoryHelper.IQueryWeather() {
                 @Override
                 public void onWeatherQueryCompleted(List<IViewItemBean> data) {
                     executeCurrentTask();

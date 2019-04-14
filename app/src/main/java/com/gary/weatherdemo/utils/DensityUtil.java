@@ -3,15 +3,15 @@ package com.gary.weatherdemo.utils;
 import org.xutils.x;
 
 /**
- * Import from xUtils3: https://github.com/wyouflf/xUtils3
+ * origin from xUtils3: https://github.com/wyouflf/xUtils3
  */
-public final class XutilsDensityUtil {
+public final class DensityUtil {
 
     private static float density = -1F;
     private static int widthPixels = -1;
     private static int heightPixels = -1;
 
-    private XutilsDensityUtil() {
+    private DensityUtil() {
     }
 
     public static float getDensity() {

@@ -19,11 +19,11 @@ import java.io.Reader;
 import java.io.Writer;
 
 /**
- * Import from xUtils3: https://github.com/wyouflf/xUtils3
+ * origin from xUtils3: https://github.com/wyouflf/xUtils3
  */
-public class XutilsIOUtil {
+public class IOUtil {
 
-    private XutilsIOUtil() {
+    private IOUtil() {
     }
 
     public static void closeQuietly(Closeable closeable) {

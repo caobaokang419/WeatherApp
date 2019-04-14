@@ -3,8 +3,8 @@ package com.gary.weatherdemo.download;
 import android.os.Environment;
 import android.util.Log;
 
-import com.gary.weatherdemo.http.ApiContants;
-import com.gary.weatherdemo.utils.XutilsFileUtil;
+import com.gary.weatherdemo.http.AmapContants;
+import com.gary.weatherdemo.utils.FileUtil;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -59,8 +59,8 @@ public class DownloadFactory {
         @Override
         public void startDownload(String url, IDownloadCallback iDownloadCallback) {
             mDownloadListener = iDownloadCallback;
-            String fileName = XutilsFileUtil.getFileNameByUrl(url);
-            String filePath = Environment.getExternalStorageDirectory() + ApiContants.AMAP_CITY_CONFIG_DIRECTIONARY + fileName;
+            String fileName = FileUtil.getFileNameByUrl(url);
+            String filePath = Environment.getExternalStorageDirectory() + AmapContants.AMAP_CITY_CONFIG_DIRECTIONARY + fileName;
             RequestParams params = new RequestParams(url);
             params.setSaveFilePath(filePath);
             params.setAutoRename(false);

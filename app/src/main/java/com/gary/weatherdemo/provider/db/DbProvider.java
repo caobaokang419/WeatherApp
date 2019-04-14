@@ -19,10 +19,12 @@ import java.util.ArrayList;
 
 /**
  * Created by GaryCao on 2019/01/05.
+ *
  * 提供供第三方应用统一的Weather-data访问API
  */
 public class DbProvider extends ContentProvider {
     public static final String DB_AUTHORITY = "com.gary.weatherdemo.db.provider";
+    public static final Uri DB_CONTENT_URI = Uri.parse("content://" + DB_AUTHORITY);
 
     //高德城市配置表
     public static final int CODE_CITY_CONFIG = 101;

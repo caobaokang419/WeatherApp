@@ -31,7 +31,7 @@ public class WtApplication extends /*MultiDex*/Application {
         /*start periodic update current city weather*/
         //WtWorkerManager.startPeriodicWeatherUpdate();
 
-        CacheClient.getInstance().loadCityConfigCache();
+        CacheClient.getInstance().loadCityConfig();
 
         //umeng push register
         UmPushManager.register(this);

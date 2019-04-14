@@ -6,7 +6,7 @@ import android.view.View;
 import com.gary.weatherdemo.R;
 import com.gary.weatherdemo.download.DownloadManager;
 import com.gary.weatherdemo.download.IDownloadCallback;
-import com.gary.weatherdemo.http.ApiContants;
+import com.gary.weatherdemo.http.AmapContants;
 import com.gary.weatherdemo.permission.WtPermissionActivity;
 import com.gary.weatherdemo.ui.activity.base.BaseActivity;
 import com.gary.weatherdemo.utils.CLog;
@@ -51,7 +51,7 @@ public class WtDownloadActivity extends BaseActivity implements WtPermissionActi
             @Override
             public void onClick(View view) {
                 DownloadManager.getInstance(WtDownloadActivity.this).
-                        startDownload(ApiContants.AMAP_CITY_CONFIG_FILE_URL, mDownloadCallback);
+                        startDownload(AmapContants.AMAP_CITY_CONFIG_FILE_URL, mDownloadCallback);
             }
         });
 

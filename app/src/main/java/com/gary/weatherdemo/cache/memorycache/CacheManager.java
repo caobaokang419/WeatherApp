@@ -5,6 +5,7 @@ import com.gary.weatherdemo.bean.CityBean;
 import com.gary.weatherdemo.bean.CityItemBean;
 import com.gary.weatherdemo.bean.IViewItemBean;
 import com.gary.weatherdemo.utils.CLog;
+import com.gary.weatherdemo.utils.IOUtil;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -66,13 +67,7 @@ public class CacheManager {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (inputReader != null) {
-                try {
-                    inputReader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+            IOUtil.closeQuietly(inputReader);
         }
         return false;
     }

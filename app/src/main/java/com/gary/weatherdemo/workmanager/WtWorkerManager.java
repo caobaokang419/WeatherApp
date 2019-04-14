@@ -4,10 +4,11 @@ import android.support.annotation.NonNull;
 
 import com.gary.weatherdemo.cache.memorycache.CacheClient;
 import com.gary.weatherdemo.constant.Constants;
-import com.gary.weatherdemo.provider.sp.SpConfigProviderClient;
+import com.gary.weatherdemo.provider.sp.SpProviderManagerImpl;
 import com.gary.weatherdemo.refresh.PeriodicUpdateManager;
+import com.gary.weatherdemo.repository.WtRepository;
 import com.gary.weatherdemo.utils.CLog;
-import com.gary.weatherdemo.utils.SpConfigUtil;
+import com.gary.weatherdemo.utils.SharedPrefUtil;
 
 import java.util.concurrent.TimeUnit;
 
@@ -43,8 +44,8 @@ public class WtWorkerManager {
         PeriodicWorkRequest.Builder timerQueryRequestBuilder =
                 new PeriodicWorkRequest.Builder(
                         PeriodicUpdateWorker.class,
-                        /*SpConfigUtil.getContext().getInt(SpConfigUtil.KEY_UPDATE_PERIODIC_HOUR_COUNT),*/
-                        SpConfigProviderClient.getIntInProvider(SpConfigUtil.KEY_UPDATE_PERIODIC_HOUR_COUNT),
+                        /*SharedPrefUtil.getContext().getInt(SharedPrefUtil.KEY_UPDATE_PERIODIC_HOUR_COUNT),*/
+                        WtRepository.sp().getSharePrefInt(SharedPrefUtil.KEY_UPDATE_PERIODIC_HOUR_COUNT),
                         TimeUnit.HOURS,
                         5,
                         TimeUnit.MINUTES);
@@ -73,7 +74,7 @@ public class WtWorkerManager {
         @Override
         public Result doWork() {
             CLog.d(TAG, "doWork()");
-            CacheClient.getInstance().loadCityConfigCache();
+            CacheClient.getInstance().loadCityConfig();
             return Result.SUCCESS;
         }
     }

@@ -11,16 +11,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * Created by GaryCao on 2018/10/25.
  */
-public class RetrofitManager {
+public class AmapRetrofitManager {
     private static final int DEFAULT_CONNECT_TIME = 20;
     private static final int DEFAULT_WRITE_TIME = 50;
     private static final int DEFAULT_READ_TIME = 30;
 
     private OkHttpClient mOkHttpClient;
     private Retrofit mRetrofit;
-    private static RetrofitManager mRetrofitManager;
+    private static AmapRetrofitManager mAmapRetrofitManager;
 
-    private RetrofitManager() {
+    private AmapRetrofitManager() {
         initOkHttpClient();
         initRetrofit();
     }
@@ -30,7 +30,7 @@ public class RetrofitManager {
          * GoF23 设计模式 3：Builder模式
          */
         mRetrofit = new Retrofit.Builder()
-                .baseUrl(ApiContants.AMAP_BASE_URL)//设置服务器路径
+                .baseUrl(AmapContants.AMAP_BASE_URL)//设置服务器路径
                 .client(mOkHttpClient)//设置使用okhttp网络请求
                 .addConverterFactory(GsonConverterFactory.create())//添加转化库，默认是Gson
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())//添加回调库，采用RxJava
@@ -48,11 +48,11 @@ public class RetrofitManager {
                 .build();
     }
 
-    public synchronized static RetrofitManager getInstance() {
-        if (mRetrofitManager == null) {
-            mRetrofitManager = new RetrofitManager();
+    public synchronized static AmapRetrofitManager getInstance() {
+        if (mAmapRetrofitManager == null) {
+            mAmapRetrofitManager = new AmapRetrofitManager();
         }
-        return mRetrofitManager;
+        return mAmapRetrofitManager;
     }
 
     /**

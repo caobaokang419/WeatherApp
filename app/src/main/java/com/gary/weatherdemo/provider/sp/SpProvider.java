@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.gary.weatherdemo.utils.SpConfigUtil;
+import com.gary.weatherdemo.utils.SharedPrefUtil;
 
 
 /**
@@ -16,8 +16,8 @@ import com.gary.weatherdemo.utils.SpConfigUtil;
  * <p>
  * 跨进程访问SharedPreference:
  */
-public class SpConfigProvider extends ContentProvider {
-    public SpConfigProvider() {
+public class SpProvider extends ContentProvider {
+    public SpProvider() {
     }
 
     @Override
@@ -32,27 +32,27 @@ public class SpConfigProvider extends ContentProvider {
             return null;
         }
         Bundle bundle = new Bundle();
-        if (method.equalsIgnoreCase(SpConfigUtil.KEY_DEF_CITY_ADCODE)) {
-            String adcode = SpConfigUtil.getInstance().getString(
-                    SpConfigUtil.KEY_DEF_CITY_ADCODE,
-                    SpConfigUtil.DefConfig.DEF_CITY_ADCODE);
+        if (method.equalsIgnoreCase(SharedPrefUtil.KEY_DEF_CITY_ADCODE)) {
+            String adcode = SharedPrefUtil.getInstance().getString(
+                    SharedPrefUtil.KEY_DEF_CITY_ADCODE,
+                    SharedPrefUtil.DefConfig.DEF_CITY_ADCODE);
             bundle.putString(method, adcode);
-        } else if (method.equalsIgnoreCase(SpConfigUtil.KEY_UPDATE_SWITCH)) {
-            boolean isEnable = SpConfigUtil.getInstance().getBoolean(
-                    SpConfigUtil.KEY_UPDATE_SWITCH,
-                    SpConfigUtil.DefConfig.DEF_UPDATE_SWITCH);
+        } else if (method.equalsIgnoreCase(SharedPrefUtil.KEY_UPDATE_SWITCH)) {
+            boolean isEnable = SharedPrefUtil.getInstance().getBoolean(
+                    SharedPrefUtil.KEY_UPDATE_SWITCH,
+                    SharedPrefUtil.DefConfig.DEF_UPDATE_SWITCH);
             bundle.putBoolean(method, isEnable);
-        } else if (method.equalsIgnoreCase(SpConfigUtil.KEY_UPDATE_PERIODIC_HOUR_COUNT)) {
-            int hourCount = SpConfigUtil.getInstance().getInt(
-                    SpConfigUtil.KEY_UPDATE_PERIODIC_HOUR_COUNT,
-                    SpConfigUtil.DefConfig.DEF_UPDATE_PERIODIC_HOUR_COUNT);
+        } else if (method.equalsIgnoreCase(SharedPrefUtil.KEY_UPDATE_PERIODIC_HOUR_COUNT)) {
+            int hourCount = SharedPrefUtil.getInstance().getInt(
+                    SharedPrefUtil.KEY_UPDATE_PERIODIC_HOUR_COUNT,
+                    SharedPrefUtil.DefConfig.DEF_UPDATE_PERIODIC_HOUR_COUNT);
             bundle.putInt(method, hourCount);
-        } else if (method.equalsIgnoreCase(SpConfigProviderClient.KEY_SET_INT_VALUE)) {
-            SpConfigUtil.getInstance().setInt(arg, extras.getInt(arg));
-        } else if (method.equalsIgnoreCase(SpConfigProviderClient.KEY_SET_STRING_VALUE)) {
-            SpConfigUtil.getInstance().setString(arg, extras.getString(arg));
-        } else if (method.equalsIgnoreCase(SpConfigProviderClient.KEY_SET_BOOLEAN_VALUE)) {
-            SpConfigUtil.getInstance().setBoolean(arg, extras.getBoolean(arg));
+        } else if (method.equalsIgnoreCase(SpProviderManagerImpl.KEY_SET_INT_VALUE)) {
+            SharedPrefUtil.getInstance().setInt(arg, extras.getInt(arg));
+        } else if (method.equalsIgnoreCase(SpProviderManagerImpl.KEY_SET_STRING_VALUE)) {
+            SharedPrefUtil.getInstance().setString(arg, extras.getString(arg));
+        } else if (method.equalsIgnoreCase(SpProviderManagerImpl.KEY_SET_BOOLEAN_VALUE)) {
+            SharedPrefUtil.getInstance().setBoolean(arg, extras.getBoolean(arg));
         }
 
         //return super.call(method, arg, extras);

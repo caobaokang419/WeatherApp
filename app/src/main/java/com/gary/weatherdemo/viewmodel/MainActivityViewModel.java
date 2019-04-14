@@ -10,6 +10,7 @@ import com.gary.weatherdemo.constant.Constants;
 import com.gary.weatherdemo.bean.CityBean;
 import com.gary.weatherdemo.bean.IViewItemBean;
 import com.gary.weatherdemo.repository.WtRepository;
+import com.gary.weatherdemo.repository.WtRepositoryHelper;
 import com.gary.weatherdemo.ui.adapter.base.CommonRecyclerAdapter;
 
 import java.util.HashMap;
@@ -39,7 +40,7 @@ public class MainActivityViewModel extends AndroidViewModel {
      * 查询城市天气
      */
     public void queryCityWeather(final CityBean cityBean) {
-        WtRepository.queryCityWeather(cityBean, new WtRepository.IQueryWeather() {
+        WtRepositoryHelper.queryCityWeather(cityBean, new WtRepositoryHelper.IQueryWeather() {
             @Override
             public void onWeatherQueryCompleted(List<IViewItemBean> data) {
                 /**实现UI订阅逻辑（AndroidSchedulers.mainThread）*/

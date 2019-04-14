@@ -22,7 +22,12 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 public class CacheClient {
     private static final String TAG = CacheClient.class.getSimpleName();
-    private static CacheClient mCacheClient;
+
+    public interface ICacheDataListener {
+        void onCityConfigChanged();
+        void onCityWeatherChanged();
+    }
+
 
     /**
      * process main-thread(UI thread) works
@@ -33,10 +38,10 @@ public class CacheClient {
      * process sub-thread works
      */
     private Handler mWorkHandler;
-
     private CountDownLatch mCacheLoaderLatch;
     private CacheManager mCacheManager;
-    private List<ICityConfigCallback> mCityConfigCallbacks = new CopyOnWriteArrayList<>();
+    private List<ICacheDataListener> mCacheListeners = new CopyOnWriteArrayList<ICacheDataListener>();
+    private static CacheClient mCacheClient;
 
     /**
      * 主Pager页显示的城市列表
@@ -48,9 +53,6 @@ public class CacheClient {
      */
     private volatile AtomicBoolean mCityCacheLoaded = new AtomicBoolean(false);
 
-    public interface ICityConfigCallback {
-        void onCityConfigChanged();
-    }
 
     /**
      * 私有构造
@@ -68,24 +70,40 @@ public class CacheClient {
         mWorkHandler = new Handler(handlerThread.getLooper());
     }
 
-    /**
-     * UI主线程
-     */
     private void runOnUIThread(Runnable runnable) {
         mUiHandler.post(runnable);
     }
 
-    /**
-     * 工作子线程
-     */
     private void runOnWorkThread(Runnable runnable) {
         mWorkHandler.post(runnable);
+    }
+
+    private void notifyCityConfigChanged() {
+        runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                for (ICacheDataListener callback : mCacheListeners) {
+                    callback.onCityConfigChanged();
+                }
+            }
+        });
+    }
+
+    private void notifyCityWeatherChanged() {
+        runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                for (ICacheDataListener listener : mCacheListeners) {
+                    listener.onCityWeatherChanged();
+                }
+            }
+        });
     }
 
     /**
      * 加载缓存
      */
-    public void loadCityConfigCache() {
+    public void loadCityConfig() {
         runOnWorkThread(new Runnable() {
             @Override
             public void run() {
@@ -93,20 +111,6 @@ public class CacheClient {
                 mCityCacheLoaded.set(true);
                 notifyCityConfigChanged();
                 mCacheLoaderLatch.countDown();
-            }
-        });
-    }
-
-    /**
-     * 通知UI数据变化：场景1：加载OK； 场景2：DB变化（TODO）
-     */
-    private void notifyCityConfigChanged() {
-        runOnUIThread(new Runnable() {
-            @Override
-            public void run() {
-                for (ICityConfigCallback callback : mCityConfigCallbacks) {
-                    callback.onCityConfigChanged();
-                }
             }
         });
     }
@@ -122,12 +126,12 @@ public class CacheClient {
         return mFixedCityBeans;
     }
 
-    public void addListener(ICityConfigCallback callback) {
-        mCityConfigCallbacks.add(callback);
+    public void addListener(ICacheDataListener callback) {
+        mCacheListeners.add(callback);
     }
 
-    public void removeListener(ICityConfigCallback callback) {
-        mCityConfigCallbacks.remove(callback);
+    public void removeListener(ICacheDataListener callback) {
+        mCacheListeners.remove(callback);
     }
 
     public synchronized boolean isCityCacheLoaded() {

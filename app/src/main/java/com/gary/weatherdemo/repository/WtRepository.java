@@ -1,98 +1,55 @@
 package com.gary.weatherdemo.repository;
 
-import com.gary.weatherdemo.WtApplication;
-import com.gary.weatherdemo.bean.CityBean;
-import com.gary.weatherdemo.bean.DayForecastBean;
-import com.gary.weatherdemo.bean.IViewItemBean;
-import com.gary.weatherdemo.http.WeatherRequestClient;
-import com.gary.weatherdemo.http.response.AllForecastResponseData;
-import com.gary.weatherdemo.http.response.LiveWeatherResponseData;
-import com.gary.weatherdemo.room.WtDatabase;
-import com.gary.weatherdemo.room.city.CityBeanEntity;
-import com.gary.weatherdemo.utils.NetworkUtil;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.BiFunction;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
+import com.gary.weatherdemo.http.AmapHttpManager;
+import com.gary.weatherdemo.http.AmapHttpManagerImpl;
+import com.gary.weatherdemo.provider.db.DbProviderManager;
+import com.gary.weatherdemo.provider.db.DbProviderManagerImpl;
+import com.gary.weatherdemo.provider.sp.SpProviderManager;
+import com.gary.weatherdemo.provider.sp.SpProviderManagerImpl;
 
 
 /**
  * Created by GaryCao on 2019/03/30.
- * GoF23 设计模式 10：外观模式: db+http apis
+ * GoF23 设计模式 10：外观模式: 1. sp providers apis  2. db providers apis 3. http apis
  */
-public class WtRepository {
-    public static void insertCityBeanEntity(CityBean cityBean) {
-        CityBeanEntity entity = CityBeanEntity.fromCityBean(cityBean);
-        WtDatabase.getInstance(WtApplication.getContext()).cityInfoDAO().insert(entity);
+public final class WtRepository {
+    public static AmapHttpManager http() {
+        if (Ext.mAmapHttpManager == null) {
+            AmapHttpManagerImpl.registerInstance();
+        }
+        return Ext.mAmapHttpManager;
     }
 
-    public static Observable<LiveWeatherResponseData> queryCityCurWeather(CityBean cityBean) {
-        return WeatherRequestClient.getInstance().liveWeatherPost(cityBean.cityCode);
+    public static SpProviderManager sp() {
+        if (Ext.mSpProviderManager == null) {
+            SpProviderManagerImpl.registerInstance();
+        }
+        return Ext.mSpProviderManager;
     }
 
-    public static Observable<AllForecastResponseData> queryCityForecast(CityBean cityBean) {
-        return WeatherRequestClient.getInstance().forecastWeatherPost(cityBean.cityCode);
+    public static DbProviderManager db() {
+        if (Ext.mDbProviderManager == null) {
+            DbProviderManagerImpl.registerInstance();
+        }
+        return Ext.mDbProviderManager;
     }
 
-    public static void queryCityWeather(final CityBean citybean, final IQueryWeather iQueryWeather) {
-        if (!NetworkUtil.isNetworkConnected()) {
-            return;
+
+    public static class Ext {
+        private static AmapHttpManager mAmapHttpManager;
+        private static SpProviderManager mSpProviderManager;
+        private static DbProviderManager mDbProviderManager;
+
+        public static void setAmapHttpManager(AmapHttpManager httpManager) {
+            WtRepository.Ext.mAmapHttpManager = httpManager;
         }
 
-        /**task1: 查询当前天气*/
-        Observable<LiveWeatherResponseData> observable1 =
-                queryCityCurWeather(citybean).subscribeOn(Schedulers.io());//被观察者Observable运行在子线程
-
-        /**task2: 查询未来天气预报*/
-        Observable<AllForecastResponseData> observable2 =
-                queryCityForecast(citybean).subscribeOn(Schedulers.io());
-
-        /**Observable.zip: 实现task1+ task2 异步任务都完成时，回调 订阅的UI刷新*/
-        Observable.zip(observable1, observable2,
-                new BiFunction<LiveWeatherResponseData, AllForecastResponseData, List<IViewItemBean>>() {
-                    @Override
-                    public List<IViewItemBean> apply(LiveWeatherResponseData livedata,
-                                                     AllForecastResponseData allForecastdata) throws Exception {
-                        /**task1+task2 ，此处可以处理耗时流程（子线程）*/
-                        return combineWeatherData(livedata, allForecastdata);
-                    }
-                })
-                .observeOn(AndroidSchedulers.mainThread())//观察者运行在UI线程
-                .subscribe(new Consumer<List<IViewItemBean>>() {
-                    @Override
-                    public void accept(List<IViewItemBean> dataList) throws Exception {
-                        /**实现UI订阅逻辑（AndroidSchedulers.mainThread）*/
-                        iQueryWeather.onWeatherQueryCompleted(dataList);
-                    }
-                });
-    }
-
-    private static List<IViewItemBean> combineWeatherData(
-            LiveWeatherResponseData livedata,
-            AllForecastResponseData allForecastdata) {
-        List<DayForecastBean> dayForecastList = null;
-        List<IViewItemBean> dataList = new ArrayList<>();
-        dataList.clear();
-        if (livedata != null && livedata.isSuccessful()) {
-            dataList.add(livedata.getWeatherLiveResult());
+        public static void setSpProviderManager(SpProviderManager spProviderManager) {
+            WtRepository.Ext.mSpProviderManager = spProviderManager;
         }
-        if (allForecastdata != null
-                && allForecastdata.isSuccessful()
-                && allForecastdata.getWeatherAllResult() != null) {
-            dayForecastList = allForecastdata.getWeatherAllResult().dayForecastBeanList;
-        }
-        for (DayForecastBean fdata : dayForecastList) {
-            dataList.add(fdata);
-        }
-        return dataList;
-    }
 
-    public interface IQueryWeather {
-        void onWeatherQueryCompleted(List<IViewItemBean> data);
+        public static void setDbProviderManager(DbProviderManager dbProviderManager) {
+            WtRepository.Ext.mDbProviderManager = dbProviderManager;
+        }
     }
 }

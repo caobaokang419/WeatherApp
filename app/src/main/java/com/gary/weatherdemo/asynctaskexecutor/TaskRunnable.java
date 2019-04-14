@@ -33,7 +33,7 @@ public abstract class TaskRunnable<Params, Result> implements Runnable {
     }
 
     private void postComplete(final Result result) {
-        TaskExecutor.getInstance().runOnWorkThread(new Runnable() {
+        TaskExecutor.getInstance().runOnUIThread(new Runnable() {
             @Override
             public void run() {
                 onComplete(result);
