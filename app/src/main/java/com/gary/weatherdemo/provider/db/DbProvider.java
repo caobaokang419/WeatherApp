@@ -19,35 +19,47 @@ import java.util.ArrayList;
 
 /**
  * Created by GaryCao on 2019/01/05.
- *
+ * <p>
  * 提供供第三方应用统一的Weather-data访问API
  */
 public class DbProvider extends ContentProvider {
     public static final String DB_AUTHORITY = "com.gary.weatherdemo.db.provider";
     public static final Uri DB_CONTENT_URI = Uri.parse("content://" + DB_AUTHORITY);
 
+    public static final String CITY_CONFIG_CONTENT_TYPE = "vnd.android.cursor.dir/city.config";
+    public static final String CITY_CONFIG_CONTENT_ITEM_TYPE = "vnd.android.cursor.item/city.config";
+
+    public static final String CITY_FORECAST_CONTENT_TYPE = "vnd.android.cursor.dir/city.forecast";
+    public static final String CITY_FORECAST_CONTENT_ITEM_TYPE = "vnd.android.cursor.item/city.forecast";
+
     //高德城市配置表
     public static final int CODE_CITY_CONFIG = 101;
-    public static final int CODE_CITY_CONFIG_ID = 102;
-    public static final int CODE_CITY_CONFIG_ADCODE = 103;
+    public static final int CODE_CITY_CONFIG_ADCODE = 102;
 
     //城市天气表
     public static final int CODE_CITY_FORECAST = 201;
-    public static final int CODE_CITY_FORECAST_ID = 202;
-    public static final int CODE_CITY_FORECAST_ADCODE = 203;
+    public static final int CODE_CITY_FORECAST_ADCODE = 202;
 
-    private static final UriMatcher mMatcher;
+    private static final UriMatcher mUriMatcher;
 
     static {
-        mMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-        mMatcher.addURI(DB_AUTHORITY, CityBeanEntity.TABLE_NAME, CODE_CITY_CONFIG);
-        mMatcher.addURI(DB_AUTHORITY, CityBeanEntity.TABLE_NAME + "/#", CODE_CITY_CONFIG_ID);
-        mMatcher.addURI(DB_AUTHORITY, CityBeanEntity.TABLE_NAME + "/adcode", CODE_CITY_CONFIG_ADCODE);
+        mUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
+        mUriMatcher.addURI(DB_AUTHORITY, CityBeanEntity.TABLE_NAME, CODE_CITY_CONFIG);
+        mUriMatcher.addURI(DB_AUTHORITY, CityBeanEntity.TABLE_NAME + "/adcode", CODE_CITY_CONFIG_ADCODE);
 
-        mMatcher.addURI(DB_AUTHORITY, CityForecastEntity.TABLE_NAME, CODE_CITY_FORECAST);
-        mMatcher.addURI(DB_AUTHORITY, CityForecastEntity.TABLE_NAME + "/#", CODE_CITY_FORECAST_ID);
-        mMatcher.addURI(DB_AUTHORITY, CityForecastEntity.TABLE_NAME + "/adcode", CODE_CITY_FORECAST_ADCODE);
+        mUriMatcher.addURI(DB_AUTHORITY, CityForecastEntity.TABLE_NAME, CODE_CITY_FORECAST);
+        mUriMatcher.addURI(DB_AUTHORITY, CityForecastEntity.TABLE_NAME + "/adcode", CODE_CITY_FORECAST_ADCODE);
     }
+
+    /**
+     * Thread local various
+     */
+    private ThreadLocal<Boolean> mNeedNotifyChanged = new ThreadLocal<Boolean>() {
+        @Override
+        protected Boolean initialValue() {
+            return Boolean.valueOf(false);
+        }
+    };
 
     public DbProvider() {
     }
@@ -59,12 +71,10 @@ public class DbProvider extends ContentProvider {
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
-        switch (mMatcher.match(uri)) {
+        switch (mUriMatcher.match(uri)) {
             case CODE_CITY_CONFIG:
                 CityBeanEntity cityBeanEntity = CityBeanEntity.fromContentValues(values);
                 WtDatabase.getInstance(WtApplication.getContext()).cityInfoDAO().insert(cityBeanEntity);
-                break;
-            case CODE_CITY_CONFIG_ID:
                 break;
             case CODE_CITY_CONFIG_ADCODE:
                 break;
@@ -73,90 +83,100 @@ public class DbProvider extends ContentProvider {
                 CityForecastEntity cityForecastEntity = CityForecastEntity.fromContentValues(values);
                 WtDatabase.getInstance(WtApplication.getContext()).cityForecastDAO().insert(cityForecastEntity);
                 break;
-            case CODE_CITY_FORECAST_ID:
+            case CODE_CITY_FORECAST_ADCODE:
+                break;
+            default:
+                throw new IllegalArgumentException("Unknown URI " + uri);
+        }
+
+        getContext().getContentResolver().notifyChange(uri, null);
+        return null;
+    }
+
+    @Override
+    public int bulkInsert(Uri uri, ContentValues[] values) {
+        switch (mUriMatcher.match(uri)) {
+            case CODE_CITY_CONFIG:
+                break;
+            case CODE_CITY_CONFIG_ADCODE:
+                break;
+
+            case CODE_CITY_FORECAST:
                 break;
             case CODE_CITY_FORECAST_ADCODE:
                 break;
             default:
-                break;
+                throw new IllegalArgumentException("Unknown URI " + uri);
         }
 
-        // TODO: Implement this to handle requests to insert a new row.
-        throw new UnsupportedOperationException("Not yet implemented");
+        getContext().getContentResolver().notifyChange(uri, null);
+        return -1;
     }
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        switch (mMatcher.match(uri)) {
+        switch (mUriMatcher.match(uri)) {
             case CODE_CITY_CONFIG:
-            case CODE_CITY_CONFIG_ID:
                 break;
             case CODE_CITY_CONFIG_ADCODE:
                 String adcode1 = uri.getLastPathSegment();
-                WtDatabase.getInstance(WtApplication.getContext())
-                        .cityForecastDAO().deleteByCityAdcode(adcode1);
+                WtDatabase.getInstance(WtApplication.getContext()).cityForecastDAO().deleteByCityAdcode(adcode1);
                 break;
 
             case CODE_CITY_FORECAST:
-            case CODE_CITY_FORECAST_ID:
                 break;
             case CODE_CITY_FORECAST_ADCODE:
                 String adcode2 = uri.getLastPathSegment();
-                WtDatabase.getInstance(WtApplication.getContext())
-                        .cityForecastDAO().deleteByCityAdcode(adcode2);
+                WtDatabase.getInstance(WtApplication.getContext()).cityForecastDAO().deleteByCityAdcode(adcode2);
                 break;
             default:
-                break;
+                throw new IllegalArgumentException("Unknown URI " + uri);
         }
 
-        throw new UnsupportedOperationException("Not yet implemented");
+
+        getContext().getContentResolver().notifyChange(uri, null);
+        return -1;
     }
 
     @Override
     public Cursor query(Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
-        switch (mMatcher.match(uri)) {
+        switch (mUriMatcher.match(uri)) {
             case CODE_CITY_CONFIG:
-                break;
-            case CODE_CITY_CONFIG_ID:
                 break;
             case CODE_CITY_CONFIG_ADCODE:
                 break;
 
             case CODE_CITY_FORECAST:
                 break;
-            case CODE_CITY_FORECAST_ID:
-                break;
             case CODE_CITY_FORECAST_ADCODE:
                 break;
             default:
-                break;
+                throw new IllegalArgumentException("Unknown URI " + uri);
         }
 
-        throw new UnsupportedOperationException("Not yet implemented");
+        return null;
     }
 
     @Override
     public int update(Uri uri, ContentValues values, String selection,
                       String[] selectionArgs) {
-        switch (mMatcher.match(uri)) {
+        switch (mUriMatcher.match(uri)) {
             case CODE_CITY_CONFIG:
-                break;
-            case CODE_CITY_CONFIG_ID:
                 break;
             case CODE_CITY_CONFIG_ADCODE:
                 break;
 
             case CODE_CITY_FORECAST:
                 break;
-            case CODE_CITY_FORECAST_ID:
-                break;
             case CODE_CITY_FORECAST_ADCODE:
                 break;
             default:
-                break;
+                throw new IllegalArgumentException("Unknown URI " + uri);
         }
-        throw new UnsupportedOperationException("Not yet implemented");
+
+        getContext().getContentResolver().notifyChange(uri, null);
+        return -1;
     }
 
     @NonNull
@@ -167,6 +187,18 @@ public class DbProvider extends ContentProvider {
 
     @Override
     public String getType(Uri uri) {
-        throw new UnsupportedOperationException("Not yet implemented");
+        switch (mUriMatcher.match(uri)) {
+            case CODE_CITY_CONFIG:
+                return CITY_CONFIG_CONTENT_TYPE;
+            case CODE_CITY_CONFIG_ADCODE:
+                return CITY_CONFIG_CONTENT_ITEM_TYPE;
+
+            case CODE_CITY_FORECAST:
+                return CITY_FORECAST_CONTENT_TYPE;
+            case CODE_CITY_FORECAST_ADCODE:
+                return CITY_FORECAST_CONTENT_ITEM_TYPE;
+            default:
+                throw new IllegalArgumentException("Unknown URI " + uri);
+        }
     }
 }

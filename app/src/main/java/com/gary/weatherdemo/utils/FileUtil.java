@@ -3,10 +3,6 @@ package com.gary.weatherdemo.utils;
 import android.os.Environment;
 import android.os.StatFs;
 
-import org.xutils.common.util.IOUtil;
-import org.xutils.common.util.LogUtil;
-import org.xutils.x;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -19,7 +15,7 @@ public class FileUtil {
     private FileUtil() {
     }
 
-    public static File getCacheDir(String dirName) {
+    /*public static File getCacheDir(String dirName) {
         File result;
         if (existsSdcard()) {
             File cacheDir = x.app().getExternalCacheDir();
@@ -37,7 +33,7 @@ public class FileUtil {
         } else {
             return null;
         }
-    }
+    }*/
 
     /**
      * 检查磁盘空间是否大于10mb
@@ -110,7 +106,7 @@ public class FileUtil {
                 IOUtil.copy(in, out);
                 result = true;
             } catch (Throwable ex) {
-                LogUtil.d(ex.getMessage(), ex);
+                CLog.d(ex.getMessage() + ex);
                 result = false;
             } finally {
                 IOUtil.closeQuietly(in);

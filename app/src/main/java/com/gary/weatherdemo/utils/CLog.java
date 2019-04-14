@@ -6,7 +6,8 @@ import com.gary.weatherdemo.BuildConfig;
 
 
 public class CLog {
-    private static String TAG = BuildConfig.APPLICATION_ID;
+    public static final boolean DEBUG = Boolean.parseBoolean("true");
+    private static String TAG = "[Amap]";
 
     public static void e(String Msg) {
         LogIt(Log.ERROR, TAG, Msg);
@@ -49,7 +50,7 @@ public class CLog {
     }
 
     private static void LogIt(int LEVEL, String Tag, String Message) {
-        if (BuildConfig.DEBUG) {
+        if (DEBUG) {
             Log.println(LEVEL, TAG + " " + Tag, Message);
         }
     }

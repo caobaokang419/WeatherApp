@@ -1,6 +1,6 @@
 package com.gary.weatherdemo.utils;
 
-import org.xutils.x;
+import com.gary.weatherdemo.WtApplication;
 
 /**
  * origin from xUtils3: https://github.com/wyouflf/xUtils3
@@ -16,7 +16,7 @@ public final class DensityUtil {
 
     public static float getDensity() {
         if (density <= 0F) {
-            density = x.app().getResources().getDisplayMetrics().density;
+            density = WtApplication.getContext().getResources().getDisplayMetrics().density;
         }
         return density;
     }
@@ -31,15 +31,14 @@ public final class DensityUtil {
 
     public static int getScreenWidth() {
         if (widthPixels <= 0) {
-            widthPixels = x.app().getResources().getDisplayMetrics().widthPixels;
+            widthPixels = WtApplication.getContext().getResources().getDisplayMetrics().widthPixels;
         }
         return widthPixels;
     }
 
-
     public static int getScreenHeight() {
         if (heightPixels <= 0) {
-            heightPixels = x.app().getResources().getDisplayMetrics().heightPixels;
+            heightPixels = WtApplication.getContext().getResources().getDisplayMetrics().heightPixels;
         }
         return heightPixels;
     }

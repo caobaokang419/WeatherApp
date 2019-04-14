@@ -1,7 +1,5 @@
 package com.gary.weatherdemo.utils;
 
-import org.xutils.common.util.IOUtil;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;

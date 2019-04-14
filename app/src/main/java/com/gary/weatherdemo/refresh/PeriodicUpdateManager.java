@@ -6,12 +6,12 @@ import android.os.HandlerThread;
 import com.gary.weatherdemo.bean.CityBean;
 import com.gary.weatherdemo.bean.IViewItemBean;
 import com.gary.weatherdemo.cache.memorycache.CacheClient;
-import com.gary.weatherdemo.repository.WtRepository;
 import com.gary.weatherdemo.repository.WtRepositoryHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class PeriodicUpdateManager {
@@ -36,18 +36,18 @@ public class PeriodicUpdateManager {
         return mInstant;
     }
 
-    public interface IWeatherQueryCompletedCallback {
-        void onCityWeatherQueryCompleted();
+    public interface IWeatherQuery {
+        void onWeatherQueryCompleted();
     }
 
-    private List<IWeatherQueryCompletedCallback> mCallbacks = new ArrayList<>();
+    private List<IWeatherQuery> mListener = new CopyOnWriteArrayList<>();
 
-    public void addListener(IWeatherQueryCompletedCallback callback) {
-        mCallbacks.add(callback);
+    public void addListener(IWeatherQuery callback) {
+        mListener.add(callback);
     }
 
-    public void removeListener(IWeatherQueryCompletedCallback callback) {
-        mCallbacks.remove(callback);
+    public void removeListener(IWeatherQuery callback) {
+        mListener.remove(callback);
     }
 
     public void startPeriodicUpdate() {
@@ -76,8 +76,8 @@ public class PeriodicUpdateManager {
     }
 
     public void notifyCityWeatherChanged(){
-        for (IWeatherQueryCompletedCallback callback : mCallbacks) {
-            callback.onCityWeatherQueryCompleted();
+        for (IWeatherQuery callback : mListener) {
+            callback.onWeatherQueryCompleted();
         }
     }
 

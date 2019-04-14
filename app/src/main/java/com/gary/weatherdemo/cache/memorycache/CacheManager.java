@@ -4,6 +4,7 @@ import com.gary.weatherdemo.WtApplication;
 import com.gary.weatherdemo.bean.CityBean;
 import com.gary.weatherdemo.bean.CityItemBean;
 import com.gary.weatherdemo.bean.IViewItemBean;
+import com.gary.weatherdemo.filter.FilterChain;
 import com.gary.weatherdemo.utils.CLog;
 import com.gary.weatherdemo.utils.IOUtil;
 
@@ -27,9 +28,14 @@ public class CacheManager {
     private List<CityBean> mCityBeans = new ArrayList<>();
 
     /**
-     * 高德天气城市配置数据列表
+     * 高德天气城市配置全部列表数据
      */
     private List<IViewItemBean> mCityItemBeans = new ArrayList<>();
+
+    /**
+     * 高德天气城市配置搜索数据列表
+     */
+    private List<IViewItemBean> mSearchCityItemBeans = new ArrayList<>();
 
     public CacheManager() {
     }
@@ -62,6 +68,7 @@ public class CacheManager {
             synchronized (this) {
                 mCityBeans = cityBeans;
                 mCityItemBeans = cityItemBeans;
+                mSearchCityItemBeans = cityItemBeans;
             }
             return true;
         } catch (Exception e) {
@@ -72,9 +79,19 @@ public class CacheManager {
         return false;
     }
 
-    public List<IViewItemBean> getCityItemBeans() {
+    /*public List<IViewItemBean> getCityItemBeans() {
         synchronized (this) {
             return mCityItemBeans;
         }
+    }*/
+
+    public List<IViewItemBean> getSearchedCityItemBeans() {
+        synchronized (this) {
+            return mSearchCityItemBeans;
+        }
+    }
+
+    public void loadCityItemBeansByFilters(final FilterChain filterChain) {
+        mSearchCityItemBeans = filterChain.doFilter(mCityItemBeans);
     }
 }

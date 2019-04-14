@@ -4,8 +4,10 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.content.ContentValues;
+import android.net.Uri;
 
 import com.gary.weatherdemo.bean.CityBean;
+import com.gary.weatherdemo.provider.db.DbProvider;
 
 /**
  * Created by GaryCao on 2019/01/13.
@@ -16,6 +18,9 @@ public class CityBeanEntity {
     public static final String TABLE_NAME = "city_info";
     public static final String COLUMN_CITY_NAME = "city_name";
     public static final String COLUMN_CITY_CODE = "adcode";
+
+    public static final Uri DB_CONTENT_URI
+            = Uri.parse("content://" + DbProvider.DB_AUTHORITY + "/" + TABLE_NAME);
 
     @PrimaryKey
     public long id;

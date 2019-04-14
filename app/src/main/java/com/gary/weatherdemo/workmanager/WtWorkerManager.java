@@ -4,7 +4,6 @@ import android.support.annotation.NonNull;
 
 import com.gary.weatherdemo.cache.memorycache.CacheClient;
 import com.gary.weatherdemo.constant.Constants;
-import com.gary.weatherdemo.provider.sp.SpProviderManagerImpl;
 import com.gary.weatherdemo.refresh.PeriodicUpdateManager;
 import com.gary.weatherdemo.repository.WtRepository;
 import com.gary.weatherdemo.utils.CLog;

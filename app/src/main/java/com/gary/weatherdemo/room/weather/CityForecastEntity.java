@@ -4,9 +4,11 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.content.ContentValues;
+import android.net.Uri;
 
 import com.gary.weatherdemo.bean.CityBean;
 import com.gary.weatherdemo.bean.DayForecastBean;
+import com.gary.weatherdemo.provider.db.DbProvider;
 import com.gary.weatherdemo.room.city.CityBeanEntity;
 
 /**
@@ -26,6 +28,9 @@ public class CityForecastEntity {
     public static final String COLUMN_NIGHT_WIND = "nightwind";
     public static final String COLUMN_DAY_POWER = "daypower";
     public static final String COLUMN_NIGHT_POWER = "nightpower";
+
+    public static final Uri DB_CONTENT_URI
+            = Uri.parse("content://" + DbProvider.DB_AUTHORITY + "/" + TABLE_NAME);
 
     @PrimaryKey
     public long id;

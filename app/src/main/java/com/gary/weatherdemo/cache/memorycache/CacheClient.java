@@ -7,6 +7,9 @@ import android.os.Looper;
 import com.gary.weatherdemo.bean.CityBean;
 import com.gary.weatherdemo.bean.IViewItemBean;
 import com.gary.weatherdemo.constant.Constants;
+import com.gary.weatherdemo.filter.FilterChain;
+import com.gary.weatherdemo.refresh.PeriodicUpdateManager;
+import com.gary.weatherdemo.refresh.PeriodicUpdateManager.IWeatherQuery;
 import com.gary.weatherdemo.utils.CLog;
 
 import java.util.ArrayList;
@@ -20,11 +23,12 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * 高德城市配置缓存实现
  * 优点：统一提供，供不同UI直接获取，不再需要重复&频繁请求DB或assert文件城市配置信息数据
  */
-public class CacheClient {
+public class CacheClient implements IWeatherQuery {
     private static final String TAG = CacheClient.class.getSimpleName();
 
     public interface ICacheDataListener {
         void onCityConfigChanged();
+
         void onCityWeatherChanged();
     }
 
@@ -61,6 +65,7 @@ public class CacheClient {
         initWorkHandlerThread();
         mCacheManager = new CacheManager();
         mCacheLoaderLatch = new CountDownLatch(1);
+        PeriodicUpdateManager.getInstant().addListener(this);
     }
 
     private void initWorkHandlerThread() {
@@ -100,6 +105,11 @@ public class CacheClient {
         });
     }
 
+    @Override
+    public void onWeatherQueryCompleted() {
+        notifyCityWeatherChanged();
+    }
+
     /**
      * 加载缓存
      */
@@ -115,11 +125,33 @@ public class CacheClient {
         });
     }
 
-    public synchronized List<IViewItemBean> getCityItemBeans() {
+    public void loadCityItemBeansByFilters(final FilterChain filterChain) {
+        runOnWorkThread(new Runnable() {
+            @Override
+            public void run() {
+                if (isCityCacheLoaded()) {
+                    mCacheManager.loadCityItemBeansByFilters(filterChain);
+                    notifyCityConfigChanged();
+                }
+            }
+        });
+    }
+
+    /*public synchronized List<IViewItemBean> getCityItemBeans() {
         if (!isCityCacheLoaded()) {
             return new ArrayList<>();
         }
         return mCacheManager.getCityItemBeans();
+    }*/
+
+    /**
+     * Global Search city items apis
+     */
+    public synchronized List<IViewItemBean> getSearchedCityItemBeans() {
+        if (!isCityCacheLoaded()) {
+            return new ArrayList<>();
+        }
+        return mCacheManager.getSearchedCityItemBeans();
     }
 
     public synchronized List<CityBean> getFixedCityBeans() {

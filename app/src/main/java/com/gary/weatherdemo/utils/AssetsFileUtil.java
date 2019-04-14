@@ -10,7 +10,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-/*refer to network codes*/
+/*origin reference to network codes*/
 public class AssetsFileUtil {
     /**
      * 获取assets目录下的图片

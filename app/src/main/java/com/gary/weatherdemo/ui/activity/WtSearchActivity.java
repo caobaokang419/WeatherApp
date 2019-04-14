@@ -50,23 +50,17 @@ public class WtSearchActivity extends BaseActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (charSequence == null || charSequence.toString().isEmpty()) {
-                    /*mCitySearchRecycleAdapter.setAdapterData(
-                            CacheClient.getContext().getCityItemBeans());*/
-
                     FilterChain filterChain = new FilterChain();
                     filterChain.addFilter(new NoFilter());
-                    filterChain.doFilter(CacheClient.getInstance().getCityItemBeans());
+                    CacheClient.getInstance().loadCityItemBeansByFilters(filterChain);
                     mCitySearchRecycleAdapter.setCurMode(
                             CitySearchRecyclerAdapter.CityListMode.CITY_LIST_NORMAL_MODE);
                 } else {
-                    /*mCitySearchRecycleAdapter.setAdapterData(
-                            CacheClient.getContext().getPairedBeansByKeyWord(charSequence.toString()));*/
-
                     String keyword = charSequence.toString();
                     FilterChain filterChain = new FilterChain();
                     filterChain.addFilter(new FilterSearchWord(keyword));
                     filterChain.addFilter(new FilterSkipFixedItem());
-                    filterChain.doFilter(CacheClient.getInstance().getCityItemBeans());
+                    CacheClient.getInstance().loadCityItemBeansByFilters(filterChain);
                     mCitySearchRecycleAdapter.setCurMode(
                             CitySearchRecyclerAdapter.CityListMode.CITY_LIST_SEARCH_MODE);
                 }
@@ -109,7 +103,7 @@ public class WtSearchActivity extends BaseActivity {
     private void initRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.city_list_view);
         mCitySearchRecycleAdapter = new CitySearchRecyclerAdapter();
-        mCitySearchRecycleAdapter.setAdapterData(CacheClient.getInstance().getCityItemBeans());
+        mCitySearchRecycleAdapter.setAdapterData(CacheClient.getInstance().getSearchedCityItemBeans());
         recyclerView.setAdapter(mCitySearchRecycleAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -117,12 +111,30 @@ public class WtSearchActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
+        CacheClient.getInstance().addListener(mCallback);
         /*EventBus.getDefault().post(new MessageEvent("Just for test"));*/
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        CacheClient.getInstance().removeListener(mCallback);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
     }
+
+    private CacheClient.ICacheDataListener mCallback = new CacheClient.ICacheDataListener(){
+        @Override
+        public void onCityConfigChanged() {
+            mCitySearchRecycleAdapter.setAdapterData(CacheClient.getInstance().getSearchedCityItemBeans());
+        }
+
+        @Override
+        public void onCityWeatherChanged() {
+
+        }
+    };
 }

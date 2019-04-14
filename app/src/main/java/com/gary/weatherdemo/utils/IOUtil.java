@@ -3,8 +3,6 @@ package com.gary.weatherdemo.utils;
 import android.database.Cursor;
 import android.text.TextUtils;
 
-import org.xutils.common.util.LogUtil;
-
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
@@ -31,7 +29,7 @@ public class IOUtil {
             try {
                 closeable.close();
             } catch (Throwable ignored) {
-                LogUtil.d(ignored.getMessage(), ignored);
+                CLog.d(ignored.getMessage() + ignored);
             }
         }
     }
@@ -41,7 +39,7 @@ public class IOUtil {
             try {
                 cursor.close();
             } catch (Throwable ignored) {
-                LogUtil.d(ignored.getMessage(), ignored);
+                CLog.d(ignored.getMessage() + ignored);
             }
         }
     }
