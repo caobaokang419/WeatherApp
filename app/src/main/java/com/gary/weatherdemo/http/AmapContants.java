@@ -10,7 +10,8 @@ public class AmapContants {
     public static final String AMAP_USER_KEY_VALUE = "3b6729d0c40f23fde7c55ae90ee0921d";
     public static final String AMAP_USER_EXTENSION_VALUE_BASE = "base";
     public static final String AMAP_USER_EXTENSION_VALUE_ALL = "all";
-    public static final String AMAP_USER_OUTPUT_VALUE = "JSON"; //JSON or xml
+    public static final String AMAP_USER_OUTPUT_VALUE_JSON = "JSON";
+    public static final String AMAP_USER_OUTPUT_VALUE_XML = "xml";
 
     //高德城市配置表下载地址
     public static final String AMAP_CITY_CONFIG_FILE_URL = "http://a.amap.com/lbs/static/file/AMap_adcode_citycode.xlsx.zip";

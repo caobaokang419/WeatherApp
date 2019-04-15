@@ -4,6 +4,7 @@ import android.os.Environment;
 import android.util.Log;
 
 import com.gary.weatherdemo.http.AmapContants;
+import com.gary.weatherdemo.utils.CLog;
 import com.gary.weatherdemo.utils.FileUtil;
 
 import org.xutils.common.Callback;
@@ -66,7 +67,7 @@ public class DownloadFactory {
             params.setAutoRename(false);
             params.setAutoResume(true);
             params.setCancelFast(true);
-            /*需要先动态申请存储权限*/
+            params.setCacheMaxAge(1000 * 60 * 3);
             mCancelable = x.http().post(params, new Callback.ProgressCallback<File>() {
                 @Override
                 public void onSuccess(File result) {
@@ -80,7 +81,6 @@ public class DownloadFactory {
 
                 @Override
                 public void onCancelled(CancelledException cex) {
-
                     mDownloadListener.onCancel();
                 }
 
@@ -97,14 +97,13 @@ public class DownloadFactory {
                 //网络请求开始的时候回调
                 @Override
                 public void onStarted() {
-
                     mDownloadListener.onStart();
                 }
 
                 @Override
                 public void onLoading(long total, long current, boolean isDownloading) {
                     mDownloadListener.onUpdate();
-                    Log.i("JAVA", "current：" + current + "，total：" + total);
+                    CLog.d("current：" + current + "，total：" + total);
                 }
             });
         }

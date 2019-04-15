@@ -3,7 +3,7 @@ package com.gary.weatherdemo.filter;
 import com.gary.weatherdemo.bean.CityBean;
 import com.gary.weatherdemo.bean.CityItemBean;
 import com.gary.weatherdemo.bean.IViewItemBean;
-import com.gary.weatherdemo.cache.memorycache.CacheClient;
+import com.gary.weatherdemo.cache.memcache.CacheClient;
 
 import java.util.ArrayList;
 import java.util.List;

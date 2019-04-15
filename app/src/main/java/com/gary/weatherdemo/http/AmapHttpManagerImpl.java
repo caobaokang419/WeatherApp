@@ -38,7 +38,7 @@ public class AmapHttpManagerImpl implements AmapHttpManager {
         return amapService.livesweatherPost(adcode,
                 AmapContants.AMAP_USER_KEY_VALUE,
                 AmapContants.AMAP_USER_EXTENSION_VALUE_BASE,
-                AmapContants.AMAP_USER_OUTPUT_VALUE)
+                AmapContants.AMAP_USER_OUTPUT_VALUE_JSON)
                 .subscribeOn(Schedulers.io());
     }
 
@@ -47,7 +47,7 @@ public class AmapHttpManagerImpl implements AmapHttpManager {
         return amapService.allweatherPost(adcode,
                 AmapContants.AMAP_USER_KEY_VALUE,
                 AmapContants.AMAP_USER_EXTENSION_VALUE_ALL,
-                AmapContants.AMAP_USER_OUTPUT_VALUE)
+                AmapContants.AMAP_USER_OUTPUT_VALUE_JSON)
                 .subscribeOn(Schedulers.io());
     }
 
@@ -56,7 +56,7 @@ public class AmapHttpManagerImpl implements AmapHttpManager {
         return amapService.livesweatherGet(adcode,
                 AmapContants.AMAP_USER_KEY_VALUE,
                 AmapContants.AMAP_USER_EXTENSION_VALUE_ALL,
-                AmapContants.AMAP_USER_OUTPUT_VALUE)
+                AmapContants.AMAP_USER_OUTPUT_VALUE_JSON)
                 .subscribeOn(Schedulers.io());
     }
 
@@ -65,7 +65,7 @@ public class AmapHttpManagerImpl implements AmapHttpManager {
         return amapService.allweatherGet(adcode,
                 AmapContants.AMAP_USER_KEY_VALUE,
                 AmapContants.AMAP_USER_EXTENSION_VALUE_ALL,
-                AmapContants.AMAP_USER_OUTPUT_VALUE)
+                AmapContants.AMAP_USER_OUTPUT_VALUE_JSON)
                 .subscribeOn(Schedulers.io());
     }
 }

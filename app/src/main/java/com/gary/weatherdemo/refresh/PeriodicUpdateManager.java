@@ -5,10 +5,9 @@ import android.os.HandlerThread;
 
 import com.gary.weatherdemo.bean.CityBean;
 import com.gary.weatherdemo.bean.IViewItemBean;
-import com.gary.weatherdemo.cache.memorycache.CacheClient;
+import com.gary.weatherdemo.cache.memcache.CacheClient;
 import com.gary.weatherdemo.repository.WtRepositoryHelper;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CopyOnWriteArrayList;

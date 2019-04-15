@@ -22,7 +22,6 @@ public class DownloadService extends Service {
     }
 
     private void init() {
-        /*GoF23 设计原则3：依赖倒转原则：针对interface编程，不针对对象编程*/
         mIDownload = DownloadFactory.createDownloadImpl();
     }
 

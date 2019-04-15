@@ -1,6 +1,5 @@
-package com.gary.weatherdemo.asynctaskexecutor;
+package com.gary.weatherdemo.asynctask;
 
-import android.content.Context;
 import android.support.annotation.UiThread;
 import android.support.annotation.WorkerThread;
 

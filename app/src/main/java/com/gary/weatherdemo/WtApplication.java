@@ -3,7 +3,7 @@ package com.gary.weatherdemo;
 import android.app.Application;
 import android.content.Context;
 
-import com.gary.weatherdemo.cache.memorycache.CacheClient;
+import com.gary.weatherdemo.cache.memcache.CacheClient;
 import com.gary.weatherdemo.push.UmPushManager;
 
 import org.xutils.x;

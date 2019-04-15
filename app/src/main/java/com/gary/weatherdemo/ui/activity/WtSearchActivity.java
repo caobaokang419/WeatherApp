@@ -12,7 +12,7 @@ import android.widget.GridView;
 import android.widget.ImageButton;
 
 import com.gary.weatherdemo.R;
-import com.gary.weatherdemo.cache.memorycache.CacheClient;
+import com.gary.weatherdemo.cache.memcache.CacheClient;
 import com.gary.weatherdemo.constant.Constants;
 import com.gary.weatherdemo.filter.FilterChain;
 import com.gary.weatherdemo.filter.FixedItemFilter;

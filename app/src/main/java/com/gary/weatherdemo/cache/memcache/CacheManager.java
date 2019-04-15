@@ -1,4 +1,4 @@
-package com.gary.weatherdemo.cache.memorycache;
+package com.gary.weatherdemo.cache.memcache;
 
 import com.gary.weatherdemo.WtApplication;
 import com.gary.weatherdemo.bean.CityBean;
@@ -9,7 +9,6 @@ import com.gary.weatherdemo.utils.CLog;
 import com.gary.weatherdemo.utils.IOUtil;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;

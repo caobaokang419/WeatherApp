@@ -1,4 +1,4 @@
-package com.gary.weatherdemo.cache.memorycache;
+package com.gary.weatherdemo.cache.memcache;
 
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -137,6 +138,14 @@ public class CacheClient implements IWeatherQuery {
                 mCacheLoaderLatch.countDown();
             }
         });
+    }
+
+    public void waitForCacheLoadCompleted() {
+        try {
+            mCacheLoaderLatch.await(3, TimeUnit.SECONDS);
+        } catch (InterruptedException ignore) {
+            CLog.d("waitForCacheLoader" + ignore);
+        }
     }
 
     public void loadCityItemBeansByFilters(final FilterChain filterChain) {

@@ -1,15 +1,11 @@
-package com.gary.weatherdemo.asynctaskexecutor;
+package com.gary.weatherdemo.asynctask;
 
-import android.arch.persistence.room.Room;
-import android.content.Context;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
 
-import com.gary.weatherdemo.room.WtDatabase;
 import com.gary.weatherdemo.utils.CLog;
 
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**

@@ -11,8 +11,7 @@ import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
  * 汉字转换位汉语拼音，英文字符不变
  */
 public class HanziToPinyinHelper {
-
-    public static StringBuffer sb = new StringBuffer();
+    private static StringBuffer sb = new StringBuffer();
 
     /**
      * 获取汉字字符串的首字母，英文字符不变
