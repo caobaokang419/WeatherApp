@@ -23,11 +23,15 @@ import androidx.work.Worker;
 public class WtWorkerManager {
     private static final String TAG = WtWorkerManager.class.getSimpleName();
 
+    // work manager types
+    public static final String PERIODIC_UPATE_WORK_NAME = "periodic_update_work";
+    public static final String LOAD_ADCODES_CONFIG_WORK_NAME = "load_adcodes_config_work";
+
     public static void loadAdrAdcodeConfig() {
         // 单次任务：OneTimeWorkRequest
         OneTimeWorkRequest.Builder loadConfigRequestBuilder =
                 new OneTimeWorkRequest.Builder(CityConfigLoaderWorker.class);
-        loadConfigRequestBuilder.addTag(Constants.LOAD_ADCODES_CONFIG_WORK_NAME);
+        loadConfigRequestBuilder.addTag(LOAD_ADCODES_CONFIG_WORK_NAME);
         OneTimeWorkRequest loadConfigWorkRequest = loadConfigRequestBuilder.build();
         WorkManager.getInstance().enqueue(loadConfigWorkRequest);
     }
@@ -50,7 +54,7 @@ public class WtWorkerManager {
                         TimeUnit.MINUTES);
 
         timerQueryRequestBuilder.setConstraints(constraints);
-        timerQueryRequestBuilder.addTag(Constants.PERIODIC_UPATE_WORK_NAME);
+        timerQueryRequestBuilder.addTag(PERIODIC_UPATE_WORK_NAME);
 
         PeriodicWorkRequest timerWorkRequest = timerQueryRequestBuilder.build();
         WorkManager.getInstance().enqueue(timerWorkRequest);

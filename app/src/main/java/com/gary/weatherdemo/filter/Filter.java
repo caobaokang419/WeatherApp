@@ -11,6 +11,6 @@ public interface Filter {
         FILTER_TYPE_SKIP_FIXED_ITEM
     }
 
-    public FilterType getFilterType();
-    public List<IViewItemBean> doFilter(List<IViewItemBean> datas);
+    FilterType getFilterType();
+    List<IViewItemBean> doFilter(List<IViewItemBean> datas);
 }

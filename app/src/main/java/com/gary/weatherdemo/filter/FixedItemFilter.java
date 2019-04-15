@@ -8,7 +8,7 @@ import com.gary.weatherdemo.cache.memorycache.CacheClient;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FilterSkipFixedItem implements Filter {
+public class FixedItemFilter implements Filter {
 
     @Override
     public FilterType getFilterType() {

@@ -16,7 +16,6 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class PeriodicUpdateManager {
     private static PeriodicUpdateManager mInstant;
-    private static Object mLock = new Object();
     private static BlockingQueue<CityBean> mQueue = new LinkedBlockingQueue<>();
     private HandlerThread mHandlerThread;
     private Handler mWorkHandler;
@@ -27,11 +26,9 @@ public class PeriodicUpdateManager {
         mWorkHandler = new Handler(mHandlerThread.getLooper());
     }
 
-    public static PeriodicUpdateManager getInstant() {
-        synchronized (mLock) {
-            if (mInstant == null) {
-                mInstant = new PeriodicUpdateManager();
-            }
+    public synchronized static PeriodicUpdateManager getInstant() {
+        if (mInstant == null) {
+            mInstant = new PeriodicUpdateManager();
         }
         return mInstant;
     }
@@ -50,15 +47,13 @@ public class PeriodicUpdateManager {
         mListener.remove(callback);
     }
 
-    public void startPeriodicUpdate() {
-        synchronized (mLock) {
-            mQueue.clear();
-            List<CityBean> cityBeans = CacheClient.getInstance().getFixedCityBeans();
-            for (CityBean cityBean : cityBeans) {
-                mQueue.add(cityBean);
-            }
-            executeCurrentTask();
+    public synchronized void startPeriodicUpdate() {
+        mQueue.clear();
+        List<CityBean> cityBeans = CacheClient.getInstance().getFixedCityBeans();
+        for (CityBean cityBean : cityBeans) {
+            mQueue.add(cityBean);
         }
+        executeCurrentTask();
     }
 
     private void executeCurrentTask() {

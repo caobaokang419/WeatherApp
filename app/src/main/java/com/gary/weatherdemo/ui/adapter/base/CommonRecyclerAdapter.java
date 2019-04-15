@@ -34,7 +34,7 @@ public class CommonRecyclerAdapter extends RecyclerView.Adapter<ItemViewHolder> 
 
     @Override
     public int getItemViewType(int position) {
-        return (mItemDatas.get(position) == null) ? 0 : mItemDatas.get(position).getViewItemType();
+        return (mItemDatas.get(position) == null) ? 0 : mItemDatas.get(position).getViewItemType().value();
     }
 
     @Override

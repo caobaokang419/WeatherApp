@@ -82,11 +82,11 @@ public class CacheManager {
         return false;
     }
 
-    /*public List<IViewItemBean> getCityItemBeans() {
+    public List<IViewItemBean> getAllCityItemBeans() {
         synchronized (this) {
             return mCityItemBeans;
         }
-    }*/
+    }
 
     public List<IViewItemBean> getSearchedCityItemBeans() {
         synchronized (this) {

@@ -11,18 +11,23 @@ import android.support.annotation.WorkerThread;
  */
 public abstract class TaskRunnable<Params, Result> implements Runnable {
     private final static String TAG = "Task";
-    private static long mId = 0;
-    private Context mContext;
+    private long mId;
     private Params[] mParams;
 
-    private TaskRunnable(Context context, Params[] params) {
-        mContext = context;
-        mId++;
+    private TaskRunnable(Params[] params) {
         mParams = params;
     }
 
+    public void setId(long id) {
+        this.mId = id;
+    }
+
+    public long getId() {
+        return mId;
+    }
+
     @Override
-    public final void run() { //1. 算法骨架（模板方法）
+    public final void run() {
         Result result = null;
         try {
             result = doInBackground(mParams);
@@ -42,8 +47,8 @@ public abstract class TaskRunnable<Params, Result> implements Runnable {
     }
 
     @WorkerThread
-    protected abstract Result doInBackground(Params... params); //算法步骤1：执行后台耗时，延迟由子类实现
+    protected abstract Result doInBackground(Params... params);
 
     @UiThread
-    protected abstract void onComplete(Result result);//算法步骤2：通知UI刷新，延迟由子类实现
+    protected abstract void onComplete(Result result);
 }

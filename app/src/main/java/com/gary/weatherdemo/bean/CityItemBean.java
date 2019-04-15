@@ -24,7 +24,7 @@ public class CityItemBean implements IViewItemBean,Comparable<CityItemBean> {
     }
 
     @Override
-    public int getViewItemType(){
+    public ItemViewType getViewItemType(){
         return ItemViewType.RV_SEARCH_CITY_ITEM_TYPE;
     }
 

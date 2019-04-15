@@ -48,7 +48,7 @@ public class DayForecastBean implements IViewItemBean {
     public final String nightpower = null;
 
     @Override
-    public int getViewItemType(){
+    public ItemViewType getViewItemType(){
         return ItemViewType.RV_FORECAST_DAY_WEATHER_ITEM_TYPE;
     }
 

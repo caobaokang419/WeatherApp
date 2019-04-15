@@ -28,10 +28,8 @@ public class CacheClient implements IWeatherQuery {
 
     public interface ICacheDataListener {
         void onCityConfigChanged();
-
         void onCityWeatherChanged();
     }
-
 
     /**
      * process main-thread(UI thread) works
@@ -83,26 +81,42 @@ public class CacheClient implements IWeatherQuery {
         mWorkHandler.post(runnable);
     }
 
+    private boolean isInUiThread() {
+        return Thread.currentThread().getId() == Looper.getMainLooper().getThread().getId();
+    }
+
     private void notifyCityConfigChanged() {
-        runOnUIThread(new Runnable() {
-            @Override
-            public void run() {
-                for (ICacheDataListener callback : mCacheListeners) {
-                    callback.onCityConfigChanged();
-                }
+        if (isInUiThread()) {
+            for (ICacheDataListener callback : mCacheListeners) {
+                callback.onCityConfigChanged();
             }
-        });
+        } else {
+            runOnUIThread(new Runnable() {
+                @Override
+                public void run() {
+                    for (ICacheDataListener callback : mCacheListeners) {
+                        callback.onCityConfigChanged();
+                    }
+                }
+            });
+        }
     }
 
     private void notifyCityWeatherChanged() {
-        runOnUIThread(new Runnable() {
-            @Override
-            public void run() {
-                for (ICacheDataListener listener : mCacheListeners) {
-                    listener.onCityWeatherChanged();
-                }
+        if (isInUiThread()) {
+            for (ICacheDataListener listener : mCacheListeners) {
+                listener.onCityWeatherChanged();
             }
-        });
+        } else {
+            runOnUIThread(new Runnable() {
+                @Override
+                public void run() {
+                    for (ICacheDataListener listener : mCacheListeners) {
+                        listener.onCityWeatherChanged();
+                    }
+                }
+            });
+        }
     }
 
     @Override
@@ -137,12 +151,12 @@ public class CacheClient implements IWeatherQuery {
         });
     }
 
-    /*public synchronized List<IViewItemBean> getCityItemBeans() {
+    public synchronized List<IViewItemBean> getAllCityItemBeans() {
         if (!isCityCacheLoaded()) {
             return new ArrayList<>();
         }
-        return mCacheManager.getCityItemBeans();
-    }*/
+        return mCacheManager.getAllCityItemBeans();
+    }
 
     /**
      * Global Search city items apis

@@ -6,10 +6,10 @@ import com.gary.weatherdemo.bean.IViewItemBean;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FilterSearchWord implements Filter {
+public class SearchWordFilter implements Filter {
     private String mKeyWord;
 
-    public FilterSearchWord(String keyWord){
+    public SearchWordFilter(String keyWord){
         mKeyWord = keyWord;
     }
 

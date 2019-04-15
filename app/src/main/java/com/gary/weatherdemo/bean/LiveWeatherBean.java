@@ -44,7 +44,7 @@ public class LiveWeatherBean implements IViewItemBean {
     public final String reporttime = null;
 
     @Override
-    public int getViewItemType(){
+    public ItemViewType getViewItemType(){
         return ItemViewType.RV_CURRENT_WEATHER_ITEM_TYPE;
     }
 

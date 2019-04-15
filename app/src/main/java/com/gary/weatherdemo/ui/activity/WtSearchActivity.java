@@ -15,8 +15,8 @@ import com.gary.weatherdemo.R;
 import com.gary.weatherdemo.cache.memorycache.CacheClient;
 import com.gary.weatherdemo.constant.Constants;
 import com.gary.weatherdemo.filter.FilterChain;
-import com.gary.weatherdemo.filter.FilterSkipFixedItem;
-import com.gary.weatherdemo.filter.FilterSearchWord;
+import com.gary.weatherdemo.filter.FixedItemFilter;
+import com.gary.weatherdemo.filter.SearchWordFilter;
 import com.gary.weatherdemo.filter.NoFilter;
 import com.gary.weatherdemo.ui.activity.base.BaseActivity;
 import com.gary.weatherdemo.ui.adapter.CitySearchGridAdapter;
@@ -58,8 +58,8 @@ public class WtSearchActivity extends BaseActivity {
                 } else {
                     String keyword = charSequence.toString();
                     FilterChain filterChain = new FilterChain();
-                    filterChain.addFilter(new FilterSearchWord(keyword));
-                    filterChain.addFilter(new FilterSkipFixedItem());
+                    filterChain.addFilter(new SearchWordFilter(keyword));
+                    filterChain.addFilter(new FixedItemFilter());
                     CacheClient.getInstance().loadCityItemBeansByFilters(filterChain);
                     mCitySearchRecycleAdapter.setCurMode(
                             CitySearchRecyclerAdapter.CityListMode.CITY_LIST_SEARCH_MODE);
