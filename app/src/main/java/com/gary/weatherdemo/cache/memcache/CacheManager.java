@@ -1,10 +1,15 @@
 package com.gary.weatherdemo.cache.memcache;
 
+import android.database.ContentObserver;
+import android.net.Uri;
+import android.os.Handler;
+
 import com.gary.weatherdemo.WtApplication;
 import com.gary.weatherdemo.bean.CityBean;
 import com.gary.weatherdemo.bean.CityItemBean;
 import com.gary.weatherdemo.bean.IViewItemBean;
 import com.gary.weatherdemo.filter.FilterChain;
+import com.gary.weatherdemo.provider.db.DbProvider;
 import com.gary.weatherdemo.utils.CLog;
 import com.gary.weatherdemo.utils.IOUtil;
 
@@ -36,7 +41,10 @@ public class CacheManager {
      */
     private List<IViewItemBean> mSearchCityItemBeans = new ArrayList<>();
 
+    private DbContentObserver mContentObserver = new DbContentObserver(new Handler());
+
     public CacheManager() {
+        registerContentObserver();
     }
 
     public boolean loadCityConfigFromAssets(String fileName) {
@@ -97,5 +105,26 @@ public class CacheManager {
         synchronized (this) {
             mSearchCityItemBeans = filterChain.doFilter(mCityItemBeans);
         }
+    }
+
+    private class DbContentObserver extends ContentObserver {
+        public DbContentObserver(Handler handler) {
+            super(handler);
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+
+        }
+
+        @Override
+        public void onChange(boolean selfChange, Uri uri) {
+            super.onChange(selfChange, uri);
+        }
+    }
+
+    private void registerContentObserver() {
+        WtApplication.getContext().getContentResolver().registerContentObserver(
+                DbProvider.DB_CONTENT_URI, true, mContentObserver);
     }
 }

@@ -17,6 +17,8 @@ public interface DbProviderManager {
 
     void insertCityBean(CityBean cityBean);
 
+    void bulkInsertCityBeans(CityBean[] cityBeans);
+
     List<DayForecastBean> getCityForecast(CityBean cityBean);
 
     void insertCityForecast(DayForecastBean forecastBean);

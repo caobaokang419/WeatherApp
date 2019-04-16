@@ -43,7 +43,9 @@ public class PeriodicUpdateManager {
     }
 
     public void removeListener(IWeatherQuery callback) {
-        mListener.remove(callback);
+        if (callback != null) {
+            mListener.remove(callback);
+        }
     }
 
     public synchronized void startPeriodicUpdate() {
@@ -69,7 +71,7 @@ public class PeriodicUpdateManager {
         }
     }
 
-    public void notifyCityWeatherChanged(){
+    public void notifyCityWeatherChanged() {
         for (IWeatherQuery callback : mListener) {
             callback.onWeatherQueryCompleted();
         }

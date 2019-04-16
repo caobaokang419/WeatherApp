@@ -26,29 +26,29 @@ public class DbProvider extends ContentProvider {
     public static final String DB_AUTHORITY = "com.gary.weatherdemo.db.provider";
     public static final Uri DB_CONTENT_URI = Uri.parse("content://" + DB_AUTHORITY);
 
-    public static final String CITY_CONFIG_CONTENT_TYPE = "vnd.android.cursor.dir/city.config";
-    public static final String CITY_CONFIG_CONTENT_ITEM_TYPE = "vnd.android.cursor.item/city.config";
+    public static final String CITY_CONFIG_CONTENT_TYPE = "vnd.android.cursor.dir/city_info";
+    public static final String CITY_CONFIG_CONTENT_ITEM_TYPE = "vnd.android.cursor.item/city_info";
 
-    public static final String CITY_FORECAST_CONTENT_TYPE = "vnd.android.cursor.dir/city.forecast";
-    public static final String CITY_FORECAST_CONTENT_ITEM_TYPE = "vnd.android.cursor.item/city.forecast";
+    public static final String CITY_FORECAST_CONTENT_TYPE = "vnd.android.cursor.dir/city_forecast";
+    public static final String CITY_FORECAST_CONTENT_ITEM_TYPE = "vnd.android.cursor.item/city_forecast";
 
     //高德城市配置表
     public static final int CODE_CITY_CONFIG = 101;
-    public static final int CODE_CITY_CONFIG_ADCODE = 102;
+    public static final int CODE_CITY_CONFIG_SINGLE = 102;
 
     //城市天气表
     public static final int CODE_CITY_FORECAST = 201;
-    public static final int CODE_CITY_FORECAST_ADCODE = 202;
+    public static final int CODE_CITY_FORECAST_SINGLE = 202;
 
     private static final UriMatcher mUriMatcher;
 
     static {
         mUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         mUriMatcher.addURI(DB_AUTHORITY, CityBeanEntity.TABLE_NAME, CODE_CITY_CONFIG);
-        mUriMatcher.addURI(DB_AUTHORITY, CityBeanEntity.TABLE_NAME + "/adcode", CODE_CITY_CONFIG_ADCODE);
+        mUriMatcher.addURI(DB_AUTHORITY, CityBeanEntity.TABLE_NAME + "/#", CODE_CITY_CONFIG_SINGLE);
 
         mUriMatcher.addURI(DB_AUTHORITY, CityForecastEntity.TABLE_NAME, CODE_CITY_FORECAST);
-        mUriMatcher.addURI(DB_AUTHORITY, CityForecastEntity.TABLE_NAME + "/adcode", CODE_CITY_FORECAST_ADCODE);
+        mUriMatcher.addURI(DB_AUTHORITY, CityForecastEntity.TABLE_NAME + "/#", CODE_CITY_FORECAST_SINGLE);
     }
 
     /**
@@ -76,14 +76,14 @@ public class DbProvider extends ContentProvider {
                 CityBeanEntity cityBeanEntity = CityBeanEntity.fromContentValues(values);
                 WtDatabase.getInstance(WtApplication.getContext()).cityInfoDAO().insert(cityBeanEntity);
                 break;
-            case CODE_CITY_CONFIG_ADCODE:
+            case CODE_CITY_CONFIG_SINGLE:
                 break;
 
             case CODE_CITY_FORECAST:
                 CityForecastEntity cityForecastEntity = CityForecastEntity.fromContentValues(values);
                 WtDatabase.getInstance(WtApplication.getContext()).cityForecastDAO().insert(cityForecastEntity);
                 break;
-            case CODE_CITY_FORECAST_ADCODE:
+            case CODE_CITY_FORECAST_SINGLE:
                 break;
             default:
                 throw new IllegalArgumentException("Unknown URI " + uri);
@@ -98,12 +98,12 @@ public class DbProvider extends ContentProvider {
         switch (mUriMatcher.match(uri)) {
             case CODE_CITY_CONFIG:
                 break;
-            case CODE_CITY_CONFIG_ADCODE:
+            case CODE_CITY_CONFIG_SINGLE:
                 break;
 
             case CODE_CITY_FORECAST:
                 break;
-            case CODE_CITY_FORECAST_ADCODE:
+            case CODE_CITY_FORECAST_SINGLE:
                 break;
             default:
                 throw new IllegalArgumentException("Unknown URI " + uri);
@@ -118,14 +118,14 @@ public class DbProvider extends ContentProvider {
         switch (mUriMatcher.match(uri)) {
             case CODE_CITY_CONFIG:
                 break;
-            case CODE_CITY_CONFIG_ADCODE:
+            case CODE_CITY_CONFIG_SINGLE:
                 String adcode1 = uri.getLastPathSegment();
                 WtDatabase.getInstance(WtApplication.getContext()).cityForecastDAO().deleteByCityAdcode(adcode1);
                 break;
 
             case CODE_CITY_FORECAST:
                 break;
-            case CODE_CITY_FORECAST_ADCODE:
+            case CODE_CITY_FORECAST_SINGLE:
                 String adcode2 = uri.getLastPathSegment();
                 WtDatabase.getInstance(WtApplication.getContext()).cityForecastDAO().deleteByCityAdcode(adcode2);
                 break;
@@ -144,12 +144,12 @@ public class DbProvider extends ContentProvider {
         switch (mUriMatcher.match(uri)) {
             case CODE_CITY_CONFIG:
                 break;
-            case CODE_CITY_CONFIG_ADCODE:
+            case CODE_CITY_CONFIG_SINGLE:
                 break;
 
             case CODE_CITY_FORECAST:
                 break;
-            case CODE_CITY_FORECAST_ADCODE:
+            case CODE_CITY_FORECAST_SINGLE:
                 break;
             default:
                 throw new IllegalArgumentException("Unknown URI " + uri);
@@ -164,12 +164,12 @@ public class DbProvider extends ContentProvider {
         switch (mUriMatcher.match(uri)) {
             case CODE_CITY_CONFIG:
                 break;
-            case CODE_CITY_CONFIG_ADCODE:
+            case CODE_CITY_CONFIG_SINGLE:
                 break;
 
             case CODE_CITY_FORECAST:
                 break;
-            case CODE_CITY_FORECAST_ADCODE:
+            case CODE_CITY_FORECAST_SINGLE:
                 break;
             default:
                 throw new IllegalArgumentException("Unknown URI " + uri);
@@ -179,7 +179,6 @@ public class DbProvider extends ContentProvider {
         return -1;
     }
 
-    @NonNull
     @Override
     public ContentProviderResult[] applyBatch(@NonNull ArrayList<ContentProviderOperation> operations) throws OperationApplicationException {
         return super.applyBatch(operations);
@@ -187,15 +186,16 @@ public class DbProvider extends ContentProvider {
 
     @Override
     public String getType(Uri uri) {
+        /*using for */
         switch (mUriMatcher.match(uri)) {
             case CODE_CITY_CONFIG:
                 return CITY_CONFIG_CONTENT_TYPE;
-            case CODE_CITY_CONFIG_ADCODE:
+            case CODE_CITY_CONFIG_SINGLE:
                 return CITY_CONFIG_CONTENT_ITEM_TYPE;
 
             case CODE_CITY_FORECAST:
                 return CITY_FORECAST_CONTENT_TYPE;
-            case CODE_CITY_FORECAST_ADCODE:
+            case CODE_CITY_FORECAST_SINGLE:
                 return CITY_FORECAST_CONTENT_ITEM_TYPE;
             default:
                 throw new IllegalArgumentException("Unknown URI " + uri);

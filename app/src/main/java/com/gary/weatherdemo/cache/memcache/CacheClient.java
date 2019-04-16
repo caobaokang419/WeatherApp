@@ -29,6 +29,7 @@ public class CacheClient implements IWeatherQuery {
 
     public interface ICacheDataListener {
         void onCityConfigChanged();
+
         void onCityWeatherChanged();
     }
 
@@ -186,7 +187,9 @@ public class CacheClient implements IWeatherQuery {
     }
 
     public void removeListener(ICacheDataListener callback) {
-        mCacheListeners.remove(callback);
+        if (callback != null) {
+            mCacheListeners.remove(callback);
+        }
     }
 
     public synchronized boolean isCityCacheLoaded() {

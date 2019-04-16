@@ -21,6 +21,7 @@ import java.util.List;
  * db data: across-process global access entries
  */
 public class DbProviderManagerImpl implements DbProviderManager {
+    private static final int MAX_BATCH_APPLY_NUM = 100;
 
     private static DbProviderManagerImpl dbProviderManagerImpl;
     private Context context;
@@ -47,6 +48,36 @@ public class DbProviderManagerImpl implements DbProviderManager {
     public void insertCityBean(CityBean cityBean) {
         ContentValues values = CityBeanEntity.toContentValues(cityBean);
         context.getContentResolver().insert(CityBeanEntity.DB_CONTENT_URI, values);
+    }
+
+    @Override
+    public void bulkInsertCityBeans(CityBean[] cityBeans) {
+        if (cityBeans == null || cityBeans.length <= 0) {
+            return;
+        }
+
+        int length = cityBeans.length;
+        for (int startIndex = 0; startIndex < length; ) {
+            int endIndex;
+            if ((length - startIndex) <= MAX_BATCH_APPLY_NUM) {
+                endIndex = length - 1;
+                bulkInsertBatchCityBeans(cityBeans, startIndex, endIndex);
+                break;
+            } else {
+                endIndex = startIndex + MAX_BATCH_APPLY_NUM;
+                bulkInsertBatchCityBeans(cityBeans, startIndex, endIndex);
+                startIndex = endIndex + 1;
+            }
+        }
+    }
+
+    private void bulkInsertBatchCityBeans(CityBean[] cityBeans, int start, int end) {
+        int length = end - start + 1;
+        ContentValues[] values = new ContentValues[length];
+        for (int index = 0; index < length; index++) {
+            values[index] = CityBeanEntity.toContentValues(cityBeans[start + index]);
+        }
+        context.getContentResolver().bulkInsert(CityBeanEntity.DB_CONTENT_URI, values);
     }
 
     @Override
