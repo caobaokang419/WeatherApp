@@ -21,11 +21,11 @@ android {
         release {
             keyAlias 'key1'
             keyPassword 'cbk123'
-            storeFile file('ext/release.keystore')
+            storeFile file('../release.keystore')
             storePassword 'cbk123'
         }
         debug {
-            storeFile file('ext/debug.keystore')
+            storeFile file('../debug.keystore')
         }
     }*/
 
@@ -53,7 +53,6 @@ android {
     }
 
     flavorDimensions "all"
-
 
     lintOptions {
         abortOnError false
@@ -113,3 +112,39 @@ dependencies {
 
     implementation project(':commonui')
 }
+
+build {
+    doLast {
+        /*def today = new Date().format('yyyyMMdd_hh')
+        def fileName = "app-debug.apk"
+        copy {
+            from('build/outputs/apk/debug/app-debug.apk')
+            into('app-debug.apk')
+            //include('app-debug.apk')
+            rename('app-debug.apk', 'WeatherApp' + "_" + today + '.apk')
+        }*/
+
+        def fileName = "app-debug.apk"
+        def fromFile = "./build/outputs/apk/debug/" + fileName
+        def intoFile = "./build/"
+
+        def applicationId = android.defaultConfig.applicationId
+        def versionName = android.defaultConfig.versionName
+        def time = new java.text.SimpleDateFormat("yyyyMMddHHmmss").format(new Date())
+        def buildType = "release"
+        def channel = "site"
+
+        def appName = "${applicationId}_v${versionName}_${time}_${buildType}_${channel}.apk"
+
+        copy {
+            from fromFile
+            into intoFile
+
+            rename {
+                appName
+            }
+        }
+        println("=====================build.doLast success.=========================")
+    }
+}
+
