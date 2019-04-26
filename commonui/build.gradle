@@ -1,14 +1,13 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 27
-
+    compileSdkVersion rootProject.ext.compileSdkVersion //27
+    // buildToolsVersion rootProject.ext.buildToolsVersion //"27.1.0"
     defaultConfig {
-        minSdkVersion 23
-        targetSdkVersion 27
+        minSdkVersion rootProject.ext.minSdkVersion //23
+        targetSdkVersion rootProject.ext.targetSdkVersion //27
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -19,7 +18,11 @@ android {
         }
     }
 
-    sourceSets { main { res.srcDirs = ['src/main/res', 'src/main/res/anim'] } }
+    sourceSets {
+        main {
+            res.srcDirs = ['src/main/res', 'src/main/res/anim']
+        }
+    }
 }
 
 dependencies {
