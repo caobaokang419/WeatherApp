@@ -20,8 +20,10 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Created by GaryCao on 2019/03/14.
- * 高德城市配置缓存实现
- * 优点：统一提供，供不同UI直接获取，不再需要重复&频繁请求DB或assert文件城市配置信息数据
+ *
+ * 数据缓存实现
+ *
+ * 优点：统一提供data access apis，供不同UI直接获取，不再需要重复频繁请求 DB或文件数据
  */
 public class CacheClient implements IWeatherQuery {
     private static final String TAG = CacheClient.class.getSimpleName();
