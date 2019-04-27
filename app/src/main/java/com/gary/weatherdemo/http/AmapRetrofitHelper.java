@@ -11,16 +11,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * Created by GaryCao on 2018/10/25.
  */
-public class AmapRetrofitManager {
+public class AmapRetrofitHelper {
     private static final int DEFAULT_CONNECT_TIME = 20;
     private static final int DEFAULT_WRITE_TIME = 50;
     private static final int DEFAULT_READ_TIME = 30;
 
     private OkHttpClient mOkHttpClient;
     private Retrofit mRetrofit;
-    private static AmapRetrofitManager mAmapRetrofitManager;
+    private static AmapRetrofitHelper mAmapRetrofitHelper;
 
-    private AmapRetrofitManager() {
+    private AmapRetrofitHelper() {
         initOkHttpClient();
         initRetrofit();
     }
@@ -48,11 +48,11 @@ public class AmapRetrofitManager {
                 .build();
     }
 
-    public synchronized static AmapRetrofitManager getInstance() {
-        if (mAmapRetrofitManager == null) {
-            mAmapRetrofitManager = new AmapRetrofitManager();
+    public synchronized static AmapRetrofitHelper getInstance() {
+        if (mAmapRetrofitHelper == null) {
+            mAmapRetrofitHelper = new AmapRetrofitHelper();
         }
-        return mAmapRetrofitManager;
+        return mAmapRetrofitHelper;
     }
 
     /**

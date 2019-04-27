@@ -1,4 +1,4 @@
-package com.gary.weatherdemo.asynctask;
+package com.gary.weatherdemo.asynctask.task;
 
 import android.support.annotation.UiThread;
 import android.support.annotation.WorkerThread;
@@ -88,14 +88,14 @@ public abstract class TaskRunnable<Params, Result> implements Runnable {
         isCancelled.set(true);
     }
 
-    @WorkerThread
-    protected abstract Result doInBackground(Params... params) throws CancelException;
-
     @UiThread
     protected abstract void onStart();
 
     @UiThread
     protected abstract void onCancel();
+
+    @WorkerThread
+    protected abstract Result doInBackground(Params... params) throws CancelException;
 
     @UiThread
     protected abstract void onFail();

@@ -1,4 +1,4 @@
-package com.gary.weatherdemo.asynctask;
+package com.gary.weatherdemo.asynctask.task;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;

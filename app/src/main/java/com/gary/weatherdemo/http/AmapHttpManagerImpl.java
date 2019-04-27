@@ -20,7 +20,7 @@ public class AmapHttpManagerImpl implements AmapHttpManager {
 
     private AmapService createApiClient() {
         if (amapService == null) {
-            amapService = AmapRetrofitManager.getInstance().create(AmapService.class);
+            amapService = AmapRetrofitHelper.getInstance().create(AmapService.class);
         }
         return amapService;
     }

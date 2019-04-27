@@ -84,7 +84,7 @@ public class CityItemBean implements IViewItemBean, Comparable<CityItemBean> {
             return -1;
         }
 
-        return (Integer.valueOf(mCityCode)).compareTo(Integer.valueOf(cityItemBean.mCityCode))
+        return (Integer.valueOf(mCityCode)).compareTo(Integer.valueOf(cityItemBean.mCityCode));
     }
 
     @Override

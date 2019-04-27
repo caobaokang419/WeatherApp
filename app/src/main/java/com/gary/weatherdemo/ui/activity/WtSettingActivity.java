@@ -15,9 +15,7 @@ public class WtSettingActivity extends PreferenceActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getFragmentManager().beginTransaction().replace(
-                android.R.id.content,
-                new WtSettingFragment()).commit();
+        showSettingFragment();
     }
 
     @Override
@@ -28,5 +26,12 @@ public class WtSettingActivity extends PreferenceActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    private void showSettingFragment() {
+        getFragmentManager()
+                .beginTransaction()
+                .replace(android.R.id.content, new WtSettingFragment())
+                .commit();
     }
 }

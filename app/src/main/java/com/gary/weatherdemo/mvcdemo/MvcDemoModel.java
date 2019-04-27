@@ -5,6 +5,6 @@ import com.gary.weatherdemo.bean.CityBean;
 public class MvcDemoModel implements IModel {
     @Override
     public void getCityWeather(CityBean citybean) {
-        //TODO:just for demo
+        //TODO:just for TaskManagerImpl
     }
 }

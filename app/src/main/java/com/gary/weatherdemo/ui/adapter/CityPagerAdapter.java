@@ -44,7 +44,7 @@ public class CityPagerAdapter extends PagerAdapter {
 
     @Override
     public View instantiateItem(ViewGroup container, int position) {
-        //demo code
+        //TaskManagerImpl code
         /*TextView textView = new TextView(mContext);
         textView.setText(mCityBeans.get(position).cityName);
         container.addView(textView);

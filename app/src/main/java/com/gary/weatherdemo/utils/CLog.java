@@ -2,12 +2,10 @@ package com.gary.weatherdemo.utils;
 
 import android.util.Log;
 
-import com.gary.weatherdemo.BuildConfig;
-
 
 public class CLog {
     public static final boolean DEBUG = Boolean.parseBoolean("true");
-    private static String TAG = "[Amap]";
+    private static String TAG = "[AmapWeather]";
 
     public static void e(String Msg) {
         LogIt(Log.ERROR, TAG, Msg);
