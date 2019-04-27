@@ -8,7 +8,6 @@ import com.gary.weatherdemo.bean.CityBean;
 import com.gary.weatherdemo.bean.IViewItemBean;
 import com.gary.weatherdemo.constant.Constants;
 import com.gary.weatherdemo.filter.FilterChain;
-import com.gary.weatherdemo.refresh.PeriodicUpdateManager;
 import com.gary.weatherdemo.refresh.PeriodicUpdateManager.IWeatherQuery;
 import com.gary.weatherdemo.utils.CLog;
 
@@ -65,12 +64,12 @@ public class CacheClient implements IWeatherQuery {
         initWorkHandlerThread();
         mCacheManager = new CacheManager();
         mCacheLoaderLatch = new CountDownLatch(1);
-        PeriodicUpdateManager.getInstant().addListener(this);
+        //PeriodicUpdateManager.getInstant().addListener(this);
     }
 
     private void initWorkHandlerThread() {
         CLog.i(TAG, "initWorkHandlerThread()");
-        HandlerThread handlerThread = new HandlerThread("city_thread");
+        HandlerThread handlerThread = new HandlerThread("cache_thread");
         handlerThread.start();
         mWorkHandler = new Handler(handlerThread.getLooper());
     }

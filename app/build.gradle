@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion //27
-    // buildToolsVersion rootProject.ext.buildToolsVersion //"27.1.0"
+    //buildToolsVersion rootProject.ext.buildToolsVersion //"27.1.0"
     defaultConfig {
         applicationId "com.gary.weatherdemo"
         minSdkVersion rootProject.ext.minSdkVersion //23
@@ -12,10 +12,10 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
-    compileOptions {
+    /*compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
-    }
+    }*/
 
     /*signingConfigs {
         release {

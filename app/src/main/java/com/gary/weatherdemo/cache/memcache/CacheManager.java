@@ -44,7 +44,7 @@ public class CacheManager {
     private DbContentObserver mContentObserver = new DbContentObserver(new Handler());
 
     public CacheManager() {
-        registerContentObserver();
+        //registerContentObserver();
     }
 
     public boolean loadCityConfigFromAssets(String fileName) {

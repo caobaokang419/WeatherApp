@@ -30,6 +30,8 @@ public class TaskExecutor {
      */
     private Handler mWorkHandler;
 
+    private HandlerThread mHandlerThread;
+
     private static TaskExecutor mTaskExecutor;
 
     //普通线程池
@@ -57,9 +59,15 @@ public class TaskExecutor {
 
     private void initWorkHandlerThread() {
         CLog.i(TAG, "initWorkHandlerThread()");
-        HandlerThread handlerThread = new HandlerThread("weather_thread");
-        handlerThread.start();
-        mWorkHandler = new Handler(handlerThread.getLooper());
+        mHandlerThread = new HandlerThread("weather_thread");
+        mHandlerThread.start();
+        mWorkHandler = new Handler(mHandlerThread.getLooper());
+    }
+
+    public void shutdown() {
+        if (mHandlerThread != null) {
+            mHandlerThread.quit();
+        }
     }
 
     public void runOnWorkThread(Runnable runnable) {

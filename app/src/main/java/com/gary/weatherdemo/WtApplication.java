@@ -17,7 +17,7 @@ public class WtApplication extends /*MultiDex*/Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        setContext(this);
+        setContext(getApplicationContext());
         initConfig();
     }
 

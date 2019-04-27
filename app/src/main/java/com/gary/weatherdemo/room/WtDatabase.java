@@ -30,7 +30,6 @@ public abstract class WtDatabase extends RoomDatabase {
 
     }
 
-    /*TODO: DB耗时操作如何处理:RXJava2(推荐) -- HandleThread(UI订阅复杂) -- AsyncTask(线程阻塞)*/
     public synchronized static WtDatabase getInstance(Context context) {
         if (mWtDatabase == null) {
             mWtDatabase = Room.databaseBuilder(context.getApplicationContext(),

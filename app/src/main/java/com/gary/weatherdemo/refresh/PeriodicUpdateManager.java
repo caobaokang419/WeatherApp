@@ -20,7 +20,7 @@ public class PeriodicUpdateManager {
     private Handler mWorkHandler;
 
     private PeriodicUpdateManager() {
-        mHandlerThread = new HandlerThread("PeriodicUpdate");
+        mHandlerThread = new HandlerThread("update_thread");
         mHandlerThread.run();
         mWorkHandler = new Handler(mHandlerThread.getLooper());
     }
@@ -83,5 +83,11 @@ public class PeriodicUpdateManager {
 
     public void removeTaskToQueue(CityBean cityBean) {
         mQueue.remove(cityBean);
+    }
+
+    public void release() {
+        if (mHandlerThread != null) {
+            mHandlerThread.quit();
+        }
     }
 }
