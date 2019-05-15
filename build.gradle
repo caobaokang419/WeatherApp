@@ -3,8 +3,10 @@
 buildscript {
 
     repositories {
-        google()
-        jcenter()
+        /*google()
+        jcenter()*/
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
 
         maven { url "https://maven.google.com" }
         maven { url 'https://dl.bintray.com/umsdk/release' }
@@ -19,8 +21,11 @@ buildscript {
 
 allprojects {
     repositories {
-        google()
-        jcenter()
+        /*google()
+        jcenter()*/
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+
         maven { url 'https://dl.bintray.com/umsdk/release' }
     }
 }
