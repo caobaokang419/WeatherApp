@@ -16,13 +16,15 @@ import com.gary.weatherdemo.provider.db.DbProvider;
 @Entity(tableName = CityBeanEntity.TABLE_NAME)
 public class CityBeanEntity {
     public static final String TABLE_NAME = "city_info";
+    public static final String COLUMN_CITY_ID = "city_id";
     public static final String COLUMN_CITY_NAME = "city_name";
     public static final String COLUMN_CITY_CODE = "adcode";
 
     public static final Uri DB_CONTENT_URI
             = Uri.parse("content://" + DbProvider.DB_AUTHORITY + "/" + TABLE_NAME);
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = COLUMN_CITY_ID)
     public long id;
 
     @ColumnInfo(name = COLUMN_CITY_NAME)

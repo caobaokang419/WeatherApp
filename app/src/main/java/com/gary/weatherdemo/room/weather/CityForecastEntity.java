@@ -6,10 +6,8 @@ import android.arch.persistence.room.PrimaryKey;
 import android.content.ContentValues;
 import android.net.Uri;
 
-import com.gary.weatherdemo.bean.CityBean;
 import com.gary.weatherdemo.bean.DayForecastBean;
 import com.gary.weatherdemo.provider.db.DbProvider;
-import com.gary.weatherdemo.room.city.CityBeanEntity;
 
 /**
  * Created by GaryCao on 2018/10/25.
@@ -18,6 +16,7 @@ import com.gary.weatherdemo.room.city.CityBeanEntity;
 @Entity(tableName = CityForecastEntity.TABLE_NAME)
 public class CityForecastEntity {
     public static final String TABLE_NAME = "city_forecast";
+    public static final String COLUMN_ID = "forecast_id";
     public static final String COLUMN_NAME = "city_name";
     public static final String COLUMN_CODE = "adcode";
     public static final String COLUMN_DATE = "date";
@@ -32,7 +31,8 @@ public class CityForecastEntity {
     public static final Uri DB_CONTENT_URI
             = Uri.parse("content://" + DbProvider.DB_AUTHORITY + "/" + TABLE_NAME);
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = COLUMN_ID)
     public long id;
 
     @ColumnInfo(name = COLUMN_NAME)
