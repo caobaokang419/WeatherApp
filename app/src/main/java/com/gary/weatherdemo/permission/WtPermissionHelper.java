@@ -62,7 +62,7 @@ public class WtPermissionHelper {
      */
     public static boolean startRequestAllPermission(Context context) {
         if (!checkPermissionsGranted(context, mAllPermissions)) {
-            WtUtil.startActivity(context,WtPermissionActivity.class);
+            WtUtil.startActivity(context, WtPermissionActivity.class);
             return true;
         }
         return false;

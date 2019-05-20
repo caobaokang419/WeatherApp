@@ -46,6 +46,14 @@ public class LruCacheManager {
         mBitmapCache.remove(key);
     }
 
+
+    // 清空缓存
+    public void cleanupCache(){
+        if (mBitmapCache != null) {
+            mBitmapCache.evictAll();
+        }
+    }
+
     public synchronized LruCacheManager getInstance() {
         if (mInstance == null) {
             mInstance = new LruCacheManager();
