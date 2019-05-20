@@ -3,11 +3,12 @@ package com.gary.weatherdemo.permission;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.PermissionChecker;
+
+import com.gary.weatherdemo.utils.WtUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,9 +62,7 @@ public class WtPermissionHelper {
      */
     public static boolean startRequestAllPermission(Context context) {
         if (!checkPermissionsGranted(context, mAllPermissions)) {
-            Intent intent = new Intent();
-            intent.setAction("android.wt.action.PERMISSION_REQUEST");
-            context.startActivity(intent);
+            WtUtil.startActivity(context,WtPermissionActivity.class);
             return true;
         }
         return false;

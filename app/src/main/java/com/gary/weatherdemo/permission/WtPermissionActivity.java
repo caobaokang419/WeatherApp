@@ -15,7 +15,7 @@ import java.util.List;
  * 动态申请权限
  */
 public class WtPermissionActivity extends AppCompatActivity {
-    public final static int REQUEST_CODE_PERMISSION = 0x10001;
+    public final static int REQUEST_CODE_PERMISSION = 10001;
 
     private static List<IPermitRequestCallback> mCallbacks = new ArrayList<>();
 
