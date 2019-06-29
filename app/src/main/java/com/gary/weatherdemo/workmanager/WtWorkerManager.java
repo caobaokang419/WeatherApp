@@ -65,7 +65,7 @@ public class WtWorkerManager {
         @Override
         public Result doWork() {
             CLog.d(TAG, "doWork()");
-            PeriodicUpdateManager.getInstant().startPeriodicUpdate();
+            PeriodicUpdateManager.getInstance().startPeriodicUpdate();
             return Result.SUCCESS;
         }
     }

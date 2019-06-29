@@ -14,7 +14,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class PeriodicUpdateManager {
-    private static PeriodicUpdateManager mInstant;
+    private static PeriodicUpdateManager mInstance;
     private static BlockingQueue<CityBean> mQueue = new LinkedBlockingQueue<>();
     private HandlerThread mHandlerThread;
     private Handler mWorkHandler;
@@ -25,11 +25,11 @@ public class PeriodicUpdateManager {
         mWorkHandler = new Handler(mHandlerThread.getLooper());
     }
 
-    public synchronized static PeriodicUpdateManager getInstant() {
-        if (mInstant == null) {
-            mInstant = new PeriodicUpdateManager();
+    public synchronized static PeriodicUpdateManager getInstance() {
+        if (mInstance == null) {
+            mInstance = new PeriodicUpdateManager();
         }
-        return mInstant;
+        return mInstance;
     }
 
     public interface IWeatherQuery {

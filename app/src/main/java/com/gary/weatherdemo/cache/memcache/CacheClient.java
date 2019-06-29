@@ -66,7 +66,7 @@ public class CacheClient implements IWeatherQuery {
         initWorkHandlerThread();
         mCacheManager = new CacheManager();
         mCacheLoaderLatch = new CountDownLatch(1);
-        //PeriodicUpdateManager.getInstant().addListener(this);
+        //PeriodicUpdateManager.getInstance().addListener(this);
     }
 
     private void initWorkHandlerThread() {

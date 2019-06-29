@@ -64,7 +64,6 @@ public class RemindUtils {
         return ourInstance;
     }
 
-
     private RemindUtils() {
         initRemindData();
     }
@@ -78,7 +77,7 @@ public class RemindUtils {
         remindTypeMap.put(WeatherType.RainBig, RemindType.Rain);
         remindTypeMap.put(WeatherType.SnowSmall, RemindType.Snow);
         remindTypeMap.put(WeatherType.SnowMedium, RemindType.Snow);
-        remindTypeMap.put(WeatherType.SnowSmall, RemindType.Snow);
+        remindTypeMap.put(WeatherType.SnowBig, RemindType.Snow);
 
         remindDataMap = new HashMap<>();
         remindDataMap.put(RemindType.Sunny,remindSunny);

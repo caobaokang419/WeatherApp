@@ -31,7 +31,7 @@ import java.io.Serializable;
 public final class DiskLruCacheClient {
     private static final String TAG = "DiskLruCacheClient";
     private DiskLruCacheProxy mDiskLruCacheProxy;
-    public static DiskLruCacheClient mInstant;
+    public static DiskLruCacheClient mInstance;
 
     private DiskLruCacheClient() {
         mDiskLruCacheProxy = new DiskLruCacheProxy(WtApplication.getContext());
@@ -40,11 +40,11 @@ public final class DiskLruCacheClient {
     /**
      * Singleton Instant，唯一入口
      */
-    public synchronized static DiskLruCacheClient getInstant() {
-        if (mInstant == null) {
-            mInstant = new DiskLruCacheClient();
+    public synchronized static DiskLruCacheClient getInstance() {
+        if (mInstance == null) {
+            mInstance = new DiskLruCacheClient();
         }
-        return mInstant;
+        return mInstance;
     }
 
     /**
@@ -394,20 +394,20 @@ public final class DiskLruCacheClient {
     //for test
     /*用戶ID缓存*/
     public void saveCacheUserId(String key, String userid) {
-        DiskLruCacheClient.getInstant().putKeyAndStringValue(key, userid);
+        DiskLruCacheClient.getInstance().putKeyAndStringValue(key, userid);
     }
 
     public String getCacheUserId(String key) {
-        return DiskLruCacheClient.getInstant().getStringValueByKey(key);
+        return DiskLruCacheClient.getInstance().getStringValueByKey(key);
     }
 
     /*用戶头像缓存*/
     public void saveCacheUserPhoto(String key, Drawable photo) {
-        DiskLruCacheClient.getInstant().putKeyAndDrawable(key, photo);
+        DiskLruCacheClient.getInstance().putKeyAndDrawable(key, photo);
     }
 
     public Drawable getCacheUserPhoto(String key) {
-        return DiskLruCacheClient.getInstant().getDrawableByKey(key);
+        return DiskLruCacheClient.getInstance().getDrawableByKey(key);
     }
 }
 
