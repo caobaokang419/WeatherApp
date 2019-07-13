@@ -2,14 +2,14 @@ package com.gary.weatherdemo.bean;
 
 public class WeatherTypeBean {
     public enum WeatherType {
-        Sunny(0),
-        Cloudy(1),
-        RainSmall(3),
-        RainMedium(4),
-        RainBig(5),
-        SnowSmall(6),
-        SnowMedium(7),
-        SnowBig(8);
+        SUNNY(0),
+        CLOUDY(1),
+        RAIN_SMALL(3),
+        RAIN_MEDIUM(4),
+        RAIN_BIG(5),
+        SNOW_SMALL(6),
+        SNOW_MEIDUM(7),
+        SNOW_BIG(8);
 
         private int type;
 

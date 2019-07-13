@@ -4,6 +4,7 @@ import android.support.annotation.UiThread;
 import android.support.annotation.WorkerThread;
 
 import com.gary.weatherdemo.exception.CancelException;
+import com.gary.weatherdemo.utils.HandlerUtil;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -49,16 +50,16 @@ public abstract class TaskRunnable<Params, Result> implements Runnable {
             throw new CancelException("Task has been cancelled");
         }
 
-        TaskExecutor.getInstance().runOnUIThread(new Runnable() {
+        HandlerUtil.runInUiThread(new Runnable() {
             @Override
             public void run() {
                 onStart();
             }
-        });
+        });        
     }
 
     private void postCancel() {
-        TaskExecutor.getInstance().runOnUIThread(new Runnable() {
+        HandlerUtil.runInUiThread(new Runnable() {
             @Override
             public void run() {
                 onCancel();
@@ -67,7 +68,7 @@ public abstract class TaskRunnable<Params, Result> implements Runnable {
     }
 
     private void postFail() {
-        TaskExecutor.getInstance().runOnUIThread(new Runnable() {
+        HandlerUtil.runInUiThread(new Runnable() {
             @Override
             public void run() {
                 onFail();
@@ -76,7 +77,7 @@ public abstract class TaskRunnable<Params, Result> implements Runnable {
     }
 
     private void postComplete(final Result result) {
-        TaskExecutor.getInstance().runOnUIThread(new Runnable() {
+        HandlerUtil.runInUiThread(new Runnable() {
             @Override
             public void run() {
                 onComplete(result);

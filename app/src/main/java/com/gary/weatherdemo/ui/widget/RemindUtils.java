@@ -70,14 +70,14 @@ public class RemindUtils {
 
     private void initRemindData(){
         remindTypeMap = new HashMap<>();
-        remindTypeMap.put(WeatherType.Sunny, RemindType.Sunny);
-        remindTypeMap.put(WeatherType.Cloudy, RemindType.Cloudy);
-        remindTypeMap.put(WeatherType.RainSmall, RemindType.Rain);
-        remindTypeMap.put(WeatherType.RainMedium, RemindType.Rain);
-        remindTypeMap.put(WeatherType.RainBig, RemindType.Rain);
-        remindTypeMap.put(WeatherType.SnowSmall, RemindType.Snow);
-        remindTypeMap.put(WeatherType.SnowMedium, RemindType.Snow);
-        remindTypeMap.put(WeatherType.SnowBig, RemindType.Snow);
+        remindTypeMap.put(WeatherType.SUNNY, RemindType.Sunny);
+        remindTypeMap.put(WeatherType.CLOUDY, RemindType.Cloudy);
+        remindTypeMap.put(WeatherType.RAIN_SMALL, RemindType.Rain);
+        remindTypeMap.put(WeatherType.RAIN_MEDIUM, RemindType.Rain);
+        remindTypeMap.put(WeatherType.RAIN_BIG, RemindType.Rain);
+        remindTypeMap.put(WeatherType.SNOW_SMALL, RemindType.Snow);
+        remindTypeMap.put(WeatherType.SNOW_MEIDUM, RemindType.Snow);
+        remindTypeMap.put(WeatherType.SNOW_BIG, RemindType.Snow);
 
         remindDataMap = new HashMap<>();
         remindDataMap.put(RemindType.Sunny,remindSunny);
