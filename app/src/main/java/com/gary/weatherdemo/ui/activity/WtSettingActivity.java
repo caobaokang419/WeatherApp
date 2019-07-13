@@ -2,6 +2,7 @@ package com.gary.weatherdemo.ui.activity;
 
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceFragment;
 import android.support.annotation.Nullable;
 
 import com.gary.weatherdemo.ui.fragment.WtSettingFragment;
@@ -15,7 +16,7 @@ public class WtSettingActivity extends PreferenceActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        showSettingFragment();
+        replacePreferenceFragment(new WtSettingFragment());
     }
 
     @Override
@@ -28,10 +29,10 @@ public class WtSettingActivity extends PreferenceActivity {
         super.onDestroy();
     }
 
-    private void showSettingFragment() {
+    private void replacePreferenceFragment(PreferenceFragment fragment) {
         getFragmentManager()
                 .beginTransaction()
-                .replace(android.R.id.content, new WtSettingFragment())
+                .replace(android.R.id.content, fragment)
                 .commit();
     }
 }

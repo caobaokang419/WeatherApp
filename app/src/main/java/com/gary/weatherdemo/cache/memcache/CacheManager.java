@@ -1,7 +1,5 @@
 package com.gary.weatherdemo.cache.memcache;
 
-import android.database.ContentObserver;
-import android.net.Uri;
 import android.os.Handler;
 
 import com.gary.weatherdemo.WtApplication;
@@ -9,7 +7,6 @@ import com.gary.weatherdemo.bean.CityBean;
 import com.gary.weatherdemo.bean.CityItemBean;
 import com.gary.weatherdemo.bean.IViewItemBean;
 import com.gary.weatherdemo.filter.FilterChain;
-import com.gary.weatherdemo.provider.db.DbProvider;
 import com.gary.weatherdemo.utils.CLog;
 import com.gary.weatherdemo.utils.IOUtil;
 
@@ -20,9 +17,9 @@ import java.util.List;
 
 /**
  * Created by GaryCao on 2019/03/14.
- *
+ * <p>
  * 数据缓存实现
- *
+ * <p>
  * 优点：统一提供data access apis，供不同UI直接获取，不再需要重复频繁请求 DB或文件数据
  */
 public class CacheManager {
@@ -108,26 +105,5 @@ public class CacheManager {
         synchronized (this) {
             mSearchCityItemBeans = filterChain.doFilter(mCityItemBeans);
         }
-    }
-
-    private class DbContentObserver extends ContentObserver {
-        public DbContentObserver(Handler handler) {
-            super(handler);
-        }
-
-        @Override
-        public void onChange(boolean selfChange) {
-
-        }
-
-        @Override
-        public void onChange(boolean selfChange, Uri uri) {
-            super.onChange(selfChange, uri);
-        }
-    }
-
-    private void registerContentObserver() {
-        WtApplication.getContext().getContentResolver().registerContentObserver(
-                DbProvider.DB_CONTENT_URI, true, mContentObserver);
     }
 }

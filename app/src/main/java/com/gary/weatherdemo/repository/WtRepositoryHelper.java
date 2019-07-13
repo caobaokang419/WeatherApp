@@ -22,7 +22,8 @@ import io.reactivex.schedulers.Schedulers;
  *
  */
 public class WtRepositoryHelper {
-    public static void queryCityWeather(final CityBean citybean, final IQueryWeather iQueryWeather) {
+    public static void queryCityWeather(final CityBean citybean,
+                                        final IQueryWeatherCallback queryCallback) {
         if (!NetworkUtil.isNetworkConnected()) {
             return;
         }
@@ -50,7 +51,7 @@ public class WtRepositoryHelper {
                     @Override
                     public void accept(List<IViewItemBean> dataList) throws Exception {
                         /**实现UI订阅逻辑（AndroidSchedulers.mainThread）*/
-                        iQueryWeather.onWeatherQueryCompleted(dataList);
+                        queryCallback.onWeatherQueryCompleted(dataList);
                     }
                 });
     }
@@ -75,7 +76,7 @@ public class WtRepositoryHelper {
         return dataList;
     }
 
-    public interface IQueryWeather {
+    public interface IQueryWeatherCallback {
         void onWeatherQueryCompleted(List<IViewItemBean> data);
     }
 }

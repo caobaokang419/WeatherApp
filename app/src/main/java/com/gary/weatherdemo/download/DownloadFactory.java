@@ -1,7 +1,6 @@
 package com.gary.weatherdemo.download;
 
 import android.os.Environment;
-import android.util.Log;
 
 import com.gary.weatherdemo.http.AmapContants;
 import com.gary.weatherdemo.utils.CLog;
@@ -54,12 +53,15 @@ public class DownloadFactory {
     }
 
     static class XUtilsDownloadImpl implements IDownload {
-        private IDownloadCallback mDownloadListener;
+        private IDownloadCallback downloadCallback;
         private Callback.Cancelable mCancelable;
 
+        /**
+         * 注意Callback（鉤子）和Listener（監聽器）的場景區別
+         */
         @Override
-        public void startDownload(String url, IDownloadCallback iDownloadCallback) {
-            mDownloadListener = iDownloadCallback;
+        public void startDownload(String url, IDownloadCallback downloadCallback) {
+            this.downloadCallback = downloadCallback;
             String fileName = FileUtil.getFileNameByUrl(url);
             String filePath = Environment.getExternalStorageDirectory() + AmapContants.AMAP_CITY_CONFIG_DIRECTIONARY + fileName;
             RequestParams params = new RequestParams(url);
@@ -71,17 +73,17 @@ public class DownloadFactory {
             mCancelable = x.http().post(params, new Callback.ProgressCallback<File>() {
                 @Override
                 public void onSuccess(File result) {
-                    mDownloadListener.onSuccess();
+                    XUtilsDownloadImpl.this.downloadCallback.onSuccess();
                 }
 
                 @Override
                 public void onError(Throwable ex, boolean isOnCallback) {
-                    mDownloadListener.onFail();
+                    XUtilsDownloadImpl.this.downloadCallback.onFail();
                 }
 
                 @Override
                 public void onCancelled(CancelledException cex) {
-                    mDownloadListener.onCancel();
+                    XUtilsDownloadImpl.this.downloadCallback.onCancel();
                 }
 
                 @Override
@@ -97,12 +99,12 @@ public class DownloadFactory {
                 //网络请求开始的时候回调
                 @Override
                 public void onStarted() {
-                    mDownloadListener.onStart();
+                    XUtilsDownloadImpl.this.downloadCallback.onStart();
                 }
 
                 @Override
                 public void onLoading(long total, long current, boolean isDownloading) {
-                    mDownloadListener.onUpdate();
+                    XUtilsDownloadImpl.this.downloadCallback.onUpdate();
                     CLog.d("current：" + current + "，total：" + total);
                 }
             });

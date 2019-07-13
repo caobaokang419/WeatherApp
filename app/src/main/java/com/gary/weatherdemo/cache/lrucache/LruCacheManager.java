@@ -58,7 +58,6 @@ public class LruCacheManager {
         if (mInstance == null) {
             mInstance = new LruCacheManager();
         }
-
         return mInstance;
     }
 }

@@ -18,11 +18,10 @@ public class PeriodicUpdateManager {
     private static BlockingQueue<CityBean> mQueue = new LinkedBlockingQueue<>();
     private HandlerThread mHandlerThread;
     private Handler mWorkHandler;
+    private List<IWeatherQueryListener> mListener = new CopyOnWriteArrayList<>();
 
-    private PeriodicUpdateManager() {
-        mHandlerThread = new HandlerThread("update_thread");
-        mHandlerThread.run();
-        mWorkHandler = new Handler(mHandlerThread.getLooper());
+    public interface IWeatherQueryListener {
+        void onWeatherQueryCompleted();
     }
 
     public synchronized static PeriodicUpdateManager getInstance() {
@@ -32,19 +31,25 @@ public class PeriodicUpdateManager {
         return mInstance;
     }
 
-    public interface IWeatherQuery {
-        void onWeatherQueryCompleted();
+    private PeriodicUpdateManager() {
+        mHandlerThread = new HandlerThread("update_thread");
+        mHandlerThread.run();
+        mWorkHandler = new Handler(mHandlerThread.getLooper());
     }
 
-    private List<IWeatherQuery> mListener = new CopyOnWriteArrayList<>();
-
-    public void addListener(IWeatherQuery callback) {
-        mListener.add(callback);
+    public void release() {
+        if (mHandlerThread != null) {
+            mHandlerThread.quit();
+        }
     }
 
-    public void removeListener(IWeatherQuery callback) {
-        if (callback != null) {
-            mListener.remove(callback);
+    public void addListener(IWeatherQueryListener listener) {
+        mListener.add(listener);
+    }
+
+    public void removeListener(IWeatherQueryListener listener) {
+        if (listener != null) {
+            mListener.remove(listener);
         }
     }
 
@@ -62,7 +67,8 @@ public class PeriodicUpdateManager {
             notifyCityWeatherChanged();
         } else {
             CityBean cityBean = mQueue.poll();
-            WtRepositoryHelper.queryCityWeather(cityBean, new WtRepositoryHelper.IQueryWeather() {
+            WtRepositoryHelper.queryCityWeather(cityBean,
+                    new WtRepositoryHelper.IQueryWeatherCallback() {
                 @Override
                 public void onWeatherQueryCompleted(List<IViewItemBean> data) {
                     executeCurrentTask();
@@ -72,8 +78,8 @@ public class PeriodicUpdateManager {
     }
 
     public void notifyCityWeatherChanged() {
-        for (IWeatherQuery callback : mListener) {
-            callback.onWeatherQueryCompleted();
+        for (IWeatherQueryListener listener : mListener) {
+            listener.onWeatherQueryCompleted();
         }
     }
 
@@ -83,11 +89,5 @@ public class PeriodicUpdateManager {
 
     public void removeTaskToQueue(CityBean cityBean) {
         mQueue.remove(cityBean);
-    }
-
-    public void release() {
-        if (mHandlerThread != null) {
-            mHandlerThread.quit();
-        }
     }
 }

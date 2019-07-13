@@ -111,14 +111,14 @@ public class WtSearchActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        CacheClient.getInstance().addListener(mCallback);
+        CacheClient.getInstance().addListener(mListener);
         /*EventBus.getDefault().post(new MessageEvent("Just for test"));*/
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        CacheClient.getInstance().removeListener(mCallback);
+        CacheClient.getInstance().removeListener(mListener);
     }
 
     @Override
@@ -126,7 +126,7 @@ public class WtSearchActivity extends BaseActivity {
         super.onDestroy();
     }
 
-    private CacheClient.ICacheDataListener mCallback = new CacheClient.ICacheDataListener(){
+    private CacheClient.ICacheDataListener mListener = new CacheClient.ICacheDataListener(){
         @Override
         public void onCityConfigChanged() {
             mCitySearchRecycleAdapter.setAdapterData(CacheClient.getInstance().getSearchedCityItemBeans());

@@ -50,7 +50,7 @@ public abstract class TaskRunnable<Params, Result> implements Runnable {
             throw new CancelException("Task has been cancelled");
         }
 
-        HandlerUtil.runInUiThread(new Runnable() {
+        HandlerUtil.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 onStart();
@@ -59,7 +59,7 @@ public abstract class TaskRunnable<Params, Result> implements Runnable {
     }
 
     private void postCancel() {
-        HandlerUtil.runInUiThread(new Runnable() {
+        HandlerUtil.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 onCancel();
@@ -68,7 +68,7 @@ public abstract class TaskRunnable<Params, Result> implements Runnable {
     }
 
     private void postFail() {
-        HandlerUtil.runInUiThread(new Runnable() {
+        HandlerUtil.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 onFail();
@@ -77,7 +77,7 @@ public abstract class TaskRunnable<Params, Result> implements Runnable {
     }
 
     private void postComplete(final Result result) {
-        HandlerUtil.runInUiThread(new Runnable() {
+        HandlerUtil.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 onComplete(result);

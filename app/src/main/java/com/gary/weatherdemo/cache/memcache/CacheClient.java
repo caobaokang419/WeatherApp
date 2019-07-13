@@ -8,8 +8,9 @@ import com.gary.weatherdemo.bean.CityBean;
 import com.gary.weatherdemo.bean.IViewItemBean;
 import com.gary.weatherdemo.constant.Constants;
 import com.gary.weatherdemo.filter.FilterChain;
-import com.gary.weatherdemo.refresh.PeriodicUpdateManager.IWeatherQuery;
+import com.gary.weatherdemo.refresh.PeriodicUpdateManager.IWeatherQueryListener;
 import com.gary.weatherdemo.utils.CLog;
+import com.gary.weatherdemo.utils.HandlerUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,12 +21,12 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Created by GaryCao on 2019/03/14.
- *
+ * <p>
  * 数据缓存实现
- *
+ * <p>
  * 优点：统一提供data access apis，供不同UI直接获取，不再需要重复频繁请求 DB或文件数据
  */
-public class CacheClient implements IWeatherQuery {
+public class CacheClient implements IWeatherQueryListener {
     private static final String TAG = CacheClient.class.getSimpleName();
 
     public interface ICacheDataListener {
@@ -33,6 +34,8 @@ public class CacheClient implements IWeatherQuery {
 
         void onCityWeatherChanged();
     }
+
+    private static CacheClient mCacheClient;
 
     /**
      * process main-thread(UI thread) works
@@ -43,10 +46,10 @@ public class CacheClient implements IWeatherQuery {
      * process sub-thread works
      */
     private Handler mWorkHandler;
+    private HandlerThread handlerThread;
     private CountDownLatch mCacheLoaderLatch;
     private CacheManager mCacheManager;
     private List<ICacheDataListener> mCacheListeners = new CopyOnWriteArrayList<ICacheDataListener>();
-    private static CacheClient mCacheClient;
 
     /**
      * 主Pager页显示的城市列表
@@ -71,9 +74,15 @@ public class CacheClient implements IWeatherQuery {
 
     private void initWorkHandlerThread() {
         CLog.i(TAG, "initWorkHandlerThread()");
-        HandlerThread handlerThread = new HandlerThread("cache_thread");
+        handlerThread = new HandlerThread("cache_thread");
         handlerThread.start();
         mWorkHandler = new Handler(handlerThread.getLooper());
+    }
+
+    public void release() {
+        if (handlerThread != null) {
+            handlerThread.quit();
+        }
     }
 
     private void runOnUIThread(Runnable runnable) {
@@ -89,24 +98,33 @@ public class CacheClient implements IWeatherQuery {
     }
 
     private void notifyCityConfigChanged() {
-        if (isInUiThread()) {
-            for (ICacheDataListener callback : mCacheListeners) {
-                callback.onCityConfigChanged();
+        /*if (isInUiThread()) {
+            for (ICacheDataListener listener : mCacheListeners) {
+                listener.onCityConfigChanged();
             }
         } else {
             runOnUIThread(new Runnable() {
                 @Override
                 public void run() {
-                    for (ICacheDataListener callback : mCacheListeners) {
-                        callback.onCityConfigChanged();
+                    for (ICacheDataListener listener : mCacheListeners) {
+                        listener.onCityConfigChanged();
                     }
                 }
             });
-        }
+        }*/
+
+        HandlerUtil.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                for (ICacheDataListener listener : mCacheListeners) {
+                    listener.onCityConfigChanged();
+                }
+            }
+        });
     }
 
     private void notifyCityWeatherChanged() {
-        if (isInUiThread()) {
+        /*if (isInUiThread()) {
             for (ICacheDataListener listener : mCacheListeners) {
                 listener.onCityWeatherChanged();
             }
@@ -119,7 +137,16 @@ public class CacheClient implements IWeatherQuery {
                     }
                 }
             });
-        }
+        }*/
+
+        HandlerUtil.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                for (ICacheDataListener listener : mCacheListeners) {
+                    listener.onCityConfigChanged();
+                }
+            }
+        });
     }
 
     @Override
