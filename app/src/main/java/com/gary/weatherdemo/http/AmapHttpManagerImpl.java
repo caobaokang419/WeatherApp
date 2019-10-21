@@ -37,8 +37,8 @@ public class AmapHttpManagerImpl implements AmapHttpManager {
     public Observable<LiveWeatherResponseData> liveWeatherPost(final String adcode) {
         return amapService.livesweatherPost(adcode,
                 AmapContants.AMAP_USER_KEY_VALUE,
-                AmapContants.AMAP_USER_EXTENSION_VALUE_BASE,
-                AmapContants.AMAP_USER_OUTPUT_VALUE_JSON)
+                AmapContants.AmapUserExt.BASE,
+                AmapContants.AmapUserOutput.JSON)
                 .subscribeOn(Schedulers.io());
     }
 
@@ -46,8 +46,8 @@ public class AmapHttpManagerImpl implements AmapHttpManager {
     public Observable<AllForecastResponseData> forecastWeatherPost(final String adcode) {
         return amapService.allweatherPost(adcode,
                 AmapContants.AMAP_USER_KEY_VALUE,
-                AmapContants.AMAP_USER_EXTENSION_VALUE_ALL,
-                AmapContants.AMAP_USER_OUTPUT_VALUE_JSON)
+                AmapContants.AmapUserExt.ALL,
+                AmapContants.AmapUserOutput.JSON)
                 .subscribeOn(Schedulers.io());
     }
 
@@ -55,8 +55,8 @@ public class AmapHttpManagerImpl implements AmapHttpManager {
     public Observable<LiveWeatherResponseData> livesWeatherGet(final String adcode) {
         return amapService.livesweatherGet(adcode,
                 AmapContants.AMAP_USER_KEY_VALUE,
-                AmapContants.AMAP_USER_EXTENSION_VALUE_ALL,
-                AmapContants.AMAP_USER_OUTPUT_VALUE_JSON)
+                AmapContants.AmapUserExt.BASE,
+                AmapContants.AmapUserOutput.JSON)
                 .subscribeOn(Schedulers.io());
     }
 
@@ -64,8 +64,8 @@ public class AmapHttpManagerImpl implements AmapHttpManager {
     public Observable<AllForecastResponseData> forecastWeatherGet(final String adcode) {
         return amapService.allweatherGet(adcode,
                 AmapContants.AMAP_USER_KEY_VALUE,
-                AmapContants.AMAP_USER_EXTENSION_VALUE_ALL,
-                AmapContants.AMAP_USER_OUTPUT_VALUE_JSON)
+                AmapContants.AmapUserExt.ALL,
+                AmapContants.AmapUserOutput.JSON)
                 .subscribeOn(Schedulers.io());
     }
 }

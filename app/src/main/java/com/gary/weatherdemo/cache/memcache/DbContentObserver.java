@@ -24,7 +24,7 @@ public class DbContentObserver  extends ContentObserver {
 
     @Override
     public void onChange(boolean selfChange) {
-
+        super.onChange(selfChange);
     }
 
     @Override
