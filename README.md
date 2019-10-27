@@ -22,10 +22,10 @@
 
 -------
 ### Uis list as follows: 
---View pager: using ViewPager to implement to change ui pages when LTR and RTL slide.
---Common UIs: implement common customer ui views using for code reusing.
---RecycleView Wrapper: RecyclerView is recommended by android  and better than ListView;
---City search:auto search the item from the city list when input search key word;
+-View pager: using ViewPager to implement to change ui pages when LTR and RTL slide.
+-Common UIs: implement common customer ui views using for code reusing.
+-RecycleView Wrapper: RecyclerView is recommended by android  and better than ListView;
+-City search:auto search the item from the city list when input search key word;
 
 -------
 ### MVVM architecture compents list as follows: 
