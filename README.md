@@ -15,9 +15,9 @@
 - [Amap weather](https://lbs.amap.com/api/webservice/guide/api/weatherinfo/): using both Get and Post methods to query amap weather data;
 - City configs file: using Xutils3 to download and save [Aamp weather city config file](http://a.amap.com/lbs/static/file/AMap_adcode_citycode.xlsx.zip)
 - Global data apis： using ContentProvider and SharedPreference, provided data access apis both weather db datas and app configs.
---Data cache manager: provided the implement of the disc and memory data cache function;
---Async task manager: 1. provided the wrapper of the ThreadPoolExecutor and the implementation of TaskExecutor;
---Data filter manager: provided the implement of the chain to filter data. 
+- Data cache manager: provided the implement of the disc and memory data cache function;
+- Async task manager: 1. provided the wrapper of the ThreadPoolExecutor and the implementation of TaskExecutor;
+- Data filter manager: provided the implement of the chain to filter data. 
 
 
 -------
