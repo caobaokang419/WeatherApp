@@ -51,11 +51,6 @@
 
 
 -------
-### Android Jetpack：
-![](https://github.com/caobaokang419/WeatherApp/blob/master/screenshots/Jetpack.png)
-
-
--------
 ### Android Architecture Components：
 ![](https://developer.android.google.cn/topic/libraries/architecture/images/final-architecture.png)
 
