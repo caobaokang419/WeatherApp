@@ -1,3 +1,6 @@
+### [简体中文 说明](https://github.com/caobaokang419/WeatherApp/blob/master/README_cn.md)
+
+
 ### Mvvm Amap Weather App：
 - MMVM: using the MVVM architecture which is the newest app architecture and also recommended by android.
 - Amap Weahter: using amap apis to access the weather datas provided by amap server.
