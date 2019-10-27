@@ -16,10 +16,10 @@ import java.util.List;
  */
 @Dao
 public interface CityBeanDAO {
-    @Query("SELECT * FROM " + CityBeanEntity.TABLE_NAME)
+    @Query("SELECT * FROM city_info")
     List<CityBeanEntity> getAll();
 
-    @Query("SELECT * FROM " + CityBeanEntity.TABLE_NAME + " WHERE id IN (:ids)")
+    @Query("SELECT * FROM city_info WHERE city_id IN (:ids)")
     List<CityBeanEntity> getAllByIds(long[] ids);
 
     @Insert
@@ -28,11 +28,10 @@ public interface CityBeanDAO {
     @Delete
     void delete(CityBeanEntity entity);
 
-    @Query("DELETE FROM " + CityBeanEntity.TABLE_NAME
-            +"  WHERE "+CityBeanEntity.COLUMN_CITY_CODE+" LIKE :cityAdcode")
+    @Query("DELETE FROM city_info  WHERE adcode LIKE :cityAdcode")
     void deleteByCityAdcode(String cityAdcode);
 
-    @Query("DELETE FROM " + CityBeanEntity.TABLE_NAME )
+    @Query("DELETE FROM city_info")
     void deleteAll();
 
     @Update

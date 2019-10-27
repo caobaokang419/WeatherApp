@@ -13,7 +13,7 @@ import com.gary.weatherdemo.utils.WtUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WtPermissionHelper {
+public class PermissionUtils {
     /**
      * 需动态申请的权限列表
      */
@@ -62,7 +62,7 @@ public class WtPermissionHelper {
      */
     public static boolean startRequestAllPermission(Context context) {
         if (!checkPermissionsGranted(context, mAllPermissions)) {
-            WtUtil.startActivity(context, WtPermissionActivity.class);
+            WtUtil.startActivity(context, PermissionActivity.class);
             return true;
         }
         return false;
@@ -94,6 +94,6 @@ public class WtPermissionHelper {
      * 发起权限申请
      */
     public void test(Context context) {
-        WtPermissionHelper.startRequestAllPermission(context);
+        PermissionUtils.startRequestAllPermission(context);
     }
 }

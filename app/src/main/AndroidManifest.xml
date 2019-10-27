@@ -19,7 +19,7 @@
 
         <!-- main activity -->
         <activity
-            android:name=".ui.activity.WtMainActivity"
+            android:name=".ui.activity.MainActivity"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,16 +27,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activity.WtSettingActivity"
+            android:name=".ui.activity.SettingActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ui.activity.WtSearchActivity"
+            android:name=".ui.activity.CitySearchActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ui.activity.WtDownloadActivity"
+            android:name=".ui.activity.DownloadActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".permission.WtPermissionActivity"
+            android:name=".permission.PermissionActivity"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.wt.action.PERMISSION_REQUEST" />

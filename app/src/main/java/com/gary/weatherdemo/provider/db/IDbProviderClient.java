@@ -12,7 +12,7 @@ import java.util.List;
  * <p>
  * db configs:across-process global access entries
  */
-public interface DbProviderManager {
+public interface IDbProviderClient {
     List<CityBean> getAllCityBeans();
 
     void insertCityBean(CityBean cityBean);

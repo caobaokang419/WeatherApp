@@ -18,18 +18,18 @@ import java.io.File;
 
 public class DownloadFactory {
     enum DownloadType {
-        TYPE_DOWNLOAD_XUTILS, TYPE_DOWNLOAD_ORIGIN
+        XUTILS, ORIGIN
     }
 
     /**
      * GoF23 设计模式 1：工厂方法type1（简单工厂）
      */
     public static IDownload createDownloadImpl() {
-        return createDownloadImpl(DownloadType.TYPE_DOWNLOAD_XUTILS);
+        return createDownloadImpl(DownloadType.XUTILS);
     }
 
     public static IDownload createDownloadImpl(DownloadType type) {
-        if (type == DownloadType.TYPE_DOWNLOAD_XUTILS) {
+        if (type == DownloadType.XUTILS) {
             return new XUtilsDownloadImpl();
         } else {
             return new OriDownloadImpl();

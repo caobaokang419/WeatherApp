@@ -47,11 +47,11 @@ public class SpProvider extends ContentProvider {
                     SharedPrefUtil.KEY_UPDATE_PERIODIC_HOUR_COUNT,
                     SharedPrefUtil.DefConfig.DEF_UPDATE_PERIODIC_HOUR_COUNT);
             bundle.putInt(method, hourCount);
-        } else if (method.equalsIgnoreCase(SpProviderManagerImpl.KEY_SET_INT_VALUE)) {
+        } else if (method.equalsIgnoreCase(SpProviderClient.KEY_SET_INT_VALUE)) {
             SharedPrefUtil.getInstance().setInt(arg, extras.getInt(arg));
-        } else if (method.equalsIgnoreCase(SpProviderManagerImpl.KEY_SET_STRING_VALUE)) {
+        } else if (method.equalsIgnoreCase(SpProviderClient.KEY_SET_STRING_VALUE)) {
             SharedPrefUtil.getInstance().setString(arg, extras.getString(arg));
-        } else if (method.equalsIgnoreCase(SpProviderManagerImpl.KEY_SET_BOOLEAN_VALUE)) {
+        } else if (method.equalsIgnoreCase(SpProviderClient.KEY_SET_BOOLEAN_VALUE)) {
             SharedPrefUtil.getInstance().setBoolean(arg, extras.getBoolean(arg));
         }
 

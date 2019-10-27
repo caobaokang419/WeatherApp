@@ -1,7 +1,7 @@
-package com.gary.weatherdemo.http.response;
+package com.gary.weatherdemo.http.bean;
 
 import com.gary.weatherdemo.bean.AllForecastBean;
-import com.gary.weatherdemo.http.response.base.BaseResponseData;
+import com.gary.weatherdemo.http.bean.base.BaseResponseData;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

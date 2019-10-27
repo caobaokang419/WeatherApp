@@ -9,22 +9,23 @@ import com.gary.weatherdemo.utils.CLog;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Created by GaryCao on 2019/01/13.
  * 动态申请权限
  */
-public class WtPermissionActivity extends AppCompatActivity {
+public class PermissionActivity extends AppCompatActivity {
     public final static int REQUEST_CODE_PERMISSION = 10001;
 
-    private static List<IPermitRequestCallback> mCallbacks = new ArrayList<>();
+    private static List<IPermitRequestResult> mListeners = new CopyOnWriteArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         //发起权限申请
-        List<String> needPermissions = WtPermissionHelper.getNeedGrantPermissions(this);
+        List<String> needPermissions = PermissionUtils.getNeedGrantPermissions(this);
         ActivityCompat.requestPermissions(
                 this,
                 needPermissions.toArray(new String[needPermissions.size()]),
@@ -43,15 +44,15 @@ public class WtPermissionActivity extends AppCompatActivity {
                                            @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_CODE_PERMISSION) {
-            if (WtPermissionHelper.checkPermissionsGrantResult(grantResults)) {
+            if (PermissionUtils.checkPermissionsGrantResult(grantResults)) {
                 CLog.d("onRequestPermissionsResult success");
-                for (IPermitRequestCallback callback : mCallbacks) {
-                    callback.onPermitRequestedSuccess();
+                for (IPermitRequestResult listener : mListeners) {
+                    listener.onPermitRequestSuccess();
                 }
             } else {
                 CLog.d("onRequestPermissionsResult fail");
-                for (IPermitRequestCallback callback : mCallbacks) {
-                    callback.onPermitRequestedFail();
+                for (IPermitRequestResult listener : mListeners) {
+                    listener.onPermitRequestFail();
                 }
             }
             finish();
@@ -61,23 +62,23 @@ public class WtPermissionActivity extends AppCompatActivity {
     /**
      * GoF23 设计模式 6：观察者模式: 订阅&通知UI刷新
      */
-    public static void addListener(IPermitRequestCallback callback) {
-        mCallbacks.add(callback);
+    public static void addPermitRequestListener(IPermitRequestResult listener) {
+        mListeners.add(listener);
     }
 
-    public static void removeListener(IPermitRequestCallback callback) {
-        mCallbacks.remove(callback);
+    public static void removePermitRequestListener(IPermitRequestResult listener) {
+        mListeners.remove(listener);
     }
 
-    public interface IPermitRequestCallback {
+    public interface IPermitRequestResult {
         /**
          * 授权成功
          */
-        void onPermitRequestedSuccess();
+        void onPermitRequestSuccess();
 
         /**
          * 授权失败
          */
-        void onPermitRequestedFail();
+        void onPermitRequestFail();
     }
 }

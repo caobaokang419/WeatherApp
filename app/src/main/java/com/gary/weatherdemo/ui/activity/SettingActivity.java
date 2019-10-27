@@ -5,18 +5,18 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.support.annotation.Nullable;
 
-import com.gary.weatherdemo.ui.fragment.WtSettingFragment;
+import com.gary.weatherdemo.ui.fragment.SettingFragment;
 
 /**
  * Created by GaryCao on 2019/01/12.
  * Android推荐使用PreferenceActivity+PreferenceFragment，替代单独使用PreferenceActivity.
  */
-public class WtSettingActivity extends PreferenceActivity {
+public class SettingActivity extends PreferenceActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        replacePreferenceFragment(new WtSettingFragment());
+        replacePreferenceFragment(new SettingFragment());
     }
 
     @Override

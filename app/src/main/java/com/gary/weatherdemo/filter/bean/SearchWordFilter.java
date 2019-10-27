@@ -1,4 +1,4 @@
-package com.gary.weatherdemo.filter;
+package com.gary.weatherdemo.filter.bean;
 
 import com.gary.weatherdemo.bean.CityItemBean;
 import com.gary.weatherdemo.bean.IViewItemBean;
@@ -6,7 +6,7 @@ import com.gary.weatherdemo.bean.IViewItemBean;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchWordFilter implements Filter {
+public class SearchWordFilter implements IFilter {
     private String mKeyWord;
 
     public SearchWordFilter(String keyWord){

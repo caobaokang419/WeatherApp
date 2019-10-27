@@ -1,4 +1,4 @@
-package com.gary.weatherdemo.filter;
+package com.gary.weatherdemo.filter.bean;
 
 import com.gary.weatherdemo.bean.CityBean;
 import com.gary.weatherdemo.bean.CityItemBean;
@@ -8,7 +8,7 @@ import com.gary.weatherdemo.cache.memcache.CacheClient;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FixedItemFilter implements Filter {
+public class FixedItemFilter implements IFilter {
 
     @Override
     public FilterType getFilterType() {

@@ -1,8 +1,8 @@
 package com.gary.weatherdemo.http;
 
-import com.gary.weatherdemo.http.response.AllForecastResponseData;
-import com.gary.weatherdemo.http.response.LiveWeatherResponseData;
-import com.gary.weatherdemo.repository.WtRepository;
+import com.gary.weatherdemo.http.bean.AllForecastResponseData;
+import com.gary.weatherdemo.http.bean.LiveWeatherResponseData;
+import com.gary.weatherdemo.repository.Repository;
 
 import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;
@@ -10,11 +10,11 @@ import io.reactivex.schedulers.Schedulers;
 /**
  * Created by GaryCao on 2018/10/25.
  */
-public class AmapHttpManagerImpl implements AmapHttpManager {
-    private static AmapHttpManagerImpl amapHttpManagerImpl;
+public class AmapHttpClient implements IAmapHttpClient {
+    private static AmapHttpClient amapHttpClient;
     private static AmapService amapService;
 
-    private AmapHttpManagerImpl() {
+    private AmapHttpClient() {
         createApiClient();
     }
 
@@ -26,11 +26,11 @@ public class AmapHttpManagerImpl implements AmapHttpManager {
     }
 
     public synchronized static void registerInstance() {
-        if (amapHttpManagerImpl == null) {
-            amapHttpManagerImpl = new AmapHttpManagerImpl();
+        if (amapHttpClient == null) {
+            amapHttpClient = new AmapHttpClient();
         }
 
-        WtRepository.Ext.setAmapHttpManager(amapHttpManagerImpl);
+        Repository.Ext.setAmapHttpManager(amapHttpClient);
     }
 
     @Override

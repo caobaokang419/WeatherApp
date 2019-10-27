@@ -6,7 +6,7 @@ import android.os.HandlerThread;
 import com.gary.weatherdemo.bean.CityBean;
 import com.gary.weatherdemo.bean.IViewItemBean;
 import com.gary.weatherdemo.cache.memcache.CacheClient;
-import com.gary.weatherdemo.repository.WtRepositoryHelper;
+import com.gary.weatherdemo.repository.RepositoryUtils;
 
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
@@ -67,8 +67,8 @@ public class PeriodicUpdateManager {
             notifyCityWeatherChanged();
         } else {
             CityBean cityBean = mQueue.poll();
-            WtRepositoryHelper.queryCityWeather(cityBean,
-                    new WtRepositoryHelper.IQueryWeatherCallback() {
+            RepositoryUtils.queryCityWeather(cityBean,
+                    new RepositoryUtils.IQueryWeatherCallback() {
                 @Override
                 public void onWeatherQueryCompleted(List<IViewItemBean> data) {
                     executeCurrentTask();

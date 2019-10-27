@@ -11,7 +11,7 @@ import com.gary.weatherdemo.ui.ItemView.ForecastDayViewItem;
  * Created by GaryCao on 2018/12/12.
  */
 public class ItemViewHolderFactory {
-    public static ItemViewHolder createViewHolderByType(ViewGroup parent, int type) {
+    public static ItemViewHolder createViewHolder(ViewGroup parent, int type) {
         if (type == IViewItemBean.ItemViewType.RV_CURRENT_WEATHER_ITEM_TYPE.value()) {
             return new ItemViewHolder(CurWeatherViewItem.createViewItem(), parent);
         } else if (type == IViewItemBean.ItemViewType.RV_FORECAST_DAY_WEATHER_ITEM_TYPE.value()) {

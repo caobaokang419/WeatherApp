@@ -33,12 +33,12 @@ public class DbProvider extends ContentProvider {
     public static final String CITY_FORECAST_CONTENT_ITEM_TYPE = "vnd.android.cursor.item/city_forecast";
 
     //高德城市配置表
-    public static final int CODE_CITY_CONFIG = 101;
-    public static final int CODE_CITY_CONFIG_ITEM = 102;
+    private static final int CODE_CITY_CONFIG = 101;
+    private static final int CODE_CITY_CONFIG_ITEM = 102;
 
     //城市天气表
-    public static final int CODE_CITY_FORECAST = 201;
-    public static final int CODE_CITY_FORECAST_ITEM = 202;
+    private static final int CODE_CITY_FORECAST = 201;
+    private static final int CODE_CITY_FORECAST_ITEM = 202;
 
     private static final UriMatcher mUriMatcher;
 

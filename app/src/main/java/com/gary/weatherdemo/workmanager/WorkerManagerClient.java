@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.gary.weatherdemo.cache.memcache.CacheClient;
 import com.gary.weatherdemo.refresh.PeriodicUpdateManager;
-import com.gary.weatherdemo.repository.WtRepository;
+import com.gary.weatherdemo.repository.Repository;
 import com.gary.weatherdemo.utils.CLog;
 import com.gary.weatherdemo.utils.SharedPrefUtil;
 
@@ -19,8 +19,8 @@ import androidx.work.Worker;
 /**
  * Created by GaryCao on 2018/11/04.
  */
-public class WtWorkerManager {
-    private static final String TAG = WtWorkerManager.class.getSimpleName();
+public class WorkerManagerClient {
+    private static final String TAG = WorkerManagerClient.class.getSimpleName();
 
     // work manager types
     public static final String PERIODIC_UPATE_WORK_NAME = "periodic_update_work";
@@ -47,7 +47,7 @@ public class WtWorkerManager {
                 new PeriodicWorkRequest.Builder(
                         PeriodicUpdateWorker.class,
                         /*SharedPrefUtil.getContext().getInt(SharedPrefUtil.KEY_UPDATE_PERIODIC_HOUR_COUNT),*/
-                        WtRepository.sp().getSharePrefInt(SharedPrefUtil.KEY_UPDATE_PERIODIC_HOUR_COUNT),
+                        Repository.sp().getSharePrefInt(SharedPrefUtil.KEY_UPDATE_PERIODIC_HOUR_COUNT),
                         TimeUnit.HOURS,
                         5,
                         TimeUnit.MINUTES);

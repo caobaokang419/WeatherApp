@@ -1,10 +1,10 @@
-package com.gary.weatherdemo.filter;
+package com.gary.weatherdemo.filter.bean;
 
 import com.gary.weatherdemo.bean.IViewItemBean;
 
 import java.util.List;
 
-public class NoFilter implements Filter {
+public class NoFilter implements IFilter {
 
     @Override
     public FilterType getFilterType(){

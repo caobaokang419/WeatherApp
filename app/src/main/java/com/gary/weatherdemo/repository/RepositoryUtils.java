@@ -3,8 +3,8 @@ package com.gary.weatherdemo.repository;
 import com.gary.weatherdemo.bean.CityBean;
 import com.gary.weatherdemo.bean.DayForecastBean;
 import com.gary.weatherdemo.bean.IViewItemBean;
-import com.gary.weatherdemo.http.response.AllForecastResponseData;
-import com.gary.weatherdemo.http.response.LiveWeatherResponseData;
+import com.gary.weatherdemo.http.bean.AllForecastResponseData;
+import com.gary.weatherdemo.http.bean.LiveWeatherResponseData;
 import com.gary.weatherdemo.utils.NetworkUtil;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ import io.reactivex.schedulers.Schedulers;
  * Created by GaryCao on 2019/04/14.
  *
  */
-public class WtRepositoryHelper {
+public class RepositoryUtils {
     public static void queryCityWeather(final CityBean citybean,
                                         final IQueryWeatherCallback queryCallback) {
         if (!NetworkUtil.isNetworkConnected()) {
@@ -30,11 +30,11 @@ public class WtRepositoryHelper {
 
         /**task1: 查询当前天气*/
         Observable<LiveWeatherResponseData> observable1 =
-                WtRepository.http().liveWeatherPost(citybean.cityCode).subscribeOn(Schedulers.io());//被观察者Observable运行在子线程
+                Repository.http().liveWeatherPost(citybean.cityCode).subscribeOn(Schedulers.io());//被观察者Observable运行在子线程
 
         /**task2: 查询未来天气预报*/
         Observable<AllForecastResponseData> observable2 =
-                WtRepository.http().forecastWeatherPost(citybean.cityCode).subscribeOn(Schedulers.io());
+                Repository.http().forecastWeatherPost(citybean.cityCode).subscribeOn(Schedulers.io());
 
         /**Observable.zip: 实现task1+ task2 异步任务都完成时，回调 订阅的UI刷新*/
         Observable.zip(observable1, observable2,

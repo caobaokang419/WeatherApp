@@ -1,10 +1,10 @@
-package com.gary.weatherdemo.filter;
+package com.gary.weatherdemo.filter.bean;
 
 import com.gary.weatherdemo.bean.IViewItemBean;
 
 import java.util.List;
 
-public interface Filter {
+public interface IFilter {
     enum FilterType {
         FILTER_TYPE_NO_FILTER,
         FILTER_TYPE_SEARCH_KEY_WORD,

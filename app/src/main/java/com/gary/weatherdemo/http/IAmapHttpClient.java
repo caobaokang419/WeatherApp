@@ -1,7 +1,7 @@
 package com.gary.weatherdemo.http;
 
-import com.gary.weatherdemo.http.response.AllForecastResponseData;
-import com.gary.weatherdemo.http.response.LiveWeatherResponseData;
+import com.gary.weatherdemo.http.bean.AllForecastResponseData;
+import com.gary.weatherdemo.http.bean.LiveWeatherResponseData;
 
 import io.reactivex.Observable;
 
@@ -10,7 +10,7 @@ import io.reactivex.Observable;
  * <p>
  * sp configs:across-process global access entries
  */
-public interface AmapHttpManager {
+public interface IAmapHttpClient {
     /*高德天气：当前天气查询接口 Post*/
     Observable<LiveWeatherResponseData> liveWeatherPost(final String adcode);
 

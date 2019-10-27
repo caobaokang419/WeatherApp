@@ -13,10 +13,10 @@ import java.util.List;
  */
 @Dao
 public interface CityForecastDAO {
-    @Query("SELECT * FROM " + CityForecastEntity.TABLE_NAME)
+    @Query("SELECT * FROM city_forecast")
     List<CityForecastEntity> getAll();
 
-    @Query("SELECT * FROM " + CityForecastEntity.TABLE_NAME + " WHERE id IN (:ids)")
+    @Query("SELECT * FROM  city_forecast WHERE forecast_id IN (:ids)")
     List<CityForecastEntity> getAllByIds(long[] ids);
 
     @Insert
@@ -25,11 +25,10 @@ public interface CityForecastDAO {
     @Delete
     void delete(CityForecastEntity entity);
 
-    @Query("DELETE FROM " + CityForecastEntity.TABLE_NAME
-            +"  WHERE "+CityForecastEntity.COLUMN_CODE+" LIKE :cityAdcode")
+    @Query("DELETE FROM city_forecast  WHERE adcode LIKE :cityAdcode")
     void deleteByCityAdcode(String cityAdcode);
 
-    @Query("DELETE FROM " +CityForecastEntity.TABLE_NAME)
+    @Query("DELETE FROM city_forecast")
     void deleteAll();
 
     @Update

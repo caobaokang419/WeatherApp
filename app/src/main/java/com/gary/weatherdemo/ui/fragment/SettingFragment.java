@@ -10,14 +10,14 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.gary.weatherdemo.R;
-import com.gary.weatherdemo.repository.WtRepository;
+import com.gary.weatherdemo.repository.Repository;
 import com.gary.weatherdemo.utils.SharedPrefUtil;
 
 /**
  * Created by GaryCao on 2019/01/12.
  * PreferenceFragment设置界面
  */
-public class WtSettingFragment extends PreferenceFragment {
+public class SettingFragment extends PreferenceFragment {
     private static final String KEY_PREF_ITEM_UPDATE_SWITCH = "auto_update_switch_key";
     private static final String KEY_PREF_ITEM_UPDATE_VALUE = "auto_update_internal_key";
     private static final String KEY_PREF_ITEM_OWNER_LABEL = "owner_label_key";
@@ -44,7 +44,7 @@ public class WtSettingFragment extends PreferenceFragment {
         mAutoUpdateSwitchPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                WtRepository.sp().setSharePrefBoolean(
+                Repository.sp().setSharePrefBoolean(
                         SharedPrefUtil.KEY_UPDATE_SWITCH,
                         mAutoUpdateSwitchPref.isChecked());
                 return true;
@@ -69,6 +69,6 @@ public class WtSettingFragment extends PreferenceFragment {
 
     private void initViewState() {
         mAutoUpdateSwitchPref.setChecked(
-                WtRepository.sp().getSharePrefBoolean(SharedPrefUtil.KEY_UPDATE_SWITCH));
+                Repository.sp().getSharePrefBoolean(SharedPrefUtil.KEY_UPDATE_SWITCH));
     }
 }

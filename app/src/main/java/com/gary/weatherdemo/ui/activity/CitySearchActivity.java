@@ -15,9 +15,9 @@ import com.gary.weatherdemo.R;
 import com.gary.weatherdemo.cache.memcache.CacheClient;
 import com.gary.weatherdemo.constant.Constants;
 import com.gary.weatherdemo.filter.FilterChain;
-import com.gary.weatherdemo.filter.FixedItemFilter;
-import com.gary.weatherdemo.filter.SearchWordFilter;
-import com.gary.weatherdemo.filter.NoFilter;
+import com.gary.weatherdemo.filter.bean.FixedItemFilter;
+import com.gary.weatherdemo.filter.bean.SearchWordFilter;
+import com.gary.weatherdemo.filter.bean.NoFilter;
 import com.gary.weatherdemo.ui.activity.base.BaseActivity;
 import com.gary.weatherdemo.ui.adapter.CitySearchGridAdapter;
 import com.gary.weatherdemo.ui.adapter.CitySearchRecyclerAdapter;
@@ -25,7 +25,7 @@ import com.gary.weatherdemo.ui.adapter.CitySearchRecyclerAdapter;
 /**
  * Created by GaryCao on 2019/01/12.
  */
-public class WtSearchActivity extends BaseActivity {
+public class CitySearchActivity extends BaseActivity {
     private GridView mCityGridView;
     private EditText mCitySearchEditText;
     private ImageButton mCitySearchBtn;

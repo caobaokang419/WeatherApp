@@ -10,7 +10,7 @@ import com.gary.weatherdemo.WtApplication;
  * <p>
  * sp configs:across-process global access entries
  */
-public interface SpProviderManager {
+public interface ISpProviderClient {
     int getSharePrefInt(String key);
 
     void setSharePrefInt(String key, int value);

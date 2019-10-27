@@ -25,8 +25,8 @@ public class AmapContants {
     }
 
     public interface AmapUserOutput {
-        String JSON = "base";
-        String XML = "all";
+        String JSON = "json";
+        String XML = "xml";
 
         @Retention(RetentionPolicy.SOURCE)
         @StringDef({JSON, XML})

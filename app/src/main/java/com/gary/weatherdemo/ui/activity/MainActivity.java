@@ -18,7 +18,7 @@ import com.gary.weatherdemo.viewmodel.MainActivityViewModel;
  * Created by GaryCao on 2019/01/13.
  * 左右滑动切换：不同城市天气信息：ViewPager+PagerAdapter
  */
-public class WtMainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity {
     private MainActivityViewModel mViewModel;
     private ViewPager mViewPager;
     private CityPagerAdapter mCityPagerAdapter;
@@ -30,7 +30,7 @@ public class WtMainActivity extends BaseActivity {
         setContentView(R.layout.activity_weather_main);
         initView();
 
-        /*if(WtPermissionActivity.startRequestAllPermission(this)){
+        /*if(PermissionActivity.startRequestAllPermission(this)){
             finish();
         }*/
     }
@@ -63,12 +63,12 @@ public class WtMainActivity extends BaseActivity {
 
     @Override
     protected void onActionBarLeftClicked() {
-        WtUtil.startActivity(getApplicationContext(), WtSearchActivity.class);
+        WtUtil.startActivity(getApplicationContext(), CitySearchActivity.class);
     }
 
     @Override
     protected void onActionBarRightClicked() {
-        WtUtil.startActivity(getApplicationContext(), WtSettingActivity.class);
+        WtUtil.startActivity(getApplicationContext(), SettingActivity.class);
     }
 
     private void updateCityTitleView() {

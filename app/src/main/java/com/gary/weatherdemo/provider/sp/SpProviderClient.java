@@ -4,14 +4,14 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import com.gary.weatherdemo.WtApplication;
-import com.gary.weatherdemo.repository.WtRepository;
+import com.gary.weatherdemo.repository.Repository;
 
 /**
  * Created by GaryCao on 2018/10/25.
  * <p>
  * sp configs:across-process global access entries
  */
-public class SpProviderManagerImpl implements SpProviderManager {
+public class SpProviderClient implements ISpProviderClient {
     public static final String SP_AUTHORITY = "com.gary.weatherdemo.sp.provider";
     public static final Uri SP_CONTENT_URI = Uri.parse("content://" + SP_AUTHORITY);
 
@@ -19,16 +19,16 @@ public class SpProviderManagerImpl implements SpProviderManager {
     public static final String KEY_SET_STRING_VALUE = "set_string_value";
     public static final String KEY_SET_BOOLEAN_VALUE = "set_boolean_value";
 
-    private static SpProviderManagerImpl spProviderManagerImpl;
+    private static SpProviderClient spProviderManagerImpl;
 
-    private SpProviderManagerImpl() {
+    private SpProviderClient() {
     }
 
     public synchronized static void registerInstance() {
         if (spProviderManagerImpl == null) {
-            spProviderManagerImpl = new SpProviderManagerImpl();
+            spProviderManagerImpl = new SpProviderClient();
         }
-        WtRepository.Ext.setSpProviderManager(spProviderManagerImpl);
+        Repository.Ext.setSpProviderManager(spProviderManagerImpl);
     }
 
     @Override

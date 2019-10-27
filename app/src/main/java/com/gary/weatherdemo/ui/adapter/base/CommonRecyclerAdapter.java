@@ -24,7 +24,7 @@ public class CommonRecyclerAdapter extends RecyclerView.Adapter<ItemViewHolder> 
 
     @Override
     public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return ItemViewHolderFactory.createViewHolderByType(parent, viewType);
+        return ItemViewHolderFactory.createViewHolder(parent, viewType);
     }
 
     @Override

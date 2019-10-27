@@ -7,7 +7,7 @@ import com.gary.weatherdemo.R;
 import com.gary.weatherdemo.download.DownloadManager;
 import com.gary.weatherdemo.download.IDownloadCallback;
 import com.gary.weatherdemo.http.AmapContants;
-import com.gary.weatherdemo.permission.WtPermissionActivity;
+import com.gary.weatherdemo.permission.PermissionActivity;
 import com.gary.weatherdemo.ui.activity.base.BaseActivity;
 import com.gary.weatherdemo.utils.CLog;
 
@@ -15,7 +15,7 @@ import com.gary.weatherdemo.utils.CLog;
  * Created by GaryCao on 2019/01/13.
  * 高德城市配置表文件下載管理
  */
-public class WtDownloadActivity extends BaseActivity implements WtPermissionActivity.IPermitRequestCallback {
+public class DownloadActivity extends BaseActivity implements PermissionActivity.IPermitRequestResult {
     @Override
     protected void onCreateNew(Bundle savedInstanceState) {
         //super.onCreate(savedInstanceState);
@@ -26,31 +26,31 @@ public class WtDownloadActivity extends BaseActivity implements WtPermissionActi
     @Override
     protected void onResume() {
         super.onResume();
-        WtPermissionActivity.addListener(this);
+        PermissionActivity.addPermitRequestListener(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        WtPermissionActivity.removeListener(this);
+        PermissionActivity.removePermitRequestListener(this);
     }
 
 
     @Override
-    public void onPermitRequestedSuccess() {
-        CLog.d("WtDownloadActivity", "onClickedLeftBtn()");
+    public void onPermitRequestSuccess() {
+        CLog.d("DownloadActivity", "onClickedLeftBtn()");
     }
 
     @Override
-    public void onPermitRequestedFail() {
-        CLog.d("WtDownloadActivity", "onClickedLeftBtn()");
+    public void onPermitRequestFail() {
+        CLog.d("DownloadActivity", "onClickedLeftBtn()");
     }
 
     private void initView() {
         findViewById(R.id.download_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DownloadManager.getInstance(WtDownloadActivity.this).
+                DownloadManager.getInstance(DownloadActivity.this).
                         startDownload(AmapContants.AMAP_CITY_CONFIG_FILE_URL, mDownloadCallback);
             }
         });
@@ -58,14 +58,14 @@ public class WtDownloadActivity extends BaseActivity implements WtPermissionActi
         findViewById(R.id.pause_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DownloadManager.getInstance(WtDownloadActivity.this).pauseDownload();
+                DownloadManager.getInstance(DownloadActivity.this).pauseDownload();
             }
         });
 
         findViewById(R.id.cancel_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DownloadManager.getInstance(WtDownloadActivity.this).cancelDownload();
+                DownloadManager.getInstance(DownloadActivity.this).cancelDownload();
             }
         });
     }
