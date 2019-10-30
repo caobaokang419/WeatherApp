@@ -30,7 +30,7 @@ public class AmapRetrofitHelper {
          * GoF23 设计模式 3：Builder模式
          */
         mRetrofit = new Retrofit.Builder()
-                .baseUrl(AmapContants.AMAP_BASE_URL)//设置服务器路径
+                .baseUrl(AmapContants.AMAP_HOST_URL)//设置服务器路径
                 .client(mOkHttpClient)//设置使用okhttp网络请求
                 .addConverterFactory(GsonConverterFactory.create())//添加转化库，默认是Gson
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())//添加回调库，采用RxJava

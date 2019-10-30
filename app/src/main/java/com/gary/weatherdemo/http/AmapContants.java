@@ -9,9 +9,10 @@ import java.lang.annotation.RetentionPolicy;
  * Created by GaryCao on 2018/10/25.
  */
 public class AmapContants {
-    public static final String AMAP_BASE_URL = "https://restapi.amap.com/";
-    public static final String AMAP_WEATHER_GET = "v3/weather/weatherInfo?";
-
+    //demo url:
+    //https://restapi.amap.com/v3/weather/weatherInfo?city=110101&key=3b6729d0c40f23fde7c55ae90ee0921d&extensions=base&output=JSON
+    public static final String AMAP_HOST_URL = "https://restapi.amap.com/";
+    public static final String AMAP_WEATHER_PATH = "v3/weather/weatherInfo?";
     public static final String AMAP_USER_KEY_VALUE = "3b6729d0c40f23fde7c55ae90ee0921d";
 
     public interface AmapUserExt {
