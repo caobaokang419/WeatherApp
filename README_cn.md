@@ -28,7 +28,7 @@
 
 
 -------
-### UI框架和组件实现说明：
+### UI组件实现说明：
 - 左右滑动实现：ViewPager实现左右页面滑动切换；
 - 下拉上拉刷新：下拉界面，实现天气自动更新；上拉界面，查询显示更多天气相关信息；
 - 天气设置功能：PreferenceActivity+PreferenceFragment，替代单独使用PreferenceActivity，实现天气设置界面；
@@ -37,7 +37,7 @@
 - [RecyclerView封装](https://www.jianshu.com/p/4f9591291365)：Android推荐控件，优于ListView，统一实现封装不同UI+Data的ItemView；
 
 -------
-### MVVM框架和组件实现：
+### JetPack组件实现说明：
 框架说明：借助[Android架构组件(Android Architecture Components)：](https://github.com/tangmin1010/appcomponent)可实现MVVM应用框架。 
 - [Lifecycle components](https://developer.android.google.cn/topic/libraries/architecture/lifecycle)： 生命周期管理，该组件是其它组件的基础，可由于跟踪UI的（Activity和Fragment）的生命周期
 - [ViewModels](https://developer.android.google.cn/topic/libraries/architecture/viewmodel)： 一种可以被观察的以及可以感知生命周期的数据容器。
@@ -49,7 +49,7 @@
 - [Navigation](https://developer.android.google.cn/topic/libraries/architecture/navigation/)：导航是应用程序设计的关键部分。通过导航，您可以设计交互，允许用户在应用程序的不同内容区域之间来回移动。--TBD
 
 -------
-### 网络应用框架和组件实现：
+### 第三方库实现说明：
 - [Retrofit 2.0 使用教程](https://blog.csdn.net/carson_ho/article/details/73732076)：热门的Android网络请求库
 - [OkHttp3 使用教程](https://blog.csdn.net/xx326664162/article/details/77714126)：Http第三方库，Retrofit底层通过OkHttp实现网络请求 
 - [Gson 使用教程](https://baijiahao.baidu.com/s?id=1607221675455152057&wfr=spider&for=pc)：Google提供，主要用途为序列化Java对象为JSON字符串，或反序列化JSON字符串成Java对象
@@ -64,7 +64,7 @@
 
 
 -------
-### 测试&调试&更新维护功能实现：
+### 测试&调试&维护：
 - 内存泄露：国内可集成LeakCanary，海外使用Firebase的[Crash Report(报错上报)](https://firebase.google.com/docs/crashlytics/?hl=zh-CN);
 - 调试框架：Stetho(Facebook开发的工具)，android as3.0后直接集成在IDE中了。--TBD
 - 测试框架：Mockito--TBD
