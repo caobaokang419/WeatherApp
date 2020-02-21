@@ -1,4 +1,4 @@
-### [简体中文 说明](https://github.com/caobaokang419/WeatherApp/blob/master/README_cn.md)
+### [简体中文 说明入口](https://github.com/caobaokang419/WeatherApp/blob/master/README_cn.md)
 
 
 ### Mvvm Amap Weather App：
@@ -11,7 +11,7 @@
 
 
 -------
-### Functions list as follows: 
+### Functions: 
 - [Amap weather](https://lbs.amap.com/api/webservice/guide/api/weatherinfo/): using both Get and Post methods to query amap weather data;
 - City configs file: using Xutils3 to download and save [Aamp weather city config file](http://a.amap.com/lbs/static/file/AMap_adcode_citycode.xlsx.zip)
 - Global data apis： using ContentProvider and SharedPreference, provided data access apis both weather db datas and app configs.
@@ -21,14 +21,14 @@
 
 
 -------
-### Uis list as follows: 
+### Uis: 
 - View pager: using ViewPager to implement to change ui pages when LTR and RTL slide.
 - Common UIs: implement common customer ui views using for code reusing.
 - RecycleView Wrapper: RecyclerView is recommended by android  and better than ListView;
 - City search:auto search the item from the city list when input search key word;
 
 -------
-### MVVM architecture compents list as follows: 
+### JetPack components: 
 - [Lifecycle components](https://developer.android.google.cn/topic/libraries/architecture/lifecycle)
 - [ViewModels](https://developer.android.google.cn/topic/libraries/architecture/viewmodel)
 - [LiveData](https://developer.android.google.cn/topic/libraries/architecture/livedata) 
@@ -39,7 +39,7 @@
 - [Navigation](https://developer.android.google.cn/topic/libraries/architecture/navigation/):TODO
 
 -------
-### Network architecture compents list as follow:
+### Third-party libraries:
 - [Retrofit 2.0](https://blog.csdn.net/carson_ho/article/details/73732076)
 - [OkHttp3](https://blog.csdn.net/xx326664162/article/details/77714126)
 - [Gson](https://baijiahao.baidu.com/s?id=1607221675455152057&wfr=spider&for=pc)
@@ -54,7 +54,7 @@
 
 
 -------
-### Android Architecture Components：
+### Android mvvm Architecture：
 ![](https://developer.android.google.cn/topic/libraries/architecture/images/final-architecture.png)
 
 
@@ -71,7 +71,6 @@ Wechat: lovelisa323
 QQ: 302634630
 Mail: caobaokang86@gmail.com 
 csdn: https://cbk419323.blog.csdn.net/
-
 
 -------
 ### License
