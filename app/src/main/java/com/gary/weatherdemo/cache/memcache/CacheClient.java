@@ -181,6 +181,7 @@ public class CacheClient implements IWeatherQueryListener {
         runOnWorkThread(new Runnable() {
             @Override
             public void run() {
+                waitForCacheLoadCompleted();
                 if (isCityCacheLoaded()) {
                     mCacheManager.loadCityItemBeansByFilters(filterChain);
                     notifyCityConfigChanged();
