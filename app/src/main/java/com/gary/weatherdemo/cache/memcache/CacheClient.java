@@ -35,7 +35,7 @@ public class CacheClient implements IWeatherQueryListener {
         void onCityWeatherChanged();
     }
 
-    private static CacheClient mCacheClient;
+    private volatile static CacheClient mCacheClient;
 
     /**
      * process main-thread(UI thread) works
@@ -225,9 +225,13 @@ public class CacheClient implements IWeatherQueryListener {
         return mCityCacheLoaded.get();
     }
 
-    public synchronized static CacheClient getInstance() {
+    public static CacheClient getInstance() {
         if (mCacheClient == null) {
-            mCacheClient = new CacheClient();
+            synchronized (CacheClient.class) {
+                if (mCacheClient != null) {
+                    mCacheClient = new CacheClient();
+                }
+            }
         }
         return mCacheClient;
     }
